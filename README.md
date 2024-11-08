@@ -1,2 +1,0 @@
-# GithubBlog
-Blog of Github
