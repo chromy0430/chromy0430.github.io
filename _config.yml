@@ -115,13 +115,13 @@ analytics:
 author:
   name             : "달리자 게임을 위해"
   avatar           : "/assets/images/Avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : 
+  bio              : "어서와, 초보는 익숙하지?"
   location         : 
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      url: "mailto:chromy0430@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
