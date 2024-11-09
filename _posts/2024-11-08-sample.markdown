@@ -2,6 +2,7 @@
 layout: post
 title:  "Dotween 시작하기"
 date:   2024-11-08 19:14:52 +0900
+read_time: false   # 이 줄을 추가하면 읽기 시간이 표시되지 않습니다
 categories: Dotween
 ---
 Dotween 시작하기
