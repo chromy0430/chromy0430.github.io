@@ -15,7 +15,7 @@
   - title: "Main"  # "Quick-Start Guide" 대신 원하는 텍스트로 변경
     url: /     # 원하는 링크 주소로 변경
   - title: "카테고리"
-    url: /Categories/
+    url: /categories/
     
 #    main:
 #  - title: "카테고리"
