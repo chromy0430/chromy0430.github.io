@@ -12,8 +12,8 @@
   #   url: /sitemap/
   
   main:
-  - title: "포스트"  # "Quick-Start Guide" 대신 원하는 텍스트로 변경
-    url: /posts/     # 원하는 링크 주소로 변경
+  - title: "Main"  # "Quick-Start Guide" 대신 원하는 텍스트로 변경
+    url: /     # 원하는 링크 주소로 변경
   - title: "카테고리"
     url: /categories/
     
@@ -22,5 +22,5 @@
 #    children:
 #      - title: "프로그래밍"
 #        url: /programming/
-#      - title: "알고리즘"
+#      - title: "Dotween"
 #        url: /algorithm/
