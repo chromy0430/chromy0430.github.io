@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/Scripts/Camera/CameraCon.cs 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.5</span>
+   </div>
+   <div id="projectbrief">LodgingSimulator Documents</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_camera_con_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">CameraCon.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_camera_con_8cs.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>Unity.Cinemachine;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>UnityEngine;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="foldopen" id="foldopen00004" data-start="{" data-end="};">
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="class_camera_con.html">    4</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_camera_con.html">CameraCon</a> : MonoBehaviour</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{   </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_camera_con.html#a60507c80cd067ae36fa7c4ce28784ef9">    6</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#a60507c80cd067ae36fa7c4ce28784ef9">zoomMultiplier</a> = 10f;  <span class="comment">// 줌 조절 속도</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_camera_con.html#ab078fe97d0a31adf9e941dc83ea8ca65">    7</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#ab078fe97d0a31adf9e941dc83ea8ca65">minFOV</a>         = 20f;  <span class="comment">// 최소 줌</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_camera_con.html#a43429ae4a560114dbdfa3193dd97c938">    8</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#a43429ae4a560114dbdfa3193dd97c938">maxFOV</a>         = 60f;  <span class="comment">// 최대 줌</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_camera_con.html#abbff11e55c88a4b40f81b4563890f0f4">    9</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#abbff11e55c88a4b40f81b4563890f0f4">fovSmoothTime</a>  = 0.2f; <span class="comment">// 줌 부드럽게 변경되는 시간</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">   10</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">targetFOV</a>;             <span class="comment">// 목표 줌 값</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_camera_con.html#a144f9f33d86e90f0af0df21269a8831d">   11</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#a144f9f33d86e90f0af0df21269a8831d">fovVelocity</a>;           <span class="comment">// 현재 FOV 변경 속도</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_camera_con.html#ae7e3a818457ae33b0a6dc01ce6655fa7">   12</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#ae7e3a818457ae33b0a6dc01ce6655fa7">moveSpeed</a>      = 10f;  <span class="comment">// WASD 이동 속도</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_camera_con.html#ac28da50e3e8ae2565ea83d51c535b559">   13</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span>     <a class="code hl_variable" href="class_camera_con.html#ac28da50e3e8ae2565ea83d51c535b559">rotationSpeed</a>  = 5f;   <span class="comment">// 회전 속도</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">   15</a></span>    <span class="keyword">public</span> Transform <a class="code hl_variable" href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">target</a>;         <span class="comment">// 카메라 위치</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_camera_con.html#ad49ae3a66b13cd83c15b5356a5a755d2">   16</a></span>    <span class="keyword">public</span> Collider  <a class="code hl_variable" href="class_camera_con.html#ad49ae3a66b13cd83c15b5356a5a755d2">boundingVolume</a>; <span class="comment">// 카메라 경계선</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">private</span> Vector3 offset;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    [SerializeField] <span class="keyword">private</span> <span class="keywordtype">float</span>             yaw   = -90f;    <span class="comment">// 좌우 회전 (Y축)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    [SerializeField] <span class="keyword">private</span> <span class="keywordtype">float</span>             pitch = 60f;     <span class="comment">// 상하 회전 (X축)</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    [SerializeField] <span class="keyword">private</span> CinemachineCamera cam;             <span class="comment">// 카메라 참조</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Start()</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">if</span> (cam == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            Debug.LogError(<span class="stringliteral">&quot;CinemachineVirtualCamera가 할당되지 않았습니다!&quot;</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            enabled = <span class="keyword">false</span>; <span class="comment">// 컴포넌트 비활성화</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">//카메라 값 초기화</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        offset = cam.transform.position;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        target.transform.position = offset;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_variable" href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">targetFOV</a> = cam.Lens.FieldOfView; </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> LateUpdate()</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        SmoothWheel();       <span class="comment">// 줌 처리</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        HandleMovement();    <span class="comment">// WASD 이동</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        HandleRotation();    <span class="comment">// 마우스 우클릭 회전</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        CameraConfiner();    <span class="comment">// 카메라가 경계에서 끼이는 버그 해결 </span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="comment">// 카메라 위치 및 회전 적용</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        Vector3 targetPosition = <span class="keyword">new</span> Vector3(</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <a class="code hl_variable" href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">target</a> is not <span class="keyword">null</span> ? <a class="code hl_variable" href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">target</a>.position.x : 0f,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            offset.y,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <a class="code hl_variable" href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">target</a> is not <span class="keyword">null</span> ? <a class="code hl_variable" href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">target</a>.position.z : 0f</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        );</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">target</a> is not <span class="keyword">null</span>) target.transform.position = targetPosition;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> CameraConfiner()</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        CinemachineConfiner3D confiner = cam.GetComponent&lt;CinemachineConfiner3D&gt;();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">if</span> (confiner != <span class="keyword">null</span> &amp;&amp; <a class="code hl_variable" href="class_camera_con.html#ad49ae3a66b13cd83c15b5356a5a755d2">boundingVolume</a> != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            Vector3 cameraPos = cam.transform.position;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">if</span> (!<a class="code hl_variable" href="class_camera_con.html#ad49ae3a66b13cd83c15b5356a5a755d2">boundingVolume</a>.bounds.Contains(cameraPos))</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                <span class="comment">// 카메라가 경계 밖에 있을 때, 경계 안으로 강제 이동</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                Vector3 closestPoint = <a class="code hl_variable" href="class_camera_con.html#ad49ae3a66b13cd83c15b5356a5a755d2">boundingVolume</a>.ClosestPoint(cameraPos);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                cam.transform.position = closestPoint;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> SmoothWheel()</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordtype">float</span> scrollInput = Input.GetAxisRaw(<span class="stringliteral">&quot;Mouse ScrollWheel&quot;</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">if</span> (scrollInput != 0)</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <a class="code hl_variable" href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">targetFOV</a> -= scrollInput * <a class="code hl_variable" href="class_camera_con.html#a60507c80cd067ae36fa7c4ce28784ef9">zoomMultiplier</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <a class="code hl_variable" href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">targetFOV</a> = Mathf.Clamp(<a class="code hl_variable" href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">targetFOV</a>, <a class="code hl_variable" href="class_camera_con.html#ab078fe97d0a31adf9e941dc83ea8ca65">minFOV</a>, <a class="code hl_variable" href="class_camera_con.html#a43429ae4a560114dbdfa3193dd97c938">maxFOV</a>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        } </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="comment">// FOV를 부드럽게 업데이트</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        cam.Lens.FieldOfView = Mathf.SmoothDamp(</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            cam.Lens.FieldOfView, <span class="comment">// 현재 값</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <a class="code hl_variable" href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">targetFOV</a>,                      <span class="comment">// 목표 값</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            ref <a class="code hl_variable" href="class_camera_con.html#a144f9f33d86e90f0af0df21269a8831d">fovVelocity</a>,                <span class="comment">// 참조 속도 변수</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <a class="code hl_variable" href="class_camera_con.html#abbff11e55c88a4b40f81b4563890f0f4">fovSmoothTime</a>                   <span class="comment">// 부드럽게 만드는 시간</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        );</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> HandleMovement()</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="comment">// WASD 입력 처리</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordtype">float</span> horizontal = Input.GetAxisRaw(<span class="stringliteral">&quot;Horizontal&quot;</span>); <span class="comment">// A/D</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordtype">float</span> vertical = Input.GetAxisRaw(<span class="stringliteral">&quot;Vertical&quot;</span>);     <span class="comment">// W/S</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        Vector3 moveDirection = <span class="keyword">new</span> Vector3(horizontal, 0f, vertical).normalized;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">if</span> (moveDirection.magnitude &gt; 0)</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="comment">// 카메라의 로컬 방향을 기준으로 이동</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            Vector3 move = transform.TransformDirection(moveDirection) * (<a class="code hl_variable" href="class_camera_con.html#ae7e3a818457ae33b0a6dc01ce6655fa7">moveSpeed</a> * Time.deltaTime);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            move.y = 0f; <span class="comment">// y축 이동은 줌으로만 제어</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            target.transform.position += move;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> HandleRotation()</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="comment">// 마우스 우클릭 중일 때만 회전</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordflow">if</span> (Input.GetMouseButton(1))</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            yaw += Input.GetAxis(<span class="stringliteral">&quot;Mouse X&quot;</span>) * <a class="code hl_variable" href="class_camera_con.html#ac28da50e3e8ae2565ea83d51c535b559">rotationSpeed</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            pitch -= Input.GetAxis(<span class="stringliteral">&quot;Mouse Y&quot;</span>) * <a class="code hl_variable" href="class_camera_con.html#ac28da50e3e8ae2565ea83d51c535b559">rotationSpeed</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <span class="comment">// 상하 회전 각도 제한</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            pitch = Mathf.Clamp(pitch, 0f, 70f);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            <span class="comment">// 회전 적용</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            target.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>}</div>
+</div>
+<div class="ttc" id="aclass_camera_con_html"><div class="ttname"><a href="class_camera_con.html">CameraCon</a></div><div class="ttdef"><b>Definition</b> <a href="#l00004">CameraCon.cs:5</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_a144f9f33d86e90f0af0df21269a8831d"><div class="ttname"><a href="class_camera_con.html#a144f9f33d86e90f0af0df21269a8831d">CameraCon.fovVelocity</a></div><div class="ttdeci">float fovVelocity</div><div class="ttdef"><b>Definition</b> <a href="#l00011">CameraCon.cs:11</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_a43429ae4a560114dbdfa3193dd97c938"><div class="ttname"><a href="class_camera_con.html#a43429ae4a560114dbdfa3193dd97c938">CameraCon.maxFOV</a></div><div class="ttdeci">float maxFOV</div><div class="ttdef"><b>Definition</b> <a href="#l00008">CameraCon.cs:8</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_a60507c80cd067ae36fa7c4ce28784ef9"><div class="ttname"><a href="class_camera_con.html#a60507c80cd067ae36fa7c4ce28784ef9">CameraCon.zoomMultiplier</a></div><div class="ttdeci">float zoomMultiplier</div><div class="ttdef"><b>Definition</b> <a href="#l00006">CameraCon.cs:6</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_a8317f5453832dc23e11a702d0064563f"><div class="ttname"><a href="class_camera_con.html#a8317f5453832dc23e11a702d0064563f">CameraCon.target</a></div><div class="ttdeci">Transform target</div><div class="ttdef"><b>Definition</b> <a href="#l00015">CameraCon.cs:15</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_ab078fe97d0a31adf9e941dc83ea8ca65"><div class="ttname"><a href="class_camera_con.html#ab078fe97d0a31adf9e941dc83ea8ca65">CameraCon.minFOV</a></div><div class="ttdeci">float minFOV</div><div class="ttdef"><b>Definition</b> <a href="#l00007">CameraCon.cs:7</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_abbff11e55c88a4b40f81b4563890f0f4"><div class="ttname"><a href="class_camera_con.html#abbff11e55c88a4b40f81b4563890f0f4">CameraCon.fovSmoothTime</a></div><div class="ttdeci">float fovSmoothTime</div><div class="ttdef"><b>Definition</b> <a href="#l00009">CameraCon.cs:9</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_abc2098fdb172bf13cfd763e4dabddc0a"><div class="ttname"><a href="class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a">CameraCon.targetFOV</a></div><div class="ttdeci">float targetFOV</div><div class="ttdef"><b>Definition</b> <a href="#l00010">CameraCon.cs:10</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_ac28da50e3e8ae2565ea83d51c535b559"><div class="ttname"><a href="class_camera_con.html#ac28da50e3e8ae2565ea83d51c535b559">CameraCon.rotationSpeed</a></div><div class="ttdeci">float rotationSpeed</div><div class="ttdef"><b>Definition</b> <a href="#l00013">CameraCon.cs:13</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_ad49ae3a66b13cd83c15b5356a5a755d2"><div class="ttname"><a href="class_camera_con.html#ad49ae3a66b13cd83c15b5356a5a755d2">CameraCon.boundingVolume</a></div><div class="ttdeci">Collider boundingVolume</div><div class="ttdef"><b>Definition</b> <a href="#l00016">CameraCon.cs:16</a></div></div>
+<div class="ttc" id="aclass_camera_con_html_ae7e3a818457ae33b0a6dc01ce6655fa7"><div class="ttname"><a href="class_camera_con.html#ae7e3a818457ae33b0a6dc01ce6655fa7">CameraCon.moveSpeed</a></div><div class="ttdeci">float moveSpeed</div><div class="ttdef"><b>Definition</b> <a href="#l00012">CameraCon.cs:12</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_29d13c242fcf0dd9dd43c13d541dcfd9.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_6411c71c4bd00dd1d5a18ebf22122ec3.html">Camera</a></li><li class="navelem"><a class="el" href="_camera_con_8cs.html">CameraCon.cs</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

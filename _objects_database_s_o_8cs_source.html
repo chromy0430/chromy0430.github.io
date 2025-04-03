@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/Scripts/SO/ObjectsDatabaseSO.cs 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.5</span>
+   </div>
+   <div id="projectbrief">LodgingSimulator Documents</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_objects_database_s_o_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">ObjectsDatabaseSO.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_objects_database_s_o_8cs.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Collections.Generic;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>UnityEngine;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>[CreateAssetMenu]</div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_objects_database_s_o.html">    9</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_objects_database_s_o.html">ObjectsDatabaseSO</a> : ScriptableObject</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_objects_database_s_o.html#a0157454ca50ad05755e500a0f2883143">   11</a></span>    <span class="keyword">public</span> List&lt;ObjectData&gt; <a class="code hl_variable" href="class_objects_database_s_o.html#a0157454ca50ad05755e500a0f2883143">objectsData</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="comment">//최적화 시도</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">private</span> Dictionary&lt;int, ObjectData&gt; objectDataDict;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_objects_database_s_o.html#ad2ace055b575f078e0bf84065d91bb6f">   15</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_objects_database_s_o.html#ad2ace055b575f078e0bf84065d91bb6f">InitializeDictionary</a>()</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        objectDataDict = <span class="keyword">new</span> Dictionary&lt;int, ObjectData&gt;();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordflow">foreach</span> (var data <span class="keywordflow">in</span> <a class="code hl_variable" href="class_objects_database_s_o.html#a0157454ca50ad05755e500a0f2883143">objectsData</a>)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            objectDataDict[data.ID] = data;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
+</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_objects_database_s_o.html#a774a45ae5a48731421c29c78cd1c9344">   24</a></span>    <span class="keyword">public</span> <a class="code hl_class" href="class_object_data.html">ObjectData</a> <a class="code hl_function" href="class_objects_database_s_o.html#a774a45ae5a48731421c29c78cd1c9344">GetObjectData</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span> objectDataDict.TryGetValue(<span class="keywordtype">id</span>, out var data) ? data : <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>[Serializable]</div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_object_data.html">   31</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_object_data.html">ObjectData</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    [field : SerializeField]</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_object_data.html#a112f78a063ef3c8a4fac25275d581410">   34</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_property" href="class_object_data.html#a112f78a063ef3c8a4fac25275d581410">Name</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    [field : SerializeField]</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_object_data.html#a49ec5e33e551ed29c824ebdf52bd1921">   37</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_object_data.html#a49ec5e33e551ed29c824ebdf52bd1921">ID</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    [field : SerializeField]</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491">   40</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491">kindIndex</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    [field: SerializeField]</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_object_data.html#adb8cf0429371d93db7bf9fb40fc34ca9">   43</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_object_data.html#adb8cf0429371d93db7bf9fb40fc34ca9">IsWall</a>; </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    [field: SerializeField] </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_object_data.html#a1231f2c10d26b0ed1fd93360eda3a6e4">   46</a></span>    <span class="keyword">public</span> Vector2Int <a class="code hl_property" href="class_object_data.html#a1231f2c10d26b0ed1fd93360eda3a6e4">Size</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } = Vector2Int.one;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    [field : SerializeField]</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_object_data.html#aafe8487054ca8d15b5173677979d7866">   49</a></span>    <span class="keyword">public</span> GameObject <a class="code hl_property" href="class_object_data.html#aafe8487054ca8d15b5173677979d7866">Prefab</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+</div>
+<div class="ttc" id="aclass_object_data_html"><div class="ttname"><a href="class_object_data.html">ObjectData</a></div><div class="ttdef"><b>Definition</b> <a href="#l00031">ObjectsDatabaseSO.cs:32</a></div></div>
+<div class="ttc" id="aclass_object_data_html_a112f78a063ef3c8a4fac25275d581410"><div class="ttname"><a href="class_object_data.html#a112f78a063ef3c8a4fac25275d581410">ObjectData.Name</a></div><div class="ttdeci">string Name</div><div class="ttdef"><b>Definition</b> <a href="#l00034">ObjectsDatabaseSO.cs:34</a></div></div>
+<div class="ttc" id="aclass_object_data_html_a1231f2c10d26b0ed1fd93360eda3a6e4"><div class="ttname"><a href="class_object_data.html#a1231f2c10d26b0ed1fd93360eda3a6e4">ObjectData.Size</a></div><div class="ttdeci">Vector2Int Size</div><div class="ttdef"><b>Definition</b> <a href="#l00046">ObjectsDatabaseSO.cs:46</a></div></div>
+<div class="ttc" id="aclass_object_data_html_a49ec5e33e551ed29c824ebdf52bd1921"><div class="ttname"><a href="class_object_data.html#a49ec5e33e551ed29c824ebdf52bd1921">ObjectData.ID</a></div><div class="ttdeci">int ID</div><div class="ttdef"><b>Definition</b> <a href="#l00037">ObjectsDatabaseSO.cs:37</a></div></div>
+<div class="ttc" id="aclass_object_data_html_aafe8487054ca8d15b5173677979d7866"><div class="ttname"><a href="class_object_data.html#aafe8487054ca8d15b5173677979d7866">ObjectData.Prefab</a></div><div class="ttdeci">GameObject Prefab</div><div class="ttdef"><b>Definition</b> <a href="#l00049">ObjectsDatabaseSO.cs:49</a></div></div>
+<div class="ttc" id="aclass_object_data_html_abf0d1a2dc78be4a41da8d6002a4f3491"><div class="ttname"><a href="class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491">ObjectData.kindIndex</a></div><div class="ttdeci">int kindIndex</div><div class="ttdef"><b>Definition</b> <a href="#l00040">ObjectsDatabaseSO.cs:40</a></div></div>
+<div class="ttc" id="aclass_object_data_html_adb8cf0429371d93db7bf9fb40fc34ca9"><div class="ttname"><a href="class_object_data.html#adb8cf0429371d93db7bf9fb40fc34ca9">ObjectData.IsWall</a></div><div class="ttdeci">bool IsWall</div><div class="ttdef"><b>Definition</b> <a href="#l00043">ObjectsDatabaseSO.cs:43</a></div></div>
+<div class="ttc" id="aclass_objects_database_s_o_html"><div class="ttname"><a href="class_objects_database_s_o.html">ObjectsDatabaseSO</a></div><div class="ttdoc">건축물들의 데이터를 저장하는 스크립터블오브젝트</div><div class="ttdef"><b>Definition</b> <a href="#l00009">ObjectsDatabaseSO.cs:10</a></div></div>
+<div class="ttc" id="aclass_objects_database_s_o_html_a0157454ca50ad05755e500a0f2883143"><div class="ttname"><a href="class_objects_database_s_o.html#a0157454ca50ad05755e500a0f2883143">ObjectsDatabaseSO.objectsData</a></div><div class="ttdeci">List&lt; ObjectData &gt; objectsData</div><div class="ttdef"><b>Definition</b> <a href="#l00011">ObjectsDatabaseSO.cs:11</a></div></div>
+<div class="ttc" id="aclass_objects_database_s_o_html_a774a45ae5a48731421c29c78cd1c9344"><div class="ttname"><a href="class_objects_database_s_o.html#a774a45ae5a48731421c29c78cd1c9344">ObjectsDatabaseSO.GetObjectData</a></div><div class="ttdeci">ObjectData GetObjectData(int id)</div><div class="ttdef"><b>Definition</b> <a href="#l00024">ObjectsDatabaseSO.cs:24</a></div></div>
+<div class="ttc" id="aclass_objects_database_s_o_html_ad2ace055b575f078e0bf84065d91bb6f"><div class="ttname"><a href="class_objects_database_s_o.html#ad2ace055b575f078e0bf84065d91bb6f">ObjectsDatabaseSO.InitializeDictionary</a></div><div class="ttdeci">void InitializeDictionary()</div><div class="ttdef"><b>Definition</b> <a href="#l00015">ObjectsDatabaseSO.cs:15</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_29d13c242fcf0dd9dd43c13d541dcfd9.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_108a192b870df5ce74441e62271ba911.html">SO</a></li><li class="navelem"><a class="el" href="_objects_database_s_o_8cs.html">ObjectsDatabaseSO.cs</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>
