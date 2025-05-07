@@ -1,5 +1,7 @@
 <map id="GridData.AddObjectAt" name="GridData.AddObjectAt">
-<area shape="rect" id="Node000001" title="설치된 오브젝트의 데이터를 딕셔너리에 추가한다." alt="" coords="5,5,157,32"/>
-<area shape="rect" id="Node000002" href="$class_grid_data.html#a087545757d44b7c4b41a4b24045a9aa8" title="설치할 오브젝트의 상하좌우 길이를 실시간으로 변경하여 딕셔너리와 비교할 수 있도록 계산한다." alt="" coords="205,5,384,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,16,189,16,189,21,157,21"/>
+<area shape="rect" id="Node000001" title="설치된 오브젝트의 데이터를 딕셔너리에 추가한다." alt="" coords="5,31,157,57"/>
+<area shape="rect" id="Node000002" href="$class_grid_data.html#a087545757d44b7c4b41a4b24045a9aa8" title="설치할 오브젝트의 상하좌우 길이를 실시간으로 변경하여 딕셔너리와 비교할 수 있도록 계산한다." alt="" coords="231,5,410,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,33,215,27,216,32,157,39"/>
+<area shape="rect" id="Node000003" href="$class_objects_database_s_o.html#a774a45ae5a48731421c29c78cd1c9344" title=" " alt="" coords="205,56,437,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,49,189,53,189,58,156,55"/>
 </map>

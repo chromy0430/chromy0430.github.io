@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['initializedictionary_0',['InitializeDictionary',['../class_objects_database_s_o.html#ad2ace055b575f078e0bf84065d91bb6f',1,'ObjectsDatabaseSO']]],
-  ['initializeplane_1',['InitializePlane',['../class_placement_system.html#a58b00d1a289960088869324e853e4ea4',1,'PlacementSystem']]],
-  ['ispointeroverui_2',['IsPointerOverUI',['../class_input_manager.html#a22c3bf9782babcae4dc25081c80ac26c',1,'InputManager']]]
+  ['findallrooms_0',['FindAllRooms',['../class_room_manager.html#a150b81e83359105fea86a4d5506e2a25',1,'RoomManager']]],
+  ['findroomsinpricerange_1',['FindRoomsInPriceRange',['../class_room_manager.html#a2a761f691bfc2af39a7887562462618f',1,'RoomManager']]]
 ];

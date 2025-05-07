@@ -1,5 +1,8 @@
 <map id="PlacementSystem.StartPlacement" name="PlacementSystem.StartPlacement">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,228,32"/>
-<area shape="rect" id="Node000002" href="$class_placement_system.html#acd71b515f04f56f8a848976461c3ee78" title=" " alt="" coords="276,5,494,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,16,260,16,260,21,228,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,228,69"/>
+<area shape="rect" id="Node000002" href="$class_placement_system.html#acd71b515f04f56f8a848976461c3ee78" title=" " alt="" coords="281,5,500,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,39,272,32,273,37,220,45"/>
+<area shape="rect" id="Node000003" href="$class_placement_system.html#aefc94c343028be4cd6c20a64199f15e0" title=" " alt="" coords="276,80,505,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,67,273,75,272,80,219,73"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="345,81,336,71,342,61,360,55,390,53,423,56,440,63,438,68,422,61,390,59,361,61,345,66,342,71,349,78"/>
 </map>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['isbuildmode_0',['isBuildMode',['../class_input_manager.html#a044e69ae3cb508dad7b4392576e6737c',1,'InputManager']]],
-  ['iswall_1',['IsWall',['../class_object_data.html#adb8cf0429371d93db7bf9fb40fc34ca9',1,'ObjectData']]]
+  ['gameobject_0',['gameObject',['../class_room_detector_1_1_room_info.html#a44bf1e51a1bdf97654284a8f58a47951',1,'RoomDetector::RoomInfo']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['name_0',['Name',['../class_object_data.html#a112f78a063ef3c8a4fac25275d581410',1,'ObjectData']]],
-  ['navmeshtest_1',['navmeshTest',['../classnavmesh_test.html',1,'']]],
-  ['navmeshtest_2ecs_2',['navmeshTest.cs',['../navmesh_test_8cs.html',1,'']]]
+  ['leavequeue_0',['LeaveQueue',['../class_counter_manager.html#a4d01f22ff2889dada5bc9e423a95c7da',1,'CounterManager']]]
 ];

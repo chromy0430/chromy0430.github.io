@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.5</span>
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
    </div>
    <div id="projectbrief">LodgingSimulator Documents</div>
   </td>
@@ -110,7 +110,7 @@ $(function(){initNavTree('_placement_data_8cs_source.html',''); initResizable(tr
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>UnityEngine;</div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span></div>
 <div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_placement_data.html">    7</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_placement_data.html#a67153262f65d31bf477433acaaea4e4f">PlacementData</a> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_placement_data.html">    7</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_placement_data.html#a6eb46bd0ea41718b34b517dc07ae3159">PlacementData</a> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_placement_data.html#a7aed0f396e75f30017f0b55569536327">    9</a></span>    <span class="keyword">public</span> List&lt;Vector3Int&gt; <a class="code hl_variable" href="class_placement_data.html#a7aed0f396e75f30017f0b55569536327">occupiedPositions</a>;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_placement_data.html#ab712aa27ec8bcf66dc1fcfd096b14c33">   10</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_placement_data.html#ab712aa27ec8bcf66dc1fcfd096b14c33">ID</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
@@ -121,25 +121,29 @@ $(function(){initNavTree('_placement_data_8cs_source.html',''); initResizable(tr
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// 0 = 바닥 오브젝트</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="comment">// 1 = 가구 오브젝트</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// 2 = 벽 오브젝트</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">   19</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">kindIndex</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_placement_data.html#a67153262f65d31bf477433acaaea4e4f">   21</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_placement_data.html#a67153262f65d31bf477433acaaea4e4f">PlacementData</a>(List&lt;Vector3Int&gt; <a class="code hl_variable" href="class_placement_data.html#a7aed0f396e75f30017f0b55569536327">occupiedPositions</a>, <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">int</span> placedObjectIndex, <span class="keywordtype">int</span> kindOfIndex)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        this.occupiedPositions = <a class="code hl_variable" href="class_placement_data.html#a7aed0f396e75f30017f0b55569536327">occupiedPositions</a>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_property" href="class_placement_data.html#ab712aa27ec8bcf66dc1fcfd096b14c33">ID</a> = id;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_property" href="class_placement_data.html#a4dcf30c274c7be80fefab991f3e2320c">PlacedObjectIndex</a> = placedObjectIndex;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_property" href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">kindIndex</a> = kindOfIndex;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">// 3 = 장식품 오브젝트</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">   20</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_property" href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">kindIndex</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_placement_data.html#ad3e3369310c0dd500cd787cfe7ed4db0">   21</a></span>    <span class="keyword">public</span> Quaternion <a class="code hl_property" href="class_placement_data.html#ad3e3369310c0dd500cd787cfe7ed4db0">Rotation</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } <span class="comment">// &lt;&lt;&lt; 회전 정보 추가</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_placement_data.html#a6eb46bd0ea41718b34b517dc07ae3159">   23</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_placement_data.html#a6eb46bd0ea41718b34b517dc07ae3159">PlacementData</a>(List&lt;Vector3Int&gt; <a class="code hl_variable" href="class_placement_data.html#a7aed0f396e75f30017f0b55569536327">occupiedPositions</a>, <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">int</span> placedObjectIndex, <span class="keywordtype">int</span> kindOfIndex, Quaternion rotation)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        this.occupiedPositions = <a class="code hl_variable" href="class_placement_data.html#a7aed0f396e75f30017f0b55569536327">occupiedPositions</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_property" href="class_placement_data.html#ab712aa27ec8bcf66dc1fcfd096b14c33">ID</a> = id;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <a class="code hl_property" href="class_placement_data.html#a4dcf30c274c7be80fefab991f3e2320c">PlacedObjectIndex</a> = placedObjectIndex;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_property" href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">kindIndex</a> = kindOfIndex;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_property" href="class_placement_data.html#ad3e3369310c0dd500cd787cfe7ed4db0">Rotation</a> = rotation;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
 </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
 </div>
-<div class="ttc" id="aclass_placement_data_html_a3326479a71fb4fc6bda108c2cc5c3bb0"><div class="ttname"><a href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">PlacementData.kindIndex</a></div><div class="ttdeci">int kindIndex</div><div class="ttdef"><b>Definition</b> <a href="#l00019">PlacementData.cs:19</a></div></div>
+<div class="ttc" id="aclass_placement_data_html_a3326479a71fb4fc6bda108c2cc5c3bb0"><div class="ttname"><a href="class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0">PlacementData.kindIndex</a></div><div class="ttdeci">int kindIndex</div><div class="ttdef"><b>Definition</b> <a href="#l00020">PlacementData.cs:20</a></div></div>
 <div class="ttc" id="aclass_placement_data_html_a4dcf30c274c7be80fefab991f3e2320c"><div class="ttname"><a href="class_placement_data.html#a4dcf30c274c7be80fefab991f3e2320c">PlacementData.PlacedObjectIndex</a></div><div class="ttdeci">int PlacedObjectIndex</div><div class="ttdef"><b>Definition</b> <a href="#l00011">PlacementData.cs:11</a></div></div>
-<div class="ttc" id="aclass_placement_data_html_a67153262f65d31bf477433acaaea4e4f"><div class="ttname"><a href="class_placement_data.html#a67153262f65d31bf477433acaaea4e4f">PlacementData.PlacementData</a></div><div class="ttdeci">PlacementData(List&lt; Vector3Int &gt; occupiedPositions, int id, int placedObjectIndex, int kindOfIndex)</div><div class="ttdef"><b>Definition</b> <a href="#l00021">PlacementData.cs:21</a></div></div>
+<div class="ttc" id="aclass_placement_data_html_a6eb46bd0ea41718b34b517dc07ae3159"><div class="ttname"><a href="class_placement_data.html#a6eb46bd0ea41718b34b517dc07ae3159">PlacementData.PlacementData</a></div><div class="ttdeci">PlacementData(List&lt; Vector3Int &gt; occupiedPositions, int id, int placedObjectIndex, int kindOfIndex, Quaternion rotation)</div><div class="ttdef"><b>Definition</b> <a href="#l00023">PlacementData.cs:23</a></div></div>
 <div class="ttc" id="aclass_placement_data_html_a7aed0f396e75f30017f0b55569536327"><div class="ttname"><a href="class_placement_data.html#a7aed0f396e75f30017f0b55569536327">PlacementData.occupiedPositions</a></div><div class="ttdeci">List&lt; Vector3Int &gt; occupiedPositions</div><div class="ttdef"><b>Definition</b> <a href="#l00009">PlacementData.cs:9</a></div></div>
 <div class="ttc" id="aclass_placement_data_html_ab712aa27ec8bcf66dc1fcfd096b14c33"><div class="ttname"><a href="class_placement_data.html#ab712aa27ec8bcf66dc1fcfd096b14c33">PlacementData.ID</a></div><div class="ttdeci">int ID</div><div class="ttdef"><b>Definition</b> <a href="#l00010">PlacementData.cs:10</a></div></div>
+<div class="ttc" id="aclass_placement_data_html_ad3e3369310c0dd500cd787cfe7ed4db0"><div class="ttname"><a href="class_placement_data.html#ad3e3369310c0dd500cd787cfe7ed4db0">PlacementData.Rotation</a></div><div class="ttdeci">Quaternion Rotation</div><div class="ttdef"><b>Definition</b> <a href="#l00021">PlacementData.cs:21</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

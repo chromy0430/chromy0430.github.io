@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.5</span>
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
    </div>
    <div id="projectbrief">LodgingSimulator Documents</div>
   </td>
@@ -135,11 +135,45 @@ Public 멤버 함수</h2></td></tr>
 <tr class="memitem:ab4197e8b23f7e02336a16a9baa6c87db" id="r_ab4197e8b23f7e02336a16a9baa6c87db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4197e8b23f7e02336a16a9baa6c87db">PlaceObject</a> (GameObject prefab, Vector3 position, Quaternion rotation)</td></tr>
 <tr class="memdesc:ab4197e8b23f7e02336a16a9baa6c87db"><td class="mdescLeft">&#160;</td><td class="mdescRight">매개 변수의 오브젝트들을 배치한다.  <br /></td></tr>
 <tr class="separator:ab4197e8b23f7e02336a16a9baa6c87db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aab53390fcf73c90f57db1337482bab" id="r_a7aab53390fcf73c90f57db1337482bab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aab53390fcf73c90f57db1337482bab">RemoveObject</a> (int index)</td></tr>
+<tr class="memdesc:a7aab53390fcf73c90f57db1337482bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">오브젝트들을 삭제한다.  <br /></td></tr>
+<tr class="separator:a7aab53390fcf73c90f57db1337482bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5c51612cc975296f68a3917b9358020" id="r_ae5c51612cc975296f68a3917b9358020"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5c51612cc975296f68a3917b9358020">GetObjectIndex</a> (GameObject obj)</td></tr>
+<tr class="memdesc:ae5c51612cc975296f68a3917b9358020"><td class="mdescLeft">&#160;</td><td class="mdescRight">오브젝트의 인덱스를 추출한다.  <br /></td></tr>
+<tr class="separator:ae5c51612cc975296f68a3917b9358020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock">
 <p class="definition"><a class="el" href="_object_placer_8cs_source.html">ObjectPlacer.cs</a> 파일의 <a class="el" href="_object_placer_8cs_source.html#l00005">5</a> 번째 라인에서 정의되었습니다.</p>
 </div><h2 class="groupheader">멤버 함수 문서화</h2>
+<a id="ae5c51612cc975296f68a3917b9358020" name="ae5c51612cc975296f68a3917b9358020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c51612cc975296f68a3917b9358020">&#9670;&#160;</a></span>GetObjectIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ObjectPlacer.GetObjectIndex </td>
+          <td>(</td>
+          <td class="paramtype">GameObject</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>오브젝트의 인덱스를 추출한다. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd></dd></dl>
+
+<p class="definition"><a class="el" href="_object_placer_8cs_source.html">ObjectPlacer.cs</a> 파일의 <a class="el" href="_object_placer_8cs_source.html#l00051">51</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
 <a id="ab4197e8b23f7e02336a16a9baa6c87db" name="ab4197e8b23f7e02336a16a9baa6c87db"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab4197e8b23f7e02336a16a9baa6c87db">&#9670;&#160;</a></span>PlaceObject()</h2>
 
@@ -176,6 +210,33 @@ Public 멤버 함수</h2></td></tr>
 <dl class="section return"><dt>반환값</dt><dd></dd></dl>
 
 <p class="definition"><a class="el" href="_object_placer_8cs_source.html">ObjectPlacer.cs</a> 파일의 <a class="el" href="_object_placer_8cs_source.html#l00017">17</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a7aab53390fcf73c90f57db1337482bab" name="a7aab53390fcf73c90f57db1337482bab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aab53390fcf73c90f57db1337482bab">&#9670;&#160;</a></span>RemoveObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ObjectPlacer.RemoveObject </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>오브젝트들을 삭제한다. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="_object_placer_8cs_source.html">ObjectPlacer.cs</a> 파일의 <a class="el" href="_object_placer_8cs_source.html#l00033">33</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>

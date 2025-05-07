@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['enterbuildmode_0',['EnterBuildMode',['../class_placement_system.html#a24b25a3cc49e9c0dfd9215ab28c575d9',1,'PlacementSystem']]],
-  ['exitbuildmode_1',['ExitBuildMode',['../class_placement_system.html#a25faeec0b2a1960db57bf187aa5e240c',1,'PlacementSystem']]]
+  ['decreasefloor_0',['DecreaseFloor',['../class_change_floor_system.html#ac978a86c26f10c5c32fe35849e2e5a9a',1,'ChangeFloorSystem']]],
+  ['detectrooms_1',['DetectRooms',['../interface_i_room_detector.html#a5fbfd33307f8d692c63999f8aece50f5',1,'IRoomDetector']]]
 ];

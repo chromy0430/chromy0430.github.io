@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zoommultiplier_0',['zoomMultiplier',['../class_camera_con.html#a60507c80cd067ae36fa7c4ce28784ef9',1,'CameraCon']]]
+  ['queuespacing_0',['queueSpacing',['../class_counter_manager.html#a64b6b7c648bbff60ad770c16268fdc38',1,'CounterManager']]]
 ];

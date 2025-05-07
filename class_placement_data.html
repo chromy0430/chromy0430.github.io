@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.5</span>
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
    </div>
    <div id="projectbrief">LodgingSimulator Documents</div>
   </td>
@@ -117,8 +117,8 @@ $(function(){initNavTree('class_placement_data.html',''); initResizable(true); }
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 멤버 함수</h2></td></tr>
-<tr class="memitem:a67153262f65d31bf477433acaaea4e4f" id="r_a67153262f65d31bf477433acaaea4e4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67153262f65d31bf477433acaaea4e4f">PlacementData</a> (List&lt; Vector3Int &gt; <a class="el" href="#a7aed0f396e75f30017f0b55569536327">occupiedPositions</a>, int id, int placedObjectIndex, int kindOfIndex)</td></tr>
-<tr class="separator:a67153262f65d31bf477433acaaea4e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eb46bd0ea41718b34b517dc07ae3159" id="r_a6eb46bd0ea41718b34b517dc07ae3159"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6eb46bd0ea41718b34b517dc07ae3159">PlacementData</a> (List&lt; Vector3Int &gt; <a class="el" href="#a7aed0f396e75f30017f0b55569536327">occupiedPositions</a>, int id, int placedObjectIndex, int kindOfIndex, Quaternion rotation)</td></tr>
+<tr class="separator:a6eb46bd0ea41718b34b517dc07ae3159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 속성</h2></td></tr>
@@ -133,14 +133,16 @@ Public 속성</h2></td></tr>
 <tr class="separator:a4dcf30c274c7be80fefab991f3e2320c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3326479a71fb4fc6bda108c2cc5c3bb0" id="r_a3326479a71fb4fc6bda108c2cc5c3bb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3326479a71fb4fc6bda108c2cc5c3bb0">kindIndex</a><code> [get]</code></td></tr>
 <tr class="separator:a3326479a71fb4fc6bda108c2cc5c3bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3e3369310c0dd500cd787cfe7ed4db0" id="r_ad3e3369310c0dd500cd787cfe7ed4db0"><td class="memItemLeft" align="right" valign="top">Quaternion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3e3369310c0dd500cd787cfe7ed4db0">Rotation</a><code> [get]</code></td></tr>
+<tr class="separator:ad3e3369310c0dd500cd787cfe7ed4db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock"><p>설치된 오브젝트의 데이터를 저장하는 클래스 </p>
 
 <p class="definition"><a class="el" href="_placement_data_8cs_source.html">PlacementData.cs</a> 파일의 <a class="el" href="_placement_data_8cs_source.html#l00007">7</a> 번째 라인에서 정의되었습니다.</p>
 </div><h2 class="groupheader">생성자 &amp; 소멸자 문서화</h2>
-<a id="a67153262f65d31bf477433acaaea4e4f" name="a67153262f65d31bf477433acaaea4e4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67153262f65d31bf477433acaaea4e4f">&#9670;&#160;</a></span>PlacementData()</h2>
+<a id="a6eb46bd0ea41718b34b517dc07ae3159" name="a6eb46bd0ea41718b34b517dc07ae3159"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eb46bd0ea41718b34b517dc07ae3159">&#9670;&#160;</a></span>PlacementData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,12 +165,17 @@ Public 속성</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>kindOfIndex</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>kindOfIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Quaternion</td>          <td class="paramname"><span class="paramname"><em>rotation</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_placement_data_8cs_source.html">PlacementData.cs</a> 파일의 <a class="el" href="_placement_data_8cs_source.html#l00021">21</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_placement_data_8cs_source.html">PlacementData.cs</a> 파일의 <a class="el" href="_placement_data_8cs_source.html#l00023">23</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -234,7 +241,7 @@ Public 속성</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_placement_data_8cs_source.html">PlacementData.cs</a> 파일의 <a class="el" href="_placement_data_8cs_source.html#l00019">19</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_placement_data_8cs_source.html">PlacementData.cs</a> 파일의 <a class="el" href="_placement_data_8cs_source.html#l00020">20</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -259,6 +266,30 @@ Public 속성</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition"><a class="el" href="_placement_data_8cs_source.html">PlacementData.cs</a> 파일의 <a class="el" href="_placement_data_8cs_source.html#l00011">11</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="ad3e3369310c0dd500cd787cfe7ed4db0" name="ad3e3369310c0dd500cd787cfe7ed4db0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3e3369310c0dd500cd787cfe7ed4db0">&#9670;&#160;</a></span>Rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Quaternion PlacementData.Rotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel get">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_placement_data_8cs_source.html">PlacementData.cs</a> 파일의 <a class="el" href="_placement_data_8cs_source.html#l00021">21</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>

@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.5</span>
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
    </div>
    <div id="projectbrief">LodgingSimulator Documents</div>
   </td>
@@ -105,6 +105,7 @@ $(function(){initNavTree('class_grid_data.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-attribs">Public 속성</a> &#124;
 <a href="class_grid_data-members.html">모든 멤버 목록</a>  </div>
   <div class="headertitle"><div class="title">GridData 클래스 참조</div></div>
 </div><!--header-->
@@ -124,11 +125,19 @@ Public 멤버 함수</h2></td></tr>
 <tr class="memitem:a1c81d2ffac25c09da7329563d64b37ac" id="r_a1c81d2ffac25c09da7329563d64b37ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c81d2ffac25c09da7329563d64b37ac">CanPlaceObjectAt</a> (Vector3Int gridPosition, Vector2Int objectSize, Quaternion rotation, Grid grid, bool isWall)</td></tr>
 <tr class="memdesc:a1c81d2ffac25c09da7329563d64b37ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">설치하려는 위치에 오브젝트가 존재 유무를 판단한다.  <br /></td></tr>
 <tr class="separator:a1c81d2ffac25c09da7329563d64b37ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad750657095d81bf1cda5bc951427f866" id="r_ad750657095d81bf1cda5bc951427f866"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad750657095d81bf1cda5bc951427f866">RemoveObjectByIndex</a> (int placedObjectIndex)</td></tr>
+<tr class="memdesc:ad750657095d81bf1cda5bc951427f866"><td class="mdescLeft">&#160;</td><td class="mdescRight">설치된 오브젝트 제거  <br /></td></tr>
+<tr class="separator:ad750657095d81bf1cda5bc951427f866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 속성</h2></td></tr>
+<tr class="memitem:ad35fecbc76c9f0f3d8c6f67a1b732159" id="r_ad35fecbc76c9f0f3d8c6f67a1b732159"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; Vector3Int, List&lt; <a class="el" href="class_placement_data.html">PlacementData</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad35fecbc76c9f0f3d8c6f67a1b732159">placedObjects</a> = new()</td></tr>
+<tr class="separator:ad35fecbc76c9f0f3d8c6f67a1b732159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock"><p>그리드 데이터를 저장하는 클래스 </p>
 
-<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00009">9</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00010">10</a> 번째 라인에서 정의되었습니다.</p>
 </div><h2 class="groupheader">멤버 함수 문서화</h2>
 <a id="a249318eafcf8f9e867bb1b0f0da092f7" name="a249318eafcf8f9e867bb1b0f0da092f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a249318eafcf8f9e867bb1b0f0da092f7">&#9670;&#160;</a></span>AddObjectAt()</h2>
@@ -198,15 +207,17 @@ Public 멤버 함수</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00029">29</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00030">30</a> 번째 라인에서 정의되었습니다.</p>
 <div class="dynheader">
 이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_grid_data_a249318eafcf8f9e867bb1b0f0da092f7_cgraph.png" border="0" usemap="#aclass_grid_data_a249318eafcf8f9e867bb1b0f0da092f7_cgraph" alt=""/></div>
 <map name="aclass_grid_data_a249318eafcf8f9e867bb1b0f0da092f7_cgraph" id="aclass_grid_data_a249318eafcf8f9e867bb1b0f0da092f7_cgraph">
-<area shape="rect" title="설치된 오브젝트의 데이터를 딕셔너리에 추가한다." alt="" coords="5,5,157,32"/>
-<area shape="rect" href="class_grid_data.html#a087545757d44b7c4b41a4b24045a9aa8" title="설치할 오브젝트의 상하좌우 길이를 실시간으로 변경하여 딕셔너리와 비교할 수 있도록 계산한다." alt="" coords="205,5,384,32"/>
-<area shape="poly" title=" " alt="" coords="157,16,189,16,189,21,157,21"/>
+<area shape="rect" title="설치된 오브젝트의 데이터를 딕셔너리에 추가한다." alt="" coords="5,31,157,57"/>
+<area shape="rect" href="class_grid_data.html#a087545757d44b7c4b41a4b24045a9aa8" title="설치할 오브젝트의 상하좌우 길이를 실시간으로 변경하여 딕셔너리와 비교할 수 있도록 계산한다." alt="" coords="231,5,410,32"/>
+<area shape="poly" title=" " alt="" coords="156,33,215,27,216,32,157,39"/>
+<area shape="rect" href="class_objects_database_s_o.html#a774a45ae5a48731421c29c78cd1c9344" title=" " alt="" coords="205,56,437,83"/>
+<area shape="poly" title=" " alt="" coords="157,49,189,53,189,58,156,55"/>
 </map>
 </div>
 
@@ -253,7 +264,7 @@ Public 멤버 함수</h2></td></tr>
 </dl>
 <dl class="section return"><dt>반환값</dt><dd></dd></dl>
 
-<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00094">94</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00113">113</a> 번째 라인에서 정의되었습니다.</p>
 <div class="dynheader">
 이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
 <div class="dyncontent">
@@ -315,7 +326,7 @@ Public 멤버 함수</h2></td></tr>
 </dl>
 <dl class="section return"><dt>반환값</dt><dd></dd></dl>
 
-<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00216">216</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00235">235</a> 번째 라인에서 정의되었습니다.</p>
 <div class="dynheader">
 이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
 <div class="dyncontent">
@@ -328,6 +339,51 @@ Public 멤버 함수</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="191,50,224,54,223,59,191,56"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="ad750657095d81bf1cda5bc951427f866" name="ad750657095d81bf1cda5bc951427f866"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad750657095d81bf1cda5bc951427f866">&#9670;&#160;</a></span>RemoveObjectByIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GridData.RemoveObjectByIndex </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>placedObjectIndex</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>설치된 오브젝트 제거 </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">placedObjectIndex</td><td>설치된 오브젝트의 인덱스</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd></dd></dl>
+
+<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00278">278</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<h2 class="groupheader">멤버 데이터 문서화</h2>
+<a id="ad35fecbc76c9f0f3d8c6f67a1b732159" name="ad35fecbc76c9f0f3d8c6f67a1b732159"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad35fecbc76c9f0f3d8c6f67a1b732159">&#9670;&#160;</a></span>placedObjects</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt;Vector3Int, List&lt;<a class="el" href="class_placement_data.html">PlacementData</a>&gt; &gt; GridData.placedObjects = new()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_grid_data_8cs_source.html">GridData.cs</a> 파일의 <a class="el" href="_grid_data_8cs_source.html#l00016">16</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>

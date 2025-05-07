@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['placedobjectindex_0',['PlacedObjectIndex',['../class_placement_data.html#a4dcf30c274c7be80fefab991f3e2320c',1,'PlacementData']]],
-  ['prefab_1',['Prefab',['../class_object_data.html#aafe8487054ca8d15b5173677979d7866',1,'ObjectData']]]
+  ['kindindex_0',['kindIndex',['../class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0',1,'PlacementData.kindIndex'],['../class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491',1,'ObjectData.kindIndex']]]
 ];

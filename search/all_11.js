@@ -1,4 +1,27 @@
 var searchData=
 [
-  ['zoommultiplier_0',['zoomMultiplier',['../class_camera_con.html#a60507c80cd067ae36fa7c4ce28784ef9',1,'CameraCon']]]
+  ['registernewroom_0',['RegisterNewRoom',['../class_room_manager.html#ace355e6db7845468e03c6642f63b451d',1,'RoomManager']]],
+  ['releaseroom_1',['ReleaseRoom',['../class_j_y_1_1_room_contents.html#a6b4ff4f3444a97192a660b1f6cb2cfec',1,'JY::RoomContents']]],
+  ['removeobject_2',['RemoveObject',['../class_object_placer.html#a7aab53390fcf73c90f57db1337482bab',1,'ObjectPlacer']]],
+  ['removeobjectbyindex_3',['RemoveObjectByIndex',['../class_grid_data.html#ad750657095d81bf1cda5bc951427f866',1,'GridData']]],
+  ['renderers2_4',['renderers2',['../class_placement_system.html#a542d641431751dfd282b84d2eaeadbd3',1,'PlacementSystem']]],
+  ['reportroomusage_5',['ReportRoomUsage',['../class_room_manager.html#a5b5732b8e84a164e776bf332de2b73b2',1,'RoomManager']]],
+  ['returnalltopool_6',['ReturnAllToPool',['../class_a_i_spawner.html#a9992b054c14ebd4e6498b13301102e05',1,'AISpawner']]],
+  ['returntopool_7',['ReturnToPool',['../class_a_i_spawner.html#aef2f67bca5dac611cebd9c8474997413',1,'AISpawner']]],
+  ['roombounds_8',['roomBounds',['../class_j_y_1_1_room_contents.html#a9b59a60d20a5022ef469f8a490f95ab7',1,'JY::RoomContents']]],
+  ['roomcell_9',['RoomCell',['../class_room_detector_1_1_room_cell.html',1,'RoomDetector']]],
+  ['roomcontents_10',['RoomContents',['../class_j_y_1_1_room_contents.html',1,'JY']]],
+  ['roomcontents_2ecs_11',['RoomContents.cs',['../_room_contents_8cs.html',1,'']]],
+  ['roomdetector_12',['RoomDetector',['../class_room_detector.html',1,'']]],
+  ['roomdetector_2ecs_13',['RoomDetector.cs',['../_room_detector_8cs.html',1,'']]],
+  ['roomid_14',['roomID',['../class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b',1,'JY::RoomContents']]],
+  ['roomid_15',['roomId',['../class_room_detector_1_1_room_info.html#a58f5fdf14b7655fb2cce23874749ea2d',1,'RoomDetector::RoomInfo']]],
+  ['roominfo_16',['RoomInfo',['../class_room_detector_1_1_room_info.html',1,'RoomDetector']]],
+  ['roommanager_17',['RoomManager',['../class_room_manager.html',1,'']]],
+  ['roommanager_2ecs_18',['RoomManager.cs',['../_room_manager_8cs.html',1,'']]],
+  ['roomsupdatedhandler_19',['RoomsUpdatedHandler',['../class_a_i_agent.html#aa5afb79554b17c07df1e8dddef13924f',1,'AIAgent']]],
+  ['roomtag_20',['roomTag',['../class_room_manager.html#a091849e53d64705013e4c8fd79756b96',1,'RoomManager']]],
+  ['roomupdatehandler_21',['RoomUpdateHandler',['../class_room_detector.html#afb84f031ae1b1e7252113cf444f9bcdf',1,'RoomDetector']]],
+  ['rotation_22',['Rotation',['../class_placement_data.html#ad3e3369310c0dd500cd787cfe7ed4db0',1,'PlacementData']]],
+  ['rotationspeed_23',['rotationSpeed',['../class_camera_con.html#ac28da50e3e8ae2565ea83d51c535b559',1,'CameraCon']]]
 ];

@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LodgingSimulator: RoomManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
+   </div>
+   <div id="projectbrief">LodgingSimulator Documents</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_room_manager.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-attribs">Public 속성</a> &#124;
+<a href="class_room_manager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">RoomManager 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>방 관리 및 요금 청구를 담당하는 매니저 클래스  
+ <a href="#details">더 자세히 ...</a></p>
+<div class="dynheader">
+RoomManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="class_room_manager__inherit__graph.png" border="0" usemap="#a_room_manager_inherit__map" alt="Inheritance graph"/></div>
+<map name="a_room_manager_inherit__map" id="a_room_manager_inherit__map">
+<area shape="rect" title="방 관리 및 요금 청구를 담당하는 매니저 클래스" alt="" coords="8,80,114,107"/>
+<area shape="rect" title=" " alt="" coords="5,5,117,32"/>
+<area shape="poly" title=" " alt="" coords="64,48,64,80,58,80,58,48"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">범례</a>]</span></center></div>
+<div class="dynheader">
+RoomManager에 대한 협력 다이어그램:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_room_manager__coll__graph.png" border="0" usemap="#a_room_manager_coll__map" alt="Collaboration graph"/></div>
+<map name="a_room_manager_coll__map" id="a_room_manager_coll__map">
+<area shape="rect" title="방 관리 및 요금 청구를 담당하는 매니저 클래스" alt="" coords="13,172,120,199"/>
+<area shape="rect" title=" " alt="" coords="5,5,117,32"/>
+<area shape="poly" title=" " alt="" coords="65,47,69,171,63,172,59,47"/>
+<area shape="rect" href="class_j_y_1_1_payment_system.html" title=" " alt="" coords="82,81,218,108"/>
+<area shape="poly" title=" " alt="" coords="89,40,137,79,134,83,86,44"/>
+<area shape="poly" title=" " alt="" coords="130,122,80,173,76,170,126,118"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a150b81e83359105fea86a4d5506e2a25" id="r_a150b81e83359105fea86a4d5506e2a25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a150b81e83359105fea86a4d5506e2a25">FindAllRooms</a> ()</td></tr>
+<tr class="separator:a150b81e83359105fea86a4d5506e2a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace355e6db7845468e03c6642f63b451d" id="r_ace355e6db7845468e03c6642f63b451d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace355e6db7845468e03c6642f63b451d">RegisterNewRoom</a> (<a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</td></tr>
+<tr class="separator:ace355e6db7845468e03c6642f63b451d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf449c39b7a04ede62bf88848e5ba5c" id="r_a5cf449c39b7a04ede62bf88848e5ba5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cf449c39b7a04ede62bf88848e5ba5c">UnregisterRoom</a> (<a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</td></tr>
+<tr class="separator:a5cf449c39b7a04ede62bf88848e5ba5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5732b8e84a164e776bf332de2b73b2" id="r_a5b5732b8e84a164e776bf332de2b73b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b5732b8e84a164e776bf332de2b73b2">ReportRoomUsage</a> (string aiName, <a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</td></tr>
+<tr class="separator:a5b5732b8e84a164e776bf332de2b73b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37095cc3498d69997fb8cd262c002f52" id="r_a37095cc3498d69997fb8cd262c002f52"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37095cc3498d69997fb8cd262c002f52">ProcessRoomPayment</a> (string aiName)</td></tr>
+<tr class="separator:a37095cc3498d69997fb8cd262c002f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8f6f007bd08820239535ab802f2e2da" id="r_ae8f6f007bd08820239535ab802f2e2da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8f6f007bd08820239535ab802f2e2da">UpdateRooms</a> ()</td></tr>
+<tr class="separator:ae8f6f007bd08820239535ab802f2e2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a761f691bfc2af39a7887562462618f" id="r_a2a761f691bfc2af39a7887562462618f"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a761f691bfc2af39a7887562462618f">FindRoomsInPriceRange</a> (int minPrice, int maxPrice)</td></tr>
+<tr class="separator:a2a761f691bfc2af39a7887562462618f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a572663853a7fa2d5ddc21d57d865fba4" id="r_a572663853a7fa2d5ddc21d57d865fba4"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a572663853a7fa2d5ddc21d57d865fba4">GetAvailableRooms</a> ()</td></tr>
+<tr class="separator:a572663853a7fa2d5ddc21d57d865fba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 속성</h2></td></tr>
+<tr class="memitem:a86616292c24e7ca3cdb7bd7afca14d74" id="r_a86616292c24e7ca3cdb7bd7afca14d74"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a> = new List&lt;<a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a>&gt;()</td></tr>
+<tr class="separator:a86616292c24e7ca3cdb7bd7afca14d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56262509d09d9c378ae9ab536479c76e" id="r_a56262509d09d9c378ae9ab536479c76e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_j_y_1_1_payment_system.html">PaymentSystem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56262509d09d9c378ae9ab536479c76e">paymentSystem</a></td></tr>
+<tr class="separator:a56262509d09d9c378ae9ab536479c76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a091849e53d64705013e4c8fd79756b96" id="r_a091849e53d64705013e4c8fd79756b96"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a091849e53d64705013e4c8fd79756b96">roomTag</a> = &quot;Room&quot;</td></tr>
+<tr class="separator:a091849e53d64705013e4c8fd79756b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a5d9db7c43db9329e30b20d7dd78fec" id="r_a7a5d9db7c43db9329e30b20d7dd78fec"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a5d9db7c43db9329e30b20d7dd78fec">priceMultiplier</a> = 1.0f</td></tr>
+<tr class="separator:a7a5d9db7c43db9329e30b20d7dd78fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa792d4a04ca54e33299b3d8cfb6d17d" id="r_aaa792d4a04ca54e33299b3d8cfb6d17d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a> = true</td></tr>
+<tr class="separator:aaa792d4a04ca54e33299b3d8cfb6d17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>방 관리 및 요금 청구를 담당하는 매니저 클래스 </p>
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00009">9</a> 번째 라인에서 정의되었습니다.</p>
+</div><h2 class="groupheader">멤버 함수 문서화</h2>
+<a id="a150b81e83359105fea86a4d5506e2a25" name="a150b81e83359105fea86a4d5506e2a25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a150b81e83359105fea86a4d5506e2a25">&#9670;&#160;</a></span>FindAllRooms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomManager.FindAllRooms </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00043">43</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a2a761f691bfc2af39a7887562462618f" name="a2a761f691bfc2af39a7887562462618f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a761f691bfc2af39a7887562462618f">&#9670;&#160;</a></span>FindRoomsInPriceRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> &gt; RoomManager.FindRoomsInPriceRange </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minPrice</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>maxPrice</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00163">163</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a572663853a7fa2d5ddc21d57d865fba4" name="a572663853a7fa2d5ddc21d57d865fba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a572663853a7fa2d5ddc21d57d865fba4">&#9670;&#160;</a></span>GetAvailableRooms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a> &gt; RoomManager.GetAvailableRooms </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00169">169</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a37095cc3498d69997fb8cd262c002f52" name="a37095cc3498d69997fb8cd262c002f52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37095cc3498d69997fb8cd262c002f52">&#9670;&#160;</a></span>ProcessRoomPayment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoomManager.ProcessRoomPayment </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>aiName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00138">138</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="ace355e6db7845468e03c6642f63b451d" name="ace355e6db7845468e03c6642f63b451d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace355e6db7845468e03c6642f63b451d">&#9670;&#160;</a></span>RegisterNewRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomManager.RegisterNewRoom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a></td>          <td class="paramname"><span class="paramname"><em>room</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00078">78</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a5b5732b8e84a164e776bf332de2b73b2" name="a5b5732b8e84a164e776bf332de2b73b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b5732b8e84a164e776bf332de2b73b2">&#9670;&#160;</a></span>ReportRoomUsage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomManager.ReportRoomUsage </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>aiName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a></td>          <td class="paramname"><span class="paramname"><em>room</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00108">108</a> 번째 라인에서 정의되었습니다.</p>
+<div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_room_manager_a5b5732b8e84a164e776bf332de2b73b2_cgraph.png" border="0" usemap="#aclass_room_manager_a5b5732b8e84a164e776bf332de2b73b2_cgraph" alt=""/></div>
+<map name="aclass_room_manager_a5b5732b8e84a164e776bf332de2b73b2_cgraph" id="aclass_room_manager_a5b5732b8e84a164e776bf332de2b73b2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,228,32"/>
+<area shape="rect" href="class_j_y_1_1_room_contents.html#a841d6b544ab837c698bd58399fb80dde" title=" " alt="" coords="276,5,466,32"/>
+<area shape="poly" title=" " alt="" coords="228,16,260,16,260,21,228,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5cf449c39b7a04ede62bf88848e5ba5c" name="a5cf449c39b7a04ede62bf88848e5ba5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf449c39b7a04ede62bf88848e5ba5c">&#9670;&#160;</a></span>UnregisterRoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomManager.UnregisterRoom </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a></td>          <td class="paramname"><span class="paramname"><em>room</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00095">95</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="ae8f6f007bd08820239535ab802f2e2da" name="ae8f6f007bd08820239535ab802f2e2da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8f6f007bd08820239535ab802f2e2da">&#9670;&#160;</a></span>UpdateRooms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoomManager.UpdateRooms </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00154">154</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<h2 class="groupheader">멤버 데이터 문서화</h2>
+<a id="a86616292c24e7ca3cdb7bd7afca14d74" name="a86616292c24e7ca3cdb7bd7afca14d74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86616292c24e7ca3cdb7bd7afca14d74">&#9670;&#160;</a></span>allRooms</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a>&gt; RoomManager.allRooms = new List&lt;<a class="el" href="class_j_y_1_1_room_contents.html">RoomContents</a>&gt;()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00013">13</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a56262509d09d9c378ae9ab536479c76e" name="a56262509d09d9c378ae9ab536479c76e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56262509d09d9c378ae9ab536479c76e">&#9670;&#160;</a></span>paymentSystem</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_j_y_1_1_payment_system.html">PaymentSystem</a> RoomManager.paymentSystem</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00016">16</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a7a5d9db7c43db9329e30b20d7dd78fec" name="a7a5d9db7c43db9329e30b20d7dd78fec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a5d9db7c43db9329e30b20d7dd78fec">&#9670;&#160;</a></span>priceMultiplier</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float RoomManager.priceMultiplier = 1.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00024">24</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a091849e53d64705013e4c8fd79756b96" name="a091849e53d64705013e4c8fd79756b96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a091849e53d64705013e4c8fd79756b96">&#9670;&#160;</a></span>roomTag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string RoomManager.roomTag = &quot;Room&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00020">20</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="aaa792d4a04ca54e33299b3d8cfb6d17d" name="aaa792d4a04ca54e33299b3d8cfb6d17d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa792d4a04ca54e33299b3d8cfb6d17d">&#9670;&#160;</a></span>showDebug</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RoomManager.showDebug = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a> 파일의 <a class="el" href="_room_manager_8cs_source.html#l00028">28</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.:<ul>
+<li>C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/Scripts/AI/<a class="el" href="_room_manager_8cs_source.html">RoomManager.cs</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_room_manager.html">RoomManager</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

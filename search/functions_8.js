@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['togglemenu_0',['ToggleMenu',['../class_menu_animation.html#a2b568165699c3849fdd546878d882e91',1,'MenuAnimation']]]
+  ['leavequeue_0',['LeaveQueue',['../class_counter_manager.html#a4d01f22ff2889dada5bc9e423a95c7da',1,'CounterManager']]]
 ];

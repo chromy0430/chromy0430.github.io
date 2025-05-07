@@ -1,0 +1,8 @@
+<map id="PlacementSystem.StopDeleteMode" name="PlacementSystem.StopDeleteMode">
+<area shape="rect" id="Node000001" title=" " alt="" coords="284,31,513,57"/>
+<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="447,19,431,12,398,9,369,11,353,16,349,21,356,28,352,32,344,22,349,12,368,6,398,4,432,7,449,14"/>
+<area shape="rect" id="Node000002" href="$class_placement_system.html#aa330644105fb867e5b56ce1df19d1043" title=" " alt="" coords="5,5,236,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,35,236,32,236,27,268,29"/>
+<area shape="rect" id="Node000003" href="$class_placement_system.html#af5b34bb55761492a0785ef9d7c0e0a37" title=" " alt="" coords="9,56,232,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,59,232,62,232,57,268,53"/>
+</map>

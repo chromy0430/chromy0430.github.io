@@ -1,0 +1,8 @@
+<map id="RoomManager" name="RoomManager">
+<area shape="rect" id="Node000001" title="방 관리 및 요금 청구를 담당하는 매니저 클래스" alt="" coords="13,172,120,199"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,117,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,47,69,171,63,172,59,47"/>
+<area shape="rect" id="Node000003" href="$class_j_y_1_1_payment_system.html" title=" " alt="" coords="82,81,218,108"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="89,40,137,79,134,83,86,44"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,122,80,173,76,170,126,118"/>
+</map>

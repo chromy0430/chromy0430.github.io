@@ -1,6 +1,8 @@
 var class_object_data =
 [
     [ "IsWall", "class_object_data.html#adb8cf0429371d93db7bf9fb40fc34ca9", null ],
+    [ "BasePrice", "class_object_data.html#ac5ae9429913016424f5b2c14c1014fd7", null ],
+    [ "BuildPrice", "class_object_data.html#ac9d33948d9b6a4b468875d9bdf086f1e", null ],
     [ "ID", "class_object_data.html#a49ec5e33e551ed29c824ebdf52bd1921", null ],
     [ "kindIndex", "class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491", null ],
     [ "Name", "class_object_data.html#a112f78a063ef3c8a4fac25275d581410", null ],

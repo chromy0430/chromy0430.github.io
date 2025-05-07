@@ -25,6 +25,9 @@
 var NAVTREE =
 [
   [ "LodgingSimulator", "index.html", [
+    [ "패키지", "namespaces.html", [
+      [ "Package List", "namespaces.html", "namespaces_dup" ]
+    ] ],
     [ "클래스", "annotated.html", [
       [ "클래스 목록", "annotated.html", "annotated_dup" ],
       [ "클래스 색인", "classes.html", null ],
@@ -33,6 +36,7 @@ var NAVTREE =
         [ "모두", "functions.html", null ],
         [ "함수", "functions_func.html", null ],
         [ "변수", "functions_vars.html", null ],
+        [ "열거형 타입", "functions_enum.html", null ],
         [ "속성", "functions_prop.html", null ],
         [ "이벤트", "functions_evnt.html", null ]
       ] ]
@@ -45,7 +49,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_camera_con_8cs.html"
+"_a_i_agent_8cs.html",
+"class_visualization_money.html#aac81db19e4e4d94e70601d4b147b36a3"
 ];
 
 var SYNCONMSG = '패널 동기화를 비활성화하기 위해 클릭하십시오';

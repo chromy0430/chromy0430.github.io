@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.5</span>
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
    </div>
    <div id="projectbrief">LodgingSimulator Documents</div>
   </td>
@@ -104,6 +104,7 @@ $(function(){initNavTree('class_camera_con.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
 <a href="#pub-attribs">Public 속성</a> &#124;
 <a href="class_camera_con-members.html">모든 멤버 목록</a>  </div>
   <div class="headertitle"><div class="title">CameraCon 클래스 참조</div></div>
@@ -130,6 +131,11 @@ CameraCon에 대한 협력 다이어그램:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">범례</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a8d5c3a00724710924a0a73b379242665" id="r_a8d5c3a00724710924a0a73b379242665"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d5c3a00724710924a0a73b379242665">SetOffset</a> (int offsetY)</td></tr>
+<tr class="separator:a8d5c3a00724710924a0a73b379242665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 속성</h2></td></tr>
 <tr class="memitem:a60507c80cd067ae36fa7c4ce28784ef9" id="r_a60507c80cd067ae36fa7c4ce28784ef9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60507c80cd067ae36fa7c4ce28784ef9">zoomMultiplier</a> = 10f</td></tr>
@@ -148,6 +154,8 @@ Public 속성</h2></td></tr>
 <tr class="separator:ae7e3a818457ae33b0a6dc01ce6655fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac28da50e3e8ae2565ea83d51c535b559" id="r_ac28da50e3e8ae2565ea83d51c535b559"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac28da50e3e8ae2565ea83d51c535b559">rotationSpeed</a> = 5f</td></tr>
 <tr class="separator:ac28da50e3e8ae2565ea83d51c535b559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12206bb9224c0aca852c456a8f172b07" id="r_a12206bb9224c0aca852c456a8f172b07"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12206bb9224c0aca852c456a8f172b07">startHeight</a> = 25f</td></tr>
+<tr class="separator:a12206bb9224c0aca852c456a8f172b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8317f5453832dc23e11a702d0064563f" id="r_a8317f5453832dc23e11a702d0064563f"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8317f5453832dc23e11a702d0064563f">target</a></td></tr>
 <tr class="separator:a8317f5453832dc23e11a702d0064563f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad49ae3a66b13cd83c15b5356a5a755d2" id="r_ad49ae3a66b13cd83c15b5356a5a755d2"><td class="memItemLeft" align="right" valign="top">Collider&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad49ae3a66b13cd83c15b5356a5a755d2">boundingVolume</a></td></tr>
@@ -155,8 +163,28 @@ Public 속성</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
 <div class="textblock">
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00004">4</a> 번째 라인에서 정의되었습니다.</p>
-</div><h2 class="groupheader">멤버 데이터 문서화</h2>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00005">5</a> 번째 라인에서 정의되었습니다.</p>
+</div><h2 class="groupheader">멤버 함수 문서화</h2>
+<a id="a8d5c3a00724710924a0a73b379242665" name="a8d5c3a00724710924a0a73b379242665"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d5c3a00724710924a0a73b379242665">&#9670;&#160;</a></span>SetOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CameraCon.SetOffset </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>offsetY</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00147">147</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<h2 class="groupheader">멤버 데이터 문서화</h2>
 <a id="ad49ae3a66b13cd83c15b5356a5a755d2" name="ad49ae3a66b13cd83c15b5356a5a755d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad49ae3a66b13cd83c15b5356a5a755d2">&#9670;&#160;</a></span>boundingVolume</h2>
 
@@ -169,7 +197,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00016">16</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00018">18</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -185,7 +213,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00009">9</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00010">10</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -201,7 +229,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00011">11</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00012">12</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -217,7 +245,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00008">8</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00009">9</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -233,7 +261,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00007">7</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00008">8</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -249,7 +277,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00012">12</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00013">13</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -265,7 +293,23 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00013">13</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00014">14</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a id="a12206bb9224c0aca852c456a8f172b07" name="a12206bb9224c0aca852c456a8f172b07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12206bb9224c0aca852c456a8f172b07">&#9670;&#160;</a></span>startHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CameraCon.startHeight = 25f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00015">15</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -281,7 +325,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00015">15</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00017">17</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -297,7 +341,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00010">10</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00011">11</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>
@@ -313,7 +357,7 @@ Public 속성</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00006">6</a> 번째 라인에서 정의되었습니다.</p>
+<p class="definition"><a class="el" href="_camera_con_8cs_source.html">CameraCon.cs</a> 파일의 <a class="el" href="_camera_con_8cs_source.html#l00007">7</a> 번째 라인에서 정의되었습니다.</p>
 
 </div>
 </div>

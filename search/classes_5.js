@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['objectdata_0',['ObjectData',['../class_object_data.html',1,'']]],
-  ['objectplacer_1',['ObjectPlacer',['../class_object_placer.html',1,'']]],
-  ['objectsdatabaseso_2',['ObjectsDatabaseSO',['../class_objects_database_s_o.html',1,'']]]
+  ['inputmanager_0',['InputManager',['../class_input_manager.html',1,'']]],
+  ['iroomdetector_1',['IRoomDetector',['../interface_i_room_detector.html',1,'']]]
 ];

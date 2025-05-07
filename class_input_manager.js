@@ -1,5 +1,6 @@
 var class_input_manager =
 [
+    [ "GetClickedObject", "class_input_manager.html#a1e20f9551df551332eb6bb5a05d3d3f4", null ],
     [ "GetSelectedMapPosition", "class_input_manager.html#a25e763b84c157a83881364f39df51744", null ],
     [ "IsPointerOverUI", "class_input_manager.html#a22c3bf9782babcae4dc25081c80ac26c", null ],
     [ "BuildUI", "class_input_manager.html#af2e7cfa7d73ed76defddb7d7faf2f0d4", null ],
