@@ -1,0 +1,5 @@
+<map id="JY.AISpawner.ReturnToPool" name="JY.AISpawner.ReturnToPool">
+<area shape="rect" id="Node000001" title="AI 오브젝트를 풀로 반환" alt="" coords="255,5,441,32"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_a_i_spawner.html#af4e983d473539c5f7593c47de9be32c7" title="모든 활성 AI를 풀로 반환" alt="" coords="5,5,207,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,21,207,21,207,16,239,16"/>
+</map>

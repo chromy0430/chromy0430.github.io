@@ -1,0 +1,5 @@
+<map id="PlacementSystem.ActivatePlanesByLevel" name="PlacementSystem.ActivatePlanesByLevel">
+<area shape="rect" id="Node000001" title="플레인의 이름에서 뽑아낸 정수와 반환된 정수의 값이 같을 때, 그리드 플레인을 활성화한다." alt="" coords="241,5,421,48"/>
+<area shape="rect" id="Node000002" href="$class_placement_system.html#a78849567a00d0f3b5b96d98b7bb49073" title="땅을 구매하는 버튼을 통해 실행되는 함수 버튼을 클릭하면 그리드 플레인이 활성화 + 그리드 건설 반경이 확대되며, 4번(최대 횟수) 클릭 시 버튼이 비활성화 된다." alt="" coords="5,5,193,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,29,193,29,193,24,225,24"/>
+</map>

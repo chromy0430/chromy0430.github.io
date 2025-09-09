@@ -1,0 +1,5 @@
+<map id="JY.ReputationSystem.RemoveReputation" name="JY.ReputationSystem.RemoveReputation">
+<area shape="rect" id="Node000001" title="명성도 감소" alt="" coords="5,5,206,48"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_reputation_system.html#ad19a88b041c667547a13aa5d0255a51f" title="현재 등급 반환" alt="" coords="254,5,469,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,24,238,24,238,29,206,29"/>
+</map>

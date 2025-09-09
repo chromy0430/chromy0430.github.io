@@ -10,5 +10,19 @@ var class_j_y_1_1_ship_route =
     [ "GetWaypointPosition", "class_j_y_1_1_ship_route.html#a92f3a52fd62cefab08e19e15082e6458", null ],
     [ "IsValid", "class_j_y_1_1_ship_route.html#acef885af41bfd34a107860cc0f44bdb2", null ],
     [ "MoveWaypoint", "class_j_y_1_1_ship_route.html#a6cc16523fb7395a91467f93318fd1a79", null ],
-    [ "RemoveWaypoint", "class_j_y_1_1_ship_route.html#aa6d56452b2e58350e00b9cf62229c918", null ]
+    [ "RemoveWaypoint", "class_j_y_1_1_ship_route.html#aa6d56452b2e58350e00b9cf62229c918", null ],
+    [ "arrivalTime", "class_j_y_1_1_ship_route.html#a61e8b6c062733bede1cd7fe9e521320b", null ],
+    [ "departureRouteColor", "class_j_y_1_1_ship_route.html#ac752874898c7d5eaed97ae077acb99d8", null ],
+    [ "departureWaypoints", "class_j_y_1_1_ship_route.html#adc313f79a246aa5cdebdbe8ccaf91a70", null ],
+    [ "dockingPoint", "class_j_y_1_1_ship_route.html#a910d7cdeb2da1fa2cdfcafb4d95f6b4b", null ],
+    [ "dockingRotation", "class_j_y_1_1_ship_route.html#ac19ae9e594a9465cfb5a8ed1b06825f7", null ],
+    [ "movementSpeed", "class_j_y_1_1_ship_route.html#a3fdfdfec848da36b160a55fdb037f165", null ],
+    [ "rotationSpeed", "class_j_y_1_1_ship_route.html#a0368439e396e750e73d41c2fdab75695", null ],
+    [ "routeColor", "class_j_y_1_1_ship_route.html#aa882aa06c3bafb17594142d6a914a4bc", null ],
+    [ "routeId", "class_j_y_1_1_ship_route.html#add324e25d52ece711fe2225059c4a0fa", null ],
+    [ "routeName", "class_j_y_1_1_ship_route.html#ad16295693842b391cb223deba306aa32", null ],
+    [ "showDockingArea", "class_j_y_1_1_ship_route.html#a949582a23cc3d0305a1b664691ff2f47", null ],
+    [ "showWaypoints", "class_j_y_1_1_ship_route.html#a2428bb04b3f8b3b71ec6575cfae64ad8", null ],
+    [ "speedCurve", "class_j_y_1_1_ship_route.html#a0d55be03a3a471e888491fa4f268b6ba", null ],
+    [ "waypoints", "class_j_y_1_1_ship_route.html#a31008518d1b448ededfec4e22f25626c", null ]
 ];

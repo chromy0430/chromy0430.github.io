@@ -1,0 +1,11 @@
+<map id="JY.RoomManager" name="JY.RoomManager">
+<area shape="rect" id="Node000001" title="방 관리 및 요금 청구를 담당하는 매니저 클래스 AI의 방 사용, 결제 처리, 명성도 관리를 통합적으로 처리" alt="" coords="27,172,151,199"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="33,5,144,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="51,42,32,56,17,71,9,89,11,107,22,126,37,143,70,169,66,173,34,147,18,129,6,109,4,88,13,68,29,52,48,38"/>
+<area shape="rect" id="Node000003" href="$class_j_y_1_1_payment_system.html" title="결제 시스템 AI의 방 사용 요금 관리 및 결제 처리" alt="" coords="21,81,157,108"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="91,47,91,81,86,81,86,47"/>
+<area shape="rect" id="Node000004" href="$class_j_y_1_1_reputation_system.html" title="플레이어의 명성도 시스템을 관리하는 클래스 명성도 증감, 등급 관리, UI 업데이트를 담당" alt="" coords="180,81,328,108"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="132,36,227,78,225,83,130,41"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="91,124,91,171,86,171,86,124"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="233,121,194,150,138,174,136,169,191,146,229,117"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="JY.RoomManager.RegisterRoomFromDetector" name="JY.RoomManager.RegisterRoomFromDetector">
+<area shape="rect" id="Node000001" title="RoomDetector에서 방 정보를 받아 RoomContents를 생성하는 메서드" alt="" coords="5,48,218,91"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_manager.html#abfd6d78ed5ed953569a73aa54b2b7780" title="새로운 방이 생성되었을 때 호출" alt="" coords="266,5,505,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,47,294,33,295,38,219,52"/>
+<area shape="rect" id="Node000003" href="$class_j_y_1_1_room_contents.html#a01c15fff5e5e239fa94b565255e896ea" title="선베드 방으로 설정" alt="" coords="553,27,799,53"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="218,61,538,44,538,50,218,67"/>
+<area shape="rect" id="Node000004" href="$class_j_y_1_1_room_contents.html#a16baa2a169aa0941db85e24a01a93909" title="방 범위 설정" alt="" coords="270,107,500,133"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="219,86,295,101,294,106,218,92"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="506,25,538,27,537,32,505,30"/>
+<area shape="rect" id="Node000005" href="$class_j_y_1_1_room_contents.html#a7d0b03a00d95ba463fbd2d38c95be7ff" title="방 내용물 업데이트" alt="" coords="572,99,780,141"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="501,117,556,117,556,123,501,123"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="QuestLogUI.AddQuestToList" name="QuestLogUI.AddQuestToList">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,194,32"/>
+<area shape="rect" id="Node000002" href="$class_quest_log_item.html#acba577a2b93a160f700d625c4c285fa4" title=" " alt="" coords="242,5,383,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,16,226,16,226,21,194,21"/>
+<area shape="rect" id="Node000003" href="$class_quest_log_item.html#a4aa7733347aa3446cff10ba0318c2091" title=" " alt="" coords="431,5,618,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="383,16,415,16,415,21,383,21"/>
+<area shape="rect" id="Node000004" href="$class_objects_database_s_o.html#a774a45ae5a48731421c29c78cd1c9344" title=" " alt="" coords="666,5,899,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="619,16,651,16,651,21,619,21"/>
+</map>

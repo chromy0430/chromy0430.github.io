@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/Scripts/AI/RoomManager.cs 소스 파일</title>
+<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/02.Scripts/AI/RoomManager.cs 소스 파일</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.9</span>
    </div>
    <div id="projectbrief">LodgingSimulator Documents</div>
   </td>
@@ -109,217 +109,302 @@ $(function(){initNavTree('_room_manager_8cs_source.html',''); initResizable(true
 <a href="_room_manager_8cs.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Collections.Generic;</div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>UnityEngine;</div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System.Linq;</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_j_y.html">JY</a>;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span></div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_room_manager.html">    9</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_room_manager.html">RoomManager</a> : MonoBehaviour</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    [Header(<span class="stringliteral">&quot;Room Management&quot;</span>)]</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    [Tooltip(<span class="stringliteral">&quot;모든 방 내용물 관리 컴포넌트&quot;</span>)]</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">   13</a></span>    <span class="keyword">public</span> List&lt;RoomContents&gt; <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a> = <span class="keyword">new</span> List&lt;RoomContents&gt;();</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    [Tooltip(<span class="stringliteral">&quot;방 결제 시스템 참조&quot;</span>)]</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_room_manager.html#a56262509d09d9c378ae9ab536479c76e">   16</a></span>    <span class="keyword">public</span> <a class="code hl_class" href="class_j_y_1_1_payment_system.html">PaymentSystem</a> <a class="code hl_variable" href="class_room_manager.html#a56262509d09d9c378ae9ab536479c76e">paymentSystem</a>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    [Header(<span class="stringliteral">&quot;Room Settings&quot;</span>)]</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    [Tooltip(<span class="stringliteral">&quot;방을 찾을 때 사용할 태그&quot;</span>)]</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_room_manager.html#a091849e53d64705013e4c8fd79756b96">   20</a></span>    <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_variable" href="class_room_manager.html#a091849e53d64705013e4c8fd79756b96">roomTag</a> = <span class="stringliteral">&quot;Room&quot;</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    [Header(<span class="stringliteral">&quot;Pricing&quot;</span>)]</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    [Tooltip(<span class="stringliteral">&quot;오늘의 방 요금 배율&quot;</span>)]</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_room_manager.html#a7a5d9db7c43db9329e30b20d7dd78fec">   24</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="class_room_manager.html#a7a5d9db7c43db9329e30b20d7dd78fec">priceMultiplier</a> = 1.0f;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    [Header(<span class="stringliteral">&quot;Debug&quot;</span>)]</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    [Tooltip(<span class="stringliteral">&quot;디버그 로그 표시&quot;</span>)]</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">   28</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    [Tooltip(<span class="stringliteral">&quot;사용된 방 정보&quot;</span>)]</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    [SerializeField] <span class="keyword">private</span> List&lt;string&gt; usedRoomLogs = <span class="keyword">new</span> List&lt;string&gt;();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    [Tooltip(<span class="stringliteral">&quot;결제 내역&quot;</span>)]</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    [SerializeField] <span class="keyword">private</span> List&lt;string&gt; paymentLogs = <span class="keyword">new</span> List&lt;string&gt;();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// 방 자동 검색</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Start()</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_function" href="class_room_manager.html#a150b81e83359105fea86a4d5506e2a25">FindAllRooms</a>();</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// 씬의 모든 방 검색</span></div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="class_room_manager.html#a150b81e83359105fea86a4d5506e2a25">   43</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_room_manager.html#a150b81e83359105fea86a4d5506e2a25">FindAllRooms</a>()</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Clear();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">// 태그로 방 찾기</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        GameObject[] roomObjects = GameObject.FindGameObjectsWithTag(<a class="code hl_variable" href="class_room_manager.html#a091849e53d64705013e4c8fd79756b96">roomTag</a>);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">foreach</span> (GameObject roomObj <span class="keywordflow">in</span> roomObjects)</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> roomContents = roomObj.GetComponent&lt;<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a>&gt;();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordflow">if</span> (roomContents != <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Add(roomContents);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="comment">// 방 번호 할당</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Count; i++)</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(<a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>[i].roomID))</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>[i].roomID = (i + 101).ToString(); <span class="comment">// 101, 102, 103...</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            }</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a>)</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            Debug.Log($<span class="stringliteral">&quot;총 {allRooms.Count}개의 방이 감지되었습니다.&quot;</span>);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Count == 0)</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                Debug.LogWarning($<span class="stringliteral">&quot;&#39;{roomTag}&#39; 태그를 가진 방을 찾을 수 없습니다. 방 오브젝트에 태그가 설정되어 있는지 확인하세요.&quot;</span>);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        }</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
-</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// 새로운 방이 생성되었을 때 호출</span></div>
-<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="class_room_manager.html#ace355e6db7845468e03c6642f63b451d">   78</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_room_manager.html#ace355e6db7845468e03c6642f63b451d">RegisterNewRoom</a>(<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">if</span> (room != <span class="keyword">null</span> &amp;&amp; !<a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Contains(room))</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Add(room);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b">roomID</a>))</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                room.roomID = (allRooms.Count + 100).ToString();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            }</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a>)</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_j_y.html">JY</a></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html">   11</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_j_y_1_1_room_manager.html">RoomManager</a> : MonoBehaviour</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        [Header(<span class="stringliteral">&quot;방 관리 설정&quot;</span>)]</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        [Tooltip(<span class="stringliteral">&quot;모든 방 내용물 관리 컴포넌트&quot;</span>)]</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">   15</a></span>        <span class="keyword">public</span> List&lt;RoomContents&gt; <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a> = <span class="keyword">new</span> List&lt;RoomContents&gt;();</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        [Tooltip(<span class="stringliteral">&quot;방 결제 시스템 참조&quot;</span>)]</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a2617cdba873af0f1a844b78b50dd97ab">   18</a></span>        <span class="keyword">public</span> <a class="code hl_class" href="class_j_y_1_1_payment_system.html">PaymentSystem</a> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a2617cdba873af0f1a844b78b50dd97ab">paymentSystem</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        [Tooltip(<span class="stringliteral">&quot;명성도 시스템 참조&quot;</span>)]</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf">   21</a></span>        <span class="keyword">public</span> <a class="code hl_class" href="class_j_y_1_1_reputation_system.html">ReputationSystem</a> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf">reputationSystem</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        [Header(<span class="stringliteral">&quot;방 설정&quot;</span>)]</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        [Tooltip(<span class="stringliteral">&quot;방을 찾을 때 사용할 태그&quot;</span>)]</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a3d3fdd4652a3413b4f226337ff98d0ec">   25</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a3d3fdd4652a3413b4f226337ff98d0ec">roomTag</a> = <span class="stringliteral">&quot;Room&quot;</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        [Header(<span class="stringliteral">&quot;가격 설정&quot;</span>)]</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        [Tooltip(<span class="stringliteral">&quot;오늘의 방 요금 배율&quot;</span>)]</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a42a7c746f0a593aaa0b049e3152102b9">   29</a></span>        <span class="keyword">public</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a42a7c746f0a593aaa0b049e3152102b9">priceMultiplier</a> = 1.0f;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        [Header(<span class="stringliteral">&quot;디버그 설정&quot;</span>)]</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        [Tooltip(<span class="stringliteral">&quot;디버그 로그 표시 여부&quot;</span>)]</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a75e052fe495a8fad171f763c17d965d8">   33</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a75e052fe495a8fad171f763c17d965d8">showDebugLogs</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        [Tooltip(<span class="stringliteral">&quot;중요한 이벤트만 로그 표시&quot;</span>)]</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a34da4fcfd6f7ae5d3afcc30ee684d1ad">   36</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a34da4fcfd6f7ae5d3afcc30ee684d1ad">showImportantLogsOnly</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        [Tooltip(<span class="stringliteral">&quot;방 사용 기록 표시&quot;</span>)]</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#aa81245ff855aabc94f34bbfd027e5811">   39</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#aa81245ff855aabc94f34bbfd027e5811">showUsageLogs</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        [Header(<span class="stringliteral">&quot;로그 정보&quot;</span>)]</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        [Tooltip(<span class="stringliteral">&quot;사용된 방 정보&quot;</span>)]</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        [SerializeField] <span class="keyword">private</span> List&lt;string&gt; usedRoomLogs = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        [Tooltip(<span class="stringliteral">&quot;결제 내역&quot;</span>)]</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        [SerializeField] <span class="keyword">private</span> List&lt;string&gt; paymentLogs = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> Start()</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <a class="code hl_function" href="class_j_y_1_1_room_manager.html#a75d36948b11ee06e2ac8af4739e89343">FindAllRooms</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="comment">// 명성도 시스템이 참조되지 않았다면 자동으로 찾기</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf">reputationSystem</a> == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf">reputationSystem</a> = <a class="code hl_class" href="class_j_y_1_1_reputation_system.html">ReputationSystem</a>.<a class="code hl_property" href="class_j_y_1_1_reputation_system.html#a89017af5a149608dbc6f131191828ff8">Instance</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf">reputationSystem</a> == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                    <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf">reputationSystem</a> = FindObjectOfType&lt;ReputationSystem&gt;();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            DebugLog(<span class="stringliteral">&quot;방 관리 시스템 초기화 완료&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        </div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a75d36948b11ee06e2ac8af4739e89343">   71</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_j_y_1_1_room_manager.html#a75d36948b11ee06e2ac8af4739e89343">FindAllRooms</a>()</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Clear();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="comment">// 태그로 방 찾기</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            GameObject[] roomObjects = GameObject.FindGameObjectsWithTag(<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a3d3fdd4652a3413b4f226337ff98d0ec">roomTag</a>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">foreach</span> (GameObject roomObj <span class="keywordflow">in</span> roomObjects)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                <a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> roomContents = roomObj.GetComponent&lt;<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a>&gt;();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="keywordflow">if</span> (roomContents != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                    <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Add(roomContents);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="comment">// 방 번호 할당</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Count; i++)</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                Debug.Log($<span class="stringliteral">&quot;새로운 방 {room.roomID}이(가) 등록되었습니다.&quot;</span>);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            }</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>[i].roomID))</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                    <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>[i].roomID = (i + 101).ToString(); <span class="comment">// 101, 102, 103...</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            DebugLog($<span class="stringliteral">&quot;총 {allRooms.Count}개의 방이 감지되었습니다.&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Count == 0)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                DebugLog($<span class="stringliteral">&quot;&#39;{roomTag}&#39; 태그를 가진 방을 찾을 수 없습니다. 방 오브젝트에 태그가 설정되어 있는지 확인하세요.&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
 </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// 방이 제거되었을 때 호출</span></div>
-<div class="foldopen" id="foldopen00095" data-start="{" data-end="}">
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="class_room_manager.html#a5cf449c39b7a04ede62bf88848e5ba5c">   95</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_room_manager.html#a5cf449c39b7a04ede62bf88848e5ba5c">UnregisterRoom</a>(<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">if</span> (room != <span class="keyword">null</span> &amp;&amp; <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Contains(room))</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Remove(room);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a>)</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                Debug.Log($<span class="stringliteral">&quot;방 {room.roomID}이(가) 제거되었습니다.&quot;</span>);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            }</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        }</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#abfd6d78ed5ed953569a73aa54b2b7780">  106</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_j_y_1_1_room_manager.html#abfd6d78ed5ed953569a73aa54b2b7780">RegisterNewRoom</a>(<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="keywordflow">if</span> (room != <span class="keyword">null</span> &amp;&amp; !<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Contains(room))</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Add(room);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                <span class="keywordflow">if</span> (<span class="keywordtype">string</span>.IsNullOrEmpty(room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b">roomID</a>))</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                    room.roomID = (allRooms.Count + 100).ToString();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="comment">// Sunbed 방인지 확인하고 설정</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                <span class="keywordflow">if</span> (room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#aa58e4d3e257434956a05bea6be86929f">isSunbedRoom</a> &amp;&amp; room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#a66e3cd9b0a6b125ba5c7eb491d0fd40e">fixedPrice</a> &gt; 0)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                    room.<a class="code hl_function" href="class_j_y_1_1_room_contents.html#a01c15fff5e5e239fa94b565255e896ea">SetAsSunbedRoom</a>(room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#a66e3cd9b0a6b125ba5c7eb491d0fd40e">fixedPrice</a>, room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#a3c9343c78eb1a3cdeda0f84faf01ab16">fixedReputation</a>);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                    DebugLog($<span class="stringliteral">&quot;새로운 Sunbed 방 {room.roomID}이(가) 등록되었습니다. 고정 가격: {room.fixedPrice}원, 고정 명성도: {room.fixedReputation}&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                    DebugLog($<span class="stringliteral">&quot;새로운 방 {room.roomID}이(가) 등록되었습니다.&quot;</span>, <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a34da4fcfd6f7ae5d3afcc30ee684d1ad">showImportantLogsOnly</a>);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        }</div>
 </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// AI가 방을 사용했을 때 호출</span></div>
-<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="class_room_manager.html#a5b5732b8e84a164e776bf332de2b73b2">  108</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_room_manager.html#a5b5732b8e84a164e776bf332de2b73b2">ReportRoomUsage</a>(<span class="keywordtype">string</span> aiName, <a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">if</span> (room == <span class="keyword">null</span>) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="comment">// 방이 이미 사용 중인지 확인</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">if</span> (room.<a class="code hl_property" href="class_j_y_1_1_room_contents.html#a7af282a88d4fcb08a113d9998d691358">IsRoomUsed</a>)</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a>)</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                Debug.Log($<span class="stringliteral">&quot;{aiName}가 이미 사용 중인 방 {room.roomID}에 접근했습니다.&quot;</span>);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="comment">// 방 요금 계산 (방 가격 * 오늘의 배율)</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordtype">int</span> finalPrice = Mathf.RoundToInt(room.<a class="code hl_function" href="class_j_y_1_1_room_contents.html#a841d6b544ab837c698bd58399fb80dde">UseRoom</a>() * <a class="code hl_variable" href="class_room_manager.html#a7a5d9db7c43db9329e30b20d7dd78fec">priceMultiplier</a>);</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="comment">// 로그 추가</span></div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordtype">string</span> usageLog = $<span class="stringliteral">&quot;{aiName}이(가) 방 {room.roomID}을(를) 사용: {finalPrice}원&quot;</span>;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        usedRoomLogs.Add(usageLog);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a>)</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            Debug.Log(usageLog);</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="comment">// 결제 시스템에 요금 추가 (있는 경우)</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#a56262509d09d9c378ae9ab536479c76e">paymentSystem</a> != <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            <a class="code hl_variable" href="class_room_manager.html#a56262509d09d9c378ae9ab536479c76e">paymentSystem</a>.AddPayment(aiName, finalPrice, room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b">roomID</a>);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        }</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    }</div>
-</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    </div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// AI가 카운터에서 방 사용 요금을 지불할 때 호출</span></div>
-<div class="foldopen" id="foldopen00138" data-start="{" data-end="}">
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="class_room_manager.html#a37095cc3498d69997fb8cd262c002f52">  138</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_room_manager.html#a37095cc3498d69997fb8cd262c002f52">ProcessRoomPayment</a>(<span class="keywordtype">string</span> aiName)</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    {</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#a56262509d09d9c378ae9ab536479c76e">paymentSystem</a> == <span class="keyword">null</span>) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keywordtype">int</span> amount = <a class="code hl_variable" href="class_room_manager.html#a56262509d09d9c378ae9ab536479c76e">paymentSystem</a>.ProcessPayment(aiName);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordtype">string</span> paymentLog = $<span class="stringliteral">&quot;{aiName}의 방 사용 요금 결제: {amount}원&quot;</span>;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        paymentLogs.Add(paymentLog);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">showDebug</a>)</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            Debug.Log(paymentLog);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        </div>
+<div class="foldopen" id="foldopen00132" data-start="{" data-end="}">
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a4b4d8c7c9f3666c0c6bd2470917414f6">  132</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_j_y_1_1_room_manager.html#a4b4d8c7c9f3666c0c6bd2470917414f6">RegisterRoomFromDetector</a>(RoomDetector.RoomInfo roomInfo, GameObject roomGameObject)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> roomContents = roomGameObject.GetComponent&lt;<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a>&gt;();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            <span class="keywordflow">if</span> (roomContents == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                roomContents = roomGameObject.AddComponent&lt;<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a>&gt;();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            roomContents.roomID = roomInfo.roomId;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            roomContents.<a class="code hl_function" href="class_j_y_1_1_room_contents.html#a16baa2a169aa0941db85e24a01a93909">SetRoomBounds</a>(roomInfo.bounds);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <span class="comment">// Sunbed 방인지 확인하고 설정</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            <span class="keywordflow">if</span> (roomInfo.isSunbedRoom)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                roomContents.<a class="code hl_function" href="class_j_y_1_1_room_contents.html#a01c15fff5e5e239fa94b565255e896ea">SetAsSunbedRoom</a>(roomInfo.fixedPrice, roomInfo.fixedReputation);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                DebugLog($<span class="stringliteral">&quot;Sunbed 방 {roomInfo.roomId} 생성 완료. 고정 가격: {roomInfo.fixedPrice}원, 고정 명성도: {roomInfo.fixedReputation}&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            }</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">return</span> amount;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            <a class="code hl_function" href="class_j_y_1_1_room_manager.html#abfd6d78ed5ed953569a73aa54b2b7780">RegisterNewRoom</a>(roomContents);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        }</div>
 </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// 방 확인 및 업데이트</span></div>
-<div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="class_room_manager.html#ae8f6f007bd08820239535ab802f2e2da">  154</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_room_manager.html#ae8f6f007bd08820239535ab802f2e2da">UpdateRooms</a>()</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    {</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">foreach</span> (var room <span class="keywordflow">in</span> <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        </div>
+<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#ab469173be5dcfc4704a7cf05e4092048">  156</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_j_y_1_1_room_manager.html#ab469173be5dcfc4704a7cf05e4092048">UnregisterRoom</a>(<a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        {</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            room.UpdateRoomContents();</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        }</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <span class="keywordflow">if</span> (room != <span class="keyword">null</span> &amp;&amp; <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Contains(room))</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Remove(room);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                DebugLog($<span class="stringliteral">&quot;방 {room.roomID}이(가) 제거되었습니다.&quot;</span>, <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a34da4fcfd6f7ae5d3afcc30ee684d1ad">showImportantLogsOnly</a>);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        }</div>
 </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// 특정 금액 범위 내의 방 찾기</span></div>
-<div class="foldopen" id="foldopen00163" data-start="{" data-end="}">
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="class_room_manager.html#a2a761f691bfc2af39a7887562462618f">  163</a></span>    <span class="keyword">public</span> List&lt;RoomContents&gt; <a class="code hl_function" href="class_room_manager.html#a2a761f691bfc2af39a7887562462618f">FindRoomsInPriceRange</a>(<span class="keywordtype">int</span> minPrice, <span class="keywordtype">int</span> maxPrice)</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Where(r =&gt; !r.IsRoomUsed &amp;&amp; r.TotalRoomPrice &gt;= minPrice &amp;&amp; r.TotalRoomPrice &lt;= maxPrice).ToList();</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span></div>
+<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a4448b15ed5e95157ae3505b6806e1c33">  168</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_j_y_1_1_room_manager.html#a4448b15ed5e95157ae3505b6806e1c33">ReportRoomUsage</a>(<span class="keywordtype">string</span> aiName, <a class="code hl_class" href="class_j_y_1_1_room_contents.html">RoomContents</a> room)</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            <span class="keywordflow">if</span> (room == <span class="keyword">null</span>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>            <span class="comment">// 방이 이미 사용 중인지 확인</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            <span class="keywordflow">if</span> (room.<a class="code hl_property" href="class_j_y_1_1_room_contents.html#a7af282a88d4fcb08a113d9998d691358">IsRoomUsed</a>)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                DebugLog($<span class="stringliteral">&quot;{aiName}가 이미 사용 중인 방 {room.roomID}에 접근했습니다.&quot;</span>);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            <span class="comment">// 방 요금 계산 (방 가격 * 오늘의 배율)</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            <span class="keywordtype">int</span> finalPrice = Mathf.RoundToInt(room.<a class="code hl_function" href="class_j_y_1_1_room_contents.html#a841d6b544ab837c698bd58399fb80dde">UseRoom</a>() * <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a42a7c746f0a593aaa0b049e3152102b9">priceMultiplier</a>);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="comment">// 방 명성도 가져오기</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            <span class="keywordtype">int</span> roomReputation = room.<a class="code hl_property" href="class_j_y_1_1_room_contents.html#a9772a4e6a1adb77794eada0121be45c2">TotalRoomReputation</a>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            DebugLog($<span class="stringliteral">&quot;방 사용 보고 - AI: {aiName}, 방: {room.roomID}, 가격: {finalPrice}원, 방 명성도: {roomReputation}&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            <span class="comment">// 로그 추가</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#aa81245ff855aabc94f34bbfd027e5811">showUsageLogs</a>)</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            {</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                <span class="keywordtype">string</span> usageLog = $<span class="stringliteral">&quot;{aiName}이(가) 방 {room.roomID}을(를) 사용: {finalPrice}원, 명성도: {roomReputation}&quot;</span>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                usedRoomLogs.Add(usageLog);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                <span class="comment">// 로그 목록 크기 제한 (최근 20개만 유지)</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                <span class="keywordflow">if</span> (usedRoomLogs.Count &gt; 20)</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                    usedRoomLogs.RemoveAt(0);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                }</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            }</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            <span class="comment">// 결제 시스템에 요금과 명성도 추가</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a2617cdba873af0f1a844b78b50dd97ab">paymentSystem</a> != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                DebugLog($<span class="stringliteral">&quot;PaymentSystem에 결제 정보 추가 - AI: {aiName}, 방: {room.roomID}, 가격: {finalPrice}, 명성도: {roomReputation}&quot;</span>);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a2617cdba873af0f1a844b78b50dd97ab">paymentSystem</a>.AddPayment(aiName, finalPrice, room.<a class="code hl_variable" href="class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b">roomID</a>, roomReputation);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            }</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                DebugLog(<span class="stringliteral">&quot;PaymentSystem을 찾을 수 없습니다!&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
 </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// 사용 가능한 모든 방 찾기</span></div>
-<div class="foldopen" id="foldopen00169" data-start="{" data-end="}">
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="class_room_manager.html#a572663853a7fa2d5ddc21d57d865fba4">  169</a></span>    <span class="keyword">public</span> List&lt;RoomContents&gt; <a class="code hl_function" href="class_room_manager.html#a572663853a7fa2d5ddc21d57d865fba4">GetAvailableRooms</a>()</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    {</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">allRooms</a>.Where(r =&gt; !r.IsRoomUsed).ToList();</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        </div>
+<div class="foldopen" id="foldopen00215" data-start="{" data-end="}">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a8d5f505dc955f6eab19e54c550e913af">  215</a></span>        <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_j_y_1_1_room_manager.html#a8d5f505dc955f6eab19e54c550e913af">ProcessRoomPayment</a>(<span class="keywordtype">string</span> aiName)</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a2617cdba873af0f1a844b78b50dd97ab">paymentSystem</a> == <span class="keyword">null</span>) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            <span class="keywordtype">int</span> amount = <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a2617cdba873af0f1a844b78b50dd97ab">paymentSystem</a>.ProcessPayment(aiName);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            <span class="keywordflow">if</span> (amount &gt; 0 &amp;&amp; <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#aa81245ff855aabc94f34bbfd027e5811">showUsageLogs</a>)</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>            {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>                <span class="keywordtype">string</span> paymentLog = $<span class="stringliteral">&quot;{aiName}이(가) {amount}원 결제 완료&quot;</span>;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                paymentLogs.Add(paymentLog);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                <span class="comment">// 로그 목록 크기 제한 (최근 20개만 유지)</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>                <span class="keywordflow">if</span> (paymentLogs.Count &gt; 20)</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                {</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                    paymentLogs.RemoveAt(0);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                }</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                DebugLog(paymentLog, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>            }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            <span class="keywordflow">return</span> amount;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        }</div>
 </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>} </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span></div>
+<div class="foldopen" id="foldopen00241" data-start="{" data-end="}">
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#aa3dffa1c456a422b88230444a93f665a">  241</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_j_y_1_1_room_manager.html#aa3dffa1c456a422b88230444a93f665a">UpdateRooms</a>()</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            <a class="code hl_function" href="class_j_y_1_1_room_manager.html#a75d36948b11ee06e2ac8af4739e89343">FindAllRooms</a>();</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        }</div>
 </div>
-<div class="ttc" id="aclass_j_y_1_1_payment_system_html"><div class="ttname"><a href="class_j_y_1_1_payment_system.html">JY.PaymentSystem</a></div><div class="ttdef"><b>Definition</b> <a href="_payment_system_8cs_source.html#l00007">PaymentSystem.cs:8</a></div></div>
-<div class="ttc" id="aclass_j_y_1_1_room_contents_html"><div class="ttname"><a href="class_j_y_1_1_room_contents.html">JY.RoomContents</a></div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00007">RoomContents.cs:8</a></div></div>
-<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a7af282a88d4fcb08a113d9998d691358"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a7af282a88d4fcb08a113d9998d691358">JY.RoomContents.IsRoomUsed</a></div><div class="ttdeci">bool IsRoomUsed</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00021">RoomContents.cs:21</a></div></div>
-<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a841d6b544ab837c698bd58399fb80dde"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a841d6b544ab837c698bd58399fb80dde">JY.RoomContents.UseRoom</a></div><div class="ttdeci">int UseRoom()</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00076">RoomContents.cs:76</a></div></div>
-<div class="ttc" id="aclass_j_y_1_1_room_contents_html_af8bfe5f3f826e0fef44ef4d6871eaa9b"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b">JY.RoomContents.roomID</a></div><div class="ttdeci">string roomID</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00010">RoomContents.cs:10</a></div></div>
-<div class="ttc" id="aclass_room_manager_html"><div class="ttname"><a href="class_room_manager.html">RoomManager</a></div><div class="ttdoc">방 관리 및 요금 청구를 담당하는 매니저 클래스</div><div class="ttdef"><b>Definition</b> <a href="#l00009">RoomManager.cs:10</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a091849e53d64705013e4c8fd79756b96"><div class="ttname"><a href="class_room_manager.html#a091849e53d64705013e4c8fd79756b96">RoomManager.roomTag</a></div><div class="ttdeci">string roomTag</div><div class="ttdef"><b>Definition</b> <a href="#l00020">RoomManager.cs:20</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a150b81e83359105fea86a4d5506e2a25"><div class="ttname"><a href="class_room_manager.html#a150b81e83359105fea86a4d5506e2a25">RoomManager.FindAllRooms</a></div><div class="ttdeci">void FindAllRooms()</div><div class="ttdef"><b>Definition</b> <a href="#l00043">RoomManager.cs:43</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a2a761f691bfc2af39a7887562462618f"><div class="ttname"><a href="class_room_manager.html#a2a761f691bfc2af39a7887562462618f">RoomManager.FindRoomsInPriceRange</a></div><div class="ttdeci">List&lt; RoomContents &gt; FindRoomsInPriceRange(int minPrice, int maxPrice)</div><div class="ttdef"><b>Definition</b> <a href="#l00163">RoomManager.cs:163</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a37095cc3498d69997fb8cd262c002f52"><div class="ttname"><a href="class_room_manager.html#a37095cc3498d69997fb8cd262c002f52">RoomManager.ProcessRoomPayment</a></div><div class="ttdeci">int ProcessRoomPayment(string aiName)</div><div class="ttdef"><b>Definition</b> <a href="#l00138">RoomManager.cs:138</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a56262509d09d9c378ae9ab536479c76e"><div class="ttname"><a href="class_room_manager.html#a56262509d09d9c378ae9ab536479c76e">RoomManager.paymentSystem</a></div><div class="ttdeci">PaymentSystem paymentSystem</div><div class="ttdef"><b>Definition</b> <a href="#l00016">RoomManager.cs:16</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a572663853a7fa2d5ddc21d57d865fba4"><div class="ttname"><a href="class_room_manager.html#a572663853a7fa2d5ddc21d57d865fba4">RoomManager.GetAvailableRooms</a></div><div class="ttdeci">List&lt; RoomContents &gt; GetAvailableRooms()</div><div class="ttdef"><b>Definition</b> <a href="#l00169">RoomManager.cs:169</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a5b5732b8e84a164e776bf332de2b73b2"><div class="ttname"><a href="class_room_manager.html#a5b5732b8e84a164e776bf332de2b73b2">RoomManager.ReportRoomUsage</a></div><div class="ttdeci">void ReportRoomUsage(string aiName, RoomContents room)</div><div class="ttdef"><b>Definition</b> <a href="#l00108">RoomManager.cs:108</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a5cf449c39b7a04ede62bf88848e5ba5c"><div class="ttname"><a href="class_room_manager.html#a5cf449c39b7a04ede62bf88848e5ba5c">RoomManager.UnregisterRoom</a></div><div class="ttdeci">void UnregisterRoom(RoomContents room)</div><div class="ttdef"><b>Definition</b> <a href="#l00095">RoomManager.cs:95</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a7a5d9db7c43db9329e30b20d7dd78fec"><div class="ttname"><a href="class_room_manager.html#a7a5d9db7c43db9329e30b20d7dd78fec">RoomManager.priceMultiplier</a></div><div class="ttdeci">float priceMultiplier</div><div class="ttdef"><b>Definition</b> <a href="#l00024">RoomManager.cs:24</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_a86616292c24e7ca3cdb7bd7afca14d74"><div class="ttname"><a href="class_room_manager.html#a86616292c24e7ca3cdb7bd7afca14d74">RoomManager.allRooms</a></div><div class="ttdeci">List&lt; RoomContents &gt; allRooms</div><div class="ttdef"><b>Definition</b> <a href="#l00013">RoomManager.cs:13</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_aaa792d4a04ca54e33299b3d8cfb6d17d"><div class="ttname"><a href="class_room_manager.html#aaa792d4a04ca54e33299b3d8cfb6d17d">RoomManager.showDebug</a></div><div class="ttdeci">bool showDebug</div><div class="ttdef"><b>Definition</b> <a href="#l00028">RoomManager.cs:28</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_ace355e6db7845468e03c6642f63b451d"><div class="ttname"><a href="class_room_manager.html#ace355e6db7845468e03c6642f63b451d">RoomManager.RegisterNewRoom</a></div><div class="ttdeci">void RegisterNewRoom(RoomContents room)</div><div class="ttdef"><b>Definition</b> <a href="#l00078">RoomManager.cs:78</a></div></div>
-<div class="ttc" id="aclass_room_manager_html_ae8f6f007bd08820239535ab802f2e2da"><div class="ttname"><a href="class_room_manager.html#ae8f6f007bd08820239535ab802f2e2da">RoomManager.UpdateRooms</a></div><div class="ttdeci">void UpdateRooms()</div><div class="ttdef"><b>Definition</b> <a href="#l00154">RoomManager.cs:154</a></div></div>
-<div class="ttc" id="anamespace_j_y_html"><div class="ttname"><a href="namespace_j_y.html">JY</a></div><div class="ttdef"><b>Definition</b> <a href="_furniture_i_d_8cs_source.html#l00003">FurnitureID.cs:4</a></div></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span></div>
+<div class="foldopen" id="foldopen00249" data-start="{" data-end="}">
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#a8643324215ee57adce6babb021863231">  249</a></span>        <span class="keyword">public</span> List&lt;RoomContents&gt; <a class="code hl_function" href="class_j_y_1_1_room_manager.html#a8643324215ee57adce6babb021863231">FindRoomsInPriceRange</a>(<span class="keywordtype">int</span> minPrice, <span class="keywordtype">int</span> maxPrice)</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Where(r =&gt; r.TotalRoomPrice &gt;= minPrice &amp;&amp; r.TotalRoomPrice &lt;= maxPrice).ToList();</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        }</div>
+</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span></div>
+<div class="foldopen" id="foldopen00257" data-start="{" data-end="}">
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="class_j_y_1_1_room_manager.html#aca29de588c2f71d61c8818fc0c71bdee">  257</a></span>        <span class="keyword">public</span> List&lt;RoomContents&gt; <a class="code hl_function" href="class_j_y_1_1_room_manager.html#aca29de588c2f71d61c8818fc0c71bdee">GetAvailableRooms</a>()</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        {</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">allRooms</a>.Where(r =&gt; !r.IsRoomUsed).ToList();</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        }</div>
+</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="preprocessor">        #region 디버그 메서드</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> DebugLog(<span class="keywordtype">string</span> message, <span class="keywordtype">bool</span> isImportant = <span class="keyword">false</span>)</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>            <span class="keywordflow">if</span> (!<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a75e052fe495a8fad171f763c17d965d8">showDebugLogs</a>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_j_y_1_1_room_manager.html#a34da4fcfd6f7ae5d3afcc30ee684d1ad">showImportantLogsOnly</a> &amp;&amp; !isImportant) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            Debug.Log($<span class="stringliteral">&quot;[RoomManager] {message}&quot;</span>);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        }</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    }</div>
+</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>}</div>
+<div class="ttc" id="aclass_j_y_1_1_payment_system_html"><div class="ttname"><a href="class_j_y_1_1_payment_system.html">JY.PaymentSystem</a></div><div class="ttdoc">결제 시스템 AI의 방 사용 요금 관리 및 결제 처리</div><div class="ttdef"><b>Definition</b> <a href="_payment_system_8cs_source.html#l00011">PaymentSystem.cs:12</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_reputation_system_html"><div class="ttname"><a href="class_j_y_1_1_reputation_system.html">JY.ReputationSystem</a></div><div class="ttdoc">플레이어의 명성도 시스템을 관리하는 클래스 명성도 증감, 등급 관리, UI 업데이트를 담당</div><div class="ttdef"><b>Definition</b> <a href="_reputation_system_8cs_source.html#l00012">ReputationSystem.cs:13</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_reputation_system_html_a89017af5a149608dbc6f131191828ff8"><div class="ttname"><a href="class_j_y_1_1_reputation_system.html#a89017af5a149608dbc6f131191828ff8">JY.ReputationSystem.Instance</a></div><div class="ttdeci">static ReputationSystem Instance</div><div class="ttdef"><b>Definition</b> <a href="_reputation_system_8cs_source.html#l00047">ReputationSystem.cs:47</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html"><div class="ttname"><a href="class_j_y_1_1_room_contents.html">JY.RoomContents</a></div><div class="ttdoc">방 내용물 관리 클래스 방 안의 가구들을 관리하고 가격, 명성도를 계산</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00011">RoomContents.cs:12</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a01c15fff5e5e239fa94b565255e896ea"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a01c15fff5e5e239fa94b565255e896ea">JY.RoomContents.SetAsSunbedRoom</a></div><div class="ttdeci">void SetAsSunbedRoom(float price, float reputation)</div><div class="ttdoc">선베드 방으로 설정</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00079">RoomContents.cs:79</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a16baa2a169aa0941db85e24a01a93909"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a16baa2a169aa0941db85e24a01a93909">JY.RoomContents.SetRoomBounds</a></div><div class="ttdeci">void SetRoomBounds(Bounds bounds)</div><div class="ttdoc">방 범위 설정</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00066">RoomContents.cs:66</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a3c9343c78eb1a3cdeda0f84faf01ab16"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a3c9343c78eb1a3cdeda0f84faf01ab16">JY.RoomContents.fixedReputation</a></div><div class="ttdeci">float fixedReputation</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00033">RoomContents.cs:33</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a66e3cd9b0a6b125ba5c7eb491d0fd40e"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a66e3cd9b0a6b125ba5c7eb491d0fd40e">JY.RoomContents.fixedPrice</a></div><div class="ttdeci">float fixedPrice</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00030">RoomContents.cs:30</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a7af282a88d4fcb08a113d9998d691358"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a7af282a88d4fcb08a113d9998d691358">JY.RoomContents.IsRoomUsed</a></div><div class="ttdeci">bool IsRoomUsed</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00049">RoomContents.cs:49</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a841d6b544ab837c698bd58399fb80dde"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a841d6b544ab837c698bd58399fb80dde">JY.RoomContents.UseRoom</a></div><div class="ttdeci">int UseRoom()</div><div class="ttdoc">방 사용 시작</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00180">RoomContents.cs:180</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_a9772a4e6a1adb77794eada0121be45c2"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#a9772a4e6a1adb77794eada0121be45c2">JY.RoomContents.TotalRoomReputation</a></div><div class="ttdeci">int TotalRoomReputation</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00051">RoomContents.cs:51</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_aa58e4d3e257434956a05bea6be86929f"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#aa58e4d3e257434956a05bea6be86929f">JY.RoomContents.isSunbedRoom</a></div><div class="ttdeci">bool isSunbedRoom</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00027">RoomContents.cs:27</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_contents_html_af8bfe5f3f826e0fef44ef4d6871eaa9b"><div class="ttname"><a href="class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b">JY.RoomContents.roomID</a></div><div class="ttdeci">string roomID</div><div class="ttdef"><b>Definition</b> <a href="_room_contents_8cs_source.html#l00015">RoomContents.cs:15</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html"><div class="ttname"><a href="class_j_y_1_1_room_manager.html">JY.RoomManager</a></div><div class="ttdoc">방 관리 및 요금 청구를 담당하는 매니저 클래스 AI의 방 사용, 결제 처리, 명성도 관리를 통합적으로 처리</div><div class="ttdef"><b>Definition</b> <a href="#l00011">RoomManager.cs:12</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a2617cdba873af0f1a844b78b50dd97ab"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a2617cdba873af0f1a844b78b50dd97ab">JY.RoomManager.paymentSystem</a></div><div class="ttdeci">PaymentSystem paymentSystem</div><div class="ttdef"><b>Definition</b> <a href="#l00018">RoomManager.cs:18</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a34da4fcfd6f7ae5d3afcc30ee684d1ad"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a34da4fcfd6f7ae5d3afcc30ee684d1ad">JY.RoomManager.showImportantLogsOnly</a></div><div class="ttdeci">bool showImportantLogsOnly</div><div class="ttdef"><b>Definition</b> <a href="#l00036">RoomManager.cs:36</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a3d3fdd4652a3413b4f226337ff98d0ec"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a3d3fdd4652a3413b4f226337ff98d0ec">JY.RoomManager.roomTag</a></div><div class="ttdeci">string roomTag</div><div class="ttdef"><b>Definition</b> <a href="#l00025">RoomManager.cs:25</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a42a7c746f0a593aaa0b049e3152102b9"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a42a7c746f0a593aaa0b049e3152102b9">JY.RoomManager.priceMultiplier</a></div><div class="ttdeci">float priceMultiplier</div><div class="ttdef"><b>Definition</b> <a href="#l00029">RoomManager.cs:29</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a4448b15ed5e95157ae3505b6806e1c33"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a4448b15ed5e95157ae3505b6806e1c33">JY.RoomManager.ReportRoomUsage</a></div><div class="ttdeci">void ReportRoomUsage(string aiName, RoomContents room)</div><div class="ttdoc">AI가 방을 사용했을 때 호출</div><div class="ttdef"><b>Definition</b> <a href="#l00168">RoomManager.cs:168</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a46ae9fb736664bb32b017ee367f283bf"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf">JY.RoomManager.reputationSystem</a></div><div class="ttdeci">ReputationSystem reputationSystem</div><div class="ttdef"><b>Definition</b> <a href="#l00021">RoomManager.cs:21</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a4b4d8c7c9f3666c0c6bd2470917414f6"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a4b4d8c7c9f3666c0c6bd2470917414f6">JY.RoomManager.RegisterRoomFromDetector</a></div><div class="ttdeci">void RegisterRoomFromDetector(RoomDetector.RoomInfo roomInfo, GameObject roomGameObject)</div><div class="ttdoc">RoomDetector에서 방 정보를 받아 RoomContents를 생성하는 메서드</div><div class="ttdef"><b>Definition</b> <a href="#l00132">RoomManager.cs:132</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a655fc437aa92a1b3075a086453850612"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a655fc437aa92a1b3075a086453850612">JY.RoomManager.allRooms</a></div><div class="ttdeci">List&lt; RoomContents &gt; allRooms</div><div class="ttdef"><b>Definition</b> <a href="#l00015">RoomManager.cs:15</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a75d36948b11ee06e2ac8af4739e89343"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a75d36948b11ee06e2ac8af4739e89343">JY.RoomManager.FindAllRooms</a></div><div class="ttdeci">void FindAllRooms()</div><div class="ttdoc">씬의 모든 방 검색</div><div class="ttdef"><b>Definition</b> <a href="#l00071">RoomManager.cs:71</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a75e052fe495a8fad171f763c17d965d8"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a75e052fe495a8fad171f763c17d965d8">JY.RoomManager.showDebugLogs</a></div><div class="ttdeci">bool showDebugLogs</div><div class="ttdef"><b>Definition</b> <a href="#l00033">RoomManager.cs:33</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a8643324215ee57adce6babb021863231"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a8643324215ee57adce6babb021863231">JY.RoomManager.FindRoomsInPriceRange</a></div><div class="ttdeci">List&lt; RoomContents &gt; FindRoomsInPriceRange(int minPrice, int maxPrice)</div><div class="ttdoc">가격 범위로 방 찾기</div><div class="ttdef"><b>Definition</b> <a href="#l00249">RoomManager.cs:249</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_a8d5f505dc955f6eab19e54c550e913af"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#a8d5f505dc955f6eab19e54c550e913af">JY.RoomManager.ProcessRoomPayment</a></div><div class="ttdeci">int ProcessRoomPayment(string aiName)</div><div class="ttdoc">AI가 카운터에서 방 사용 요금을 지불할 때 호출</div><div class="ttdef"><b>Definition</b> <a href="#l00215">RoomManager.cs:215</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_aa3dffa1c456a422b88230444a93f665a"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#aa3dffa1c456a422b88230444a93f665a">JY.RoomManager.UpdateRooms</a></div><div class="ttdeci">void UpdateRooms()</div><div class="ttdoc">방 목록 업데이트 (빌딩 시스템에서 호출)</div><div class="ttdef"><b>Definition</b> <a href="#l00241">RoomManager.cs:241</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_aa81245ff855aabc94f34bbfd027e5811"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#aa81245ff855aabc94f34bbfd027e5811">JY.RoomManager.showUsageLogs</a></div><div class="ttdeci">bool showUsageLogs</div><div class="ttdef"><b>Definition</b> <a href="#l00039">RoomManager.cs:39</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_ab469173be5dcfc4704a7cf05e4092048"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#ab469173be5dcfc4704a7cf05e4092048">JY.RoomManager.UnregisterRoom</a></div><div class="ttdeci">void UnregisterRoom(RoomContents room)</div><div class="ttdoc">방이 제거되었을 때 호출</div><div class="ttdef"><b>Definition</b> <a href="#l00156">RoomManager.cs:156</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_abfd6d78ed5ed953569a73aa54b2b7780"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#abfd6d78ed5ed953569a73aa54b2b7780">JY.RoomManager.RegisterNewRoom</a></div><div class="ttdeci">void RegisterNewRoom(RoomContents room)</div><div class="ttdoc">새로운 방이 생성되었을 때 호출</div><div class="ttdef"><b>Definition</b> <a href="#l00106">RoomManager.cs:106</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_room_manager_html_aca29de588c2f71d61c8818fc0c71bdee"><div class="ttname"><a href="class_j_y_1_1_room_manager.html#aca29de588c2f71d61c8818fc0c71bdee">JY.RoomManager.GetAvailableRooms</a></div><div class="ttdeci">List&lt; RoomContents &gt; GetAvailableRooms()</div><div class="ttdoc">사용 가능한 방 목록 반환</div><div class="ttdef"><b>Definition</b> <a href="#l00257">RoomManager.cs:257</a></div></div>
+<div class="ttc" id="anamespace_j_y_html"><div class="ttname"><a href="namespace_j_y.html">JY</a></div><div class="ttdef"><b>Definition</b> <a href="_a_i_agent_8cs_source.html#l00009">AIAgent.cs:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_29d13c242fcf0dd9dd43c13d541dcfd9.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_ff95a19d37cbade0038d02e58ed0f771.html">AI</a></li><li class="navelem"><a class="el" href="_room_manager_8cs.html">RoomManager.cs</a></li>
+    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_14406be6e278237b1ebe6c032ce561d9.html">02.Scripts</a></li><li class="navelem"><a class="el" href="dir_0fc9d60d07f1dbdb370e9a9b8a480532.html">AI</a></li><li class="navelem"><a class="el" href="_room_manager_8cs.html">RoomManager.cs</a></li>
     <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

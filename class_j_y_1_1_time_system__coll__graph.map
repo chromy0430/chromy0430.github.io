@@ -1,0 +1,5 @@
+<map id="JY.TimeSystem" name="JY.TimeSystem">
+<area shape="rect" id="Node000001" title="24시간 순환 시간 시스템을 관리하는 클래스 싱글톤 패턴으로 구현되어 전체 게임에서 접근 가능" alt="" coords="5,80,119,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="6,5,118,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,48,65,80,59,80,59,48"/>
+</map>

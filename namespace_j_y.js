@@ -1,13 +1,13 @@
 var namespace_j_y =
 [
-    [ "AIAgent", "class_j_y_1_1_a_i_agent.html", null ],
+    [ "AIAgent", "class_j_y_1_1_a_i_agent.html", "class_j_y_1_1_a_i_agent" ],
     [ "AISpawner", "class_j_y_1_1_a_i_spawner.html", "class_j_y_1_1_a_i_spawner" ],
-    [ "AutoNavMeshBaker", "class_j_y_1_1_auto_nav_mesh_baker.html", null ],
+    [ "AutoNavMeshBaker", "class_j_y_1_1_auto_nav_mesh_baker.html", "class_j_y_1_1_auto_nav_mesh_baker" ],
     [ "CounterManager", "class_j_y_1_1_counter_manager.html", "class_j_y_1_1_counter_manager" ],
-    [ "FurnitureID", "class_j_y_1_1_furniture_i_d.html", null ],
-    [ "IRoomDetector", "interface_j_y_1_1_i_room_detector.html", null ],
+    [ "FurnitureID", "class_j_y_1_1_furniture_i_d.html", "class_j_y_1_1_furniture_i_d" ],
+    [ "IRoomDetector", "interface_j_y_1_1_i_room_detector.html", "interface_j_y_1_1_i_room_detector" ],
     [ "PaymentSystem", "class_j_y_1_1_payment_system.html", "class_j_y_1_1_payment_system" ],
-    [ "PoolStatus", "struct_j_y_1_1_pool_status.html", null ],
+    [ "PoolStatus", "struct_j_y_1_1_pool_status.html", "struct_j_y_1_1_pool_status" ],
     [ "ReputationSystem", "class_j_y_1_1_reputation_system.html", "class_j_y_1_1_reputation_system" ],
     [ "RoomContents", "class_j_y_1_1_room_contents.html", "class_j_y_1_1_room_contents" ],
     [ "RoomManager", "class_j_y_1_1_room_manager.html", "class_j_y_1_1_room_manager" ],

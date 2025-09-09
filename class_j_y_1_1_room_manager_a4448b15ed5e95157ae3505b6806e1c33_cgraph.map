@@ -1,0 +1,5 @@
+<map id="JY.RoomManager.ReportRoomUsage" name="JY.RoomManager.ReportRoomUsage">
+<area shape="rect" id="Node000001" title="AI가 방을 사용했을 때 호출" alt="" coords="5,5,208,48"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_contents.html#a841d6b544ab837c698bd58399fb80dde" title="방 사용 시작" alt="" coords="256,13,446,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,24,240,24,240,29,208,29"/>
+</map>

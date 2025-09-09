@@ -1,0 +1,7 @@
+<map id="GameManager.ReturnToStartMenu" name="GameManager.ReturnToStartMenu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,229,32"/>
+<area shape="rect" id="Node000002" href="$class_save_manager.html#a645d4c30c84fc6f1840f870d0263efd3" title=" " alt="" coords="277,5,447,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,16,261,16,261,21,229,21"/>
+<area shape="rect" id="Node000003" href="$class_placement_system.html#a40023ecc15b2705608d3fd2bcbc84b17" title=" " alt="" coords="495,5,705,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="448,16,479,16,479,21,448,21"/>
+</map>

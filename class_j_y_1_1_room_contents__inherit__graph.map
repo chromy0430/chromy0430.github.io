@@ -1,5 +1,5 @@
 <map id="JY.RoomContents" name="JY.RoomContents">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,133,107"/>
+<area shape="rect" id="Node000001" title="방 내용물 관리 클래스 방 안의 가구들을 관리하고 가격, 명성도를 계산" alt="" coords="5,80,133,107"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="13,5,125,32"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,48,72,80,66,80,66,48"/>
 </map>

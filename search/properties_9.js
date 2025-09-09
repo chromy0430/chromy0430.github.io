@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['totalroomprice_0',['TotalRoomPrice',['../class_j_y_1_1_room_contents.html#a6727dea2ae2c3d009fe9de75b699cb89',1,'JY::RoomContents']]]
+  ['reputationvalue_0',['ReputationValue',['../class_object_data.html#a6154bc6870dae2408f1ff42db5484cdf',1,'ObjectData']]],
+  ['rotation_1',['Rotation',['../class_placement_data.html#ad3e3369310c0dd500cd787cfe7ed4db0',1,'PlacementData']]]
 ];

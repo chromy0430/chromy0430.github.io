@@ -1,5 +1,5 @@
 <map id="JY.RoomContents.UseRoom" name="JY.RoomContents.UseRoom">
-<area shape="rect" id="Node000001" title=" " alt="" coords="276,5,466,32"/>
-<area shape="rect" id="Node000002" href="$class_room_manager.html#a5b5732b8e84a164e776bf332de2b73b2" title=" " alt="" coords="5,5,228,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,21,228,21,228,16,260,16"/>
+<area shape="rect" id="Node000001" title="방 사용 시작" alt="" coords="256,13,446,40"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_manager.html#a4448b15ed5e95157ae3505b6806e1c33" title="AI가 방을 사용했을 때 호출" alt="" coords="5,5,208,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,29,208,29,208,24,240,24"/>
 </map>

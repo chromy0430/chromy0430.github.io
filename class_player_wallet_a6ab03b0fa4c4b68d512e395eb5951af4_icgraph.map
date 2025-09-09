@@ -1,0 +1,5 @@
+<map id="PlayerWallet.AddMoney" name="PlayerWallet.AddMoney">
+<area shape="rect" id="Node000001" title=" " alt="" coords="255,5,415,32"/>
+<area shape="rect" id="Node000002" href="$class_quest_manager.html#a9c2dc5cbd4ee169f148098ebb4323ee3" title="퀘스트 완료 처리" alt="" coords="5,5,207,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,21,207,21,207,16,239,16"/>
+</map>

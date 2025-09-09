@@ -1,0 +1,9 @@
+<map id="JY.ShipSchedule" name="JY.ShipSchedule">
+<area shape="rect" id="Node000001" title="배 스케줄 클래스" alt="" coords="28,172,147,199"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_ship_route.html" title="배의 이동 경로 정의" alt="" coords="5,81,106,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,122,85,171,80,172,63,124"/>
+<area shape="rect" id="Node000003" href="$class_j_y_1_1_ship_controller.html" title="개별 배의 움직임과 상태 제어 웨이포인트 기반 이동, 정박, 출발 시퀀스 관리" alt="" coords="130,81,251,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,120,104,173,100,169,163,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="134,5,246,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="193,47,193,81,188,81,188,47"/>
+</map>

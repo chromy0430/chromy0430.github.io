@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/Scripts/Particle/SpawnEffect.cs 소스 파일</title>
+<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/02.Scripts/Particle/SpawnEffect.cs 소스 파일</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.6</span>
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.9</span>
    </div>
    <div id="projectbrief">LodgingSimulator Documents</div>
   </td>
@@ -158,25 +158,28 @@ $(function(){initNavTree('_spawn_effect_8cs_source.html',''); initResizable(true
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        effect.transform.position = position;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        effect.SetActive(<span class="keyword">true</span>);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="comment">// Particle System 재생</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        ParticleSystem ps = effect.GetComponent&lt;ParticleSystem&gt;();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span> (ps != <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            ps.Play();</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        }</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="comment">// 일정 시간 후 비활성화</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        StartCoroutine(DeactivateEffect(effect, effectDuration));</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        effect.TryGetComponent&lt;ParticleSystem&gt;(out ParticleSystem ps);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="comment">// Particle System 재생</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="comment">//ParticleSystem ps = effect.GetComponent&lt;ParticleSystem&gt;();</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>       </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (ps != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            ps.Play();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="comment">// 일정 시간 후 비활성화</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        StartCoroutine(DeactivateEffect(effect, effectDuration));</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
 </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">private</span> IEnumerator DeactivateEffect(GameObject effect, <span class="keywordtype">float</span> delay)</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        yield <span class="keywordflow">return</span> <span class="keyword">new</span> WaitForSeconds(delay);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        effect.SetActive(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">private</span> IEnumerator DeactivateEffect(GameObject effect, <span class="keywordtype">float</span> delay)</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        yield <span class="keywordflow">return</span> <span class="keyword">new</span> WaitForSeconds(delay);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        effect.SetActive(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
 </div>
 <div class="ttc" id="aclass_spawn_effect_html"><div class="ttname"><a href="class_spawn_effect.html">SpawnEffect</a></div><div class="ttdef"><b>Definition</b> <a href="#l00005">SpawnEffect.cs:6</a></div></div>
 <div class="ttc" id="aclass_spawn_effect_html_ac82f9ef1470ce7e3f887ece662533cdd"><div class="ttname"><a href="class_spawn_effect.html#ac82f9ef1470ce7e3f887ece662533cdd">SpawnEffect.OnBuildingPlaced</a></div><div class="ttdeci">void OnBuildingPlaced(Vector3 position)</div><div class="ttdoc">건축 완료 시 호출</div><div class="ttdef"><b>Definition</b> <a href="#l00056">SpawnEffect.cs:56</a></div></div>
@@ -185,7 +188,7 @@ $(function(){initNavTree('_spawn_effect_8cs_source.html',''); initResizable(true
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_29d13c242fcf0dd9dd43c13d541dcfd9.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_b0d3278d05af89227923449ce99a9454.html">Particle</a></li><li class="navelem"><a class="el" href="_spawn_effect_8cs.html">SpawnEffect.cs</a></li>
+    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_14406be6e278237b1ebe6c032ce561d9.html">02.Scripts</a></li><li class="navelem"><a class="el" href="dir_440960de3ac75aef2f741f438ad2f1be.html">Particle</a></li><li class="navelem"><a class="el" href="_spawn_effect_8cs.html">SpawnEffect.cs</a></li>
     <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

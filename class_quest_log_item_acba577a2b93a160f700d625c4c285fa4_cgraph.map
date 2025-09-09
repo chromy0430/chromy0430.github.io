@@ -1,0 +1,7 @@
+<map id="QuestLogItem.Setup" name="QuestLogItem.Setup">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,147,32"/>
+<area shape="rect" id="Node000002" href="$class_quest_log_item.html#a4aa7733347aa3446cff10ba0318c2091" title=" " alt="" coords="195,5,382,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,16,179,16,179,21,147,21"/>
+<area shape="rect" id="Node000003" href="$class_objects_database_s_o.html#a774a45ae5a48731421c29c78cd1c9344" title=" " alt="" coords="430,5,662,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="383,16,414,16,414,21,383,21"/>
+</map>

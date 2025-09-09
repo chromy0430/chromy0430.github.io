@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/02.Scripts/Quest/QuestManager.cs 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.9</span>
+   </div>
+   <div id="projectbrief">LodgingSimulator Documents</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_quest_manager_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">QuestManager.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_quest_manager_8cs.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_j_y.html">JY</a>; <span class="comment">// 기존 TimeSystem, PlayerWallet 등을 사용하기 위해 추가</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Collections.Generic;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System.Linq;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>UnityEngine;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>ZLinq; <span class="comment">// Linq 사용을 위해 추가</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_active_quest.html">    7</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_function" href="class_active_quest.html#a6463b5fc775f3250058f63ff9341c012">ActiveQuest</a></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">    9</a></span>    <span class="keyword">public</span> <a class="code hl_class" href="class_quest_data.html">QuestData</a> <a class="code hl_variable" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">data</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_active_quest.html#a89a4b39986ef14798e936b86ccd7375c">   10</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="class_active_quest.html#a89a4b39986ef14798e936b86ccd7375c">currentAmount</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_active_quest.html#af6cc58b2530822ff2c7821a27d8b73af">   11</a></span>    <span class="keyword">public</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="class_active_quest.html#af6cc58b2530822ff2c7821a27d8b73af">remainingTime</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_active_quest.html#abad3428aaa88b2755f831ec6420b9620">   12</a></span>    <span class="keyword">public</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_active_quest.html#abad3428aaa88b2755f831ec6420b9620">isCompleted</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_active_quest.html#a8ed79b7c65ffacafdcc1f92871e3be3e">   13</a></span>    <span class="keyword">public</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="class_active_quest.html#a8ed79b7c65ffacafdcc1f92871e3be3e">startingMoney</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_active_quest.html#a6463b5fc775f3250058f63ff9341c012">   15</a></span>    <span class="keyword">public</span> <a class="code hl_function" href="class_active_quest.html#a6463b5fc775f3250058f63ff9341c012">ActiveQuest</a>(<a class="code hl_class" href="class_quest_data.html">QuestData</a> questData)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <a class="code hl_variable" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">data</a> = questData;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <a class="code hl_variable" href="class_active_quest.html#a89a4b39986ef14798e936b86ccd7375c">currentAmount</a> = 0; <span class="comment">// 초기 진행도는 0</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_variable" href="class_active_quest.html#af6cc58b2530822ff2c7821a27d8b73af">remainingTime</a> = questData.<a class="code hl_variable" href="class_quest_data.html#a1050d43aa224e68732e58f64d2021b75">timeLimitInMinutes</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_variable" href="class_active_quest.html#abad3428aaa88b2755f831ec6420b9620">isCompleted</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="comment">// 돈 벌기 퀘스트라면, 수락 시점의 돈을 기록</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">data</a>.completionType == <a class="code hl_enumeration" href="_quest_data_8cs.html#a5b663057b98d08618497b940557662db">QuestCompletionType</a>.EarnMoney)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <a class="code hl_variable" href="class_active_quest.html#a8ed79b7c65ffacafdcc1f92871e3be3e">startingMoney</a> = <a class="code hl_class" href="class_player_wallet.html">PlayerWallet</a>.<a class="code hl_property" href="class_player_wallet.html#a387d6b1f73468c70a7fc286eb5ea26d7">Instance</a>.<a class="code hl_variable" href="class_player_wallet.html#ab9cc57ac6232c328f65a59e3bc61a88c">money</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_quest_manager.html">   30</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_quest_manager.html">QuestManager</a> : MonoBehaviour</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_quest_manager.html#a8e1cd09cf2af8f04d6854f0b54d8b0bf">   32</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="class_quest_manager.html">QuestManager</a> <a class="code hl_property" href="class_quest_manager.html#a8e1cd09cf2af8f04d6854f0b54d8b0bf">Instance</a> { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_quest_manager.html#a4ac1c6554762c3bc5992e806a5724ac5">   34</a></span>    <span class="keyword">public</span> List&lt;QuestData&gt; <a class="code hl_variable" href="class_quest_manager.html#a4ac1c6554762c3bc5992e806a5724ac5">allQuests</a>; <span class="comment">// 모든 퀘스트 데이터 리스트</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">private</span> List&lt;QuestData&gt; availableQuests = <span class="keyword">new</span> List&lt;QuestData&gt;(); <span class="comment">// 현재 발생 가능한 퀘스트 리스트</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">private</span> <a class="code hl_class" href="class_quest_data.html">QuestData</a> currentQuest; <span class="comment">// 현재 플레이어에게 제시된 퀘스트</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_quest_manager.html#a47c30a81e70462571c2c473cb9048834">   37</a></span>    <span class="keyword">public</span> List&lt;ActiveQuest&gt; <a class="code hl_variable" href="class_quest_manager.html#a47c30a81e70462571c2c473cb9048834">activeQuests</a> = <span class="keyword">new</span> List&lt;ActiveQuest&gt;(); <span class="comment">// 진행 중인 퀘스트 목록</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_quest_manager.html#aa3d52feee4c5f2dec1d905160a431588">   38</a></span>    <span class="keyword">public</span> <a class="code hl_class" href="class_quest_u_i_manager.html">QuestUIManager</a> <a class="code hl_variable" href="class_quest_manager.html#aa3d52feee4c5f2dec1d905160a431588">questUIManager</a>; <span class="comment">// UI 매니저 참조</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_quest_manager.html#a9ada2d42b69fb49052c97d1e9c58113d">   39</a></span>    <span class="keyword">public</span> <a class="code hl_class" href="class_quest_log_u_i.html">QuestLogUI</a> <a class="code hl_variable" href="class_quest_manager.html#a9ada2d42b69fb49052c97d1e9c58113d">questLogUI</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">private</span> Queue&lt;QuestData&gt; pendingQuests = <span class="keyword">new</span> Queue&lt;QuestData&gt;(); <span class="comment">// 퀘스트 대기열</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Awake()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">if</span> (<a class="code hl_property" href="class_quest_manager.html#a8e1cd09cf2af8f04d6854f0b54d8b0bf">Instance</a> == <span class="keyword">null</span>) <a class="code hl_property" href="class_quest_manager.html#a8e1cd09cf2af8f04d6854f0b54d8b0bf">Instance</a> = <span class="keyword">this</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">else</span> Destroy(gameObject);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Start()</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// 시작 시 모든 퀘스트를 발생 가능 리스트에 추가</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        availableQuests.AddRange(<a class="code hl_variable" href="class_quest_manager.html#a4ac1c6554762c3bc5992e806a5724ac5">allQuests</a>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="comment">// 시간 변경 이벤트를 구독하여 퀘스트 발생을 체크</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        TimeSystem.Instance.OnHourChanged += CheckForAvailableQuests;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        TimeSystem.Instance.OnMinuteChanged += CheckForAvailableQuests;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="comment">// 이벤트 구독</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        PlayerWallet.Instance.OnMoneyChanged += OnMoneyChanged;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Update()</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// 매 프레임마다 진행 중인 퀘스트의 완료 조건을 확인</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        CheckQuestCompletion();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> OnDestroy()</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">// 구독 해제 (메모리 누수 방지)</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (TimeSystem.Instance != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            TimeSystem.Instance.OnHourChanged -= CheckForAvailableQuests;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            TimeSystem.Instance.OnMinuteChanged -= CheckForAvailableQuests;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">if</span> (PlayerWallet.Instance != <span class="keyword">null</span>) PlayerWallet.Instance.OnMoneyChanged -= OnMoneyChanged;       </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> OnMoneyChanged(<span class="keywordtype">int</span> newMoneyAmount)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        CheckQuestCompletion(); <span class="comment">// 돈이 바뀔 때마다 모든 퀘스트의 완료 여부 확인</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> CheckForAvailableQuests(<span class="keywordtype">int</span> hour, <span class="keywordtype">int</span> minute)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordtype">int</span> currentDay = TimeSystem.Instance.CurrentDay;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="comment">// 현재 시간까지 발생했어야 하는 모든 퀘스트를 찾습니다. (ToList()로 복사하여 순회 중 변경 문제 방지)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        List&lt;QuestData&gt; questsToTrigger = availableQuests.Where(q =&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            (q.requiredDay &lt; currentDay) ||</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            (q.requiredDay == currentDay &amp;&amp; q.requiredHour &lt;= hour &amp;&amp; q.requiredMin &lt;= minute)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        ).ToList();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">foreach</span> (var quest <span class="keywordflow">in</span> questsToTrigger)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="comment">// 대기열에 추가하고, 이제 확인이 필요 없는 availableQuests에서는 제거합니다.</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            <span class="keywordflow">if</span> (!pendingQuests.Contains(quest))</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                pendingQuests.Enqueue(quest);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                Debug.Log($<span class="stringliteral">&quot;퀘스트 &#39;{quest.questName}&#39;가 대기열에 추가되었습니다.&quot;</span>);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            availableQuests.Remove(quest);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="comment">// 대기열에 있는 다음 퀘스트를 표시 시도합니다.</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        TryShowNextQuest();</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> TryShowNextQuest()</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="comment">// 현재 다른 퀘스트가 표시 중이거나, 대기열이 비어있으면 아무것도 하지 않습니다.</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordflow">if</span> (currentQuest != <span class="keyword">null</span> || <a class="code hl_variable" href="class_quest_manager.html#aa3d52feee4c5f2dec1d905160a431588">questUIManager</a>.IsVisible() || pendingQuests.Count == 0)</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="comment">// 대기열에서 다음 퀘스트를 꺼내 화면에 표시합니다.</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        currentQuest = pendingQuests.Dequeue();</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <a class="code hl_variable" href="class_quest_manager.html#aa3d52feee4c5f2dec1d905160a431588">questUIManager</a>.ShowQuest(currentQuest);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        Debug.Log($<span class="stringliteral">&quot;대기열에서 &#39;{currentQuest.questName}&#39; 퀘스트를 표시합니다.&quot;</span>);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="class_quest_manager.html#a6a304119586baabf1a0c676c4c2ce601">  135</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_quest_manager.html#a6a304119586baabf1a0c676c4c2ce601">AcceptQuest</a>()</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="keywordflow">if</span> (currentQuest == <span class="keyword">null</span>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        Debug.Log($<span class="stringliteral">&quot;퀘스트 &#39;{currentQuest.questName}&#39; 수락됨&quot;</span>);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="comment">// 여기에 현재 진행중인 퀘스트 목록에 추가하고, 완료 조건을 체크하는 로직을 추가합니다.</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <a class="code hl_class" href="class_active_quest.html">ActiveQuest</a> newActiveQuest = <span class="keyword">new</span> <a class="code hl_class" href="class_active_quest.html">ActiveQuest</a>(currentQuest);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <a class="code hl_variable" href="class_quest_manager.html#a47c30a81e70462571c2c473cb9048834">activeQuests</a>.Add(newActiveQuest);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_variable" href="class_quest_manager.html#a9ada2d42b69fb49052c97d1e9c58113d">questLogUI</a>.AddQuestToList(newActiveQuest); <span class="comment">// UI 로그에 퀘스트 추가</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        Debug.Log($<span class="stringliteral">&quot;퀘스트 &#39;{currentQuest.questName}&#39; 수락됨&quot;</span>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        currentQuest = <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="comment">// UI를 숨기고, 애니메이션이 끝나면 대기열의 다음 퀘스트를 확인합니다.</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <a class="code hl_variable" href="class_quest_manager.html#aa3d52feee4c5f2dec1d905160a431588">questUIManager</a>.HideQuest(<span class="keyword">true</span>, () =&gt; {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            TryShowNextQuest();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        });</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    }</div>
+</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> CheckQuestCompletion()</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = <a class="code hl_variable" href="class_quest_manager.html#a47c30a81e70462571c2c473cb9048834">activeQuests</a>.Count - 1; i &gt;= 0; i--)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            <span class="comment">// isCompleted가 true로 바뀌는 순간에만 UI를 업데이트하기 위한 플래그</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            <span class="keywordtype">bool</span> justCompleted = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            var quest = <a class="code hl_variable" href="class_quest_manager.html#a47c30a81e70462571c2c473cb9048834">activeQuests</a>[i];</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            <span class="keywordflow">if</span> (quest.isCompleted) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            <span class="comment">// 이전에 기록된 진행도를 저장</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            <span class="keywordtype">int</span> previousAmount = quest.currentAmount;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            <span class="keywordtype">bool</span> conditionMet = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            <span class="keywordflow">switch</span> (quest.data.completionType)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                <span class="comment">//튜토리얼 퀘스트</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_quest_data_8cs.html#a5b663057b98d08618497b940557662db">QuestCompletionType</a>.Tutorial:</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>                    conditionMet = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_quest_data_8cs.html#a5b663057b98d08618497b940557662db">QuestCompletionType</a>.BuildObject:</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                    <span class="keywordtype">int</span> currentBuildCount = 0;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                    currentBuildCount = CheckBuildObject(quest, currentBuildCount);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                    quest.currentAmount = currentBuildCount; <span class="comment">// UI 업데이트를 위해 현재 개수 저장</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                    <span class="keywordflow">if</span> (currentBuildCount &gt;= quest.data.completionAmount)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                    {</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                        conditionMet = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                    }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_quest_data_8cs.html#a5b663057b98d08618497b940557662db">QuestCompletionType</a>.EarnMoney:</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                    <span class="comment">// 퀘스트 수락 후 번 돈 계산</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                    <span class="keywordtype">int</span> moneyEarned = PlayerWallet.Instance.money - quest.startingMoney;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                    quest.currentAmount = moneyEarned; <span class="comment">// UI 표시를 위해 현재 진행도 업데이트</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                    <span class="keywordflow">if</span> (moneyEarned &gt;= quest.data.completionAmount) conditionMet = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_quest_data_8cs.html#a5b663057b98d08618497b940557662db">QuestCompletionType</a>.ReachReputation:</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                    <span class="keywordflow">if</span> (ReputationSystem.Instance.CurrentReputation &gt;= quest.data.completionAmount)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                    {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                        conditionMet = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                    }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            }</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            <span class="comment">// 진행도가 변경되었다면 UI 업데이트 호출</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <span class="keywordflow">if</span> (quest.currentAmount != previousAmount)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                <a class="code hl_variable" href="class_quest_manager.html#a9ada2d42b69fb49052c97d1e9c58113d">questLogUI</a>.UpdateQuestStatus(quest);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            <span class="keywordflow">if</span> (conditionMet &amp;&amp; !quest.isCompleted)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                quest.isCompleted = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                justCompleted = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            }</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>            <span class="comment">// 방금 막 완료된 경우에만 UI를 한 번 더 업데이트해서 &quot;완료 가능!&quot;으로 바꿈</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            <span class="keywordflow">if</span> (justCompleted)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                <a class="code hl_variable" href="class_quest_manager.html#a9ada2d42b69fb49052c97d1e9c58113d">questLogUI</a>.UpdateQuestStatus(quest);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    }</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">int</span> CheckBuildObject(ActiveQuest quest, <span class="keywordtype">int</span> currentBuildCount)</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keywordflow">if</span> (PlacementSystem.Instance != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            <span class="comment">// 중복 계산을 방지하기 위해 이미 센 오브젝트의 인덱스를 저장합니다.</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            HashSet&lt;int&gt; countedObjectIndices = <span class="keyword">new</span> HashSet&lt;int&gt;();</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>            <span class="comment">// 바닥, 가구, 벽, 장식 등 모든 종류의 그리드 데이터를 순회합니다.</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            GridData[] allGridData = {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                        PlacementSystem.Instance.floorData,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                        PlacementSystem.Instance.furnitureData,</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>                        PlacementSystem.Instance.wallData,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                        PlacementSystem.Instance.decoData</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                    };</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            <span class="keywordflow">foreach</span> (GridData gridData <span class="keywordflow">in</span> allGridData)</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            {</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                <span class="keywordflow">if</span> (gridData == <span class="keyword">null</span> || gridData.<a class="code hl_variable" href="class_grid_data.html#ad35fecbc76c9f0f3d8c6f67a1b732159">placedObjects</a> == <span class="keyword">null</span>) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                <span class="comment">// gridData에 저장된 모든 오브젝트 정보를 확인합니다.</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                <span class="keywordflow">foreach</span> (var dataList <span class="keywordflow">in</span> gridData.<a class="code hl_variable" href="class_grid_data.html#ad35fecbc76c9f0f3d8c6f67a1b732159">placedObjects</a>.Values)</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                {</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                    <span class="keywordflow">foreach</span> (var data <span class="keywordflow">in</span> dataList)</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                    {</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                        <span class="comment">// 퀘스트 목표 ID와 일치하고, 아직 센 적 없는 오브젝트라면 카운트합니다.</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                        <span class="keywordflow">if</span> (data.ID == quest.<a class="code hl_variable" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">data</a>.<a class="code hl_variable" href="class_quest_data.html#a1433b16a4a5bf4b1ff951a36120402b9">completionTargetID</a> &amp;&amp; !countedObjectIndices.Contains(data.PlacedObjectIndex))</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                        {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                            currentBuildCount++;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                            countedObjectIndices.Add(data.PlacedObjectIndex); <span class="comment">// 셌다고 표시</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                        }</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                    }</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>            }</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        }</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        <span class="keywordflow">return</span> currentBuildCount;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    }</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span></div>
+<div class="foldopen" id="foldopen00266" data-start="{" data-end="}">
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="class_quest_manager.html#a9c2dc5cbd4ee169f148098ebb4323ee3">  266</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_quest_manager.html#a9c2dc5cbd4ee169f148098ebb4323ee3">CompleteQuest</a>(<a class="code hl_class" href="class_active_quest.html">ActiveQuest</a> quest)</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    {</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="comment">// 보상 지급</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        <span class="keywordflow">switch</span> (quest.<a class="code hl_variable" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">data</a>.<a class="code hl_variable" href="class_quest_data.html#a410c2ff12d9d836361861b7c90f8c486">rewardType</a>)</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_quest_data_8cs.html#a10431cf708b1cbad982dbff1567ff1e9">QuestRewardType</a>.Money:</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                <a class="code hl_class" href="class_player_wallet.html">PlayerWallet</a>.<a class="code hl_property" href="class_player_wallet.html#a387d6b1f73468c70a7fc286eb5ea26d7">Instance</a>.<a class="code hl_function" href="class_player_wallet.html#a6ab03b0fa4c4b68d512e395eb5951af4">AddMoney</a>(quest.<a class="code hl_variable" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">data</a>.<a class="code hl_variable" href="class_quest_data.html#ae704b3315d4c826f2d89a2b5ad96cd02">rewardAmount</a>);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            <span class="keywordflow">case</span> <a class="code hl_enumeration" href="_quest_data_8cs.html#a10431cf708b1cbad982dbff1567ff1e9">QuestRewardType</a>.Reputation:</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                <a class="code hl_class" href="class_j_y_1_1_reputation_system.html">ReputationSystem</a>.<a class="code hl_property" href="class_j_y_1_1_reputation_system.html#a89017af5a149608dbc6f131191828ff8">Instance</a>.<a class="code hl_function" href="class_j_y_1_1_reputation_system.html#ab7bcb0e0bd2c51d5b57d7cd3b6ad2968">AddReputation</a>(quest.<a class="code hl_variable" href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">data</a>.<a class="code hl_variable" href="class_quest_data.html#ae704b3315d4c826f2d89a2b5ad96cd02">rewardAmount</a>, $<span class="stringliteral">&quot;{quest.data.questName} 완료&quot;</span>);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        }</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        Debug.Log($<span class="stringliteral">&quot;퀘스트 &#39;{quest.data.questName}&#39; 완료! 보상 획득.&quot;</span>);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="comment">// 퀘스트 목록에서 제거</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        <a class="code hl_variable" href="class_quest_manager.html#a47c30a81e70462571c2c473cb9048834">activeQuests</a>.Remove(quest);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <a class="code hl_variable" href="class_quest_manager.html#a9ada2d42b69fb49052c97d1e9c58113d">questLogUI</a>.RemoveQuestFromList(quest);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    }</div>
+</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="comment">// 퀘스트 거절</span></div>
+<div class="foldopen" id="foldopen00287" data-start="{" data-end="}">
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="class_quest_manager.html#a72c38a630d333cccbe51c8c7db272c31">  287</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_quest_manager.html#a72c38a630d333cccbe51c8c7db272c31">DeclineQuest</a>()</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    {</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordflow">if</span> (currentQuest == <span class="keyword">null</span>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        Debug.Log($<span class="stringliteral">&quot;퀘스트 &#39;{currentQuest.questName}&#39; 거절됨&quot;</span>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        currentQuest = <span class="keyword">null</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        <span class="comment">// UI를 숨기고, 애니메이션이 끝나면 대기열의 다음 퀘스트를 확인합니다.</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        <a class="code hl_variable" href="class_quest_manager.html#aa3d52feee4c5f2dec1d905160a431588">questUIManager</a>.HideQuest(<span class="keyword">false</span>, () =&gt; {</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>            TryShowNextQuest();</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        });</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    }</div>
+</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>}</div>
+</div>
+<div class="ttc" id="a_quest_data_8cs_html_a10431cf708b1cbad982dbff1567ff1e9"><div class="ttname"><a href="_quest_data_8cs.html#a10431cf708b1cbad982dbff1567ff1e9">QuestRewardType</a></div><div class="ttdeci">QuestRewardType</div><div class="ttdef"><b>Definition</b> <a href="_quest_data_8cs_source.html#l00014">QuestData.cs:15</a></div></div>
+<div class="ttc" id="a_quest_data_8cs_html_a5b663057b98d08618497b940557662db"><div class="ttname"><a href="_quest_data_8cs.html#a5b663057b98d08618497b940557662db">QuestCompletionType</a></div><div class="ttdeci">QuestCompletionType</div><div class="ttdef"><b>Definition</b> <a href="_quest_data_8cs_source.html#l00004">QuestData.cs:5</a></div></div>
+<div class="ttc" id="aclass_active_quest_html"><div class="ttname"><a href="class_active_quest.html">ActiveQuest</a></div><div class="ttdef"><b>Definition</b> <a href="#l00007">QuestManager.cs:8</a></div></div>
+<div class="ttc" id="aclass_active_quest_html_a6463b5fc775f3250058f63ff9341c012"><div class="ttname"><a href="class_active_quest.html#a6463b5fc775f3250058f63ff9341c012">ActiveQuest.ActiveQuest</a></div><div class="ttdeci">ActiveQuest(QuestData questData)</div><div class="ttdef"><b>Definition</b> <a href="#l00015">QuestManager.cs:15</a></div></div>
+<div class="ttc" id="aclass_active_quest_html_a89a4b39986ef14798e936b86ccd7375c"><div class="ttname"><a href="class_active_quest.html#a89a4b39986ef14798e936b86ccd7375c">ActiveQuest.currentAmount</a></div><div class="ttdeci">int currentAmount</div><div class="ttdef"><b>Definition</b> <a href="#l00010">QuestManager.cs:10</a></div></div>
+<div class="ttc" id="aclass_active_quest_html_a8ed79b7c65ffacafdcc1f92871e3be3e"><div class="ttname"><a href="class_active_quest.html#a8ed79b7c65ffacafdcc1f92871e3be3e">ActiveQuest.startingMoney</a></div><div class="ttdeci">int startingMoney</div><div class="ttdef"><b>Definition</b> <a href="#l00013">QuestManager.cs:13</a></div></div>
+<div class="ttc" id="aclass_active_quest_html_aa9a6e96c59a43e2c382c19976d56373c"><div class="ttname"><a href="class_active_quest.html#aa9a6e96c59a43e2c382c19976d56373c">ActiveQuest.data</a></div><div class="ttdeci">QuestData data</div><div class="ttdef"><b>Definition</b> <a href="#l00009">QuestManager.cs:9</a></div></div>
+<div class="ttc" id="aclass_active_quest_html_abad3428aaa88b2755f831ec6420b9620"><div class="ttname"><a href="class_active_quest.html#abad3428aaa88b2755f831ec6420b9620">ActiveQuest.isCompleted</a></div><div class="ttdeci">bool isCompleted</div><div class="ttdef"><b>Definition</b> <a href="#l00012">QuestManager.cs:12</a></div></div>
+<div class="ttc" id="aclass_active_quest_html_af6cc58b2530822ff2c7821a27d8b73af"><div class="ttname"><a href="class_active_quest.html#af6cc58b2530822ff2c7821a27d8b73af">ActiveQuest.remainingTime</a></div><div class="ttdeci">float remainingTime</div><div class="ttdef"><b>Definition</b> <a href="#l00011">QuestManager.cs:11</a></div></div>
+<div class="ttc" id="aclass_grid_data_html_ad35fecbc76c9f0f3d8c6f67a1b732159"><div class="ttname"><a href="class_grid_data.html#ad35fecbc76c9f0f3d8c6f67a1b732159">GridData.placedObjects</a></div><div class="ttdeci">Dictionary&lt; Vector3Int, List&lt; PlacementData &gt; &gt; placedObjects</div><div class="ttdef"><b>Definition</b> <a href="_grid_data_8cs_source.html#l00015">GridData.cs:15</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_reputation_system_html"><div class="ttname"><a href="class_j_y_1_1_reputation_system.html">JY.ReputationSystem</a></div><div class="ttdoc">플레이어의 명성도 시스템을 관리하는 클래스 명성도 증감, 등급 관리, UI 업데이트를 담당</div><div class="ttdef"><b>Definition</b> <a href="_reputation_system_8cs_source.html#l00012">ReputationSystem.cs:13</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_reputation_system_html_a89017af5a149608dbc6f131191828ff8"><div class="ttname"><a href="class_j_y_1_1_reputation_system.html#a89017af5a149608dbc6f131191828ff8">JY.ReputationSystem.Instance</a></div><div class="ttdeci">static ReputationSystem Instance</div><div class="ttdef"><b>Definition</b> <a href="_reputation_system_8cs_source.html#l00047">ReputationSystem.cs:47</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_reputation_system_html_ab7bcb0e0bd2c51d5b57d7cd3b6ad2968"><div class="ttname"><a href="class_j_y_1_1_reputation_system.html#ab7bcb0e0bd2c51d5b57d7cd3b6ad2968">JY.ReputationSystem.AddReputation</a></div><div class="ttdeci">void AddReputation(int amount, string reason=&quot;&quot;)</div><div class="ttdoc">명성도 추가</div><div class="ttdef"><b>Definition</b> <a href="_reputation_system_8cs_source.html#l00085">ReputationSystem.cs:85</a></div></div>
+<div class="ttc" id="aclass_player_wallet_html"><div class="ttname"><a href="class_player_wallet.html">PlayerWallet</a></div><div class="ttdef"><b>Definition</b> <a href="_player_wallet_8cs_source.html#l00004">PlayerWallet.cs:5</a></div></div>
+<div class="ttc" id="aclass_player_wallet_html_a387d6b1f73468c70a7fc286eb5ea26d7"><div class="ttname"><a href="class_player_wallet.html#a387d6b1f73468c70a7fc286eb5ea26d7">PlayerWallet.Instance</a></div><div class="ttdeci">static PlayerWallet Instance</div><div class="ttdef"><b>Definition</b> <a href="_player_wallet_8cs_source.html#l00006">PlayerWallet.cs:6</a></div></div>
+<div class="ttc" id="aclass_player_wallet_html_a6ab03b0fa4c4b68d512e395eb5951af4"><div class="ttname"><a href="class_player_wallet.html#a6ab03b0fa4c4b68d512e395eb5951af4">PlayerWallet.AddMoney</a></div><div class="ttdeci">void AddMoney(int amount)</div><div class="ttdef"><b>Definition</b> <a href="_player_wallet_8cs_source.html#l00022">PlayerWallet.cs:22</a></div></div>
+<div class="ttc" id="aclass_player_wallet_html_ab9cc57ac6232c328f65a59e3bc61a88c"><div class="ttname"><a href="class_player_wallet.html#ab9cc57ac6232c328f65a59e3bc61a88c">PlayerWallet.money</a></div><div class="ttdeci">int money</div><div class="ttdef"><b>Definition</b> <a href="_player_wallet_8cs_source.html#l00008">PlayerWallet.cs:8</a></div></div>
+<div class="ttc" id="aclass_quest_data_html"><div class="ttname"><a href="class_quest_data.html">QuestData</a></div><div class="ttdef"><b>Definition</b> <a href="_quest_data_8cs_source.html#l00021">QuestData.cs:22</a></div></div>
+<div class="ttc" id="aclass_quest_data_html_a1050d43aa224e68732e58f64d2021b75"><div class="ttname"><a href="class_quest_data.html#a1050d43aa224e68732e58f64d2021b75">QuestData.timeLimitInMinutes</a></div><div class="ttdeci">float timeLimitInMinutes</div><div class="ttdef"><b>Definition</b> <a href="_quest_data_8cs_source.html#l00044">QuestData.cs:44</a></div></div>
+<div class="ttc" id="aclass_quest_data_html_a1433b16a4a5bf4b1ff951a36120402b9"><div class="ttname"><a href="class_quest_data.html#a1433b16a4a5bf4b1ff951a36120402b9">QuestData.completionTargetID</a></div><div class="ttdeci">int completionTargetID</div><div class="ttdef"><b>Definition</b> <a href="_quest_data_8cs_source.html#l00036">QuestData.cs:36</a></div></div>
+<div class="ttc" id="aclass_quest_data_html_a410c2ff12d9d836361861b7c90f8c486"><div class="ttname"><a href="class_quest_data.html#a410c2ff12d9d836361861b7c90f8c486">QuestData.rewardType</a></div><div class="ttdeci">QuestRewardType rewardType</div><div class="ttdef"><b>Definition</b> <a href="_quest_data_8cs_source.html#l00040">QuestData.cs:40</a></div></div>
+<div class="ttc" id="aclass_quest_data_html_ae704b3315d4c826f2d89a2b5ad96cd02"><div class="ttname"><a href="class_quest_data.html#ae704b3315d4c826f2d89a2b5ad96cd02">QuestData.rewardAmount</a></div><div class="ttdeci">int rewardAmount</div><div class="ttdef"><b>Definition</b> <a href="_quest_data_8cs_source.html#l00041">QuestData.cs:41</a></div></div>
+<div class="ttc" id="aclass_quest_log_u_i_html"><div class="ttname"><a href="class_quest_log_u_i.html">QuestLogUI</a></div><div class="ttdef"><b>Definition</b> <a href="_quest_log_u_i_8cs_source.html#l00004">QuestLogUI.cs:5</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html"><div class="ttname"><a href="class_quest_manager.html">QuestManager</a></div><div class="ttdef"><b>Definition</b> <a href="#l00030">QuestManager.cs:31</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_a47c30a81e70462571c2c473cb9048834"><div class="ttname"><a href="class_quest_manager.html#a47c30a81e70462571c2c473cb9048834">QuestManager.activeQuests</a></div><div class="ttdeci">List&lt; ActiveQuest &gt; activeQuests</div><div class="ttdef"><b>Definition</b> <a href="#l00037">QuestManager.cs:37</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_a4ac1c6554762c3bc5992e806a5724ac5"><div class="ttname"><a href="class_quest_manager.html#a4ac1c6554762c3bc5992e806a5724ac5">QuestManager.allQuests</a></div><div class="ttdeci">List&lt; QuestData &gt; allQuests</div><div class="ttdef"><b>Definition</b> <a href="#l00034">QuestManager.cs:34</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_a6a304119586baabf1a0c676c4c2ce601"><div class="ttname"><a href="class_quest_manager.html#a6a304119586baabf1a0c676c4c2ce601">QuestManager.AcceptQuest</a></div><div class="ttdeci">void AcceptQuest()</div><div class="ttdoc">퀘스트 수락</div><div class="ttdef"><b>Definition</b> <a href="#l00135">QuestManager.cs:135</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_a72c38a630d333cccbe51c8c7db272c31"><div class="ttname"><a href="class_quest_manager.html#a72c38a630d333cccbe51c8c7db272c31">QuestManager.DeclineQuest</a></div><div class="ttdeci">void DeclineQuest()</div><div class="ttdef"><b>Definition</b> <a href="#l00287">QuestManager.cs:287</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_a8e1cd09cf2af8f04d6854f0b54d8b0bf"><div class="ttname"><a href="class_quest_manager.html#a8e1cd09cf2af8f04d6854f0b54d8b0bf">QuestManager.Instance</a></div><div class="ttdeci">static QuestManager Instance</div><div class="ttdef"><b>Definition</b> <a href="#l00032">QuestManager.cs:32</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_a9ada2d42b69fb49052c97d1e9c58113d"><div class="ttname"><a href="class_quest_manager.html#a9ada2d42b69fb49052c97d1e9c58113d">QuestManager.questLogUI</a></div><div class="ttdeci">QuestLogUI questLogUI</div><div class="ttdef"><b>Definition</b> <a href="#l00039">QuestManager.cs:39</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_a9c2dc5cbd4ee169f148098ebb4323ee3"><div class="ttname"><a href="class_quest_manager.html#a9c2dc5cbd4ee169f148098ebb4323ee3">QuestManager.CompleteQuest</a></div><div class="ttdeci">void CompleteQuest(ActiveQuest quest)</div><div class="ttdoc">퀘스트 완료 처리</div><div class="ttdef"><b>Definition</b> <a href="#l00266">QuestManager.cs:266</a></div></div>
+<div class="ttc" id="aclass_quest_manager_html_aa3d52feee4c5f2dec1d905160a431588"><div class="ttname"><a href="class_quest_manager.html#aa3d52feee4c5f2dec1d905160a431588">QuestManager.questUIManager</a></div><div class="ttdeci">QuestUIManager questUIManager</div><div class="ttdef"><b>Definition</b> <a href="#l00038">QuestManager.cs:38</a></div></div>
+<div class="ttc" id="aclass_quest_u_i_manager_html"><div class="ttname"><a href="class_quest_u_i_manager.html">QuestUIManager</a></div><div class="ttdef"><b>Definition</b> <a href="_quest_u_i_manager_8cs_source.html#l00007">QuestUIManager.cs:8</a></div></div>
+<div class="ttc" id="anamespace_j_y_html"><div class="ttname"><a href="namespace_j_y.html">JY</a></div><div class="ttdef"><b>Definition</b> <a href="_a_i_agent_8cs_source.html#l00009">AIAgent.cs:10</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_14406be6e278237b1ebe6c032ce561d9.html">02.Scripts</a></li><li class="navelem"><a class="el" href="dir_a3d68cb5aec3697a94e46943263ba9ba.html">Quest</a></li><li class="navelem"><a class="el" href="_quest_manager_8cs.html">QuestManager.cs</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

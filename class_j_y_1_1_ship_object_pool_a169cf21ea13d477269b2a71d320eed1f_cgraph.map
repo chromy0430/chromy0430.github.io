@@ -1,0 +1,5 @@
+<map id="JY.ShipObjectPool.ReturnShip" name="JY.ShipObjectPool.ReturnShip">
+<area shape="rect" id="Node000001" title="배를 풀로 반환" alt="" coords="5,5,204,32"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_ship_controller.html#a1d5dabe8bbc22f763fb115eb8a8193b8" title="배 리셋 (풀로 반환 시)" alt="" coords="252,5,438,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,16,236,16,236,21,204,21"/>
+</map>

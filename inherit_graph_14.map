@@ -1,0 +1,7 @@
+<map id="그래픽컬한 클래스 계통도" name="그래픽컬한 클래스 계통도">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,31,123,57"/>
+<area shape="rect" id="Node000001" href="$class_objects_database_s_o.html" title="건축물들의 데이터를 저장하는 스크립터블오브젝트" alt="" coords="171,5,312,32"/>
+<area shape="poly" id="edge50_Node000000_Node000001" title=" " alt="" coords="137,31,170,26,171,31,138,36"/>
+<area shape="rect" id="Node000002" href="$class_quest_data.html" title=" " alt="" coords="199,56,284,83"/>
+<area shape="poly" id="edge51_Node000000_Node000002" title=" " alt="" coords="138,52,199,61,199,66,138,57"/>
+</map>

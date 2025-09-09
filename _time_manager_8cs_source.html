@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LodgingSimulator: C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/02.Scripts/Time/TimeManager.cs 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LodgingSimulator<span id="projectnumber">&#160;0.0.9</span>
+   </div>
+   <div id="projectbrief">LodgingSimulator Documents</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_time_manager_8cs_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">TimeManager.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_time_manager_8cs.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span><a class="code hl_namespace" href="namespace_j_y.html">JY</a>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>TMPro;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>UnityEngine;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>UnityEngine.Localization;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>UnityEngine.Localization.Settings;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using </span>UnityEngine.Rendering.Universal;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using </span>UnityEngine.UI;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_j_y.html">JY</a></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_j_y_1_1_time_manager.html">   14</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_j_y_1_1_time_manager.html">TimeManager</a> : MonoBehaviour</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">        #region Fields &amp; Properties</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        [Header(<span class="stringliteral">&quot;UI 요소&quot;</span>)]</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        [SerializeField] <span class="keyword">private</span> TextMeshProUGUI timeText;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        [SerializeField] <span class="keyword">private</span> TextMeshProUGUI dayText;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">private</span> <a class="code hl_class" href="class_j_y_1_1_time_system.html">TimeSystem</a> timeSystem;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_j_y_1_1_time_manager.html#a39991e821a39bfa7fa61019cc81d9d6d">   24</a></span>        <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="class_j_y_1_1_time_manager.html">TimeManager</a> <a class="code hl_variable" href="class_j_y_1_1_time_manager.html#a39991e821a39bfa7fa61019cc81d9d6d">instance</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        [SerializeField] <span class="keyword">private</span> LocalizedString dayCounterLocalizedString;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">        #region Unity Lifecycle Methods</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> Awake()</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            Debug.Log(<span class="stringliteral">&quot;TimeManager 초기화 시작&quot;</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            InitializeTimeSystem();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="class_j_y_1_1_time_manager.html#a39991e821a39bfa7fa61019cc81d9d6d">instance</a> == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                <a class="code hl_variable" href="class_j_y_1_1_time_manager.html#a39991e821a39bfa7fa61019cc81d9d6d">instance</a> = <span class="keyword">this</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> OnDestroy()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            UnsubscribeEvents();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">        #region Initialization</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> InitializeTimeSystem()</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="comment">// TimeSystem 참조 가져오기</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            timeSystem = <a class="code hl_class" href="class_j_y_1_1_time_system.html">TimeSystem</a>.<a class="code hl_property" href="class_j_y_1_1_time_system.html#aec45ff4339e9addd6dd6a4401190a429">Instance</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="comment">// 이벤트 구독</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            SubscribeEvents();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="comment">// UI 초기화</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            UpdateTimeUI(timeSystem.<a class="code hl_property" href="class_j_y_1_1_time_system.html#a30a38c27ecbf61aaf5c978a9e740759b">CurrentHour</a>, timeSystem.<a class="code hl_property" href="class_j_y_1_1_time_system.html#ac030df503a1588e5237c44a3b1725f28">CurrentMinute</a>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <a class="code hl_function" href="class_j_y_1_1_time_manager.html#a030f3b9ec7ac00cdfd13ec76d909fb6f">UpdateDayUI</a>(timeSystem.<a class="code hl_property" href="class_j_y_1_1_time_system.html#acb718dd4e754dfeac1dc93862efac017">CurrentDay</a>);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> SubscribeEvents()</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">if</span> (timeSystem != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                timeSystem.OnMinuteChanged += UpdateTimeUI;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                timeSystem.OnDayChanged += <a class="code hl_function" href="class_j_y_1_1_time_manager.html#a030f3b9ec7ac00cdfd13ec76d909fb6f">UpdateDayUI</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> UnsubscribeEvents()</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="keywordflow">if</span> (timeSystem != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                timeSystem.OnMinuteChanged -= UpdateTimeUI;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                timeSystem.OnDayChanged -= <a class="code hl_function" href="class_j_y_1_1_time_manager.html#a030f3b9ec7ac00cdfd13ec76d909fb6f">UpdateDayUI</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">        #region UI Update Methods</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> UpdateTimeUI(<span class="keywordtype">int</span> hour, <span class="keywordtype">int</span> minute)</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <span class="keywordflow">if</span> (timeText != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                timeText.text = <span class="keywordtype">string</span>.Format(<span class="stringliteral">&quot;{0:00}:{1:00}&quot;</span>, hour, minute);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span></div>
+<div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="class_j_y_1_1_time_manager.html#a030f3b9ec7ac00cdfd13ec76d909fb6f">  111</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_j_y_1_1_time_manager.html#a030f3b9ec7ac00cdfd13ec76d909fb6f">UpdateDayUI</a>(<span class="keywordtype">int</span> newDay)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <span class="keywordtype">string</span> localizedString = LocalizationSettings.StringDatabase.GetLocalizedString(<span class="stringliteral">&quot;Locales&quot;</span>, <span class="stringliteral">&quot;Ingame_DayCounter&quot;</span>, <span class="keyword">new</span> <span class="keywordtype">object</span>[] { newDay });</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            dayText.text = localizedString;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            Debug.Log(localizedString);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">        #endregion</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
+<div class="ttc" id="aclass_j_y_1_1_time_manager_html"><div class="ttname"><a href="class_j_y_1_1_time_manager.html">JY.TimeManager</a></div><div class="ttdoc">게임 내 시간 UI 및 이벤트를 관리하는 클래스</div><div class="ttdef"><b>Definition</b> <a href="#l00014">TimeManager.cs:15</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_time_manager_html_a030f3b9ec7ac00cdfd13ec76d909fb6f"><div class="ttname"><a href="class_j_y_1_1_time_manager.html#a030f3b9ec7ac00cdfd13ec76d909fb6f">JY.TimeManager.UpdateDayUI</a></div><div class="ttdeci">void UpdateDayUI(int newDay)</div><div class="ttdoc">일차 UI 업데이트</div><div class="ttdef"><b>Definition</b> <a href="#l00111">TimeManager.cs:111</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_time_manager_html_a39991e821a39bfa7fa61019cc81d9d6d"><div class="ttname"><a href="class_j_y_1_1_time_manager.html#a39991e821a39bfa7fa61019cc81d9d6d">JY.TimeManager.instance</a></div><div class="ttdeci">static TimeManager instance</div><div class="ttdef"><b>Definition</b> <a href="#l00024">TimeManager.cs:24</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_time_system_html"><div class="ttname"><a href="class_j_y_1_1_time_system.html">JY.TimeSystem</a></div><div class="ttdoc">24시간 순환 시간 시스템을 관리하는 클래스 싱글톤 패턴으로 구현되어 전체 게임에서 접근 가능</div><div class="ttdef"><b>Definition</b> <a href="_time_system_8cs_source.html#l00012">TimeSystem.cs:13</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_time_system_html_a30a38c27ecbf61aaf5c978a9e740759b"><div class="ttname"><a href="class_j_y_1_1_time_system.html#a30a38c27ecbf61aaf5c978a9e740759b">JY.TimeSystem.CurrentHour</a></div><div class="ttdeci">int CurrentHour</div><div class="ttdef"><b>Definition</b> <a href="_time_system_8cs_source.html#l00047">TimeSystem.cs:47</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_time_system_html_ac030df503a1588e5237c44a3b1725f28"><div class="ttname"><a href="class_j_y_1_1_time_system.html#ac030df503a1588e5237c44a3b1725f28">JY.TimeSystem.CurrentMinute</a></div><div class="ttdeci">int CurrentMinute</div><div class="ttdef"><b>Definition</b> <a href="_time_system_8cs_source.html#l00048">TimeSystem.cs:48</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_time_system_html_acb718dd4e754dfeac1dc93862efac017"><div class="ttname"><a href="class_j_y_1_1_time_system.html#acb718dd4e754dfeac1dc93862efac017">JY.TimeSystem.CurrentDay</a></div><div class="ttdeci">int CurrentDay</div><div class="ttdef"><b>Definition</b> <a href="_time_system_8cs_source.html#l00053">TimeSystem.cs:53</a></div></div>
+<div class="ttc" id="aclass_j_y_1_1_time_system_html_aec45ff4339e9addd6dd6a4401190a429"><div class="ttname"><a href="class_j_y_1_1_time_system.html#aec45ff4339e9addd6dd6a4401190a429">JY.TimeSystem.Instance</a></div><div class="ttdeci">static TimeSystem Instance</div><div class="ttdoc">싱글톤 인스턴스 접근자</div><div class="ttdef"><b>Definition</b> <a href="_time_system_8cs_source.html#l00093">TimeSystem.cs:94</a></div></div>
+<div class="ttc" id="anamespace_j_y_html"><div class="ttname"><a href="namespace_j_y.html">JY</a></div><div class="ttdef"><b>Definition</b> <a href="_a_i_agent_8cs_source.html#l00009">AIAgent.cs:10</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e5fbe6d2783ccd4c93c7856d92d7be6e.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_f15e61a9082ae4fe2b555218d6ae77ae.html">LodgingSimulator</a></li><li class="navelem"><a class="el" href="dir_4e8ddfaea497fe5c92f0f4e55edefc7b.html">Assets</a></li><li class="navelem"><a class="el" href="dir_14406be6e278237b1ebe6c032ce561d9.html">02.Scripts</a></li><li class="navelem"><a class="el" href="dir_eddf3bb4ffad1a4843e4c8b658aba305.html">Time</a></li><li class="navelem"><a class="el" href="_time_manager_8cs.html">TimeManager.cs</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

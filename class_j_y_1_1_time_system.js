@@ -6,5 +6,20 @@ var class_j_y_1_1_time_system =
     [ "SetDay", "class_j_y_1_1_time_system.html#a2e65cea5fd4f3a89cf623e8c288c2293", null ],
     [ "SetTime", "class_j_y_1_1_time_system.html#aecb1b3649efbd09591f1780e86fa4d92", null ],
     [ "TimeChangeHandler", "class_j_y_1_1_time_system.html#a5f577aea584a7a5250e4fd76521bd88c", null ],
-    [ "TimeEventHandler", "class_j_y_1_1_time_system.html#aecdf81e854924ad15579debc2d3abab6", null ]
+    [ "TimeEventHandler", "class_j_y_1_1_time_system.html#aecdf81e854924ad15579debc2d3abab6", null ],
+    [ "currentTime", "class_j_y_1_1_time_system.html#a5ec557ba82da134d9e6cee38b0bd4760", null ],
+    [ "showDebugLogs", "class_j_y_1_1_time_system.html#aa9bde45acf4dc3fab1e79504a61011e0", null ],
+    [ "showImportantLogsOnly", "class_j_y_1_1_time_system.html#aaed9e3377884cabb3c7fbcce2004b6ee", null ],
+    [ "startingHour", "class_j_y_1_1_time_system.html#a128e1b098fcae6ac3c8f3bae50cc98b8", null ],
+    [ "timeMultiplier", "class_j_y_1_1_time_system.html#aefbf36b16b493d5250f6e268bd0af076", null ],
+    [ "CurrentDateString", "class_j_y_1_1_time_system.html#a6b214cc4fd1ac94d7be3e712a59b8134", null ],
+    [ "CurrentDay", "class_j_y_1_1_time_system.html#acb718dd4e754dfeac1dc93862efac017", null ],
+    [ "CurrentHour", "class_j_y_1_1_time_system.html#a30a38c27ecbf61aaf5c978a9e740759b", null ],
+    [ "CurrentMinute", "class_j_y_1_1_time_system.html#ac030df503a1588e5237c44a3b1725f28", null ],
+    [ "CurrentSecond", "class_j_y_1_1_time_system.html#ad2057f746ad57d41fa6f7fc15ca32457", null ],
+    [ "CurrentTimeString", "class_j_y_1_1_time_system.html#a2f15e4944468623bd03f3950af624ea2", null ],
+    [ "OnDayChanged", "class_j_y_1_1_time_system.html#a36d0e28deb60e3a3c0655b5e4c717f50", null ],
+    [ "OnHourChanged", "class_j_y_1_1_time_system.html#a2ac9ea3e0a99a2f7d84e013b2557eac9", null ],
+    [ "OnMinuteChanged", "class_j_y_1_1_time_system.html#a4277198012d3d31c776582cb39b538d3", null ],
+    [ "OnTimeEvent", "class_j_y_1_1_time_system.html#a5ff4d2532eb124dd0b96a40ca176782f", null ]
 ];

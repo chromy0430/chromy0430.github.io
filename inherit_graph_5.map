@@ -1,3 +1,101 @@
 <map id="그래픽컬한 클래스 계통도" name="그래픽컬한 클래스 계통도">
-<area shape="rect" id="Node000000" href="$class_placement_data.html" title="설치된 오브젝트의 데이터를 저장하는 클래스" alt="" coords="5,5,117,32"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,137,32"/>
+<area shape="rect" id="Node000001" href="$class_quest_u_i_manager.html" title=" " alt="" coords="203,56,323,83"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="140,34,210,53,209,58,139,39"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="22,56,120,83"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="136,67,202,67,202,72,136,72"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="10,107,132,133"/>
+<area shape="poly" id="edge3_Node000003_Node000001" title=" " alt="" coords="139,99,209,81,210,86,140,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="15,1196,127,1223"/>
+<area shape="poly" id="edge39_Node000004_Node000001" title=" " alt="" coords="71,1181,81,953,102,608,118,433,136,277,157,159,169,118,183,93,201,79,204,83,187,96,174,120,163,160,141,278,123,433,108,608,86,953,76,1181"/>
+<area shape="rect" id="Node000005" href="$class_b_g_m_manager.html" title=" " alt="" coords="212,107,314,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="71,1180,82,962,104,633,119,466,137,319,158,206,170,168,183,144,195,132,211,125,213,130,198,137,187,147,175,170,164,208,143,320,125,467,109,634,87,962,76,1181"/>
+<area shape="rect" id="Node000006" href="$class_camera_con.html" title=" " alt="" coords="217,157,308,184"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="71,1180,83,971,105,658,121,500,139,360,159,254,171,217,183,194,198,182,215,174,218,179,200,186,187,198,175,219,164,255,144,361,126,501,111,659,88,971,76,1181"/>
+<area shape="rect" id="Node000007" href="$class_change_build_type.html" title=" " alt="" coords="201,208,324,235"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="71,1180,84,980,107,684,123,534,140,402,160,301,171,267,183,245,199,232,202,236,187,248,176,269,165,303,146,403,128,535,112,684,89,981,77,1181"/>
+<area shape="rect" id="Node000008" href="$class_change_floor_system.html" title=" " alt="" coords="193,259,333,285"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="69,1181,70,1003,74,876,82,739,96,601,116,474,129,418,144,369,162,327,183,296,196,284,200,288,187,299,167,330,149,371,134,419,121,475,101,602,87,739,79,877,75,1003,75,1181"/>
+<area shape="rect" id="Node000009" href="$class_esc_u_i.html" title=" " alt="" coords="234,309,292,336"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="69,1180,72,1012,85,763,99,633,119,514,146,415,163,376,183,346,206,330,232,322,234,327,208,334,187,350,168,379,151,417,124,515,104,634,90,763,77,1012,75,1181"/>
+<area shape="rect" id="Node000010" href="$class_flow_cloud_system.html" title=" " alt="" coords="199,360,327,387"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="70,1181,73,1021,88,787,102,665,122,554,148,461,164,425,183,397,197,385,200,389,187,400,169,427,153,463,127,555,107,666,93,787,79,1021,75,1181"/>
+<area shape="rect" id="Node000011" href="$class_game_manager.html" title=" " alt="" coords="210,411,316,437"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="70,1180,75,1029,91,810,105,697,124,593,150,507,165,474,183,448,194,437,208,430,210,435,197,442,187,451,170,476,155,509,130,595,110,698,96,811,80,1030,75,1180"/>
+<area shape="rect" id="Node000012" href="$class_graphic_setting.html" title=" " alt="" coords="209,461,316,488"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="70,1181,77,1039,94,835,108,730,127,633,152,554,166,522,183,498,207,481,210,486,187,502,171,525,157,556,132,635,113,731,99,836,82,1039,76,1181"/>
+<area shape="rect" id="Node000013" href="$class_ingame_fade_system.html" title=" " alt="" coords="194,512,332,539"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="71,1181,78,1048,97,859,111,762,130,673,154,600,167,571,183,549,197,537,200,541,187,552,172,574,159,602,135,675,117,763,102,860,84,1048,76,1181"/>
+<area shape="rect" id="Node000014" href="$class_initialize_first_button.html" title=" " alt="" coords="196,563,330,589"/>
+<area shape="poly" id="edge13_Node000004_Node000014" title=" " alt="" coords="71,1180,80,1056,100,883,115,794,133,713,156,646,168,620,183,600,197,588,200,592,187,603,173,623,160,648,138,715,120,795,105,884,86,1057,77,1181"/>
+<area shape="rect" id="Node000015" href="$class_input_manager.html" title=" " alt="" coords="213,613,313,640"/>
+<area shape="poly" id="edge14_Node000004_Node000015" title=" " alt="" coords="72,1180,82,1066,103,908,118,827,136,753,157,692,183,650,196,639,211,632,213,637,199,644,187,654,162,695,141,755,123,828,108,908,88,1066,77,1181"/>
+<area shape="rect" id="Node000016" href="$class_j_y_1_1_a_i_agent.html" title=" " alt="" coords="220,664,306,691"/>
+<area shape="poly" id="edge15_Node000004_Node000016" title=" " alt="" coords="72,1180,84,1075,106,932,121,860,139,793,159,739,183,701,199,688,218,681,220,686,202,693,187,704,164,741,144,795,126,861,112,933,90,1076,78,1181"/>
+<area shape="rect" id="Node000017" href="$class_j_y_1_1_a_i_spawner.html" title="AI 스폰 관리 시스템 시간 기반으로 AI를 자동 스폰하고 오브젝트 풀링으로 성능 최적화 싱글톤 패턴으로 구현되어 전역 접근 가능" alt="" coords="211,715,314,741"/>
+<area shape="poly" id="edge16_Node000004_Node000017" title=" " alt="" coords="73,1180,87,1085,110,957,142,834,161,785,183,751,209,735,212,739,187,755,166,788,147,835,115,958,92,1086,78,1181"/>
+<area shape="rect" id="Node000018" href="$class_j_y_1_1_auto_nav_mesh_baker.html" title=" " alt="" coords="185,765,341,792"/>
+<area shape="poly" id="edge17_Node000004_Node000018" title=" " alt="" coords="69,1180,72,1106,87,1005,101,951,121,897,148,847,183,802,198,790,201,795,187,806,152,850,126,899,106,952,92,1006,77,1106,74,1181"/>
+<area shape="rect" id="Node000019" href="$class_j_y_1_1_counter_manager.html" title=" " alt="" coords="195,816,330,843"/>
+<area shape="poly" id="edge18_Node000004_Node000019" title=" " alt="" coords="70,1180,76,1114,93,1027,107,980,127,934,152,891,183,853,199,841,202,845,186,857,156,894,131,936,112,982,98,1028,82,1115,76,1181"/>
+<area shape="rect" id="Node000020" href="$class_j_y_1_1_furniture_i_d.html" title=" " alt="" coords="211,867,315,893"/>
+<area shape="poly" id="edge19_Node000004_Node000020" title=" " alt="" coords="72,1180,81,1123,100,1049,114,1009,132,971,155,935,183,903,209,887,212,892,186,907,159,938,137,974,119,1012,105,1050,86,1124,77,1181"/>
+<area shape="rect" id="Node000021" href="$class_j_y_1_1_payment_system.html" title="결제 시스템 AI의 방 사용 요금 관리 및 결제 처리" alt="" coords="195,917,331,944"/>
+<area shape="poly" id="edge20_Node000004_Node000021" title=" " alt="" coords="75,1180,86,1131,107,1071,138,1008,159,980,183,954,201,942,204,947,186,958,163,983,143,1011,112,1073,91,1133,80,1181"/>
+<area shape="rect" id="Node000022" href="$class_j_y_1_1_reputation_system.html" title="플레이어의 명성도 시스템을 관리하는 클래스 명성도 증감, 등급 관리, UI 업데이트를 담당" alt="" coords="189,968,336,995"/>
+<area shape="poly" id="edge21_Node000004_Node000022" title=" " alt="" coords="78,1180,92,1141,114,1094,144,1046,183,1005,202,993,205,998,186,1009,149,1049,119,1096,97,1143,83,1182"/>
+<area shape="rect" id="Node000023" href="$class_j_y_1_1_room_contents.html" title="방 내용물 관리 클래스 방 안의 가구들을 관리하고 가격, 명성도를 계산" alt="" coords="199,1019,326,1045"/>
+<area shape="poly" id="edge22_Node000004_Node000023" title=" " alt="" coords="83,1181,122,1118,150,1084,183,1055,204,1044,207,1048,186,1060,154,1088,127,1121,88,1184"/>
+<area shape="rect" id="Node000024" href="$class_j_y_1_1_room_manager.html" title="방 관리 및 요금 청구를 담당하는 매니저 클래스 AI의 방 사용, 결제 처리, 명성도 관리를 통합적으로 처리" alt="" coords="201,1069,325,1096"/>
+<area shape="poly" id="edge23_Node000004_Node000024" title=" " alt="" coords="92,1183,132,1144,183,1106,208,1094,211,1099,186,1110,136,1148,96,1187"/>
+<area shape="rect" id="Node000025" href="$class_j_y_1_1_ship_controller.html" title="개별 배의 움직임과 상태 제어 웨이포인트 기반 이동, 정박, 출발 시퀀스 관리" alt="" coords="202,1120,324,1147"/>
+<area shape="poly" id="edge24_Node000004_Node000025" title=" " alt="" coords="114,1187,184,1156,216,1145,217,1150,186,1161,116,1191"/>
+<area shape="rect" id="Node000026" href="$class_j_y_1_1_ship_object_pool.html" title="배 오브젝트 풀링 시스템" alt="" coords="198,1171,328,1197"/>
+<area shape="poly" id="edge25_Node000004_Node000026" title=" " alt="" coords="142,1197,197,1190,198,1195,142,1203"/>
+<area shape="rect" id="Node000027" href="$class_j_y_1_1_ship_system.html" title="배 시스템 메인 매니저 시간 시스템과 연동하여 배의 스폰, 이동, 정박을 관리" alt="" coords="208,1221,318,1248"/>
+<area shape="poly" id="edge26_Node000004_Node000027" title=" " alt="" coords="142,1216,208,1225,207,1230,141,1221"/>
+<area shape="rect" id="Node000028" href="$class_j_y_1_1_time_manager.html" title="게임 내 시간 UI 및 이벤트를 관리하는 클래스" alt="" coords="204,1272,322,1299"/>
+<area shape="poly" id="edge27_Node000004_Node000028" title=" " alt="" coords="116,1227,186,1258,217,1269,216,1274,184,1262,114,1232"/>
+<area shape="rect" id="Node000029" href="$class_j_y_1_1_time_system.html" title="24시간 순환 시간 시스템을 관리하는 클래스 싱글톤 패턴으로 구현되어 전체 게임에서 접근 가능" alt="" coords="206,1323,320,1349"/>
+<area shape="poly" id="edge28_Node000004_Node000029" title=" " alt="" coords="96,1232,136,1271,186,1308,211,1320,208,1325,183,1313,132,1275,92,1236"/>
+<area shape="rect" id="Node000030" href="$class_language_u_i.html" title=" " alt="" coords="217,1373,308,1400"/>
+<area shape="poly" id="edge29_Node000004_Node000030" title=" " alt="" coords="88,1235,127,1297,154,1331,186,1359,218,1375,215,1379,183,1364,150,1334,122,1301,83,1238"/>
+<area shape="rect" id="Node000031" href="$class_loading_system.html" title=" " alt="" coords="207,1424,318,1451"/>
+<area shape="poly" id="edge30_Node000004_Node000031" title=" " alt="" coords="83,1237,97,1276,119,1322,149,1369,186,1410,208,1423,205,1427,183,1414,144,1373,114,1325,92,1278,78,1238"/>
+<area shape="rect" id="Node000032" href="$class_object_interaction_u_i.html" title=" " alt="" coords="196,1475,330,1501"/>
+<area shape="poly" id="edge31_Node000004_Node000032" title=" " alt="" coords="80,1238,91,1286,112,1346,143,1408,163,1436,186,1461,204,1472,201,1476,183,1465,159,1439,138,1410,107,1348,86,1287,75,1239"/>
+<area shape="rect" id="Node000033" href="$class_object_placer.html" title=" " alt="" coords="215,1525,311,1552"/>
+<area shape="poly" id="edge32_Node000004_Node000033" title=" " alt="" coords="77,1238,86,1295,105,1368,119,1407,137,1445,159,1480,186,1511,200,1521,215,1528,213,1533,197,1526,183,1515,155,1483,132,1448,114,1409,100,1370,81,1296,72,1238"/>
+<area shape="rect" id="Node000034" href="$class_performance_monitor.html" title=" " alt="" coords="194,1576,332,1603"/>
+<area shape="poly" id="edge33_Node000004_Node000034" title=" " alt="" coords="76,1238,82,1304,98,1391,112,1437,131,1482,156,1525,186,1562,202,1573,199,1578,183,1566,152,1528,127,1485,107,1439,93,1392,76,1305,70,1238"/>
+<area shape="rect" id="Node000035" href="$class_placement_system.html" title=" " alt="" coords="199,1627,327,1653"/>
+<area shape="poly" id="edge34_Node000004_Node000035" title=" " alt="" coords="74,1238,77,1312,92,1413,106,1466,126,1519,152,1569,187,1613,201,1624,198,1628,183,1617,148,1572,121,1522,101,1468,87,1414,72,1313,69,1238"/>
+<area shape="rect" id="Node000036" href="$class_player_wallet.html" title=" " alt="" coords="216,1677,310,1704"/>
+<area shape="poly" id="edge35_Node000004_Node000036" title=" " alt="" coords="78,1238,92,1333,115,1461,147,1583,166,1631,187,1664,200,1674,216,1681,214,1686,197,1679,183,1667,161,1634,142,1585,110,1462,87,1334,73,1238"/>
+<area shape="rect" id="Node000037" href="$class_quest_log_item.html" title=" " alt="" coords="211,1728,314,1755"/>
+<area shape="poly" id="edge36_Node000004_Node000037" title=" " alt="" coords="78,1238,90,1343,112,1486,126,1558,144,1624,164,1678,187,1714,198,1724,212,1730,210,1735,195,1728,183,1718,159,1680,139,1625,121,1559,106,1486,84,1343,72,1238"/>
+<area shape="rect" id="Node000038" href="$class_quest_log_u_i.html" title=" " alt="" coords="217,1779,308,1805"/>
+<area shape="poly" id="edge37_Node000004_Node000038" title=" " alt="" coords="77,1238,88,1352,108,1510,123,1591,141,1664,162,1724,187,1765,201,1776,218,1783,216,1788,198,1781,183,1768,157,1726,136,1665,118,1592,103,1511,82,1353,72,1238"/>
+<area shape="rect" id="Node000039" href="$class_quest_manager.html" title=" " alt="" coords="210,1829,316,1856"/>
+<area shape="poly" id="edge38_Node000004_Node000039" title=" " alt="" coords="77,1238,86,1362,105,1535,120,1623,138,1704,160,1770,173,1796,187,1815,211,1832,208,1836,183,1819,168,1799,156,1772,133,1705,115,1624,100,1536,80,1362,71,1238"/>
+<area shape="rect" id="Node000040" href="$class_s_f_x_manager.html" title=" " alt="" coords="214,1880,312,1907"/>
+<area shape="poly" id="edge40_Node000004_Node000040" title=" " alt="" coords="76,1238,84,1371,102,1559,117,1656,135,1744,159,1817,172,1845,187,1866,199,1877,215,1884,213,1889,196,1881,183,1870,167,1848,154,1819,130,1745,111,1657,97,1560,78,1371,71,1238"/>
+<area shape="rect" id="Node000041" href="$class_save_manager.html" title=" " alt="" coords="212,1931,314,1957"/>
+<area shape="poly" id="edge41_Node000004_Node000041" title=" " alt="" coords="76,1238,82,1379,99,1583,113,1688,132,1784,157,1863,171,1894,187,1917,198,1927,213,1934,210,1939,195,1931,183,1920,166,1896,152,1865,127,1785,108,1689,94,1584,77,1380,70,1238"/>
+<area shape="rect" id="Node000042" href="$class_setting_u_i.html" title=" " alt="" coords="225,1981,301,2008"/>
+<area shape="poly" id="edge42_Node000004_Node000042" title=" " alt="" coords="75,1238,80,1389,96,1608,110,1721,130,1824,155,1909,170,1942,187,1968,204,1981,225,1988,223,1993,202,1986,183,1971,165,1945,150,1911,124,1825,105,1721,91,1608,75,1389,70,1238"/>
+<area shape="rect" id="Node000043" href="$class_sound_setting.html" title=" " alt="" coords="213,2032,312,2059"/>
+<area shape="poly" id="edge43_Node000004_Node000043" title=" " alt="" coords="75,1238,79,1398,93,1632,107,1753,127,1864,153,1956,169,1991,187,2018,199,2029,214,2036,212,2041,196,2033,183,2022,164,1994,148,1958,122,1865,102,1753,88,1632,73,1398,70,1238"/>
+<area shape="rect" id="Node000044" href="$class_spawn_effect.html" title=" " alt="" coords="215,2083,310,2109"/>
+<area shape="poly" id="edge44_Node000004_Node000044" title=" " alt="" coords="75,1238,77,1407,90,1656,104,1785,124,1904,151,2002,168,2040,187,2069,200,2080,216,2087,214,2092,197,2084,183,2072,163,2043,146,2004,119,1905,99,1786,85,1656,72,1407,69,1238"/>
+<area shape="rect" id="Node000045" href="$class_sun_moon_controller.html" title="해와 달의 위치를 시간에 따라 제어하는 클래스 TimeSystem과 연동하여 실시간으로 천체의 위치를 업데이트 빛 방향도 자동으로 조절" alt="" coords="197,2133,329,2160"/>
+<area shape="poly" id="edge45_Node000004_Node000045" title=" " alt="" coords="75,1238,75,1415,79,1542,87,1680,101,1817,121,1944,134,1999,149,2048,167,2089,187,2120,200,2131,196,2135,183,2123,162,2091,144,2050,129,2001,116,1945,96,1818,82,1680,74,1542,70,1415,69,1238"/>
+<area shape="rect" id="Node000046" href="$class_time_control_script.html" title=" " alt="" coords="200,2184,326,2211"/>
+<area shape="poly" id="edge46_Node000004_Node000046" title=" " alt="" coords="77,1238,89,1438,112,1734,128,1884,146,2016,165,2116,176,2150,187,2170,201,2182,197,2186,183,2174,171,2152,160,2117,140,2017,123,1884,107,1735,84,1438,71,1238"/>
+<area shape="rect" id="Node000047" href="$class_u_i_controller.html" title=" " alt="" coords="217,2235,308,2261"/>
+<area shape="poly" id="edge47_Node000004_Node000047" title=" " alt="" coords="76,1238,88,1447,111,1760,126,1918,144,2057,164,2164,175,2199,187,2221,200,2232,218,2240,215,2245,198,2237,183,2224,171,2201,159,2165,139,2058,121,1918,105,1760,83,1448,71,1238"/>
+<area shape="rect" id="Node000048" href="$class_unlock_system.html" title=" " alt="" coords="209,2285,316,2312"/>
+<area shape="poly" id="edge48_Node000004_Node000048" title=" " alt="" coords="76,1238,87,1456,109,1785,125,1952,143,2099,164,2211,175,2249,187,2272,197,2281,210,2288,207,2292,194,2285,183,2275,170,2251,158,2212,137,2100,119,1952,104,1786,82,1457,71,1238"/>
+<area shape="rect" id="Node000049" href="$class_visualization_money.html" title=" " alt="" coords="196,2336,330,2363"/>
+<area shape="poly" id="edge49_Node000004_Node000049" title=" " alt="" coords="76,1238,86,1465,108,1810,123,1986,141,2140,163,2258,174,2298,187,2322,200,2333,196,2337,183,2326,169,2300,157,2260,136,2141,118,1986,102,1811,81,1466,71,1238"/>
 </map>

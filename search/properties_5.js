@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['renderingdebugger_0',['RenderingDebugger',['../class_volumetric_clouds_u_r_p.html#a93599bcf4542e73fddc9f1dcfda2a92a',1,'VolumetricCloudsURP']]],
-  ['resetwindonstart_1',['ResetWindOnStart',['../class_volumetric_clouds_u_r_p.html#ac84d3c927eed4cfd2093529a36911a07',1,'VolumetricCloudsURP']]],
-  ['resolutionscale_2',['ResolutionScale',['../class_volumetric_clouds_u_r_p.html#ac9c81690c32ae33866073834bbd30e09',1,'VolumetricCloudsURP']]]
+  ['id_0',['ID',['../class_j_y_1_1_furniture_i_d.html#ac7c28e89f15550d21e82ade8f040787c',1,'JY.FurnitureID.ID'],['../class_placement_data.html#ab712aa27ec8bcf66dc1fcfd096b14c33',1,'PlacementData.ID'],['../class_object_data.html#a49ec5e33e551ed29c824ebdf52bd1921',1,'ObjectData.ID']]],
+  ['instance_1',['Instance',['../class_j_y_1_1_a_i_spawner.html#a2458ea8ea0abeda683d95a1c90bfdae9',1,'JY.AISpawner.Instance'],['../class_j_y_1_1_payment_system.html#ab9bc2582776d01570cd3762b0a41c0c7',1,'JY.PaymentSystem.Instance'],['../class_j_y_1_1_reputation_system.html#a89017af5a149608dbc6f131191828ff8',1,'JY.ReputationSystem.Instance'],['../class_player_wallet.html#a387d6b1f73468c70a7fc286eb5ea26d7',1,'PlayerWallet.Instance'],['../class_object_placer.html#afb6554ad1fddb6612db260832b1f5af7',1,'ObjectPlacer.Instance'],['../class_placement_system.html#ab0af4762e2de60ad0e1a1ec562a72706',1,'PlacementSystem.Instance'],['../class_quest_manager.html#a8e1cd09cf2af8f04d6854f0b54d8b0bf',1,'QuestManager.Instance'],['../class_save_manager.html#a09c0f9099f5d2a7c35e0ac584114a5b0',1,'SaveManager.Instance'],['../class_b_g_m_manager.html#aaca2b00afedad4f0a13afb5a902b1266',1,'BGMManager.Instance'],['../class_s_f_x_manager.html#a43c25c5a1b8933ee22b83d2b520a2b31',1,'SFXManager.Instance'],['../class_j_y_1_1_time_system.html#aec45ff4339e9addd6dd6a4401190a429',1,'JY.TimeSystem.Instance']]],
+  ['isroomused_2',['IsRoomUsed',['../class_j_y_1_1_room_contents.html#a7af282a88d4fcb08a113d9998d691358',1,'JY::RoomContents']]]
 ];

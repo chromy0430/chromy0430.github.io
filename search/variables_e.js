@@ -1,8 +1,21 @@
 var searchData=
 [
-  ['tagstobake_0',['tagsToBake',['../class_auto_nav_mesh_baker.html#a2dda630767762504ecbf6695b868bb71',1,'AutoNavMeshBaker']]],
-  ['target_1',['target',['../class_camera_con.html#a8317f5453832dc23e11a702d0064563f',1,'CameraCon']]],
-  ['targetfov_2',['targetFOV',['../class_camera_con.html#abc2098fdb172bf13cfd763e4dabddc0a',1,'CameraCon']]],
-  ['testobject_3',['testObject',['../class_test_script.html#aa481e18a100d790bf912621768527610',1,'TestScript']]],
-  ['type_4',['type',['../struct_change_build_type_1_1_build_panel.html#aa1a952864bbfe93d8b0b2bdef3626898',1,'ChangeBuildType::BuildPanel']]]
+  ['remainingtime_0',['remainingTime',['../class_active_quest.html#af6cc58b2530822ff2c7821a27d8b73af',1,'ActiveQuest']]],
+  ['reputationsystem_1',['reputationSystem',['../class_j_y_1_1_room_manager.html#a46ae9fb736664bb32b017ee367f283bf',1,'JY::RoomManager']]],
+  ['reputationthreshold_2',['reputationThreshold',['../class_unlockable_item.html#abd815479a82ae96a5967d9ce19e77f41',1,'UnlockableItem']]],
+  ['requiredday_3',['requiredDay',['../class_quest_data.html#a3480c745616db94213194638a1374797',1,'QuestData']]],
+  ['requiredhour_4',['requiredHour',['../class_quest_data.html#a1a940ef7b358402f582cf02dc3193bac',1,'QuestData']]],
+  ['requiredmin_5',['requiredMin',['../class_quest_data.html#a603af3f2ed66bd0c9e2208189869818b',1,'QuestData']]],
+  ['resolutiondropdown_6',['resolutionDropdown',['../class_graphic_setting.html#a78f04cf83e53c47b2df86ad665895884',1,'GraphicSetting']]],
+  ['rewardamount_7',['rewardAmount',['../class_quest_data.html#ae704b3315d4c826f2d89a2b5ad96cd02',1,'QuestData']]],
+  ['rewardtype_8',['rewardType',['../class_quest_data.html#a410c2ff12d9d836361861b7c90f8c486',1,'QuestData']]],
+  ['roombounds_9',['roomBounds',['../class_j_y_1_1_room_contents.html#a9b59a60d20a5022ef469f8a490f95ab7',1,'JY::RoomContents']]],
+  ['roomid_10',['roomID',['../class_j_y_1_1_payment_system_1_1_payment_info.html#ac94ec507276a5703b037f7b674fc858b',1,'JY.PaymentSystem.PaymentInfo.roomID'],['../class_j_y_1_1_room_contents.html#af8bfe5f3f826e0fef44ef4d6871eaa9b',1,'JY.RoomContents.roomID']]],
+  ['roomreputation_11',['roomReputation',['../class_j_y_1_1_payment_system_1_1_payment_info.html#a0ac944584fccfb76c8ac0eb7063af00e',1,'JY::PaymentSystem::PaymentInfo']]],
+  ['roomtag_12',['roomTag',['../class_j_y_1_1_room_manager.html#a3d3fdd4652a3413b4f226337ff98d0ec',1,'JY::RoomManager']]],
+  ['rotationspeed_13',['rotationSpeed',['../class_camera_con.html#ac28da50e3e8ae2565ea83d51c535b559',1,'CameraCon.rotationSpeed'],['../class_j_y_1_1_ship_route.html#a0368439e396e750e73d41c2fdab75695',1,'JY.ShipRoute.rotationSpeed']]],
+  ['route_14',['route',['../class_j_y_1_1_ship_schedule.html#a24eecd2c8265a7374d5f2de127317e7f',1,'JY::ShipSchedule']]],
+  ['routecolor_15',['routeColor',['../class_j_y_1_1_ship_route.html#aa882aa06c3bafb17594142d6a914a4bc',1,'JY::ShipRoute']]],
+  ['routeid_16',['routeId',['../class_j_y_1_1_ship_route.html#add324e25d52ece711fe2225059c4a0fa',1,'JY::ShipRoute']]],
+  ['routename_17',['routeName',['../class_j_y_1_1_ship_route.html#ad16295693842b391cb223deba306aa32',1,'JY::ShipRoute']]]
 ];

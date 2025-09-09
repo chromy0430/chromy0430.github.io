@@ -1,0 +1,5 @@
+<map id="QuestLogItem.Setup" name="QuestLogItem.Setup">
+<area shape="rect" id="Node000001" title=" " alt="" coords="242,5,383,32"/>
+<area shape="rect" id="Node000002" href="$class_quest_log_u_i.html#ae1f4b459d19ef815377e2a0bd476617b" title=" " alt="" coords="5,5,194,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,21,194,21,194,16,226,16"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="SFXManager.PlaySound" name="SFXManager.PlaySound">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,5,389,32"/>
+<area shape="rect" id="Node000002" href="$class_object_placer.html#afc0c5162ac46527487785c84d4dcfbac" title="매개 변수의 오브젝트들을 배치한다." alt="" coords="5,5,177,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,21,177,21,177,16,209,16"/>
+</map>

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['gamemanager_0',['GameManager',['../class_game_manager.html',1,'']]],
-  ['graphiccolor_1',['GraphicColor',['../class_unity_1_1_u_i_1_1_shaders_1_1_sample_1_1_graphic_color.html',1,'Unity::UI::Shaders::Sample']]],
-  ['graphicsetting_2',['GraphicSetting',['../class_graphic_setting.html',1,'']]],
-  ['griddata_3',['GridData',['../class_grid_data.html',1,'']]],
-  ['griddatasave_4',['GridDataSave',['../class_grid_data_save.html',1,'']]],
-  ['gridentry_5',['GridEntry',['../class_grid_entry.html',1,'']]]
+  ['ingamefadesystem_0',['IngameFadeSystem',['../class_ingame_fade_system.html',1,'']]],
+  ['initializefirstbutton_1',['InitializeFirstButton',['../class_initialize_first_button.html',1,'']]],
+  ['inputmanager_2',['InputManager',['../class_input_manager.html',1,'']]],
+  ['iroomdetector_3',['IRoomDetector',['../interface_j_y_1_1_i_room_detector.html',1,'JY']]]
 ];

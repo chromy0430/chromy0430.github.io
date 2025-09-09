@@ -1,0 +1,5 @@
+<map id="JY.RoomManager.UpdateRooms" name="JY.RoomManager.UpdateRooms">
+<area shape="rect" id="Node000001" title="방 목록 업데이트 (빌딩 시스템에서 호출)" alt="" coords="5,5,218,32"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_manager.html#a75d36948b11ee06e2ac8af4739e89343" title="씬의 모든 방 검색" alt="" coords="266,5,476,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,16,250,16,250,21,218,21"/>
+</map>

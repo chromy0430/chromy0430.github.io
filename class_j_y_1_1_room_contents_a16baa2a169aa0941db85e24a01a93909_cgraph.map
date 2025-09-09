@@ -1,5 +1,5 @@
 <map id="JY.RoomContents.SetRoomBounds" name="JY.RoomContents.SetRoomBounds">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,236,40"/>
-<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_contents.html#a7d0b03a00d95ba463fbd2d38c95be7ff" title=" " alt="" coords="284,5,492,48"/>
+<area shape="rect" id="Node000001" title="방 범위 설정" alt="" coords="5,13,236,40"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_contents.html#a7d0b03a00d95ba463fbd2d38c95be7ff" title="방 내용물 업데이트" alt="" coords="284,5,492,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,24,268,24,268,29,236,29"/>
 </map>

@@ -1,0 +1,5 @@
+<map id="JY.ShipController.Initialize" name="JY.ShipController.Initialize">
+<area shape="rect" id="Node000001" title="배 초기화" alt="" coords="5,13,179,40"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_ship_route.html#a92f3a52fd62cefab08e19e15082e6458" title="특정 인덱스의 웨이포인트 위치 가져오기" alt="" coords="227,5,406,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,24,211,24,211,29,179,29"/>
+</map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['size_0',['Size',['../class_object_data.html#a1231f2c10d26b0ed1fd93360eda3a6e4',1,'ObjectData']]]
+  ['placedobjectindex_0',['PlacedObjectIndex',['../class_placement_data.html#a4dcf30c274c7be80fefab991f3e2320c',1,'PlacementData']]],
+  ['prefab_1',['Prefab',['../class_object_data.html#aafe8487054ca8d15b5173677979d7866',1,'ObjectData']]]
 ];

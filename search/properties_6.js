@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['sunattenuation_0',['SunAttenuation',['../class_volumetric_clouds_u_r_p.html#af6779e6986d3aaf622ec9c9132e5a46f',1,'VolumetricCloudsURP']]]
+  ['kindindex_0',['KindIndex',['../class_placement_data.html#a22f830f7f6ccb29829a1171efacb6eb0',1,'PlacementData']]],
+  ['kindindex_1',['kindIndex',['../class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491',1,'ObjectData']]]
 ];

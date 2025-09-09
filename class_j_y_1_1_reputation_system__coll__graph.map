@@ -1,0 +1,5 @@
+<map id="JY.ReputationSystem" name="JY.ReputationSystem">
+<area shape="rect" id="Node000001" title="플레이어의 명성도 시스템을 관리하는 클래스 명성도 증감, 등급 관리, UI 업데이트를 담당" alt="" coords="5,80,153,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="23,5,135,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,48,82,80,76,80,76,48"/>
+</map>

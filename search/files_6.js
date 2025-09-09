@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['paymentsystem_2ecs_0',['PaymentSystem.cs',['../_payment_system_8cs.html',1,'']]],
-  ['placementdata_2ecs_1',['PlacementData.cs',['../_placement_data_8cs.html',1,'']]],
-  ['placementsystem_2ecs_2',['PlacementSystem.cs',['../_placement_system_8cs.html',1,'']]],
-  ['playerwallet_2ecs_3',['PlayerWallet.cs',['../_player_wallet_8cs.html',1,'']]]
+  ['ingamefadesystem_2ecs_0',['IngameFadeSystem.cs',['../_ingame_fade_system_8cs.html',1,'']]],
+  ['initializefirstbutton_2ecs_1',['InitializeFirstButton.cs',['../_initialize_first_button_8cs.html',1,'']]],
+  ['inputmanager_2ecs_2',['InputManager.cs',['../_input_manager_8cs.html',1,'']]]
 ];

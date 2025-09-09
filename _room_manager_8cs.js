@@ -1,4 +1,4 @@
 var _room_manager_8cs =
 [
-    [ "RoomManager", "class_room_manager.html", "class_room_manager" ]
+    [ "JY.RoomManager", "class_j_y_1_1_room_manager.html", "class_j_y_1_1_room_manager" ]
 ];

@@ -1,0 +1,7 @@
+<map id="PlacementSystem.PurchaseNextLand" name="PlacementSystem.PurchaseNextLand">
+<area shape="rect" id="Node000001" title="땅을 구매하는 버튼을 통해 실행되는 함수 버튼을 클릭하면 그리드 플레인이 활성화 + 그리드 건설 반경이 확대되며, 4번(최대 횟수) 클릭 시 버튼이 비활성화 된다." alt="" coords="5,39,193,81"/>
+<area shape="rect" id="Node000002" href="$class_placement_system.html#a7f8d57ea2adf8712e18033ad4d6655da" title="플레인의 이름에서 뽑아낸 정수와 반환된 정수의 값이 같을 때, 그리드 플레인을 활성화한다." alt="" coords="250,5,430,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,44,234,39,234,44,193,50"/>
+<area shape="rect" id="Node000003" href="$class_placement_system.html#af87e5fd4779283211a2381131edf5a02" title="그리드 반경에 따라 건축 가능한 지역 바운드 설정" alt="" coords="241,72,439,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,70,225,75,225,80,193,76"/>
+</map>

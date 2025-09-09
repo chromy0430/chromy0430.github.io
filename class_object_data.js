@@ -7,5 +7,6 @@ var class_object_data =
     [ "kindIndex", "class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491", null ],
     [ "Name", "class_object_data.html#a112f78a063ef3c8a4fac25275d581410", null ],
     [ "Prefab", "class_object_data.html#aafe8487054ca8d15b5173677979d7866", null ],
+    [ "ReputationValue", "class_object_data.html#a6154bc6870dae2408f1ff42db5484cdf", null ],
     [ "Size", "class_object_data.html#a1231f2c10d26b0ed1fd93360eda3a6e4", null ]
 ];

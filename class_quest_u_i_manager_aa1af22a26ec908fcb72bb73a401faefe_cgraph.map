@@ -1,0 +1,7 @@
+<map id="QuestUIManager.OnEndDrag" name="QuestUIManager.OnEndDrag">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,198,57"/>
+<area shape="rect" id="Node000002" href="$class_quest_manager.html#a6a304119586baabf1a0c676c4c2ce601" title="퀘스트 수락" alt="" coords="247,5,434,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,31,231,28,232,33,198,36"/>
+<area shape="rect" id="Node000003" href="$class_quest_manager.html#a72c38a630d333cccbe51c8c7db272c31" title=" " alt="" coords="246,56,435,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,52,230,55,230,60,198,57"/>
+</map>

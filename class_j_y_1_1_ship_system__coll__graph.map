@@ -1,0 +1,5 @@
+<map id="JY.ShipSystem" name="JY.ShipSystem">
+<area shape="rect" id="Node000001" title="배 시스템 메인 매니저 시간 시스템과 연동하여 배의 스폰, 이동, 정박을 관리" alt="" coords="6,80,116,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,117,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,48,64,80,58,80,58,48"/>
+</map>

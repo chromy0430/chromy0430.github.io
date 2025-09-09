@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['objectplacer_2ecs_0',['ObjectPlacer.cs',['../_object_placer_8cs.html',1,'']]],
-  ['objectsdatabaseso_2ecs_1',['ObjectsDatabaseSO.cs',['../_objects_database_s_o_8cs.html',1,'']]],
-  ['objectsdatabasesoeditor_2ecs_2',['ObjectsDatabaseSOEditor.cs',['../_objects_database_s_o_editor_8cs.html',1,'']]]
+  ['gamemanager_2ecs_0',['GameManager.cs',['../_game_manager_8cs.html',1,'']]],
+  ['graphicsetting_2ecs_1',['GraphicSetting.cs',['../_graphic_setting_8cs.html',1,'']]],
+  ['griddata_2ecs_2',['GridData.cs',['../_grid_data_8cs.html',1,'']]]
 ];

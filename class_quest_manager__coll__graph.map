@@ -1,0 +1,17 @@
+<map id="QuestManager" name="QuestManager">
+<area shape="rect" id="Node000001" title=" " alt="" coords="89,172,196,199"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,117,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,46,76,76,87,107,110,142,133,170,128,173,105,145,83,109,71,78,63,48"/>
+<area shape="rect" id="Node000003" href="$class_quest_u_i_manager.html" title=" " alt="" coords="212,81,332,108"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="113,35,236,78,235,83,111,40"/>
+<area shape="rect" id="Node000007" href="$class_quest_log_u_i.html" title=" " alt="" coords="97,81,188,108"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="88,41,131,79,127,83,84,45"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,121,220,150,176,174,174,169,217,146,250,117"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="141,5,272,32"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="229,42,263,79,259,83,225,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="296,5,394,32"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="324,45,286,83,282,79,320,41"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="418,5,539,32"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="430,40,308,83,306,78,428,35"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="145,124,145,171,140,171,140,124"/>
+</map>

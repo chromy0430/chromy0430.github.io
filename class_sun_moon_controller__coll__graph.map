@@ -1,0 +1,5 @@
+<map id="SunMoonController" name="SunMoonController">
+<area shape="rect" id="Node000001" title="해와 달의 위치를 시간에 따라 제어하는 클래스 TimeSystem과 연동하여 실시간으로 천체의 위치를 업데이트 빛 방향도 자동으로 조절" alt="" coords="5,80,138,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="16,5,127,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,48,74,80,69,80,69,48"/>
+</map>

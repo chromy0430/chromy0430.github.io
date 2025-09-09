@@ -24,12 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Lodging Simulator", "index.html", [
-    [ "About", "md__c_1_2_users_2_y_j_u_2_documents_2_git_hub_2_lodging_simulator_2_assets_2_packages_2_system_8f0ae6dc123dbfdf30e93ead2810f628f.html", [
-      [ "Main Types", "md__c_1_2_users_2_y_j_u_2_documents_2_git_hub_2_lodging_simulator_2_assets_2_packages_2_system_8f0ae6dc123dbfdf30e93ead2810f628f.html#autotoc_md1", null ],
-      [ "Additional Documentation", "md__c_1_2_users_2_y_j_u_2_documents_2_git_hub_2_lodging_simulator_2_assets_2_packages_2_system_8f0ae6dc123dbfdf30e93ead2810f628f.html#autotoc_md2", null ],
-      [ "License", "md__c_1_2_users_2_y_j_u_2_documents_2_git_hub_2_lodging_simulator_2_assets_2_packages_2_system_8f0ae6dc123dbfdf30e93ead2810f628f.html#autotoc_md3", null ]
-    ] ],
+  [ "LodgingSimulator", "index.html", [
     [ "패키지", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
       [ "패키지 멤버들", "namespacemembers.html", [
@@ -42,12 +37,19 @@ var NAVTREE =
       [ "클래스 색인", "classes.html", null ],
       [ "클래스 계통도", "hierarchy.html", "hierarchy" ],
       [ "클래스 멤버", "functions.html", [
-        [ "모두", "functions.html", null ],
+        [ "모두", "functions.html", "functions_dup" ],
         [ "함수", "functions_func.html", null ],
         [ "변수", "functions_vars.html", null ],
         [ "열거형 타입", "functions_enum.html", null ],
         [ "속성", "functions_prop.html", null ],
         [ "이벤트", "functions_evnt.html", null ]
+      ] ]
+    ] ],
+    [ "파일들", "files.html", [
+      [ "파일 목록", "files.html", "files_dup" ],
+      [ "파일 멤버", "globals.html", [
+        [ "모두", "globals.html", null ],
+        [ "열거형 타입", "globals_enum.html", null ]
       ] ]
     ] ]
   ] ]
@@ -55,8 +57,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"class_j_y_1_1_time_manager.html"
+"_a_i_agent_8cs.html",
+"class_j_y_1_1_auto_nav_mesh_baker.html#a5000949ce376294ee60b17dc434eb7af",
+"class_j_y_1_1_ship_route.html#adc313f79a246aa5cdebdbe8ccaf91a70",
+"class_sun_moon_controller.html#ac33519fe58f38e7970e1277aca373e06"
 ];
 
 var SYNCONMSG = '패널 동기화를 비활성화하기 위해 클릭하십시오';

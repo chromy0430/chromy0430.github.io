@@ -1,0 +1,5 @@
+<map id="JY.ReputationSystem.SetReputation" name="JY.ReputationSystem.SetReputation">
+<area shape="rect" id="Node000001" title="명성도 직접 설정" alt="" coords="5,13,240,40"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_reputation_system.html#ad19a88b041c667547a13aa5d0255a51f" title="현재 등급 반환" alt="" coords="288,5,503,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,24,272,24,272,29,240,29"/>
+</map>

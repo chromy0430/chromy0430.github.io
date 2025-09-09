@@ -1,0 +1,5 @@
+<map id="JY.RoomManager.RegisterNewRoom" name="JY.RoomManager.RegisterNewRoom">
+<area shape="rect" id="Node000001" title="새로운 방이 생성되었을 때 호출" alt="" coords="266,13,505,40"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_manager.html#a4b4d8c7c9f3666c0c6bd2470917414f6" title="RoomDetector에서 방 정보를 받아 RoomContents를 생성하는 메서드" alt="" coords="5,5,218,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="250,29,218,29,218,24,250,24"/>
+</map>

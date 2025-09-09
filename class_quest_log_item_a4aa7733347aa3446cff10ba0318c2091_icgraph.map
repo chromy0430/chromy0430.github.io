@@ -1,0 +1,7 @@
+<map id="QuestLogItem.UpdateStatus" name="QuestLogItem.UpdateStatus">
+<area shape="rect" id="Node000001" title=" " alt="" coords="431,5,618,32"/>
+<area shape="rect" id="Node000002" href="$class_quest_log_item.html#acba577a2b93a160f700d625c4c285fa4" title=" " alt="" coords="242,5,383,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="416,21,383,21,383,16,416,16"/>
+<area shape="rect" id="Node000003" href="$class_quest_log_u_i.html#ae1f4b459d19ef815377e2a0bd476617b" title=" " alt="" coords="5,5,194,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,21,194,21,194,16,226,16"/>
+</map>

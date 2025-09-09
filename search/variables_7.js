@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['numlightsteps_0',['numLightSteps',['../class_volumetric_clouds.html#a0abde4dd64777f1e6ecf47c99f690d46',1,'VolumetricClouds']]],
-  ['numprimarysteps_1',['numPrimarySteps',['../class_volumetric_clouds.html#ac22921969487f334df762a307d881029',1,'VolumetricClouds']]]
+  ['hit_0',['hit',['../class_input_manager.html#ac7ff2c89bfb32147728d4a6c5ac1954b',1,'InputManager']]],
+  ['hit2_1',['hit2',['../class_input_manager.html#ab931e9e243effa8053c871f94b1f09a7',1,'InputManager']]]
 ];

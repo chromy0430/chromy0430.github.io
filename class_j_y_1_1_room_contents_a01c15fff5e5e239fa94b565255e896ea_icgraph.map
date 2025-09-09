@@ -1,0 +1,8 @@
+<map id="JY.RoomContents.SetAsSunbedRoom" name="JY.RoomContents.SetAsSunbedRoom">
+<area shape="rect" id="Node000001" title="선베드 방으로 설정" alt="" coords="553,31,799,57"/>
+<area shape="rect" id="Node000002" href="$class_j_y_1_1_room_manager.html#abfd6d78ed5ed953569a73aa54b2b7780" title="새로운 방이 생성되었을 때 호출" alt="" coords="266,5,505,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="537,35,505,32,506,26,538,29"/>
+<area shape="rect" id="Node000003" href="$class_j_y_1_1_room_manager.html#a4b4d8c7c9f3666c0c6bd2470917414f6" title="RoomDetector에서 방 정보를 받아 RoomContents를 생성하는 메서드" alt="" coords="5,23,218,65"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="538,47,218,47,218,41,538,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="250,34,218,37,218,32,250,29"/>
+</map>

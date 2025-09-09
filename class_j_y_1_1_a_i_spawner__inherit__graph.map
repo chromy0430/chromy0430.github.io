@@ -1,0 +1,5 @@
+<map id="JY.AISpawner" name="JY.AISpawner">
+<area shape="rect" id="Node000001" title="AI 스폰 관리 시스템 시간 기반으로 AI를 자동 스폰하고 오브젝트 풀링으로 성능 최적화 싱글톤 패턴으로 구현되어 전역 접근 가능" alt="" coords="9,80,113,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,117,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,48,64,80,58,80,58,48"/>
+</map>
