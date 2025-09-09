@@ -1,22 +1,11 @@
 var searchData=
 [
-  ['id_0',['ID',['../class_j_y_1_1_furniture_i_d.html#ac7c28e89f15550d21e82ade8f040787c',1,'JY.FurnitureID.ID'],['../class_placement_data.html#ab712aa27ec8bcf66dc1fcfd096b14c33',1,'PlacementData.ID'],['../class_object_data.html#a49ec5e33e551ed29c824ebdf52bd1921',1,'ObjectData.ID']]],
-  ['increasefloor_1',['IncreaseFloor',['../class_change_floor_system.html#ac612a277d7e76c33ad2bf288933457b1',1,'ChangeFloorSystem']]],
-  ['initializeai_2',['InitializeAI',['../class_a_i_agent.html#a0769f5a1bb2ec80873ec3976c6c9882f',1,'AIAgent']]],
-  ['initializedictionary_3',['InitializeDictionary',['../class_objects_database_s_o.html#ad2ace055b575f078e0bf84065d91bb6f',1,'ObjectsDatabaseSO']]],
-  ['initializeplane_4',['InitializePlane',['../class_placement_system.html#a58b00d1a289960088869324e853e4ea4',1,'PlacementSystem']]],
-  ['inputmanager_5',['InputManager',['../class_input_manager.html',1,'']]],
-  ['inputmanager_2ecs_6',['InputManager.cs',['../_input_manager_8cs.html',1,'']]],
-  ['instance_7',['Instance',['../class_a_i_spawner.html#a348492c9ba56c83340564bf7de193f1a',1,'AISpawner.Instance'],['../class_player_wallet.html#a387d6b1f73468c70a7fc286eb5ea26d7',1,'PlayerWallet.Instance'],['../class_placement_system.html#ab0af4762e2de60ad0e1a1ec562a72706',1,'PlacementSystem.Instance']]],
-  ['iroomdetector_8',['IRoomDetector',['../interface_i_room_detector.html',1,'']]],
-  ['isbed_9',['isBed',['../class_room_detector_1_1_room_cell.html#a27879c91b0da19eb6528793e19b1af8e',1,'RoomDetector::RoomCell']]],
-  ['isbuildmode_10',['isBuildMode',['../class_input_manager.html#a044e69ae3cb508dad7b4392576e6737c',1,'InputManager']]],
-  ['isdeletemode_11',['isDeleteMode',['../class_placement_system.html#afbabff718cb1170c9ded369f892d055d',1,'PlacementSystem']]],
-  ['isdoor_12',['isDoor',['../class_room_detector_1_1_room_cell.html#a9187c815c3ec9cfe2a875c45b4ca6757',1,'RoomDetector::RoomCell']]],
-  ['isfloor_13',['isFloor',['../class_room_detector_1_1_room_cell.html#acf3901dfbe3dc954d6cdf2a03da1ec95',1,'RoomDetector::RoomCell']]],
-  ['ispointeroverui_14',['IsPointerOverUI',['../class_input_manager.html#a22c3bf9782babcae4dc25081c80ac26c',1,'InputManager']]],
-  ['isroomused_15',['IsRoomUsed',['../class_j_y_1_1_room_contents.html#a7af282a88d4fcb08a113d9998d691358',1,'JY::RoomContents']]],
-  ['isvalid_16',['isValid',['../class_room_detector_1_1_room_info.html#a0bb48bbab28141538bca7dd12ed13d8c',1,'RoomDetector::RoomInfo']]],
-  ['iswall_17',['IsWall',['../class_object_data.html#adb8cf0429371d93db7bf9fb40fc34ca9',1,'ObjectData']]],
-  ['iswall_18',['isWall',['../class_room_detector_1_1_room_cell.html#aeed2baa8d6a4d140d6d61c919226190d',1,'RoomDetector::RoomCell']]]
+  ['ingamefadesystem_0',['IngameFadeSystem',['../class_ingame_fade_system.html',1,'']]],
+  ['initialize_1',['Initialize',['../class_j_y_1_1_ship_controller.html#a4f7f35dd10362b80eff82a33289a9ae8',1,'JY.ShipController.Initialize()'],['../class_j_y_1_1_ship_object_pool.html#aa7efd81c543d12ec2696053f9c436d6f',1,'JY.ShipObjectPool.Initialize()']]],
+  ['initializefirstbutton_2',['InitializeFirstButton',['../class_initialize_first_button.html',1,'']]],
+  ['initializeplane_3',['InitializePlane',['../class_placement_system.html#a58b00d1a289960088869324e853e4ea4',1,'PlacementSystem']]],
+  ['inputmanager_4',['InputManager',['../class_input_manager.html',1,'']]],
+  ['instance_5',['Instance',['../class_j_y_1_1_time_system.html#aec45ff4339e9addd6dd6a4401190a429',1,'JY::TimeSystem']]],
+  ['iroomdetector_6',['IRoomDetector',['../interface_j_y_1_1_i_room_detector.html',1,'JY']]],
+  ['isvalid_7',['IsValid',['../class_j_y_1_1_ship_route.html#acef885af41bfd34a107860cc0f44bdb2',1,'JY::ShipRoute']]]
 ];

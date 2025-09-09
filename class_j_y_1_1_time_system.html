@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lodging Simulator: JY.TimeSystem 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Lodging Simulator<span id="projectnumber">&#160;0.0.9</span>
+   </div>
+   <div id="projectbrief">Lodging Simulator Topdown Tycoon</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_j_y_1_1_time_system.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-attribs">Public 속성</a> &#124;
+<a href="#properties">속성</a> &#124;
+<a href="#events">이벤트</a> &#124;
+<a href="class_j_y_1_1_time_system-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">JY.TimeSystem 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>24시간 순환 시간 시스템을 관리하는 클래스 싱글톤 패턴으로 구현되어 전체 게임에서 접근 가능  
+ <a href="#details">더 자세히 ...</a></p>
+<div class="dynheader">
+JY.TimeSystem에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_j_y_1_1_time_system.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a5f577aea584a7a5250e4fd76521bd88c" id="r_a5f577aea584a7a5250e4fd76521bd88c"><td class="memItemLeft" align="right" valign="top"><a id="a5f577aea584a7a5250e4fd76521bd88c" name="a5f577aea584a7a5250e4fd76521bd88c"></a>
+delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>TimeChangeHandler</b> (int hour, int minute)</td></tr>
+<tr class="memdesc:a5f577aea584a7a5250e4fd76521bd88c"><td class="mdescLeft">&#160;</td><td class="mdescRight">시간 변경 이벤트 델리게이트 <br /></td></tr>
+<tr class="separator:a5f577aea584a7a5250e4fd76521bd88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecdf81e854924ad15579debc2d3abab6" id="r_aecdf81e854924ad15579debc2d3abab6"><td class="memItemLeft" align="right" valign="top"><a id="aecdf81e854924ad15579debc2d3abab6" name="aecdf81e854924ad15579debc2d3abab6"></a>
+delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>TimeEventHandler</b> (float eventTime)</td></tr>
+<tr class="memdesc:aecdf81e854924ad15579debc2d3abab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">특정 시간 이벤트 델리게이트 <br /></td></tr>
+<tr class="separator:aecdf81e854924ad15579debc2d3abab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2634688750509ac8b1bdccf6936ef025" id="r_a2634688750509ac8b1bdccf6936ef025"><td class="memItemLeft" align="right" valign="top"><a id="a2634688750509ac8b1bdccf6936ef025" name="a2634688750509ac8b1bdccf6936ef025"></a>
+delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>DayChangeHandler</b> (int newDay)</td></tr>
+<tr class="memdesc:a2634688750509ac8b1bdccf6936ef025"><td class="mdescLeft">&#160;</td><td class="mdescRight">일차 변경 이벤트 델리게이트 <br /></td></tr>
+<tr class="separator:a2634688750509ac8b1bdccf6936ef025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb1b3649efbd09591f1780e86fa4d92" id="r_aecb1b3649efbd09591f1780e86fa4d92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecb1b3649efbd09591f1780e86fa4d92">SetTime</a> (int hour, int minute=0)</td></tr>
+<tr class="memdesc:aecb1b3649efbd09591f1780e86fa4d92"><td class="mdescLeft">&#160;</td><td class="mdescRight">시간 설정 메서드  <br /></td></tr>
+<tr class="separator:aecb1b3649efbd09591f1780e86fa4d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e65cea5fd4f3a89cf623e8c288c2293" id="r_a2e65cea5fd4f3a89cf623e8c288c2293"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e65cea5fd4f3a89cf623e8c288c2293">SetDay</a> (int day)</td></tr>
+<tr class="memdesc:a2e65cea5fd4f3a89cf623e8c288c2293"><td class="mdescLeft">&#160;</td><td class="mdescRight">일차 설정 메서드  <br /></td></tr>
+<tr class="separator:a2e65cea5fd4f3a89cf623e8c288c2293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad37325bc647c871463801ad1eba767e0" id="r_ad37325bc647c871463801ad1eba767e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad37325bc647c871463801ad1eba767e0">SetDateTime</a> (int day, int hour, int minute=0)</td></tr>
+<tr class="memdesc:ad37325bc647c871463801ad1eba767e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">시간과 일차를 동시에 설정  <br /></td></tr>
+<tr class="separator:ad37325bc647c871463801ad1eba767e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adefacb9693a27db27cdc9b67978bfcd7" id="r_adefacb9693a27db27cdc9b67978bfcd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adefacb9693a27db27cdc9b67978bfcd7">GetCurrentTimeInMinutes</a> ()</td></tr>
+<tr class="memdesc:adefacb9693a27db27cdc9b67978bfcd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 시간을 분 단위로 반환 (0-1439, 하루는 1440분)  <br /></td></tr>
+<tr class="separator:adefacb9693a27db27cdc9b67978bfcd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 속성</h2></td></tr>
+<tr class="memitem:aefbf36b16b493d5250f6e268bd0af076" id="r_aefbf36b16b493d5250f6e268bd0af076"><td class="memItemLeft" align="right" valign="top"><a id="aefbf36b16b493d5250f6e268bd0af076" name="aefbf36b16b493d5250f6e268bd0af076"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>timeMultiplier</b> = 60f</td></tr>
+<tr class="separator:aefbf36b16b493d5250f6e268bd0af076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a128e1b098fcae6ac3c8f3bae50cc98b8" id="r_a128e1b098fcae6ac3c8f3bae50cc98b8"><td class="memItemLeft" align="right" valign="top"><a id="a128e1b098fcae6ac3c8f3bae50cc98b8" name="a128e1b098fcae6ac3c8f3bae50cc98b8"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>startingHour</b> = 6f</td></tr>
+<tr class="separator:a128e1b098fcae6ac3c8f3bae50cc98b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ec557ba82da134d9e6cee38b0bd4760" id="r_a5ec557ba82da134d9e6cee38b0bd4760"><td class="memItemLeft" align="right" valign="top"><a id="a5ec557ba82da134d9e6cee38b0bd4760" name="a5ec557ba82da134d9e6cee38b0bd4760"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>currentTime</b></td></tr>
+<tr class="separator:a5ec557ba82da134d9e6cee38b0bd4760"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9bde45acf4dc3fab1e79504a61011e0" id="r_aa9bde45acf4dc3fab1e79504a61011e0"><td class="memItemLeft" align="right" valign="top"><a id="aa9bde45acf4dc3fab1e79504a61011e0" name="aa9bde45acf4dc3fab1e79504a61011e0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>showDebugLogs</b> = false</td></tr>
+<tr class="separator:aa9bde45acf4dc3fab1e79504a61011e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaed9e3377884cabb3c7fbcce2004b6ee" id="r_aaed9e3377884cabb3c7fbcce2004b6ee"><td class="memItemLeft" align="right" valign="top"><a id="aaed9e3377884cabb3c7fbcce2004b6ee" name="aaed9e3377884cabb3c7fbcce2004b6ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>showImportantLogsOnly</b> = true</td></tr>
+<tr class="separator:aaed9e3377884cabb3c7fbcce2004b6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+속성</h2></td></tr>
+<tr class="memitem:a30a38c27ecbf61aaf5c978a9e740759b" id="r_a30a38c27ecbf61aaf5c978a9e740759b"><td class="memItemLeft" align="right" valign="top"><a id="a30a38c27ecbf61aaf5c978a9e740759b" name="a30a38c27ecbf61aaf5c978a9e740759b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentHour</b><code> [get]</code></td></tr>
+<tr class="separator:a30a38c27ecbf61aaf5c978a9e740759b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac030df503a1588e5237c44a3b1725f28" id="r_ac030df503a1588e5237c44a3b1725f28"><td class="memItemLeft" align="right" valign="top"><a id="ac030df503a1588e5237c44a3b1725f28" name="ac030df503a1588e5237c44a3b1725f28"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentMinute</b><code> [get]</code></td></tr>
+<tr class="separator:ac030df503a1588e5237c44a3b1725f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2057f746ad57d41fa6f7fc15ca32457" id="r_ad2057f746ad57d41fa6f7fc15ca32457"><td class="memItemLeft" align="right" valign="top"><a id="ad2057f746ad57d41fa6f7fc15ca32457" name="ad2057f746ad57d41fa6f7fc15ca32457"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentSecond</b><code> [get]</code></td></tr>
+<tr class="separator:ad2057f746ad57d41fa6f7fc15ca32457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f15e4944468623bd03f3950af624ea2" id="r_a2f15e4944468623bd03f3950af624ea2"><td class="memItemLeft" align="right" valign="top"><a id="a2f15e4944468623bd03f3950af624ea2" name="a2f15e4944468623bd03f3950af624ea2"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentTimeString</b><code> [get]</code></td></tr>
+<tr class="separator:a2f15e4944468623bd03f3950af624ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb718dd4e754dfeac1dc93862efac017" id="r_acb718dd4e754dfeac1dc93862efac017"><td class="memItemLeft" align="right" valign="top"><a id="acb718dd4e754dfeac1dc93862efac017" name="acb718dd4e754dfeac1dc93862efac017"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentDay</b><code> [get, set]</code></td></tr>
+<tr class="separator:acb718dd4e754dfeac1dc93862efac017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b214cc4fd1ac94d7be3e712a59b8134" id="r_a6b214cc4fd1ac94d7be3e712a59b8134"><td class="memItemLeft" align="right" valign="top"><a id="a6b214cc4fd1ac94d7be3e712a59b8134" name="a6b214cc4fd1ac94d7be3e712a59b8134"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentDateString</b><code> [get]</code></td></tr>
+<tr class="separator:a6b214cc4fd1ac94d7be3e712a59b8134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec45ff4339e9addd6dd6a4401190a429" id="r_aec45ff4339e9addd6dd6a4401190a429"><td class="memItemLeft" align="right" valign="top"><a id="aec45ff4339e9addd6dd6a4401190a429" name="aec45ff4339e9addd6dd6a4401190a429"></a>
+static <a class="el" href="class_j_y_1_1_time_system.html">TimeSystem</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b><code> [get]</code></td></tr>
+<tr class="memdesc:aec45ff4339e9addd6dd6a4401190a429"><td class="mdescLeft">&#160;</td><td class="mdescRight">싱글톤 인스턴스 접근자 <br /></td></tr>
+<tr class="separator:aec45ff4339e9addd6dd6a4401190a429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="events" name="events"></a>
+이벤트</h2></td></tr>
+<tr class="memitem:a2ac9ea3e0a99a2f7d84e013b2557eac9" id="r_a2ac9ea3e0a99a2f7d84e013b2557eac9"><td class="memItemLeft" align="right" valign="top"><a id="a2ac9ea3e0a99a2f7d84e013b2557eac9" name="a2ac9ea3e0a99a2f7d84e013b2557eac9"></a>
+<a class="el" href="#a5f577aea584a7a5250e4fd76521bd88c">TimeChangeHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><b>OnHourChanged</b></td></tr>
+<tr class="separator:a2ac9ea3e0a99a2f7d84e013b2557eac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4277198012d3d31c776582cb39b538d3" id="r_a4277198012d3d31c776582cb39b538d3"><td class="memItemLeft" align="right" valign="top"><a id="a4277198012d3d31c776582cb39b538d3" name="a4277198012d3d31c776582cb39b538d3"></a>
+<a class="el" href="#a5f577aea584a7a5250e4fd76521bd88c">TimeChangeHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><b>OnMinuteChanged</b></td></tr>
+<tr class="separator:a4277198012d3d31c776582cb39b538d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff4d2532eb124dd0b96a40ca176782f" id="r_a5ff4d2532eb124dd0b96a40ca176782f"><td class="memItemLeft" align="right" valign="top"><a id="a5ff4d2532eb124dd0b96a40ca176782f" name="a5ff4d2532eb124dd0b96a40ca176782f"></a>
+<a class="el" href="#aecdf81e854924ad15579debc2d3abab6">TimeEventHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><b>OnTimeEvent</b></td></tr>
+<tr class="separator:a5ff4d2532eb124dd0b96a40ca176782f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d0e28deb60e3a3c0655b5e4c717f50" id="r_a36d0e28deb60e3a3c0655b5e4c717f50"><td class="memItemLeft" align="right" valign="top"><a id="a36d0e28deb60e3a3c0655b5e4c717f50" name="a36d0e28deb60e3a3c0655b5e4c717f50"></a>
+<a class="el" href="#a2634688750509ac8b1bdccf6936ef025">DayChangeHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><b>OnDayChanged</b></td></tr>
+<tr class="separator:a36d0e28deb60e3a3c0655b5e4c717f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>24시간 순환 시간 시스템을 관리하는 클래스 싱글톤 패턴으로 구현되어 전체 게임에서 접근 가능 </p>
+</div><h2 class="groupheader">멤버 함수 문서화</h2>
+<a id="adefacb9693a27db27cdc9b67978bfcd7" name="adefacb9693a27db27cdc9b67978bfcd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adefacb9693a27db27cdc9b67978bfcd7">&#9670;&#160;</a></span>GetCurrentTimeInMinutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int JY.TimeSystem.GetCurrentTimeInMinutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>현재 시간을 분 단위로 반환 (0-1439, 하루는 1440분) </p>
+<dl class="section return"><dt>반환값</dt><dd>현재 시간의 분 단위 값</dd></dl>
+
+</div>
+</div>
+<a id="ad37325bc647c871463801ad1eba767e0" name="ad37325bc647c871463801ad1eba767e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad37325bc647c871463801ad1eba767e0">&#9670;&#160;</a></span>SetDateTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JY.TimeSystem.SetDateTime </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>day</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>hour</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minute</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>시간과 일차를 동시에 설정 </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">day</td><td>일차 (1 이상)</td></tr>
+    <tr><td class="paramname">hour</td><td>시 (0-23)</td></tr>
+    <tr><td class="paramname">minute</td><td>분 (0-59)</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2e65cea5fd4f3a89cf623e8c288c2293" name="a2e65cea5fd4f3a89cf623e8c288c2293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e65cea5fd4f3a89cf623e8c288c2293">&#9670;&#160;</a></span>SetDay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JY.TimeSystem.SetDay </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>day</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>일차 설정 메서드 </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">day</td><td>설정할 일차 (1 이상)</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aecb1b3649efbd09591f1780e86fa4d92" name="aecb1b3649efbd09591f1780e86fa4d92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb1b3649efbd09591f1780e86fa4d92">&#9670;&#160;</a></span>SetTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JY.TimeSystem.SetTime </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>hour</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minute</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>시간 설정 메서드 </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hour</td><td>시 (0-23)</td></tr>
+    <tr><td class="paramname">minute</td><td>분 (0-59)</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.:<ul>
+<li>C:/Users/YJU/Documents/GitHub/LodgingSimulator/Assets/02.Scripts/Time/<b>TimeSystem.cs</b></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_j_y.html">JY</a></li><li class="navelem"><a class="el" href="class_j_y_1_1_time_system.html">TimeSystem</a></li>
+    <li class="footer">다음에 의해 생성됨 :  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

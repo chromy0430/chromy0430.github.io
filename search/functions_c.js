@@ -1,12 +1,23 @@
 var searchData=
 [
-  ['registernewroom_0',['RegisterNewRoom',['../class_room_manager.html#ace355e6db7845468e03c6642f63b451d',1,'RoomManager']]],
-  ['releaseroom_1',['ReleaseRoom',['../class_j_y_1_1_room_contents.html#a6b4ff4f3444a97192a660b1f6cb2cfec',1,'JY::RoomContents']]],
-  ['removeobject_2',['RemoveObject',['../class_object_placer.html#a7aab53390fcf73c90f57db1337482bab',1,'ObjectPlacer']]],
-  ['removeobjectbyindex_3',['RemoveObjectByIndex',['../class_grid_data.html#ad750657095d81bf1cda5bc951427f866',1,'GridData']]],
-  ['reportroomusage_4',['ReportRoomUsage',['../class_room_manager.html#a5b5732b8e84a164e776bf332de2b73b2',1,'RoomManager']]],
-  ['returnalltopool_5',['ReturnAllToPool',['../class_a_i_spawner.html#a9992b054c14ebd4e6498b13301102e05',1,'AISpawner']]],
-  ['returntopool_6',['ReturnToPool',['../class_a_i_spawner.html#aef2f67bca5dac611cebd9c8474997413',1,'AISpawner']]],
-  ['roomsupdatedhandler_7',['RoomsUpdatedHandler',['../class_a_i_agent.html#aa5afb79554b17c07df1e8dddef13924f',1,'AIAgent']]],
-  ['roomupdatehandler_8',['RoomUpdateHandler',['../class_room_detector.html#afb84f031ae1b1e7252113cf444f9bcdf',1,'RoomDetector']]]
+  ['recreatetween_0',['RecreateTween',['../class_d_g_1_1_tweening_1_1_d_o_tween_animation.html#a5f10ea6894b01095c3e070be25c2b535',1,'DG::Tweening::DOTweenAnimation']]],
+  ['recreatetweenandplay_1',['RecreateTweenAndPlay',['../class_d_g_1_1_tweening_1_1_d_o_tween_animation.html#a6f611a75675e665610413e9c148545b7',1,'DG::Tweening::DOTweenAnimation']]],
+  ['registernewroom_2',['RegisterNewRoom',['../class_j_y_1_1_room_manager.html#abfd6d78ed5ed953569a73aa54b2b7780',1,'JY::RoomManager']]],
+  ['registerroomfromdetector_3',['RegisterRoomFromDetector',['../class_j_y_1_1_room_manager.html#a4b4d8c7c9f3666c0c6bd2470917414f6',1,'JY::RoomManager']]],
+  ['releaseroom_4',['ReleaseRoom',['../class_j_y_1_1_room_contents.html#a6b4ff4f3444a97192a660b1f6cb2cfec',1,'JY::RoomContents']]],
+  ['removeobject_5',['RemoveObject',['../class_object_placer.html#a7aab53390fcf73c90f57db1337482bab',1,'ObjectPlacer']]],
+  ['removeobjectbyindex_6',['RemoveObjectByIndex',['../class_grid_data.html#ad750657095d81bf1cda5bc951427f866',1,'GridData']]],
+  ['removereputation_7',['RemoveReputation',['../class_j_y_1_1_reputation_system.html#ac309e44b8466ba5520512e65ec1f67af',1,'JY::ReputationSystem']]],
+  ['removeroute_8',['RemoveRoute',['../class_j_y_1_1_ship_system.html#a25c6b11bfa6b826ab1a60bb0550983ad',1,'JY::ShipSystem']]],
+  ['removewaypoint_9',['RemoveWaypoint',['../class_j_y_1_1_ship_route.html#aa6d56452b2e58350e00b9cf62229c918',1,'JY::ShipRoute']]],
+  ['reportroomusage_10',['ReportRoomUsage',['../class_j_y_1_1_room_manager.html#a4448b15ed5e95157ae3505b6806e1c33',1,'JY::RoomManager']]],
+  ['reset_11',['Reset',['../class_j_y_1_1_ship_schedule.html#a6b1175c7dda11f8c2c98f193134d5945',1,'JY::ShipSchedule']]],
+  ['resetship_12',['ResetShip',['../class_j_y_1_1_ship_controller.html#a1d5dabe8bbc22f763fb115eb8a8193b8',1,'JY::ShipController']]],
+  ['resizepool_13',['ResizePool',['../class_j_y_1_1_ship_object_pool.html#acc7b422724376cb210a80fb883538ce4',1,'JY::ShipObjectPool']]],
+  ['returnallships_14',['ReturnAllShips',['../class_j_y_1_1_ship_object_pool.html#a80fbe11975dcef91ef8e3a16c945b91a',1,'JY::ShipObjectPool']]],
+  ['returnalltopool_15',['ReturnAllToPool',['../class_j_y_1_1_a_i_spawner.html#af4e983d473539c5f7593c47de9be32c7',1,'JY::AISpawner']]],
+  ['returnship_16',['ReturnShip',['../class_j_y_1_1_ship_object_pool.html#a169cf21ea13d477269b2a71d320eed1f',1,'JY::ShipObjectPool']]],
+  ['returntopool_17',['ReturnToPool',['../class_j_y_1_1_a_i_spawner.html#aa46dfd140e23ab17cadbe4e67ee98f01',1,'JY::AISpawner']]],
+  ['rewindthenrecreatetween_18',['RewindThenRecreateTween',['../class_d_g_1_1_tweening_1_1_d_o_tween_animation.html#af75422c819073134e02ab10a6a67a78a',1,'DG::Tweening::DOTweenAnimation']]],
+  ['rewindthenrecreatetweenandplay_19',['RewindThenRecreateTweenAndPlay',['../class_d_g_1_1_tweening_1_1_d_o_tween_animation.html#a1aa16425be137c01e676bedef6b93a16',1,'DG::Tweening::DOTweenAnimation']]]
 ];

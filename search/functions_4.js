@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['findallrooms_0',['FindAllRooms',['../class_room_manager.html#a150b81e83359105fea86a4d5506e2a25',1,'RoomManager']]],
-  ['findroomsinpricerange_1',['FindRoomsInPriceRange',['../class_room_manager.html#a2a761f691bfc2af39a7887562462618f',1,'RoomManager']]]
+  ['enterbuildmode_0',['EnterBuildMode',['../class_placement_system.html#a24b25a3cc49e9c0dfd9215ab28c575d9',1,'PlacementSystem']]],
+  ['exitbuildmode_1',['ExitBuildMode',['../class_placement_system.html#a25faeec0b2a1960db57bf187aa5e240c',1,'PlacementSystem']]]
 ];

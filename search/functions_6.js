@@ -1,6 +1,27 @@
 var searchData=
 [
-  ['hasunpaidpayments_0',['HasUnpaidPayments',['../class_j_y_1_1_payment_system.html#a55821f918db689d5bae2b021f0a3bcdc',1,'JY::PaymentSystem']]],
-  ['hideallplanes_1',['HideAllPlanes',['../class_placement_system.html#ab5e9ea53a2a35775438117ed30c0908f',1,'PlacementSystem']]],
-  ['hideplane_2',['HidePlane',['../class_placement_system.html#aa10f720327a4fda01cc135d25aac3b1d',1,'PlacementSystem']]]
+  ['getactiveaicount_0',['GetActiveAICount',['../class_j_y_1_1_a_i_spawner.html#a9c4e43b56f1b345c98d0ae7f23ff63c9',1,'JY::AISpawner']]],
+  ['getactiveships_1',['GetActiveShips',['../class_j_y_1_1_ship_system.html#a0bc64cb9c5ac7e27ef0928fc90f9044e',1,'JY::ShipSystem']]],
+  ['getavailablerooms_2',['GetAvailableRooms',['../class_j_y_1_1_room_manager.html#aca29de588c2f71d61c8818fc0c71bdee',1,'JY::RoomManager']]],
+  ['getcurrentgrade_3',['GetCurrentGrade',['../class_j_y_1_1_reputation_system.html#ad19a88b041c667547a13aa5d0255a51f',1,'JY::ReputationSystem']]],
+  ['getcurrenttimeinminutes_4',['GetCurrentTimeInMinutes',['../class_j_y_1_1_time_system.html#adefacb9693a27db27cdc9b67978bfcd7',1,'JY::TimeSystem']]],
+  ['getdeparturewaypointposition_5',['GetDepartureWaypointPosition',['../class_j_y_1_1_ship_route.html#a84b59b610c3a5c0d2006ea329a8d4b89',1,'JY::ShipRoute']]],
+  ['getdockingposition_6',['GetDockingPosition',['../class_j_y_1_1_ship_route.html#afc499e2ce0ba1ee1ac902dc190c023dc',1,'JY::ShipRoute']]],
+  ['getdockingrotation_7',['GetDockingRotation',['../class_j_y_1_1_ship_route.html#a5a55879a56bd348e08e816615ee4ce70',1,'JY::ShipRoute']]],
+  ['getestimatedtraveltime_8',['GetEstimatedTravelTime',['../class_j_y_1_1_ship_route.html#a3a57f57b8d5785ffdfb4fcdf3d9910d4',1,'JY::ShipRoute']]],
+  ['getnextspawntime_9',['GetNextSpawnTime',['../class_j_y_1_1_a_i_spawner.html#aadbb0c7583e67c1964600be273d08384',1,'JY::AISpawner']]],
+  ['getobjectindex_10',['GetObjectIndex',['../class_object_placer.html#ae5c51612cc975296f68a3917b9358020',1,'ObjectPlacer']]],
+  ['getpooledaicount_11',['GetPooledAICount',['../class_j_y_1_1_a_i_spawner.html#ac6cf3bd21f89f04b31bc92ebaca02e91',1,'JY::AISpawner']]],
+  ['getpoolstatus_12',['GetPoolStatus',['../class_j_y_1_1_ship_object_pool.html#a7ad737307bafcbc717e9286e0e72b378',1,'JY::ShipObjectPool']]],
+  ['getreputationtonextgrade_13',['GetReputationToNextGrade',['../class_j_y_1_1_reputation_system.html#a3ea89dce118caaa2ff1be13188563547',1,'JY::ReputationSystem']]],
+  ['getrequiredreputationforgrade_14',['GetRequiredReputationForGrade',['../class_j_y_1_1_reputation_system.html#a6b303ebc1926c9bb7fe9f72164f3d826',1,'JY::ReputationSystem']]],
+  ['getschedule_15',['GetSchedule',['../class_j_y_1_1_ship_system.html#aa056876ff090f0882f1e860490dd7436',1,'JY::ShipSystem']]],
+  ['getselectedmapposition_16',['GetSelectedMapPosition',['../class_input_manager.html#a25e763b84c157a83881364f39df51744',1,'InputManager']]],
+  ['getship_17',['GetShip',['../class_j_y_1_1_ship_object_pool.html#ad5f34f5f0310ebb92a4c91dac1a2a7b2',1,'JY::ShipObjectPool']]],
+  ['getstatusinfo_18',['GetStatusInfo',['../class_sun_moon_controller.html#a218ce5e3a26ce773c69167791ddadc00',1,'SunMoonController']]],
+  ['gettotaldistance_19',['GetTotalDistance',['../class_j_y_1_1_ship_route.html#a76ca9e164d74bbab39535efd8e8c816c',1,'JY::ShipRoute']]],
+  ['gettotalunpaidamount_20',['GetTotalUnpaidAmount',['../class_j_y_1_1_payment_system.html#a2220bd82129f881efece2d38235b5df9',1,'JY::PaymentSystem']]],
+  ['gettweens_21',['GetTweens',['../class_d_g_1_1_tweening_1_1_d_o_tween_animation.html#a13aada6e21f2cbf4336cc956ff304266',1,'DG::Tweening::DOTweenAnimation']]],
+  ['getunpaidrooms_22',['GetUnpaidRooms',['../class_j_y_1_1_payment_system.html#aaf1545f1d5e8c76b442f800335d04e60',1,'JY::PaymentSystem']]],
+  ['getwaypointposition_23',['GetWaypointPosition',['../class_j_y_1_1_ship_route.html#a92f3a52fd62cefab08e19e15082e6458',1,'JY::ShipRoute']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['kindindex_0',['kindIndex',['../class_placement_data.html#a3326479a71fb4fc6bda108c2cc5c3bb0',1,'PlacementData.kindIndex'],['../class_object_data.html#abf0d1a2dc78be4a41da8d6002a4f3491',1,'ObjectData.kindIndex']]]
+  ['outputcloudsdepth_0',['OutputCloudsDepth',['../class_volumetric_clouds_u_r_p.html#af9275c96d4c8bc3c96125927c39af887',1,'VolumetricCloudsURP']]],
+  ['outputtoscenedepth_1',['OutputToSceneDepth',['../class_volumetric_clouds_u_r_p.html#ac97abe34bd1d59ad404019c418a7345f',1,'VolumetricCloudsURP']]]
 ];
