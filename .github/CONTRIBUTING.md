@@ -21,3 +21,10 @@ When submitting a pull request:
 2. Create a branch off of `master` and give it a meaningful name (e.g. 
    `my-awesome-new-feature`) and describe the feature or fix.
 3. Open a pull request on GitHub.
+
+---
+
+https://chromy0430.github.io/wallpaper.html - 이미지 사이즈 비율 조정
+https://chromy0430.github.io/ColorPalette.html - 이미지 색상 파레트 추출
+https://chromy0430.github.io/AppIconGenerator.html - 이미지를 앱 아이콘 파일로 변경
+https://chromy0430.github.io/DataRemover.html - 이미지에 담긴 메타데이터, 정보들 삭제
