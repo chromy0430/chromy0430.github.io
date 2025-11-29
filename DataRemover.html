@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Privacy Scrubber (EXIF Remover)</title>
+    <style>
+        body { background: #1e1e1e; color: #f0f0f0; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px; }
+        .container { background: #2c2c2c; padding: 30px; border-radius: 12px; max-width: 600px; width: 100%; text-align: center; border: 1px solid #444; }
+        h1 { color: #ff3b30; margin-top: 0; } /* Apple System Red for Privacy alert feel */
+        .info { background: #333; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: left; font-size: 0.9rem; color: #ccc; }
+        input[type="file"] { margin: 20px 0; }
+        button { background: #34c759; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; width: 100%; }
+        button:hover { background: #28a745; }
+        button:disabled { background: #555; }
+        #status { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 EXIF 데이터 제거기</h1>
+        <div class="info">
+            <strong>원리:</strong> 사진을 캔버스에 다시 그리는 과정에서 GPS, 카메라 기종, 촬영 일시 등의 메타데이터가 <strong>물리적으로 제거</strong>됩니다.<br><br>
+            * 서버 전송 없이 브라우저에서 즉시 처리됩니다.
+        </div>
+        
+        <input type="file" id="fileInput" accept="image/*">
+        <br>
+        <button id="cleanBtn" onclick="cleanImage()" disabled>메타데이터 삭제 및 저장</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const cleanBtn = document.getElementById('cleanBtn');
+        const status = document.getElementById('status');
+        let sourceImage = null;
+        let fileName = "";
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            fileName = file.name.split('.')[0] + "_clean.png";
+            status.innerText = "이미지 분석 중...";
+            
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                sourceImage = new Image();
+                sourceImage.onload = () => {
+                    cleanBtn.disabled = false;
+                    status.innerText = "준비 완료. 버튼을 눌러 저장하세요.";
+                };
+                sourceImage.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function cleanImage() {
+            if (!sourceImage) return;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = sourceImage.width;
+            canvas.height = sourceImage.height;
+            const ctx = canvas.getContext('2d');
+
+            // 이미지 다시 그리기 (이 과정에서 메타데이터 소멸)
+            ctx.drawImage(sourceImage, 0, 0);
+
+            // 다운로드
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                status.innerText = "✅ 안전하게 저장되었습니다!";
+            }, 'image/png'); // PNG로 저장 (손실 없음)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Color Palette Generator</title>
+    <style>
+        :root { --bg: #1e1e1e; --card: #2c2c2c; --text: #f0f0f0; --accent: #0a84ff; }
+        body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; margin: 0; }
+        .container { width: 100%; max-width: 600px; }
+        
+        .upload-box {
+            background: var(--card); border: 2px dashed #444; border-radius: 12px;
+            padding: 30px; text-align: center; cursor: pointer; transition: 0.2s;
+        }
+        .upload-box:hover { border-color: var(--accent); background: #333; }
+        
+        #preview { max-width: 100%; border-radius: 8px; margin-top: 20px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        
+        .palette { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+        .swatch-container { display: flex; flex-direction: column; align-items: center; width: 80px; }
+        .swatch { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); border: 2px solid #444; cursor: pointer; transition: transform 0.1s; }
+        .swatch:active { transform: scale(0.9); }
+        .hex-code { margin-top: 5px; font-family: monospace; font-size: 0.9rem; color: #aaa; cursor: pointer; }
+        
+        h1 { font-size: 1.5rem; margin-bottom: 10px; }
+        p { color: #888; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Dominant Color Extractor</h1>
+        <p>이미지를 업로드하면 주요 색상 6가지를 추출합니다.</p>
+        
+        <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+            이미지 선택 또는 드래그 앤 드롭
+            <input type="file" id="fileInput" accept="image/*" hidden>
+        </div>
+
+        <img id="preview">
+        <div class="palette" id="palette"></div>
+    </div>
+
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const preview = document.getElementById('preview');
+        const paletteContainer = document.getElementById('palette');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        fileInput.addEventListener('change', (e) => processFile(e.target.files[0]));
+
+        function processFile(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    extractColors(img);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function extractColors(img) {
+            // 성능을 위해 이미지 리사이징 (최대 200px)
+            const scale = Math.min(1, 200 / Math.max(img.width, img.height));
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            const colorMap = {};
+            
+            // 픽셀 순회 (Step 4로 성능 최적화)
+            for (let i = 0; i < imageData.length; i += 16) {
+                const r = imageData[i];
+                const g = imageData[i+1];
+                const b = imageData[i+2];
+                const a = imageData[i+3];
+
+                if (a < 128) continue; // 투명도 제외
+
+                // 색상 단순화 (Quantization - 10단위로 묶음)
+                const key = `${Math.round(r/10)*10},${Math.round(g/10)*10},${Math.round(b/10)*10}`;
+                if (!colorMap[key]) colorMap[key] = { r, g, b, count: 0 };
+                colorMap[key].count++;
+            }
+
+            // 빈도순 정렬
+            let sortedColors = Object.values(colorMap).sort((a, b) => b.count - a.count);
+            
+            // 너무 비슷한 색상 제거 (Distance Check)
+            const distinctColors = [];
+            const threshold = 40; // 색상 차이 임계값
+
+            for (const color of sortedColors) {
+                if (distinctColors.length >= 6) break;
+                
+                let isDistinct = true;
+                for (const existing of distinctColors) {
+                    const dist = Math.sqrt(
+                        Math.pow(color.r - existing.r, 2) +
+                        Math.pow(color.g - existing.g, 2) +
+                        Math.pow(color.b - existing.b, 2)
+                    );
+                    if (dist < threshold) {
+                        isDistinct = false;
+                        break;
+                    }
+                }
+                if (isDistinct) distinctColors.push(color);
+            }
+
+            renderPalette(distinctColors);
+        }
+
+        function renderPalette(colors) {
+            paletteContainer.innerHTML = '';
+            colors.forEach(c => {
+                const hex = rgbToHex(c.r, c.g, c.b);
+                const div = document.createElement('div');
+                div.className = 'swatch-container';
+                div.innerHTML = `
+                    <div class="swatch" style="background-color: ${hex}" onclick="copyToClipboard('${hex}')"></div>
+                    <span class="hex-code" onclick="copyToClipboard('${hex}')">${hex}</span>
+                `;
+                paletteContainer.appendChild(div);
+            });
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`색상 코드 복사됨: ${text}`);
+            });
+        }
+    </script>
+</body>
+</html>
