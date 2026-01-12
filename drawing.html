@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Realtime Drawing Board</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #f0f0f0; }
+        canvas { display: block; background-color: #ffffff; cursor: crosshair; }
+        #status { position: absolute; top: 10px; left: 10px; padding: 5px 10px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px; font-family: sans-serif; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+    <div id="status">연결 대기중...</div>
+    <canvas id="drawCanvas"></canvas>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script>
+        // ==========================================
+        // 1. Firebase 설정 (이 부분을 본인 것으로 교체하세요)
+        // ==========================================
+        const firebaseConfig = {
+			apiKey: "AIzaSyB963SIu9GvMryYljRDXwRg8MBQ4Uh_5RU",
+		  authDomain: "referencedrawing-9c65e.firebaseapp.com",
+		  databaseURL: "https://referencedrawing-9c65e-default-rtdb.asia-southeast1.firebasedatabase.app",
+		  projectId: "referencedrawing-9c65e",
+		  storageBucket: "referencedrawing-9c65e.firebasestorage.app",
+		  messagingSenderId: "199968833624",
+		  appId: "1:199968833624:web:c9c0049c303011f8298a2d"
+        };
+        // ==========================================
+
+        // Firebase 초기화 [신뢰: Google Firebase 공식 문서 기준]
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.database();
+        const linesRef = db.ref('lines'); // 'lines'라는 방에 데이터 저장
+
+        // 캔버스 설정
+        const canvas = document.getElementById('drawCanvas');
+        const ctx = canvas.getContext('2d');
+        const statusDiv = document.getElementById('status');
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        // 화면 크기 맞춤
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // ==========================================
+        // 2. 그리기 로직 (입력 -> Firebase 전송)
+        // ==========================================
+        
+        // 마우스/터치 좌표 추출 헬퍼 함수
+        function getPos(e) {
+            if (e.touches && e.touches.length > 0) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getPos(e);
+            lastX = pos.x;
+            lastY = pos.y;
+            e.preventDefault(); // 아이패드 스크롤 방지
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+
+            const pos = getPos(e);
+            const currentX = pos.x;
+            const currentY = pos.y;
+
+            // 로컬(내 화면)에 먼저 그리기 (지연 시간 없이 즉각 반응 위해)
+            drawLine(lastX, lastY, currentX, currentY, '#000', 2);
+
+            // Firebase에 데이터 전송 (Input -> Server)
+            // 성능 최적화: 모든 픽셀을 보내지 않고, 선의 시작점과 끝점만 전송
+            linesRef.push({
+                x0: lastX,
+                y0: lastY,
+                x1: currentX,
+                y1: currentY,
+                color: '#000',
+                width: 2
+            });
+
+            lastX = currentX;
+            lastY = currentY;
+        }
+
+        // 이벤트 리스너 등록 (마우스 + 터치 지원)
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        canvas.addEventListener('touchend', stopDrawing);
+
+        // ==========================================
+        // 3. 동기화 로직 (Firebase 수신 -> 화면 출력)
+        // ==========================================
+        
+        // 데이터베이스에 새로운 선이 추가되면 실행됨 (Server -> Output)
+        linesRef.on('child_added', (snapshot) => {
+            const data = snapshot.val();
+            // 내가 그린게 아닐 때만 그리기 (중복 그리기 방지 옵션은 생략, 여기선 다 그림)
+            drawLine(data.x0, data.y0, data.x1, data.y1, data.color, data.width);
+            statusDiv.innerText = "동기화 중...";
+            setTimeout(() => statusDiv.innerText = "연결됨", 500);
+        });
+
+        function drawLine(x0, y0, x1, y1, color, width) {
+            ctx.beginPath();
+            ctx.moveTo(x0, y0);
+            ctx.lineTo(x1, y1);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = width;
+            ctx.lineCap = 'round'; // 선 끝을 둥글게
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // 초기화 버튼 (콘솔에서 db.ref('lines').remove() 실행 시 화면 지움)
+        linesRef.on('child_removed', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        statusDiv.innerText = "연결됨 (그리기 가능)";
+
+    </script>
+</body>
+</html>
