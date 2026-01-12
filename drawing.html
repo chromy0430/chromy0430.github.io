@@ -3,11 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Realtime Drawing Board</title>
+	
+	<title>Realtime Drawing Board</title>
+	    
     <style>
-        body { margin: 0; overflow: hidden; background-color: #f0f0f0; }
+        body { margin: 0; overflow: hidden; background-color: #f0f0f0; touch-action: none; }
         canvas { display: block; background-color: #ffffff; cursor: crosshair; }
-        #status { position: absolute; top: 10px; left: 10px; padding: 5px 10px; background: rgba(0,0,0,0.5); color: white; border-radius: 5px; font-family: sans-serif; pointer-events: none; }
+		
+        #status { 
+            position: absolute; top: 15px; left: 15px; 
+            padding: 8px 12px; background: rgba(0,0,0,0.6); 
+            color: white; border-radius: 20px; font-size: 14px;
+            font-family: sans-serif; pointer-events: none; 
+            user-select: none;
+        }
+		
+		.toolbar {
+            position: absolute; bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; gap: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px; border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 버튼 스타일 */
+        .tool-btn {
+            border: none; background: #eee;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            font-size: 24px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+
+        /* 선택된 도구 강조 */
+        .tool-btn.active {
+            background: #333; color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+		
+		/* 전체 삭제 버튼 (빨간색) */
+        .btn-clear {
+            color: #ff4444; background: #fff0f0;
+        }
+        .btn-clear:active {
+            background: #ff4444; color: white;
+        }
     </style>
 </head>
 <body>
@@ -15,6 +58,12 @@
     <div id="status">연결 대기중...</div>
     <canvas id="drawCanvas"></canvas>
 
+	<div class="toolbar">
+        <button id="btn-pen" class="tool-btn active" onclick="setTool('pen')">✏️</button>
+        <button id="btn-eraser" class="tool-btn" onclick="setTool('eraser')">🧽</button>
+        <div style="width: 1px; background: #ddd; margin: 0 5px;"></div> <button id="btn-clear" class="tool-btn btn-clear" onclick="clearAll()">🗑️</button>
+    </div>
+	
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -61,7 +110,34 @@
         // 2. 그리기 로직 (입력 -> Firebase 전송)
         // ==========================================
         
-        // 마우스/터치 좌표 추출 헬퍼 함수
+        function setTool(tool) {
+            currentTool = tool;
+            
+            // UI 업데이트 (버튼 색상 변경)
+            document.getElementById('btn-pen').classList.remove('active');
+            document.getElementById('btn-eraser').classList.remove('active');
+
+            if (tool === 'pen') {
+                document.getElementById('btn-pen').classList.add('active');
+                currentColor = '#000000';
+                currentWidth = 2;
+            } else if (tool === 'eraser') {
+                document.getElementById('btn-eraser').classList.add('active');
+                currentColor = '#ffffff'; // 배경색과 같은 흰색으로 덮음
+                currentWidth = 30;        // 지우개는 펜보다 두껍게
+            }
+        }
+
+        // 전체 삭제 로직
+        function clearAll() {
+            if(confirm("모든 그림을 지우시겠습니까? 되돌릴 수 없습니다.")) {
+                linesRef.remove(); // 데이터베이스를 비움 -> 모든 기기에서 child_removed 이벤트 발생
+            }
+        }
+
+        // ----------------------------------------
+        // 2. 그리기 로직 (Input -> Firebase)
+        // ----------------------------------------
         function getPos(e) {
             if (e.touches && e.touches.length > 0) {
                 return { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -70,64 +146,66 @@
         }
 
         function startDrawing(e) {
+            if(e.target.closest('.toolbar')) return; // 툴바 터치 시 그리기 방지
             isDrawing = true;
             const pos = getPos(e);
-            lastX = pos.x;
-            lastY = pos.y;
-            e.preventDefault(); // 아이패드 스크롤 방지
+            lastX = pos.x; lastY = pos.y;
         }
 
-        function stopDrawing() {
-            isDrawing = false;
-        }
+        function stopDrawing() { isDrawing = false; }
 
         function draw(e) {
             if (!isDrawing) return;
-            e.preventDefault();
+            e.preventDefault(); // 스크롤 방지
 
             const pos = getPos(e);
-            const currentX = pos.x;
-            const currentY = pos.y;
+            
+            // 내 화면에 먼저 그리기 (반응속도 향상)
+            drawLine(lastX, lastY, pos.x, pos.y, currentColor, currentWidth);
 
-            // 로컬(내 화면)에 먼저 그리기 (지연 시간 없이 즉각 반응 위해)
-            drawLine(lastX, lastY, currentX, currentY, '#000', 2);
-
-            // Firebase에 데이터 전송 (Input -> Server)
-            // 성능 최적화: 모든 픽셀을 보내지 않고, 선의 시작점과 끝점만 전송
+            // 서버로 전송 (현재 선택된 색상과 두께를 보냄)
             linesRef.push({
-                x0: lastX,
-                y0: lastY,
-                x1: currentX,
-                y1: currentY,
-                color: '#000',
-                width: 2
+                x0: lastX, y0: lastY,
+                x1: pos.x, y1: pos.y,
+                color: currentColor,
+                width: currentWidth
             });
 
-            lastX = currentX;
-            lastY = currentY;
+            lastX = pos.x; lastY = pos.y;
         }
 
-        // 이벤트 리스너 등록 (마우스 + 터치 지원)
+        // 이벤트 리스너
         canvas.addEventListener('mousedown', startDrawing);
         canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mouseup', stopDrawing);
-        canvas.addEventListener('mouseout', stopDrawing);
-
+        
         canvas.addEventListener('touchstart', startDrawing, { passive: false });
         canvas.addEventListener('touchmove', draw, { passive: false });
         canvas.addEventListener('touchend', stopDrawing);
 
-        // ==========================================
-        // 3. 동기화 로직 (Firebase 수신 -> 화면 출력)
-        // ==========================================
-        
-        // 데이터베이스에 새로운 선이 추가되면 실행됨 (Server -> Output)
+        // ----------------------------------------
+        // 3. 동기화 로직 (Firebase -> Output)
+        // ----------------------------------------
         linesRef.on('child_added', (snapshot) => {
             const data = snapshot.val();
-            // 내가 그린게 아닐 때만 그리기 (중복 그리기 방지 옵션은 생략, 여기선 다 그림)
             drawLine(data.x0, data.y0, data.x1, data.y1, data.color, data.width);
-            statusDiv.innerText = "동기화 중...";
-            setTimeout(() => statusDiv.innerText = "연결됨", 500);
+            statusDiv.innerText = "● 실시간 연동됨";
+            statusDiv.style.color = "#4caf50"; // 녹색 텍스트
+        });
+
+        // 누군가 전체 삭제를 눌렀을 때
+        linesRef.on('child_removed', () => {
+            // child_removed는 데이터가 하나씩 지워질 때마다 발생할 수 있음.
+            // 성능을 위해 "화면 전체 지우기"는 한 번만 수행하도록 requestAnimationFrame 사용 가능하나,
+            // 간단하게는 clearRect로 처리합니다.
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // 처음 로딩 시 전체 리셋 감지 (데이터가 없을 때)
+        linesRef.on('value', (snapshot) => {
+            if(!snapshot.exists()) {
+                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
         });
 
         function drawLine(x0, y0, x1, y1, color, width) {
@@ -136,7 +214,8 @@
             ctx.lineTo(x1, y1);
             ctx.strokeStyle = color;
             ctx.lineWidth = width;
-            ctx.lineCap = 'round'; // 선 끝을 둥글게
+            ctx.lineCap = 'round'; 
+            ctx.lineJoin = 'round';
             ctx.stroke();
             ctx.closePath();
         }
