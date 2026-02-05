@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Log & Kanban</title>
+    <style>
+        :root {
+            --bg-color: #a54b68;
+            --sidebar-bg: #1e1e1e;
+            --column-bg: #101204;
+            --card-bg: #22272b;
+            --text-color: #b6c2cf;
+            --accent-color: #579dff;
+            --danger-color: #ff5555;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- Sidebar (History) --- */
+        #sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #333;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #history-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .history-item {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            transition: background 0.2s;
+            color: #888;
+        }
+        .history-item:hover { background: rgba(255,255,255,0.1); color: white; }
+        .history-item.active { background: var(--accent-color); color: #fff; font-weight: bold; }
+        .history-item.current-item { border: 1px solid var(--accent-color); color: var(--accent-color); }
+
+        /* --- Main Area --- */
+        #main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #top-bar {
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #status-indicator {
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background: #444;
+            color: #aaa;
+        }
+        .status-unlocked { background: var(--accent-color) !important; color: white !important; }
+        
+        #auth-btn {
+            background: none; border: 1px solid #777; color: #ccc;
+            padding: 5px 15px; cursor: pointer; border-radius: 4px;
+        }
+        #auth-btn:hover { background: #fff; color: #000; }
+
+        /* --- Board Layout --- */
+        #board {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 15px;
+            overflow-x: auto;
+            height: 100%;
+        }
+
+        .column {
+            background-color: var(--column-bg);
+            border-radius: 12px;
+            width: 300px;
+            min-width: 300px;
+            max-height: calc(100% - 40px);
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .column-header {
+            padding: 8px; font-weight: bold; color: #fff;
+            display: flex; justify-content: space-between;
+        }
+
+        .card-list {
+            flex-grow: 1; overflow-y: auto; min-height: 50px; padding-bottom: 10px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px; padding: 10px; margin-bottom: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* --- Read-Only vs Edit Mode Styles --- */
+        /* Edit Mode Only Elements */
+        .edit-only { display: none !important; }
+        
+        body.is-editing .edit-only { display: block !important; }
+        body.is-editing .card { cursor: grab; }
+        body.is-editing .card:active { cursor: grabbing; }
+        
+        body:not(.is-editing) .card-list { pointer-events: none; } /* Disable Drag in ReadOnly */
+        body:not(.is-editing) .column-header span { pointer-events: none; } /* Disable Rename */
+
+        /* Buttons */
+        .add-card-btn, .new-column-btn {
+            width: 100%; text-align: left; background: transparent;
+            color: #9fadbc; border: none; padding: 8px; cursor: pointer;
+        }
+        .add-card-btn:hover { background: rgba(255,255,255,0.1); }
+        
+        .new-column-btn { 
+            min-width: 300px; background: rgba(0,0,0,0.2); 
+            border-radius: 12px; padding: 15px; text-align: center; 
+        }
+
+        .delete-btn {
+            position: absolute; right: 5px; top: 5px;
+            background: none; border: none; color: #eb5a46; cursor: pointer;
+        }
+
+        /* --- Password Modal --- */
+        #modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 9999;
+            display: none; justify-content: center; align-items: center;
+        }
+        .modal-box {
+            background: #1c1c1c; padding: 30px; border-radius: 8px; text-align: center;
+        }
+        input[type="password"] {
+            padding: 10px; background: #333; border: 1px solid #555; color: white;
+            border-radius: 4px; letter-spacing: 5px; text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <span>Dev Log</span>
+        </div>
+        <div id="history-list">
+            </div>
+    </div>
+
+    <div id="main-content">
+        <div id="top-bar">
+            <div id="status-indicator">🔒 Read-Only</div>
+            <div id="current-view-label" style="font-weight:bold; margin-left:15px;">Viewing: Latest</div>
+            <button id="auth-btn" onclick="openLogin()">Login to Edit</button>
+        </div>
+
+        <div id="board">
+            <button class="new-column-btn edit-only" onclick="createNewColumn()">+ Add another list</button>
+        </div>
+    </div>
+
+    <div id="modal-overlay">
+        <div class="modal-box">
+            <h3 style="color:white; margin-top:0;">Admin Access</h3>
+            <input type="password" id="pass-input" maxlength="6" placeholder="******">
+            <p id="error-msg" style="color: #ff5555; display: none; margin-top: 5px;">Invalid</p>
+            <button onclick="closeLogin()" style="margin-top:10px; background:none; border:none; color:#777; cursor:pointer;">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Configuration ---
+        // SHA-256 Hash for "000000" (Change this via console as previously explained)
+        const CORRECT_HASH = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"; 
+        
+        const KEY_CURRENT = "kanban_current";
+        const KEY_PREFIX_HISTORY = "kanban_history_";
+
+        // Global State
+        let isEditing = false;
+        let currentViewDate = null; // null = Latest, string = '2026-02-05'
+        let boardData = { columns: [] };
+
+        // --- 1. Init & Lifecycle ---
+        window.onload = () => {
+            loadHistoryList();
+            loadBoardData(null); // Load Latest
+        };
+
+        // --- 2. Data Management (History Logic) ---
+        
+        function getTodayString() {
+            const date = new Date();
+            const days = ['일', '월', '화', '수', '목', '금', '토'];
+            // YYYY-MM-DD format
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function getDisplayDate(dateStr) {
+            // Converts '2026-02-05' to '2026-02-05 (Thu)'
+            const date = new Date(dateStr);
+            const days = ['일', '월', '화', '수', '목', '금', '토'];
+            return `${dateStr} (${days[date.getDay()]})`;
+        }
+
+        function saveBoard() {
+            // Only save if we are editing the CURRENT version
+            if (currentViewDate !== null) return; 
+
+            // 1. Serialize Data
+            const columnsDOM = document.querySelectorAll('.column');
+            const newColumnsData = [];
+            columnsDOM.forEach(col => {
+                const title = col.querySelector('.column-title').innerText;
+                const cardsDOM = col.querySelectorAll('.card');
+                const cardTexts = [];
+                cardsDOM.forEach(card => cardTexts.push(card.firstChild.textContent));
+                newColumnsData.push({ id: col.id, title: title, cards: cardTexts });
+            });
+            boardData.columns = newColumnsData;
+
+            // 2. Save Current State
+            const jsonStr = JSON.stringify(boardData);
+            localStorage.setItem(KEY_CURRENT, jsonStr);
+
+            // 3. Auto-Save to Today's History
+            const todayKey = KEY_PREFIX_HISTORY + getTodayString();
+            localStorage.setItem(todayKey, jsonStr);
+
+            // 4. Refresh Sidebar to show today if new
+            loadHistoryList();
+        }
+
+        function loadBoardData(dateStr) {
+            currentViewDate = dateStr;
+            let dataStr = "";
+
+            // UI Update
+            const label = document.getElementById('current-view-label');
+            if (dateStr === null) {
+                // Load Current
+                dataStr = localStorage.getItem(KEY_CURRENT);
+                label.innerText = "Viewing: Latest (Editable)";
+                label.style.color = "#579dff";
+                if (isEditing) document.body.classList.add('is-editing');
+            } else {
+                // Load History
+                dataStr = localStorage.getItem(KEY_PREFIX_HISTORY + dateStr);
+                label.innerText = `Viewing History: ${dateStr}`;
+                label.style.color = "#ff5555";
+                // Force Read-Only visually for history
+                document.body.classList.remove('is-editing');
+            }
+
+            if (dataStr) {
+                boardData = JSON.parse(dataStr);
+            } else if (dateStr === null) {
+                // Default Init Data if empty
+                boardData = { columns: [
+                    { id: 'c1', title: 'To Do', cards: ['Welcome! Log in to edit.'] },
+                    { id: 'c2', title: 'Done', cards: [] }
+                ]};
+            }
+
+            renderBoard();
+            updateSidebarUI();
+        }
+
+        function loadHistoryList() {
+            const listEl = document.getElementById('history-list');
+            listEl.innerHTML = "";
+
+            // 1. "Latest" Button
+            const latestBtn = document.createElement('div');
+            latestBtn.className = 'history-item current-item';
+            latestBtn.innerText = "⚡ Current (Latest)";
+            latestBtn.onclick = () => loadBoardData(null);
+            listEl.appendChild(latestBtn);
+
+            // 2. Scan LocalStorage for history keys
+            const keys = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i);
+                if (k.startsWith(KEY_PREFIX_HISTORY)) {
+                    keys.push(k.replace(KEY_PREFIX_HISTORY, ""));
+                }
+            }
+            // Sort Descending (Newest first)
+            keys.sort().reverse();
+
+            keys.forEach(dateStr => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                item.innerText = getDisplayDate(dateStr);
+                item.onclick = () => loadBoardData(dateStr);
+                listEl.appendChild(item);
+            });
+        }
+
+        function updateSidebarUI() {
+            const items = document.querySelectorAll('.history-item');
+            items.forEach(item => {
+                item.classList.remove('active');
+                // Simple check: if text contains date or "Current" matches
+                if (currentViewDate === null && item.innerText.includes("Current")) {
+                    item.classList.add('active');
+                } else if (currentViewDate && item.innerText.includes(currentViewDate)) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Re-apply edit mode class if we are back to null date and logged in
+            if (currentViewDate === null && sessionStorage.getItem('is_admin') === 'true') {
+                isEditing = true;
+                document.body.classList.add('is-editing');
+                document.getElementById('status-indicator').innerText = "🔓 Editing Mode";
+                document.getElementById('status-indicator').classList.add('status-unlocked');
+                document.getElementById('auth-btn').innerText = "Logout";
+            } else {
+                // History or Logged out
+                document.body.classList.remove('is-editing');
+                if (sessionStorage.getItem('is_admin') === 'true' && currentViewDate !== null) {
+                    // Logged in but viewing history
+                     document.getElementById('status-indicator').innerText = "👁 History (Read-Only)";
+                     document.getElementById('status-indicator').classList.remove('status-unlocked');
+                } else {
+                    document.getElementById('status-indicator').innerText = "🔒 Read-Only";
+                    document.getElementById('status-indicator').classList.remove('status-unlocked');
+                }
+            }
+        }
+
+        // --- 3. Rendering ---
+        const boardEl = document.getElementById('board');
+        const addColBtn = document.querySelector('.new-column-btn');
+
+        function renderBoard() {
+            // Clear cols except the last button
+            const cols = document.querySelectorAll('.column');
+            cols.forEach(c => c.remove());
+
+            boardData.columns.forEach(colData => {
+                createColumnElement(colData.title, colData.cards, colData.id);
+            });
+        }
+
+        function createColumnElement(title, cards, id) {
+            const col = document.createElement('div');
+            col.className = 'column';
+            col.id = id || 'col-' + Date.now();
+
+            const header = document.createElement('div');
+            header.className = 'column-header';
+            
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'column-title';
+            titleSpan.innerText = title;
+            titleSpan.contentEditable = true;
+            titleSpan.onblur = saveBoard;
+
+            const delBtn = document.createElement('span');
+            delBtn.innerHTML = '&times;';
+            delBtn.className = 'edit-only';
+            delBtn.style.cursor='pointer';
+            delBtn.onclick = () => { if(confirm('Delete List?')) {col.remove(); saveBoard();} };
+
+            header.appendChild(titleSpan);
+            header.appendChild(delBtn);
+
+            const cardList = document.createElement('div');
+            cardList.className = 'card-list';
+            
+            // DnD Logic
+            cardList.addEventListener('dragover', e => {
+                if(!isEditing) return;
+                e.preventDefault();
+                const afterElement = getDragAfterElement(cardList, e.clientY);
+                const dragging = document.querySelector('.dragging');
+                if (afterElement == null) cardList.appendChild(dragging);
+                else cardList.insertBefore(dragging, afterElement);
+            });
+            cardList.addEventListener('drop', () => { if(isEditing) saveBoard(); });
+
+            cards.forEach(text => addCardDOM(cardList, text));
+
+            const addCardBtn = document.createElement('button');
+            addCardBtn.className = 'add-card-btn edit-only';
+            addCardBtn.innerText = '+ Add a card';
+            addCardBtn.onclick = () => {
+                const t = prompt('Card Title:');
+                if(t) { addCardDOM(cardList, t); saveBoard(); }
+            };
+
+            col.appendChild(header);
+            col.appendChild(cardList);
+            col.appendChild(addCardBtn);
+            
+            boardEl.insertBefore(col, addColBtn);
+        }
+
+        function addCardDOM(container, text) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.draggable = true;
+            card.innerText = text;
+
+            const del = document.createElement('button');
+            del.className = 'delete-btn edit-only';
+            del.innerText = '🗑';
+            del.onclick = (e) => { e.stopPropagation(); card.remove(); saveBoard(); };
+
+            card.appendChild(del);
+
+            card.addEventListener('dragstart', () => {
+                if(isEditing) card.classList.add('dragging');
+                else return false;
+            });
+            card.addEventListener('dragend', () => {
+                card.classList.remove('dragging');
+                saveBoard();
+            });
+
+            container.appendChild(card);
+        }
+
+        function createNewColumn() {
+            const t = prompt('New List Title:');
+            if(t) {
+                createColumnElement(t, []);
+                saveBoard();
+            }
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.card:not(.dragging)')];
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) return { offset: offset, element: child };
+                else return closest;
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        // --- 4. Security & Auth ---
+        const overlay = document.getElementById('modal-overlay');
+        const passIn = document.getElementById('pass-input');
+        const errMsg = document.getElementById('error-msg');
+
+        function openLogin() {
+            if (isEditing) {
+                // Already logged in -> Logout action
+                sessionStorage.removeItem('is_admin');
+                isEditing = false;
+                location.reload(); // Refresh to lock
+            } else {
+                overlay.style.display = 'flex';
+                passIn.value = '';
+                passIn.focus();
+            }
+        }
+
+        function closeLogin() { overlay.style.display = 'none'; }
+
+        async function checkPass() {
+            const val = passIn.value;
+            const msgBuffer = new TextEncoder().encode(val);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            if (hashHex === CORRECT_HASH) {
+                sessionStorage.setItem('is_admin', 'true');
+                closeLogin();
+                isEditing = true;
+                // Only enable editing if looking at Latest
+                if (currentViewDate === null) {
+                    loadBoardData(null); 
+                }
+            } else {
+                errMsg.style.display = 'block';
+                setTimeout(() => errMsg.style.display = 'none', 1000);
+            }
+        }
+
+        passIn.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') checkPass();
+        });
+
+    </script>
+</body>
+</html>
