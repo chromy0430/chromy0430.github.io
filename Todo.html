@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Log & Kanban (Colorized)</title>
+    <title>Team Kanban Board</title>
     <style>
         :root {
             --bg-color: #a54b68;
             --sidebar-bg: #1e1e1e;
             --column-bg: #101204;
-            /* --card-bg: #22272b;  <- Removed fixed Color */
             --text-color: #b6c2cf;
             --accent-color: #579dff;
             --danger-color: #ff5555;
+            
+            /* Tab Colors */
+            --tab-inactive: rgba(0,0,0,0.3);
+            --tab-active: #ffffff;
+            --tab-text-active: #000;
 
-            /* --- NEW: Priority Color Palette --- */
-            /* Default (Dark Gray) */
+            /* Priority Colors */
             --card-color-default: #22272b; 
-            /* Low (Greenish) */
             --card-color-low: #2d4a3e;    
-            /* Medium (Yellowish/Brown) */
             --card-color-medium: #6b5b2b; 
-            /* High (Orangeish) */
             --card-color-high: #854c1d;    
-            /* Critical (Deep Red) */
             --card-color-critical: #6e2121;
         }
 
@@ -50,11 +49,9 @@
         .sidebar-header {
             padding: 20px;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-bottom: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: #ddd;
         }
 
         #history-list {
@@ -70,10 +67,10 @@
             margin-bottom: 5px;
             transition: background 0.2s;
             color: #888;
+            font-size: 0.9rem;
         }
         .history-item:hover { background: rgba(255,255,255,0.1); color: white; }
         .history-item.active { background: var(--accent-color); color: #fff; font-weight: bold; }
-        .history-item.current-item { border: 1px solid var(--accent-color); color: var(--accent-color); }
 
         /* --- Main Area --- */
         #main-content {
@@ -84,28 +81,55 @@
             overflow: hidden;
         }
 
+        /* --- Top Bar (Tabs & Controls) --- */
         #top-bar {
-            padding: 10px 20px;
+            padding: 10px 20px 0 20px; /* Bottom padding removed for tabs */
             background: rgba(0,0,0,0.2);
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end; /* Align tabs to bottom */
+            height: 50px;
         }
 
-        #status-indicator {
-            font-size: 0.9rem;
-            padding: 5px 10px;
-            border-radius: 4px;
-            background: #444;
-            color: #aaa;
+        #tabs-container {
+            display: flex;
+            gap: 5px;
         }
-        .status-unlocked { background: var(--accent-color) !important; color: white !important; }
+
+        .tab {
+            padding: 10px 20px;
+            background: var(--tab-inactive);
+            color: #ccc;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: bold;
+            user-select: none;
+            transition: all 0.2s;
+        }
         
-        #auth-btn {
-            background: none; border: 1px solid #777; color: #ccc;
-            padding: 5px 15px; cursor: pointer; border-radius: 4px;
+        .tab:hover { background: rgba(255,255,255,0.1); }
+        
+        .tab.active {
+            background: var(--tab-active);
+            color: var(--tab-text-active);
+            transform: translateY(0);
         }
-        #auth-btn:hover { background: #fff; color: #000; }
+
+        .top-controls {
+            padding-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button.control-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #eee;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.control-btn:hover { background: white; color: black; }
 
         /* --- Board Layout --- */
         #board {
@@ -115,6 +139,16 @@
             gap: 15px;
             overflow-x: auto;
             height: 100%;
+        }
+
+        /* Viewing History Warning Bar */
+        #history-warning {
+            background: var(--danger-color);
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            display: none;
         }
 
         .column {
@@ -138,57 +172,32 @@
             flex-grow: 1; overflow-y: auto; min-height: 50px; padding-bottom: 10px;
         }
 
-        /* --- Card Styling (Updated for Color) --- */
+        /* Card & Colors */
         .card {
-            /* Use dynamic color variable, fallback to default */
             background-color: var(--this-card-bg, var(--card-color-default));
             border-radius: 8px; padding: 10px; margin-bottom: 8px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.2);
             position: relative;
-            transition: background-color 0.2s ease;
-            padding-bottom: 25px; /* Space for color dots */
+            padding-bottom: 25px; /* Space for dots */
+            cursor: grab;
         }
-        
-        .card-text {
-            word-wrap: break-word;
-        }
+        .card:active { cursor: grabbing; }
+        .card-text { word-wrap: break-word; }
 
-        /* Color Picker Dots */
         .color-picker-container {
-            position: absolute;
-            bottom: 5px;
-            left: 10px;
-            display: flex;
-            gap: 5px;
+            position: absolute; bottom: 5px; left: 10px; display: flex; gap: 5px;
         }
-
         .color-dot {
-            width: 12px; height: 12px;
-            border-radius: 50%;
-            cursor: pointer;
+            width: 12px; height: 12px; border-radius: 50%; cursor: pointer;
             border: 1px solid rgba(255,255,255,0.2);
         }
-        .color-dot:hover { border-color: white; transform: scale(1.2); }
+        .color-dot:hover { transform: scale(1.2); border-color: white; }
 
-        /* Assign Palette colors to dots */
         .dot-default { background: var(--card-color-default); }
         .dot-low { background: var(--card-color-low); }
         .dot-medium { background: var(--card-color-medium); }
         .dot-high { background: var(--card-color-high); }
         .dot-critical { background: var(--card-color-critical); }
-
-
-        /* --- Read-Only vs Edit Mode Styles --- */
-        .edit-only { display: none !important; }
-        
-        body.is-editing .edit-only { display: block !important; }
-        body.is-editing .card { cursor: grab; }
-        body.is-editing .card:active { cursor: grabbing; }
-        
-        body:not(.is-editing) .card-list { pointer-events: none; }
-        body:not(.is-editing) .column-header span { pointer-events: none; }
-        /* Hide color dots in read-only mode to save space */
-        body:not(.is-editing) .card { padding-bottom: 10px; }
 
         /* Buttons */
         .add-card-btn, .new-column-btn {
@@ -204,31 +213,24 @@
 
         .delete-btn {
             position: absolute; right: 5px; top: 5px;
-            background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer;
+            background: none; border: none; color: rgba(255,255,255,0.3); cursor: pointer;
         }
         .delete-btn:hover { color: var(--danger-color); }
 
-        /* --- Password Modal --- */
-        #modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 9999;
-            display: none; justify-content: center; align-items: center;
-        }
-        .modal-box {
-            background: #1c1c1c; padding: 30px; border-radius: 8px; text-align: center;
-        }
-        input[type="password"] {
-            padding: 10px; background: #333; border: 1px solid #555; color: white;
-            border-radius: 4px; letter-spacing: 5px; text-align: center;
-        }
-
+        /* Read Only Mode (History) */
+        body.read-only .card { cursor: default; padding-bottom: 10px; }
+        body.read-only .color-picker-container,
+        body.read-only .add-card-btn,
+        body.read-only .delete-btn,
+        body.read-only .new-column-btn { display: none !important; }
+        body.read-only .column-header span { pointer-events: none; }
     </style>
 </head>
 <body>
 
     <div id="sidebar">
         <div class="sidebar-header">
-            <span>Dev Log</span>
+            <span id="sidebar-title">History Log</span>
         </div>
         <div id="history-list">
             </div>
@@ -236,49 +238,107 @@
 
     <div id="main-content">
         <div id="top-bar">
-            <div id="status-indicator">🔒 Read-Only</div>
-            <div id="current-view-label" style="font-weight:bold; margin-left:15px;">Viewing: Latest</div>
-            <button id="auth-btn" onclick="openLogin()">Login to Edit</button>
+            <div id="tabs-container">
+                </div>
+            <div class="top-controls">
+                <button class="control-btn" onclick="renameCurrentTab()">✎ Rename Tab</button>
+            </div>
         </div>
+
+        <div id="history-warning">⚠️ VIEWING PAST HISTORY (READ ONLY) - Click 'Current' in sidebar to edit</div>
 
         <div id="board">
-            <button class="new-column-btn edit-only" onclick="createNewColumn()">+ Add another list</button>
-        </div>
-    </div>
-
-    <div id="modal-overlay">
-        <div class="modal-box">
-            <h3 style="color:white; margin-top:0;">Admin Access</h3>
-            <input type="password" id="pass-input" maxlength="6" placeholder="******">
-            <p id="error-msg" style="color: #ff5555; display: none; margin-top: 5px;">Invalid</p>
-            <button onclick="closeLogin()" style="margin-top:10px; background:none; border:none; color:#777; cursor:pointer;">Cancel</button>
+            <button class="new-column-btn" onclick="createNewColumn()">+ Add another list</button>
         </div>
     </div>
 
     <script>
-        // --- Configuration ---
-        // SHA-256 Hash for "000000"
-        const CORRECT_HASH = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"; 
-        
-        const KEY_CURRENT = "kanban_current_v2"; // Changed key version due to data structure change
-        const KEY_PREFIX_HISTORY = "kanban_history_v2_";
+        // --- 1. Configuration & State ---
+        const DATA_PREFIX = "kanban_data_";
+        const HIST_PREFIX = "kanban_hist_";
+        const META_KEY = "kanban_meta_tabs"; // Stores tab names/IDs
 
-        // Global State
-        let isEditing = false;
-        let currentViewDate = null;
+        // Default Tabs if none exist
+        const DEFAULT_TABS = [
+            { id: 'user_a', name: 'User A' },
+            { id: 'user_b', name: 'User B' }
+        ];
+
+        let tabs = [];
+        let activeTabId = null;
+        let viewingHistoryDate = null; // null = Current (Editable), '2026-02-05' = ReadOnly
         let boardData = { columns: [] };
 
-        // Color Options
         const COLOR_OPTIONS = ['default', 'low', 'medium', 'high', 'critical'];
 
-        // --- 1. Init & Lifecycle ---
+        // --- 2. Initialization ---
         window.onload = () => {
-            loadHistoryList();
-            loadBoardData(null); // Load Latest
+            loadTabs();
+            renderTabs();
+            // Load first tab by default
+            switchTab(tabs[0].id);
         };
 
-        // --- 2. Data Management ---
+        // --- 3. Tab Management ---
+        function loadTabs() {
+            const savedMeta = localStorage.getItem(META_KEY);
+            if (savedMeta) {
+                tabs = JSON.parse(savedMeta);
+            } else {
+                tabs = DEFAULT_TABS;
+                saveTabs();
+            }
+        }
+
+        function saveTabs() {
+            localStorage.setItem(META_KEY, JSON.stringify(tabs));
+        }
+
+        function renderTabs() {
+            const container = document.getElementById('tabs-container');
+            container.innerHTML = "";
+            
+            tabs.forEach(tab => {
+                const tabEl = document.createElement('div');
+                tabEl.className = `tab ${tab.id === activeTabId ? 'active' : ''}`;
+                tabEl.innerText = tab.name;
+                tabEl.onclick = () => switchTab(tab.id);
+                container.appendChild(tabEl);
+            });
+        }
+
+        function switchTab(tabId) {
+            activeTabId = tabId;
+            viewingHistoryDate = null; // Always reset to Current when switching tabs
+            renderTabs();
+            
+            // Update Sidebar Title to show whose history it is
+            const tabName = tabs.find(t => t.id === tabId).name;
+            document.getElementById('sidebar-title').innerText = `${tabName}'s Log`;
+
+            loadBoardData(null); // Load current data
+            loadHistoryList();   // Load filtered history
+        }
+
+        function renameCurrentTab() {
+            const currentTab = tabs.find(t => t.id === activeTabId);
+            const newName = prompt("Enter new name for this tab:", currentTab.name);
+            if (newName && newName.trim() !== "") {
+                currentTab.name = newName.trim();
+                saveTabs();
+                renderTabs();
+                document.getElementById('sidebar-title').innerText = `${currentTab.name}'s Log`;
+            }
+        }
+
+        // --- 4. Data Logic (Separated by Tab ID) ---
         
+        function getStorageKey(dateStr) {
+            // Key format: kanban_data_{tabId} OR kanban_hist_{tabId}_{date}
+            if (dateStr) return `${HIST_PREFIX}${activeTabId}_${dateStr}`;
+            return `${DATA_PREFIX}${activeTabId}`;
+        }
+
         function getTodayString() {
             const date = new Date();
             const yyyy = date.getFullYear();
@@ -287,95 +347,94 @@
             return `${yyyy}-${mm}-${dd}`;
         }
 
-        function getDisplayDate(dateStr) {
-            const date = new Date(dateStr);
-            const days = ['일', '월', '화', '수', '목', '금', '토'];
-            return `${dateStr} (${days[date.getDay()]})`;
-        }
-
         function saveBoard() {
-            if (currentViewDate !== null) return; 
+            if (viewingHistoryDate !== null) return; // Prevent saving if viewing history
 
+            // Serialize DOM
             const columnsDOM = document.querySelectorAll('.column');
             const newColumnsData = [];
             columnsDOM.forEach(col => {
                 const title = col.querySelector('.column-title').innerText;
                 const cardsDOM = col.querySelectorAll('.card');
                 const cardObjects = [];
-                
-                // UPDATED: Read text AND color from DOM
                 cardsDOM.forEach(card => {
                     cardObjects.push({
                         text: card.querySelector('.card-text').innerText,
-                        color: card.dataset.color || 'default' // Get color from data attribute
+                        color: card.dataset.color || 'default'
                     });
                 });
-                
                 newColumnsData.push({ id: col.id, title: title, cards: cardObjects });
             });
             boardData.columns = newColumnsData;
 
             const jsonStr = JSON.stringify(boardData);
-            localStorage.setItem(KEY_CURRENT, jsonStr);
-            localStorage.setItem(KEY_PREFIX_HISTORY + getTodayString(), jsonStr);
-            loadHistoryList();
+            
+            // 1. Save Current
+            localStorage.setItem(getStorageKey(null), jsonStr);
+            
+            // 2. Save History (Tab-Specific)
+            localStorage.setItem(getStorageKey(getTodayString()), jsonStr);
+            
+            loadHistoryList(); // Refresh sidebar in case today is new
         }
 
         function loadBoardData(dateStr) {
-            currentViewDate = dateStr;
-            let dataStr = "";
+            viewingHistoryDate = dateStr;
+            const key = getStorageKey(dateStr);
+            const saved = localStorage.getItem(key);
 
-            // UI Update label
-            const label = document.getElementById('current-view-label');
-            if (dateStr === null) {
-                dataStr = localStorage.getItem(KEY_CURRENT);
-                label.innerText = "Viewing: Latest (Editable)";
-                label.style.color = "#579dff";
+            // UI Mode Update
+            const warning = document.getElementById('history-warning');
+            const addColBtn = document.querySelector('.new-column-btn');
+
+            if (dateStr !== null) {
+                // History Mode
+                document.body.classList.add('read-only');
+                warning.style.display = 'block';
+                addColBtn.style.display = 'none';
             } else {
-                dataStr = localStorage.getItem(KEY_PREFIX_HISTORY + dateStr);
-                label.innerText = `Viewing History: ${dateStr}`;
-                label.style.color = "#ff5555";
+                // Edit Mode
+                document.body.classList.remove('read-only');
+                warning.style.display = 'none';
+                addColBtn.style.display = 'block';
             }
 
-            if (dataStr) {
-                boardData = JSON.parse(dataStr);
-                // --- MIGRATION CHECK (Important!) ---
-                // Convert old string cards to new object format if necessary
-                boardData.columns.forEach(col => {
-                    col.cards = col.cards.map(c => {
-                        if (typeof c === 'string') return { text: c, color: 'default' };
-                        return c;
-                    });
-                });
-                // ------------------------------------
+            if (saved) {
+                boardData = JSON.parse(saved);
             } else if (dateStr === null) {
-                // Default Init Data
+                // Init Empty Board for new user
                 boardData = { columns: [
-                    { id: 'c1', title: 'To Do', cards: [{text:'Welcome! Log in to see colors.', color:'low'}] },
-                    { id: 'c2', title: 'Done', cards: [] }
+                    { id: 'c1', title: 'To Do', cards: [] },
+                    { id: 'c2', title: 'Doing', cards: [] },
+                    { id: 'c3', title: 'Done', cards: [] }
                 ]};
             }
 
-            updateBodyState();
             renderBoard();
-            updateSidebarUI();
+            highlightSidebar();
         }
 
+        // --- 5. History Sidebar (Filtered) ---
         function loadHistoryList() {
             const listEl = document.getElementById('history-list');
             listEl.innerHTML = "";
 
-            const latestBtn = document.createElement('div');
-            latestBtn.className = 'history-item current-item';
-            latestBtn.innerText = "⚡ Current (Latest)";
-            latestBtn.onclick = () => loadBoardData(null);
-            listEl.appendChild(latestBtn);
+            // "Current" Button
+            const curBtn = document.createElement('div');
+            curBtn.className = 'history-item';
+            curBtn.innerText = "⚡ Current (Latest)";
+            curBtn.dataset.val = "current";
+            curBtn.onclick = () => loadBoardData(null);
+            listEl.appendChild(curBtn);
 
+            // Find Keys for CURRENT TAB ONLY
             const keys = [];
+            const prefix = `${HIST_PREFIX}${activeTabId}_`;
+            
             for (let i = 0; i < localStorage.length; i++) {
                 const k = localStorage.key(i);
-                if (k.startsWith(KEY_PREFIX_HISTORY)) {
-                    keys.push(k.replace(KEY_PREFIX_HISTORY, ""));
+                if (k.startsWith(prefix)) {
+                    keys.push(k.replace(prefix, ""));
                 }
             }
             keys.sort().reverse();
@@ -383,47 +442,24 @@
             keys.forEach(dateStr => {
                 const item = document.createElement('div');
                 item.className = 'history-item';
-                item.innerText = getDisplayDate(dateStr);
+                item.innerText = dateStr;
+                item.dataset.val = dateStr;
                 item.onclick = () => loadBoardData(dateStr);
                 listEl.appendChild(item);
             });
+            highlightSidebar();
         }
 
-        function updateBodyState() {
-             // Determine if editing should be active based on login AND current view
-             const isAdmin = sessionStorage.getItem('is_admin') === 'true';
-             isEditing = isAdmin && (currentViewDate === null);
-
-             if (isEditing) {
-                document.body.classList.add('is-editing');
-                document.getElementById('status-indicator').innerText = "🔓 Editing Mode";
-                document.getElementById('status-indicator').classList.add('status-unlocked');
-                document.getElementById('auth-btn').innerText = "Logout";
-             } else {
-                document.body.classList.remove('is-editing');
-                document.getElementById('status-indicator').classList.remove('status-unlocked');
-                document.getElementById('auth-btn').innerText = "Login to Edit";
-                 if (isAdmin && currentViewDate !== null) {
-                     document.getElementById('status-indicator').innerText = "👁 History (Read-Only)";
-                } else {
-                    document.getElementById('status-indicator').innerText = "🔒 Read-Only";
-                }
-             }
-        }
-
-        function updateSidebarUI() {
+        function highlightSidebar() {
             const items = document.querySelectorAll('.history-item');
-            items.forEach(item => {
-                item.classList.remove('active');
-                if (currentViewDate === null && item.innerText.includes("Current")) {
-                    item.classList.add('active');
-                } else if (currentViewDate && item.innerText.includes(currentViewDate)) {
-                    item.classList.add('active');
-                }
-            });
+            items.forEach(i => i.classList.remove('active'));
+            
+            const targetVal = viewingHistoryDate === null ? "current" : viewingHistoryDate;
+            const target = Array.from(items).find(i => i.dataset.val === targetVal);
+            if (target) target.classList.add('active');
         }
 
-        // --- 3. Rendering ---
+        // --- 6. Rendering & DnD ---
         const boardEl = document.getElementById('board');
         const addColBtn = document.querySelector('.new-column-btn');
 
@@ -452,7 +488,6 @@
 
             const delBtn = document.createElement('span');
             delBtn.innerHTML = '&times;';
-            delBtn.className = 'edit-only';
             delBtn.style.cursor='pointer';
             delBtn.onclick = () => { if(confirm('Delete List?')) {col.remove(); saveBoard();} };
 
@@ -462,22 +497,21 @@
             const cardList = document.createElement('div');
             cardList.className = 'card-list';
             
-            // DnD Logic
+            // Drag Logic
             cardList.addEventListener('dragover', e => {
-                if(!isEditing) return;
+                if(viewingHistoryDate) return;
                 e.preventDefault();
                 const afterElement = getDragAfterElement(cardList, e.clientY);
                 const dragging = document.querySelector('.dragging');
                 if (afterElement == null) cardList.appendChild(dragging);
                 else cardList.insertBefore(dragging, afterElement);
             });
-            cardList.addEventListener('drop', () => { if(isEditing) saveBoard(); });
+            cardList.addEventListener('drop', () => { if(!viewingHistoryDate) saveBoard(); });
 
-            // UPDATED: Pass card data object
-            cards.forEach(cardData => addCardDOM(cardList, cardData));
+            cards.forEach(cData => addCardDOM(cardList, cData));
 
             const addCardBtn = document.createElement('button');
-            addCardBtn.className = 'add-card-btn edit-only';
+            addCardBtn.className = 'add-card-btn';
             addCardBtn.innerText = '+ Add a card';
             addCardBtn.onclick = () => {
                 const t = prompt('Card Title:');
@@ -491,52 +525,42 @@
             boardEl.insertBefore(col, addColBtn);
         }
 
-        // UPDATED: Function accepts card data object {text, color}
         function addCardDOM(container, cardData) {
             const card = document.createElement('div');
             card.className = 'card';
             card.draggable = true;
-            // Set color based on data, fallback to default
             const colorKey = cardData.color || 'default';
             card.style.setProperty('--this-card-bg', `var(--card-color-${colorKey})`);
-            card.dataset.color = colorKey; // Store color for saving
+            card.dataset.color = colorKey;
 
-            // Card Text Container
             const textDiv = document.createElement('div');
             textDiv.className = 'card-text';
             textDiv.innerText = cardData.text;
             card.appendChild(textDiv);
 
-            // Delete Button
             const del = document.createElement('button');
-            del.className = 'delete-btn edit-only';
+            del.className = 'delete-btn';
             del.innerText = '🗑';
             del.onclick = (e) => { e.stopPropagation(); card.remove(); saveBoard(); };
             card.appendChild(del);
 
-            // --- Color Picker Dots (Edit Mode Only) ---
             const pickerContainer = document.createElement('div');
-            pickerContainer.className = 'color-picker-container edit-only';
-            
-            COLOR_OPTIONS.forEach(option => {
+            pickerContainer.className = 'color-picker-container';
+            COLOR_OPTIONS.forEach(opt => {
                 const dot = document.createElement('div');
-                dot.className = `color-dot dot-${option}`;
-                dot.title = option.charAt(0).toUpperCase() + option.slice(1); // Tooltip
+                dot.className = `color-dot dot-${opt}`;
                 dot.onclick = (e) => {
                     e.stopPropagation();
-                    // Update visual color
-                    card.style.setProperty('--this-card-bg', `var(--card-color-${option})`);
-                    // Update data attribute
-                    card.dataset.color = option;
-                    saveBoard(); // Save change
+                    card.style.setProperty('--this-card-bg', `var(--card-color-${opt})`);
+                    card.dataset.color = opt;
+                    saveBoard();
                 };
                 pickerContainer.appendChild(dot);
             });
             card.appendChild(pickerContainer);
-            // -------------------------------------------
 
             card.addEventListener('dragstart', () => {
-                if(isEditing) card.classList.add('dragging');
+                if(!viewingHistoryDate) card.classList.add('dragging');
                 else return false;
             });
             card.addEventListener('dragend', () => {
@@ -549,10 +573,7 @@
 
         function createNewColumn() {
             const t = prompt('New List Title:');
-            if(t) {
-                createColumnElement(t, []);
-                saveBoard();
-            }
+            if(t) { createColumnElement(t, []); saveBoard(); }
         }
 
         function getDragAfterElement(container, y) {
@@ -564,47 +585,6 @@
                 else return closest;
             }, { offset: Number.NEGATIVE_INFINITY }).element;
         }
-
-        // --- 4. Security & Auth ---
-        const overlay = document.getElementById('modal-overlay');
-        const passIn = document.getElementById('pass-input');
-        const errMsg = document.getElementById('error-msg');
-
-        function openLogin() {
-            if (isEditing) {
-                sessionStorage.removeItem('is_admin');
-                location.reload(); 
-            } else {
-                overlay.style.display = 'flex';
-                passIn.value = '';
-                passIn.focus();
-            }
-        }
-
-        function closeLogin() { overlay.style.display = 'none'; }
-
-        async function checkPass() {
-            const val = passIn.value;
-            const msgBuffer = new TextEncoder().encode(val);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-            if (hashHex === CORRECT_HASH) {
-                sessionStorage.setItem('is_admin', 'true');
-                closeLogin();
-                // Reload latest view to apply edit mode
-                if (currentViewDate === null) loadBoardData(null); 
-                else updateBodyState(); // Just update UI if viewing history
-            } else {
-                errMsg.style.display = 'block';
-                setTimeout(() => errMsg.style.display = 'none', 1000);
-            }
-        }
-
-        passIn.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') checkPass();
-        });
 
     </script>
 </body>
