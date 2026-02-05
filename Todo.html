@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Log & Kanban</title>
+    <title>Dev Log & Kanban (Colorized)</title>
     <style>
         :root {
             --bg-color: #a54b68;
             --sidebar-bg: #1e1e1e;
             --column-bg: #101204;
-            --card-bg: #22272b;
+            /* --card-bg: #22272b;  <- Removed fixed Color */
             --text-color: #b6c2cf;
             --accent-color: #579dff;
             --danger-color: #ff5555;
+
+            /* --- NEW: Priority Color Palette --- */
+            /* Default (Dark Gray) */
+            --card-color-default: #22272b; 
+            /* Low (Greenish) */
+            --card-color-low: #2d4a3e;    
+            /* Medium (Yellowish/Brown) */
+            --card-color-medium: #6b5b2b; 
+            /* High (Orangeish) */
+            --card-color-high: #854c1d;    
+            /* Critical (Deep Red) */
+            --card-color-critical: #6e2121;
         }
 
         body {
@@ -126,23 +138,57 @@
             flex-grow: 1; overflow-y: auto; min-height: 50px; padding-bottom: 10px;
         }
 
+        /* --- Card Styling (Updated for Color) --- */
         .card {
-            background-color: var(--card-bg);
+            /* Use dynamic color variable, fallback to default */
+            background-color: var(--this-card-bg, var(--card-color-default));
             border-radius: 8px; padding: 10px; margin-bottom: 8px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.2);
             position: relative;
+            transition: background-color 0.2s ease;
+            padding-bottom: 25px; /* Space for color dots */
+        }
+        
+        .card-text {
+            word-wrap: break-word;
         }
 
+        /* Color Picker Dots */
+        .color-picker-container {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .color-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .color-dot:hover { border-color: white; transform: scale(1.2); }
+
+        /* Assign Palette colors to dots */
+        .dot-default { background: var(--card-color-default); }
+        .dot-low { background: var(--card-color-low); }
+        .dot-medium { background: var(--card-color-medium); }
+        .dot-high { background: var(--card-color-high); }
+        .dot-critical { background: var(--card-color-critical); }
+
+
         /* --- Read-Only vs Edit Mode Styles --- */
-        /* Edit Mode Only Elements */
         .edit-only { display: none !important; }
         
         body.is-editing .edit-only { display: block !important; }
         body.is-editing .card { cursor: grab; }
         body.is-editing .card:active { cursor: grabbing; }
         
-        body:not(.is-editing) .card-list { pointer-events: none; } /* Disable Drag in ReadOnly */
-        body:not(.is-editing) .column-header span { pointer-events: none; } /* Disable Rename */
+        body:not(.is-editing) .card-list { pointer-events: none; }
+        body:not(.is-editing) .column-header span { pointer-events: none; }
+        /* Hide color dots in read-only mode to save space */
+        body:not(.is-editing) .card { padding-bottom: 10px; }
 
         /* Buttons */
         .add-card-btn, .new-column-btn {
@@ -158,8 +204,9 @@
 
         .delete-btn {
             position: absolute; right: 5px; top: 5px;
-            background: none; border: none; color: #eb5a46; cursor: pointer;
+            background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer;
         }
+        .delete-btn:hover { color: var(--danger-color); }
 
         /* --- Password Modal --- */
         #modal-overlay {
@@ -210,16 +257,19 @@
 
     <script>
         // --- Configuration ---
-        // SHA-256 Hash for "000000" (Change this via console as previously explained)
+        // SHA-256 Hash for "000000"
         const CORRECT_HASH = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"; 
         
-        const KEY_CURRENT = "kanban_current";
-        const KEY_PREFIX_HISTORY = "kanban_history_";
+        const KEY_CURRENT = "kanban_current_v2"; // Changed key version due to data structure change
+        const KEY_PREFIX_HISTORY = "kanban_history_v2_";
 
         // Global State
         let isEditing = false;
-        let currentViewDate = null; // null = Latest, string = '2026-02-05'
+        let currentViewDate = null;
         let boardData = { columns: [] };
+
+        // Color Options
+        const COLOR_OPTIONS = ['default', 'low', 'medium', 'high', 'critical'];
 
         // --- 1. Init & Lifecycle ---
         window.onload = () => {
@@ -227,12 +277,10 @@
             loadBoardData(null); // Load Latest
         };
 
-        // --- 2. Data Management (History Logic) ---
+        // --- 2. Data Management ---
         
         function getTodayString() {
             const date = new Date();
-            const days = ['일', '월', '화', '수', '목', '금', '토'];
-            // YYYY-MM-DD format
             const yyyy = date.getFullYear();
             const mm = String(date.getMonth() + 1).padStart(2, '0');
             const dd = String(date.getDate()).padStart(2, '0');
@@ -240,37 +288,36 @@
         }
 
         function getDisplayDate(dateStr) {
-            // Converts '2026-02-05' to '2026-02-05 (Thu)'
             const date = new Date(dateStr);
             const days = ['일', '월', '화', '수', '목', '금', '토'];
             return `${dateStr} (${days[date.getDay()]})`;
         }
 
         function saveBoard() {
-            // Only save if we are editing the CURRENT version
             if (currentViewDate !== null) return; 
 
-            // 1. Serialize Data
             const columnsDOM = document.querySelectorAll('.column');
             const newColumnsData = [];
             columnsDOM.forEach(col => {
                 const title = col.querySelector('.column-title').innerText;
                 const cardsDOM = col.querySelectorAll('.card');
-                const cardTexts = [];
-                cardsDOM.forEach(card => cardTexts.push(card.firstChild.textContent));
-                newColumnsData.push({ id: col.id, title: title, cards: cardTexts });
+                const cardObjects = [];
+                
+                // UPDATED: Read text AND color from DOM
+                cardsDOM.forEach(card => {
+                    cardObjects.push({
+                        text: card.querySelector('.card-text').innerText,
+                        color: card.dataset.color || 'default' // Get color from data attribute
+                    });
+                });
+                
+                newColumnsData.push({ id: col.id, title: title, cards: cardObjects });
             });
             boardData.columns = newColumnsData;
 
-            // 2. Save Current State
             const jsonStr = JSON.stringify(boardData);
             localStorage.setItem(KEY_CURRENT, jsonStr);
-
-            // 3. Auto-Save to Today's History
-            const todayKey = KEY_PREFIX_HISTORY + getTodayString();
-            localStorage.setItem(todayKey, jsonStr);
-
-            // 4. Refresh Sidebar to show today if new
+            localStorage.setItem(KEY_PREFIX_HISTORY + getTodayString(), jsonStr);
             loadHistoryList();
         }
 
@@ -278,33 +325,38 @@
             currentViewDate = dateStr;
             let dataStr = "";
 
-            // UI Update
+            // UI Update label
             const label = document.getElementById('current-view-label');
             if (dateStr === null) {
-                // Load Current
                 dataStr = localStorage.getItem(KEY_CURRENT);
                 label.innerText = "Viewing: Latest (Editable)";
                 label.style.color = "#579dff";
-                if (isEditing) document.body.classList.add('is-editing');
             } else {
-                // Load History
                 dataStr = localStorage.getItem(KEY_PREFIX_HISTORY + dateStr);
                 label.innerText = `Viewing History: ${dateStr}`;
                 label.style.color = "#ff5555";
-                // Force Read-Only visually for history
-                document.body.classList.remove('is-editing');
             }
 
             if (dataStr) {
                 boardData = JSON.parse(dataStr);
+                // --- MIGRATION CHECK (Important!) ---
+                // Convert old string cards to new object format if necessary
+                boardData.columns.forEach(col => {
+                    col.cards = col.cards.map(c => {
+                        if (typeof c === 'string') return { text: c, color: 'default' };
+                        return c;
+                    });
+                });
+                // ------------------------------------
             } else if (dateStr === null) {
-                // Default Init Data if empty
+                // Default Init Data
                 boardData = { columns: [
-                    { id: 'c1', title: 'To Do', cards: ['Welcome! Log in to edit.'] },
+                    { id: 'c1', title: 'To Do', cards: [{text:'Welcome! Log in to see colors.', color:'low'}] },
                     { id: 'c2', title: 'Done', cards: [] }
                 ]};
             }
 
+            updateBodyState();
             renderBoard();
             updateSidebarUI();
         }
@@ -313,14 +365,12 @@
             const listEl = document.getElementById('history-list');
             listEl.innerHTML = "";
 
-            // 1. "Latest" Button
             const latestBtn = document.createElement('div');
             latestBtn.className = 'history-item current-item';
             latestBtn.innerText = "⚡ Current (Latest)";
             latestBtn.onclick = () => loadBoardData(null);
             listEl.appendChild(latestBtn);
 
-            // 2. Scan LocalStorage for history keys
             const keys = [];
             for (let i = 0; i < localStorage.length; i++) {
                 const k = localStorage.key(i);
@@ -328,7 +378,6 @@
                     keys.push(k.replace(KEY_PREFIX_HISTORY, ""));
                 }
             }
-            // Sort Descending (Newest first)
             keys.sort().reverse();
 
             keys.forEach(dateStr => {
@@ -340,37 +389,38 @@
             });
         }
 
+        function updateBodyState() {
+             // Determine if editing should be active based on login AND current view
+             const isAdmin = sessionStorage.getItem('is_admin') === 'true';
+             isEditing = isAdmin && (currentViewDate === null);
+
+             if (isEditing) {
+                document.body.classList.add('is-editing');
+                document.getElementById('status-indicator').innerText = "🔓 Editing Mode";
+                document.getElementById('status-indicator').classList.add('status-unlocked');
+                document.getElementById('auth-btn').innerText = "Logout";
+             } else {
+                document.body.classList.remove('is-editing');
+                document.getElementById('status-indicator').classList.remove('status-unlocked');
+                document.getElementById('auth-btn').innerText = "Login to Edit";
+                 if (isAdmin && currentViewDate !== null) {
+                     document.getElementById('status-indicator').innerText = "👁 History (Read-Only)";
+                } else {
+                    document.getElementById('status-indicator').innerText = "🔒 Read-Only";
+                }
+             }
+        }
+
         function updateSidebarUI() {
             const items = document.querySelectorAll('.history-item');
             items.forEach(item => {
                 item.classList.remove('active');
-                // Simple check: if text contains date or "Current" matches
                 if (currentViewDate === null && item.innerText.includes("Current")) {
                     item.classList.add('active');
                 } else if (currentViewDate && item.innerText.includes(currentViewDate)) {
                     item.classList.add('active');
                 }
             });
-            
-            // Re-apply edit mode class if we are back to null date and logged in
-            if (currentViewDate === null && sessionStorage.getItem('is_admin') === 'true') {
-                isEditing = true;
-                document.body.classList.add('is-editing');
-                document.getElementById('status-indicator').innerText = "🔓 Editing Mode";
-                document.getElementById('status-indicator').classList.add('status-unlocked');
-                document.getElementById('auth-btn').innerText = "Logout";
-            } else {
-                // History or Logged out
-                document.body.classList.remove('is-editing');
-                if (sessionStorage.getItem('is_admin') === 'true' && currentViewDate !== null) {
-                    // Logged in but viewing history
-                     document.getElementById('status-indicator').innerText = "👁 History (Read-Only)";
-                     document.getElementById('status-indicator').classList.remove('status-unlocked');
-                } else {
-                    document.getElementById('status-indicator').innerText = "🔒 Read-Only";
-                    document.getElementById('status-indicator').classList.remove('status-unlocked');
-                }
-            }
         }
 
         // --- 3. Rendering ---
@@ -378,7 +428,6 @@
         const addColBtn = document.querySelector('.new-column-btn');
 
         function renderBoard() {
-            // Clear cols except the last button
             const cols = document.querySelectorAll('.column');
             cols.forEach(c => c.remove());
 
@@ -424,14 +473,15 @@
             });
             cardList.addEventListener('drop', () => { if(isEditing) saveBoard(); });
 
-            cards.forEach(text => addCardDOM(cardList, text));
+            // UPDATED: Pass card data object
+            cards.forEach(cardData => addCardDOM(cardList, cardData));
 
             const addCardBtn = document.createElement('button');
             addCardBtn.className = 'add-card-btn edit-only';
             addCardBtn.innerText = '+ Add a card';
             addCardBtn.onclick = () => {
                 const t = prompt('Card Title:');
-                if(t) { addCardDOM(cardList, t); saveBoard(); }
+                if(t) { addCardDOM(cardList, {text: t, color: 'default'}); saveBoard(); }
             };
 
             col.appendChild(header);
@@ -441,18 +491,49 @@
             boardEl.insertBefore(col, addColBtn);
         }
 
-        function addCardDOM(container, text) {
+        // UPDATED: Function accepts card data object {text, color}
+        function addCardDOM(container, cardData) {
             const card = document.createElement('div');
             card.className = 'card';
             card.draggable = true;
-            card.innerText = text;
+            // Set color based on data, fallback to default
+            const colorKey = cardData.color || 'default';
+            card.style.setProperty('--this-card-bg', `var(--card-color-${colorKey})`);
+            card.dataset.color = colorKey; // Store color for saving
 
+            // Card Text Container
+            const textDiv = document.createElement('div');
+            textDiv.className = 'card-text';
+            textDiv.innerText = cardData.text;
+            card.appendChild(textDiv);
+
+            // Delete Button
             const del = document.createElement('button');
             del.className = 'delete-btn edit-only';
             del.innerText = '🗑';
             del.onclick = (e) => { e.stopPropagation(); card.remove(); saveBoard(); };
-
             card.appendChild(del);
+
+            // --- Color Picker Dots (Edit Mode Only) ---
+            const pickerContainer = document.createElement('div');
+            pickerContainer.className = 'color-picker-container edit-only';
+            
+            COLOR_OPTIONS.forEach(option => {
+                const dot = document.createElement('div');
+                dot.className = `color-dot dot-${option}`;
+                dot.title = option.charAt(0).toUpperCase() + option.slice(1); // Tooltip
+                dot.onclick = (e) => {
+                    e.stopPropagation();
+                    // Update visual color
+                    card.style.setProperty('--this-card-bg', `var(--card-color-${option})`);
+                    // Update data attribute
+                    card.dataset.color = option;
+                    saveBoard(); // Save change
+                };
+                pickerContainer.appendChild(dot);
+            });
+            card.appendChild(pickerContainer);
+            // -------------------------------------------
 
             card.addEventListener('dragstart', () => {
                 if(isEditing) card.classList.add('dragging');
@@ -491,10 +572,8 @@
 
         function openLogin() {
             if (isEditing) {
-                // Already logged in -> Logout action
                 sessionStorage.removeItem('is_admin');
-                isEditing = false;
-                location.reload(); // Refresh to lock
+                location.reload(); 
             } else {
                 overlay.style.display = 'flex';
                 passIn.value = '';
@@ -514,11 +593,9 @@
             if (hashHex === CORRECT_HASH) {
                 sessionStorage.setItem('is_admin', 'true');
                 closeLogin();
-                isEditing = true;
-                // Only enable editing if looking at Latest
-                if (currentViewDate === null) {
-                    loadBoardData(null); 
-                }
+                // Reload latest view to apply edit mode
+                if (currentViewDate === null) loadBoardData(null); 
+                else updateBodyState(); // Just update UI if viewing history
             } else {
                 errMsg.style.display = 'block';
                 setTimeout(() => errMsg.style.display = 'none', 1000);
