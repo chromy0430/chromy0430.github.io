@@ -2,18 +2,25 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Web DAW & Virtual Instrument (Multi-Track & Ultimate FX)</title>
+    <title>Web DAW & Virtual Instrument (Final Master)</title>
     <style>
         body { margin: 0; padding: 20px; background: #1e1e1e; color: #ddd; font-family: sans-serif; height: 100vh; overflow: hidden; box-sizing: border-box; }
-        .toolbar { margin-bottom: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; background: #2a2a2a; padding: 10px; border: 1px solid #444; }
-        button, select, input[type="range"] { padding: 6px 10px; background: #333; color: white; border: 1px solid #555; cursor: pointer; font-size: 12px; }
+        .toolbar { margin-bottom: 10px; display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; background: #2a2a2a; padding: 10px; border: 1px solid #444; }
+        button, select { padding: 6px 10px; background: #333; color: white; border: 1px solid #555; cursor: pointer; font-size: 12px; }
         button:hover { background: #444; }
         button.action { background: #2a4d69; } button.action:hover { background: #4b86b4; }
         button.danger { background: #692a2a; } button.danger:hover { background: #b44b4b; }
-        .control-group { display: flex; align-items: center; gap: 5px; padding: 0 10px; border-left: 1px solid #555; }
-        .fx-panel { display: flex; gap: 10px; padding: 10px; background: #222; border: 1px solid #444; margin-bottom: 10px; flex-wrap: wrap; align-items: center; font-size: 12px; }
-        .fx-control { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-        .canvas-container { height: calc(100vh - 160px); overflow-y: auto; overflow-x: auto; border: 1px solid #444; background: #2a2a2a; }
+        .control-group { display: flex; flex-direction: column; gap: 5px; padding: 0 10px; border-left: 1px solid #555; }
+        .row { display: flex; align-items: center; gap: 5px; }
+        
+        /* 슬라이더 및 숫자 입력기 CSS 최적화 */
+        .fx-panel { display: flex; gap: 15px; padding: 10px; background: #222; border: 1px solid #444; margin-bottom: 10px; flex-wrap: wrap; align-items: center; font-size: 12px; }
+        .fx-control { display: flex; flex-direction: column; align-items: center; gap: 3px; background: #2a2a2a; padding: 5px; border-radius: 4px; border: 1px solid #333; }
+        .input-pair { display: flex; align-items: center; gap: 4px; }
+        input[type="range"] { margin: 0; cursor: pointer; width: 100px; }
+        input[type="number"] { width: 50px; padding: 2px; background: #111; color: #0f0; border: 1px solid #555; text-align: right; font-family: monospace; }
+        
+        .canvas-container { height: calc(100vh - 180px); overflow-y: auto; overflow-x: auto; border: 1px solid #444; background: #2a2a2a; }
         #pianoRoll { display: block; cursor: crosshair; }
         input[type="file"] { display: none; }
     </style>
@@ -21,83 +28,120 @@
 <body>
 
 <div class="toolbar">
-    <button id="btnPlay" class="action">Play/Pause (Space)</button>
-    <button id="btnStop" class="action">Return to Start</button>
+    <div class="control-group" style="border-left: none;">
+        <button id="btnPlay" class="action" style="padding: 10px;">Play/Pause (Space)</button>
+        <button id="btnStop" class="action">Return to Start</button>
+    </div>
     
     <div class="control-group">
-        <button id="btnAddLayer" class="action">+ 레이어 추가</button>
-        <label>현재 레이어:</label>
-        <select id="layerSelect">
-            <option value="0">Layer 1</option>
-        </select>
-        <button id="btnClearLayer" class="danger">현재 레이어 비우기</button>
+        <div class="row">
+            <button id="btnAddLayer" class="action">+ 레이어 추가</button>
+            <label>현재 선택:</label>
+            <select id="layerSelect"><option value="0">Layer 1</option></select>
+        </div>
+        <div class="row">
+            <button id="btnClearCurrentLayer" class="danger">현재 레이어 블록 지우기</button>
+            <button id="btnClearAllLayers" class="danger">모든 레이어 블록 지우기</button>
+        </div>
     </div>
 
     <div class="control-group">
-        <label>레이어 악기:</label>
-        <select id="instrumentSelect">
-            <option value="sine">Virtual Piano</option>
-            <option value="square">8-Bit Synth</option>
-            <option value="fm_ep">FM Electric Piano</option>
-            <option value="analog_pad">Analog Pad (몽환적)</option>
-            <option value="organ">Church Organ</option>
-            <option value="pluck">Plucked Guitar</option>
-            <option value="marimba">Marimba (Classic)</option>
-            <option value="dream_marimba">Dream Marimba</option>
-            <option value="808">808 Drum Kit (Kick/Snare)</option>
-        </select>
+        <div class="row">
+            <label>악기:</label>
+            <select id="instrumentSelect">
+                <option value="sine">Virtual Piano</option>
+                <option value="square">8-Bit Synth</option>
+                <option value="fm_ep">FM Electric Piano</option>
+                <option value="analog_pad">Analog Pad (몽환적)</option>
+                <option value="organ">Church Organ</option>
+                <option value="pluck">Plucked Guitar</option>
+                <option value="marimba">Marimba (Classic)</option>
+                <option value="dream_marimba">Dream Marimba</option>
+                <option value="808">808 Drum Kit (Kick/Snare)</option>
+            </select>
+        </div>
+        <div class="row">
+            <label>스냅:</label>
+            <select id="snapSelect">
+                <option value="0">Off (0.5s)</option>
+                <option value="0.125">1/32 박</option>
+                <option value="0.25" selected>1/16 박</option>
+                <option value="0.5">1/8 박</option>
+                <option value="1.0">1/4 박</option>
+            </select>
+        </div>
     </div>
 
     <div class="control-group">
-        <label>스냅:</label>
-        <select id="snapSelect">
-            <option value="0">Off (0.5s)</option>
-            <option value="0.125">1/32 박</option>
-            <option value="0.25" selected>1/16 박</option>
-            <option value="0.5">1/8 박</option>
-            <option value="1.0">1/4 박</option>
-        </select>
-    </div>
-
-    <div class="control-group">
-        <label class="action" style="padding: 6px 10px; border: 1px solid #555; cursor: pointer;">
-            Import MIDI
-            <input type="file" id="btnImportMIDI" accept=".mid">
-        </label>
-        <button class="action" id="btnExportAudio">Export Audio</button>
-        <button class="action" id="btnExportMIDI">Export MIDI</button>
+        <div class="row">
+            <label class="action" style="padding: 6px 10px; border: 1px solid #555; cursor: pointer;">
+                Import MIDI <input type="file" id="btnImportMIDI" accept=".mid">
+            </label>
+        </div>
+        <div class="row">
+            <button class="action" id="btnExportAudio">Export Audio (.webm)</button>
+            <button class="action" id="btnExportMIDI">Export MIDI (.mid)</button>
+        </div>
     </div>
 </div>
 
 <div class="fx-panel">
-    <strong style="color: #ffaa44;">Master FX Chain:</strong>
+    <strong style="color: #ffaa44;">Master FX:</strong>
+    
     <div class="fx-control">
-        <label>Lowpass Filter (0-100)</label>
-        <input type="range" id="fxFilter" min="0" max="100" value="0">
+        <label>Lowpass (0-100%)</label>
+        <div class="input-pair">
+            <input type="range" id="fxFilter_slider" min="0" max="100" step="1" value="0">
+            <input type="number" id="fxFilter_num" min="0" max="100" step="1" value="0">
+        </div>
     </div>
+    
     <div class="fx-control">
-        <label>Distortion (0-100)</label>
-        <input type="range" id="fxDistortion" min="0" max="100" value="0">
+        <label>Distortion (0-100%)</label>
+        <div class="input-pair">
+            <input type="range" id="fxDistortion_slider" min="0" max="100" step="1" value="0">
+            <input type="number" id="fxDistortion_num" min="0" max="100" step="1" value="0">
+        </div>
     </div>
+    
     <div class="fx-control">
-        <label>Delay Time (0-1s)</label>
-        <input type="range" id="fxDelayTime" min="0" max="1" step="0.01" value="0">
+        <label>Delay (0-1 sec)</label>
+        <div class="input-pair">
+            <input type="range" id="fxDelayTime_slider" min="0" max="1" step="0.01" value="0">
+            <input type="number" id="fxDelayTime_num" min="0" max="1" step="0.01" value="0">
+        </div>
     </div>
+    
     <div class="fx-control">
-        <label>Tremolo Speed (0-20Hz)</label>
-        <input type="range" id="fxTremolo" min="0" max="20" step="0.1" value="0">
+        <label>Tremolo (0-20 Hz)</label>
+        <div class="input-pair">
+            <input type="range" id="fxTremolo_slider" min="0" max="20" step="0.1" value="0">
+            <input type="number" id="fxTremolo_num" min="0" max="20" step="0.1" value="0">
+        </div>
     </div>
+    
     <div class="fx-control">
         <label>Stereo Pan (-1 to 1)</label>
-        <input type="range" id="fxPan" min="-1" max="1" step="0.05" value="0">
+        <div class="input-pair">
+            <input type="range" id="fxPan_slider" min="-1" max="1" step="0.01" value="0">
+            <input type="number" id="fxPan_num" min="-1" max="1" step="0.01" value="0">
+        </div>
     </div>
+    
     <div class="fx-control">
-        <label>Reverb Mix (0-100)</label>
-        <input type="range" id="fxReverb" min="0" max="100" value="0">
+        <label>Reverb Mix (0-100%)</label>
+        <div class="input-pair">
+            <input type="range" id="fxReverb_slider" min="0" max="100" step="1" value="0">
+            <input type="number" id="fxReverb_num" min="0" max="100" step="1" value="0">
+        </div>
     </div>
-    <div class="fx-control" style="margin-left: auto; border-left: 1px solid #555; padding-left: 10px;">
-        <label>Master Volume</label>
-        <input type="range" id="masterVolumeControl" min="0" max="1" step="0.01" value="0.6">
+    
+    <div class="fx-control" style="margin-left: auto; border-left: 1px solid #555; padding-left: 15px;">
+        <label>Master Volume (0-1)</label>
+        <div class="input-pair">
+            <input type="range" id="masterVolume_slider" min="0" max="1" step="0.01" value="0.6">
+            <input type="number" id="masterVolume_num" min="0" max="1" step="0.01" value="0.6">
+        </div>
     </div>
 </div>
 
@@ -109,75 +153,63 @@
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx = new AudioContext();
     
-    // 1. 다중 레이어(Multi-Track) 데이터베이스 구조
-    let tracks = [
-        { id: 0, name: 'Layer 1', inst: 'sine', notes: [] }
-    ];
+    // 1. 다중 레이어 데이터베이스
+    let tracks = [{ id: 0, name: 'Layer 1', inst: 'sine', notes: [] }];
     let currentTrackIndex = 0;
     let noteIdCounter = 1;
 
     let isPlaying = false; let seqStartTime = 0; let pauseTime = 0;
     let snapValue = 0.25;
 
+    const layerColors = { 'sine': '#44aaff', 'square': '#ffaa44', 'fm_ep': '#cc44ff', 'analog_pad': '#44ffcc', 'organ': '#4444ff', 'pluck': '#ff4444', 'marimba': '#aa4444', 'dream_marimba': '#aa44ff', '808': '#bbbbbb' };
+
     const HEADER_WIDTH = 80; const RULER_HEIGHT = 20; const PIXELS_PER_SECOND = 100;
     const ROW_HEIGHT = 15; const MIN_PITCH = 48; const MAX_PITCH = 84; 
     const TOTAL_ROWS = MAX_PITCH - MIN_PITCH + 1;
 
-    // 백색 소음 버퍼 (드럼용)
     const noiseBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 2, audioCtx.sampleRate);
     const outputData = noiseBuffer.getChannelData(0);
     for (let i = 0; i < noiseBuffer.length; i++) { outputData[i] = Math.random() * 2 - 1; }
 
-    // Reverb Impulse Response (IR) 생성기
     function createReverbIR(duration, decay) {
         const length = audioCtx.sampleRate * duration;
         const impulse = audioCtx.createBuffer(2, length, audioCtx.sampleRate);
         for (let i = 0; i < 2; i++) {
             const channel = impulse.getChannelData(i);
-            for (let j = 0; j < length; j++) {
-                channel[j] = (Math.random() * 2 - 1) * Math.pow(1 - j / length, decay);
-            }
+            for (let j = 0; j < length; j++) { channel[j] = (Math.random() * 2 - 1) * Math.pow(1 - j / length, decay); }
         }
         return impulse;
     }
 
-    // 2. 극한의 마스터 FX 라우팅 체인
+    // 2. 극한의 마스터 FX 라우팅 (버그 수정: 완벽한 초기 Bypass 상태 강제)
     const masterInput = audioCtx.createGain();
-    const compressor = audioCtx.createDynamicsCompressor(); // 깨짐 방지
-    const filterNode = audioCtx.createBiquadFilter(); filterNode.type = 'lowpass'; filterNode.frequency.value = 22050;
+    const compressor = audioCtx.createDynamicsCompressor(); 
+    const filterNode = audioCtx.createBiquadFilter(); filterNode.type = 'lowpass'; filterNode.frequency.value = 22050; // 초기 바이패스
     const distortionNode = audioCtx.createWaveShaper(); distortionNode.oversample = '4x';
-    const delayNode = audioCtx.createDelay(); const delayFeedback = audioCtx.createGain();
-    const tremoloGain = audioCtx.createGain(); const tremoloLFO = audioCtx.createOscillator(); tremoloLFO.type = 'sine'; tremoloLFO.start();
-    const pannerNode = audioCtx.createStereoPanner ? audioCtx.createStereoPanner() : audioCtx.createPanner(); // 호환성
+    const delayNode = audioCtx.createDelay(5.0); delayNode.delayTime.value = 0; // 초기 바이패스 (0초)
+    const delayFeedback = audioCtx.createGain(); delayFeedback.gain.value = 0;  // 초기 피드백 차단
+    const tremoloGain = audioCtx.createGain(); const tremoloLFO = audioCtx.createOscillator(); tremoloLFO.type = 'sine'; tremoloLFO.start(); // 연결 전
+    const pannerNode = audioCtx.createStereoPanner ? audioCtx.createStereoPanner() : audioCtx.createPanner(); 
     
     const reverbConvolver = audioCtx.createConvolver();
-    reverbConvolver.buffer = createReverbIR(2.5, 2.0); // 2.5초 성당 리버브 생성
-    const dryGain = audioCtx.createGain(); // 원본 소리
-    const wetGain = audioCtx.createGain(); // 리버브 소리
-    wetGain.gain.value = 0; // 초기 리버브 0
+    reverbConvolver.buffer = createReverbIR(2.5, 2.0);
+    const dryGain = audioCtx.createGain(); dryGain.gain.value = 1.0; // 순수 신호 100%
+    const wetGain = audioCtx.createGain(); wetGain.gain.value = 0;   // 리버브 신호 0%
 
     const masterVolume = audioCtx.createGain(); masterVolume.gain.value = 0.6;
     const mediaStreamDest = audioCtx.createMediaStreamDestination();
     let mediaRecorder; let recordedChunks = [];
 
-    // 배관 연결: Input -> Compressor -> Filter -> Distortion -> Delay -> Tremolo -> Panner -> (Dry/Wet Split) -> Volume -> Dest
     masterInput.connect(compressor);
     compressor.connect(filterNode);
     filterNode.connect(distortionNode);
-    
     distortionNode.connect(delayNode);
-    delayNode.connect(delayFeedback);
-    delayFeedback.connect(delayNode);
-    distortionNode.connect(tremoloGain); // Delay 우회 오리지널 패스
-    delayNode.connect(tremoloGain);      // Delay 출력 합류
-    
+    delayNode.connect(delayFeedback); delayFeedback.connect(delayNode);
+    distortionNode.connect(tremoloGain); delayNode.connect(tremoloGain); 
     tremoloGain.connect(pannerNode);
-    tremoloLFO.connect(tremoloGain.gain); // AM 모듈레이션
-
-    // Dry/Wet 병렬 라우팅 (Reverb 믹스용)
+    
     pannerNode.connect(dryGain);
-    pannerNode.connect(reverbConvolver);
-    reverbConvolver.connect(wetGain);
+    pannerNode.connect(reverbConvolver); reverbConvolver.connect(wetGain);
     
     dryGain.connect(masterVolume);
     wetGain.connect(masterVolume);
@@ -185,43 +217,41 @@
     masterVolume.connect(mediaStreamDest);
 
     function makeDistortionCurve(amount) {
+        if (amount === 0) return null; // 0일 경우 왜곡 없음
         let k = amount, n_samples = 44100, curve = new Float32Array(n_samples), deg = Math.PI / 180, i = 0, x;
         for (; i < n_samples; ++i) { x = i * 2 / n_samples - 1; curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x)); }
         return curve;
     }
 
-    // FX 실시간 업데이트 이벤트 바인딩
-    document.getElementById('fxFilter').addEventListener('input', e => {
-        filterNode.frequency.value = Math.max(200, 22000 - (e.target.value / 100) * 21800);
-    });
-    document.getElementById('fxDistortion').addEventListener('input', e => {
-        distortionNode.curve = makeDistortionCurve(e.target.value * 4);
-    });
-    document.getElementById('fxDelayTime').addEventListener('input', e => {
-        const t = parseFloat(e.target.value);
-        delayNode.delayTime.value = t;
-        delayFeedback.gain.value = t > 0 ? 0.4 : 0; // 딜레이가 있을 때만 피드백 활성화
-    });
-    document.getElementById('fxTremolo').addEventListener('input', e => {
-        const speed = parseFloat(e.target.value);
-        if (speed === 0) {
-            tremoloLFO.disconnect(); tremoloGain.gain.value = 1; // 효과 끄기
-        } else {
-            tremoloLFO.connect(tremoloGain.gain);
-            tremoloLFO.frequency.value = speed;
-        }
-    });
-    document.getElementById('fxPan').addEventListener('input', e => {
-        if (pannerNode.pan) pannerNode.pan.value = parseFloat(e.target.value);
-    });
-    document.getElementById('fxReverb').addEventListener('input', e => {
-        const mix = parseFloat(e.target.value) / 100;
-        wetGain.gain.value = mix;
-        dryGain.gain.value = 1 - (mix * 0.5); // 리버브가 강해지면 원본 소리 살짝 감소
-    });
-    document.getElementById('masterVolumeControl').addEventListener('input', e => masterVolume.gain.value = parseFloat(e.target.value));
+    // 양방향 데이터 바인딩 함수 (Range <-> Number 연동)
+    function bindControl(id, callback) {
+        const slider = document.getElementById(id + '_slider');
+        const num = document.getElementById(id + '_num');
+        const update = (val) => {
+            let parsed = parseFloat(val);
+            slider.value = parsed; num.value = parsed;
+            callback(parsed);
+        };
+        slider.addEventListener('input', e => update(e.target.value));
+        num.addEventListener('input', e => update(e.target.value));
+        num.addEventListener('change', e => update(e.target.value)); // 엔터 입력 등 확정 시 보정
+    }
 
-    // 3. 음향 합성 엔진 (마림바 및 드림 마림바 복구)
+    bindControl('fxFilter', val => { filterNode.frequency.value = Math.max(200, 22000 - (val / 100) * 21800); });
+    bindControl('fxDistortion', val => { distortionNode.curve = makeDistortionCurve(val * 4); });
+    bindControl('fxDelayTime', val => { 
+        delayNode.delayTime.value = val; 
+        delayFeedback.gain.value = val > 0 ? 0.4 : 0; 
+    });
+    bindControl('fxTremolo', val => {
+        if (val === 0) { try { tremoloLFO.disconnect(); } catch(e){} tremoloGain.gain.value = 1; } 
+        else { try { tremoloLFO.connect(tremoloGain.gain); } catch(e){} tremoloLFO.frequency.value = val; }
+    });
+    bindControl('fxPan', val => { if (pannerNode.pan) pannerNode.pan.value = val; });
+    bindControl('fxReverb', val => { const mix = val / 100; wetGain.gain.value = mix; dryGain.gain.value = 1 - (mix * 0.5); });
+    bindControl('masterVolume', val => { masterVolume.gain.value = val; });
+
+    // 3. 합성 엔진 (유지)
     function getFrequencyFromPitch(pitch) { return 440 * Math.pow(2, (pitch - 69) / 12); }
     function pitchToNoteName(pitch) {
         const notesEn = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -231,89 +261,63 @@
 
     function scheduleNote(pitch, time, duration, inst) {
         const freq = getFrequencyFromPitch(pitch);
-        const gainNode = audioCtx.createGain();
-        gainNode.connect(masterInput);
+        const gainNode = audioCtx.createGain(); gainNode.connect(masterInput);
 
         switch (inst) {
-            case 'marimba': // 복구된 마림바
-                const mOsc = audioCtx.createOscillator(); mOsc.type = 'sine'; mOsc.frequency.value = freq;
-                mOsc.connect(gainNode);
+            case 'marimba':
+                const mOsc = audioCtx.createOscillator(); mOsc.type = 'sine'; mOsc.frequency.value = freq; mOsc.connect(gainNode);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.5, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
-                mOsc.start(time); mOsc.stop(time + 0.3);
-                break;
-            case 'dream_marimba': // 복구된 몽환적 마림바 (코러스)
+                mOsc.start(time); mOsc.stop(time + 0.3); break;
+            case 'dream_marimba':
                 const dOsc1 = audioCtx.createOscillator(); const dOsc2 = audioCtx.createOscillator();
-                dOsc1.type = 'sine'; dOsc1.frequency.value = freq;
-                dOsc2.type = 'triangle'; dOsc2.frequency.value = freq; dOsc2.detune.value = 15;
+                dOsc1.type = 'sine'; dOsc1.frequency.value = freq; dOsc2.type = 'triangle'; dOsc2.frequency.value = freq; dOsc2.detune.value = 15;
                 dOsc1.connect(gainNode); dOsc2.connect(gainNode);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.0, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.6);
-                dOsc1.start(time); dOsc2.start(time); dOsc1.stop(time + 0.6); dOsc2.stop(time + 0.6);
-                break;
+                dOsc1.start(time); dOsc2.start(time); dOsc1.stop(time + 0.6); dOsc2.stop(time + 0.6); break;
             case 'fm_ep':
                 const carrier = audioCtx.createOscillator(); const modulator = audioCtx.createOscillator(); const modGain = audioCtx.createGain();
-                carrier.type = 'sine'; modulator.type = 'sine';
-                carrier.frequency.value = freq; modulator.frequency.value = freq * 2; modGain.gain.value = freq * 3; 
+                carrier.type = 'sine'; modulator.type = 'sine'; carrier.frequency.value = freq; modulator.frequency.value = freq * 2; modGain.gain.value = freq * 3; 
                 modulator.connect(modGain); modGain.connect(carrier.frequency); carrier.connect(gainNode);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.8, time + 0.02); gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration);
-                modulator.start(time); carrier.start(time); modulator.stop(time + duration); carrier.stop(time + duration);
-                break;
+                modulator.start(time); carrier.start(time); modulator.stop(time + duration); carrier.stop(time + duration); break;
             case 'analog_pad':
                 const osc1 = audioCtx.createOscillator(); const osc2 = audioCtx.createOscillator(); const osc3 = audioCtx.createOscillator();
-                osc1.type = 'sawtooth'; osc2.type = 'sawtooth'; osc3.type = 'sawtooth';
-                osc1.frequency.value = freq; osc2.frequency.value = freq; osc3.frequency.value = freq;
-                osc2.detune.value = -12; osc3.detune.value = 12; 
-                osc1.connect(gainNode); osc2.connect(gainNode); osc3.connect(gainNode);
+                osc1.type = 'sawtooth'; osc2.type = 'sawtooth'; osc3.type = 'sawtooth'; osc1.frequency.value = freq; osc2.frequency.value = freq; osc3.frequency.value = freq;
+                osc2.detune.value = -12; osc3.detune.value = 12; osc1.connect(gainNode); osc2.connect(gainNode); osc3.connect(gainNode);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.3, time + 0.3); gainNode.gain.setValueAtTime(0.3, time + Math.max(0.3, duration - 0.5)); gainNode.gain.linearRampToValueAtTime(0, time + duration);
-                osc1.start(time); osc2.start(time); osc3.start(time); osc1.stop(time + duration); osc2.stop(time + duration); osc3.stop(time + duration);
-                break;
+                osc1.start(time); osc2.start(time); osc3.start(time); osc1.stop(time + duration); osc2.stop(time + duration); osc3.stop(time + duration); break;
             case 'organ':
                 const harms = [1, 2, 3, 4, 6]; const oscs = [];
-                harms.forEach((h, i) => {
-                    let o = audioCtx.createOscillator(); o.type = (i % 2 === 0) ? 'sine' : 'triangle';
-                    o.frequency.value = freq * h; let g = audioCtx.createGain(); g.gain.value = 1 / (i + 1.5); 
-                    o.connect(g); g.connect(gainNode); oscs.push(o);
-                });
+                harms.forEach((h, i) => { let o = audioCtx.createOscillator(); o.type = (i % 2 === 0) ? 'sine' : 'triangle'; o.frequency.value = freq * h; let g = audioCtx.createGain(); g.gain.value = 1 / (i + 1.5); o.connect(g); g.connect(gainNode); oscs.push(o); });
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.5, time + 0.05); gainNode.gain.setValueAtTime(0.5, time + duration - 0.05); gainNode.gain.linearRampToValueAtTime(0, time + duration);
-                oscs.forEach(o => { o.start(time); o.stop(time + duration); });
-                break;
+                oscs.forEach(o => { o.start(time); o.stop(time + duration); }); break;
             case 'pluck':
-                const pOsc = audioCtx.createOscillator(); pOsc.type = 'sawtooth'; pOsc.frequency.value = freq;
-                const pFilter = audioCtx.createBiquadFilter(); pFilter.type = 'lowpass';
-                pOsc.connect(pFilter); pFilter.connect(gainNode);
+                const pOsc = audioCtx.createOscillator(); pOsc.type = 'sawtooth'; pOsc.frequency.value = freq; const pFilter = audioCtx.createBiquadFilter(); pFilter.type = 'lowpass'; pOsc.connect(pFilter); pFilter.connect(gainNode);
                 pFilter.frequency.setValueAtTime(8000, time); pFilter.frequency.exponentialRampToValueAtTime(100, time + 0.1);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.0, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration);
-                pOsc.start(time); pOsc.stop(time + duration);
-                break;
+                pOsc.start(time); pOsc.stop(time + duration); break;
             case '808':
                 if (pitch <= 64) { 
-                    const kOsc = audioCtx.createOscillator(); kOsc.type = 'sine'; kOsc.connect(gainNode);
-                    kOsc.frequency.setValueAtTime(150, time); kOsc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5); 
+                    const kOsc = audioCtx.createOscillator(); kOsc.type = 'sine'; kOsc.connect(gainNode); kOsc.frequency.setValueAtTime(150, time); kOsc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5); 
                     gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.5, time + 0.02); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
                     kOsc.start(time); kOsc.stop(time + 0.5);
                 } else {
-                    const sNoise = audioCtx.createBufferSource(); sNoise.buffer = noiseBuffer;
-                    const sFilter = audioCtx.createBiquadFilter(); sFilter.type = 'highpass'; sFilter.frequency.value = 1000;
-                    sNoise.connect(sFilter); sFilter.connect(gainNode);
+                    const sNoise = audioCtx.createBufferSource(); sNoise.buffer = noiseBuffer; const sFilter = audioCtx.createBiquadFilter(); sFilter.type = 'highpass'; sFilter.frequency.value = 1000; sNoise.connect(sFilter); sFilter.connect(gainNode);
                     gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.0, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.2); 
                     sNoise.start(time); sNoise.stop(time + 0.2);
-                }
-                break;
+                } break;
             default:
                 const bOsc = audioCtx.createOscillator(); bOsc.type = inst; bOsc.frequency.value = freq; bOsc.connect(gainNode);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.4, time + 0.05); gainNode.gain.setValueAtTime(0.4, time + duration - 0.05); gainNode.gain.linearRampToValueAtTime(0, time + duration);
-                bOsc.start(time); bOsc.stop(time + duration);
-                break;
+                bOsc.start(time); bOsc.stop(time + duration); break;
         }
     }
 
-    // 4. 시퀀서 (다중 트랙 스케줄링 로직)
+    // 4. 시퀀서
     const lookahead = 25.0; const scheduleAheadTime = 0.1; let timerID;
-
     function nextNoteLogic() {
         if (!isPlaying) return;
         let currentTime = audioCtx.currentTime - seqStartTime;
-        
-        // 다중 트랙 루프: 모든 레이어의 노트를 검사하여 병렬 스케줄링
         tracks.forEach(track => {
             track.notes.forEach(note => {
                 if (note.start >= currentTime - 0.05 && note.start < currentTime + scheduleAheadTime && !note.scheduled) {
@@ -343,49 +347,42 @@
         tracks.forEach(track => track.notes.forEach(note => note.scheduled = false));
     }
 
-    // 5. 레이어 UI & 렌더링 엔진 (현재 선택된 레이어만 그림)
+    // 5. 레이어 UI & 렌더링
     const canvas = document.getElementById('pianoRoll'); const ctx = canvas.getContext('2d');
     let draggingNote = null; let dragOffsetX = 0; let isDraggingPlayhead = false;
 
-    // UI 동기화
     function updateLayerUI() {
-        const select = document.getElementById('layerSelect');
-        select.innerHTML = '';
+        const select = document.getElementById('layerSelect'); select.innerHTML = '';
         tracks.forEach((t, index) => {
-            const opt = document.createElement('option');
-            opt.value = index; opt.innerText = t.name;
-            if (index === currentTrackIndex) opt.selected = true;
-            select.appendChild(opt);
+            const opt = document.createElement('option'); opt.value = index; opt.innerText = t.name;
+            if (index === currentTrackIndex) opt.selected = true; select.appendChild(opt);
         });
         document.getElementById('instrumentSelect').value = tracks[currentTrackIndex].inst;
     }
 
     document.getElementById('btnAddLayer').addEventListener('click', () => {
-        const newId = tracks.length;
-        tracks.push({ id: newId, name: `Layer ${newId + 1}`, inst: 'sine', notes: [] });
-        currentTrackIndex = newId;
-        updateLayerUI();
+        const newId = tracks.length; tracks.push({ id: newId, name: `Layer ${newId + 1}`, inst: 'sine', notes: [] });
+        currentTrackIndex = newId; updateLayerUI();
     });
 
-    document.getElementById('btnClearLayer').addEventListener('click', () => {
-        if(confirm('현재 레이어의 모든 음표를 삭제하시겠습니까?')) {
-            tracks[currentTrackIndex].notes = [];
-        }
+    // 버그 픽스: 명확하게 분리된 전체 데이터 삭제 로직
+    document.getElementById('btnClearCurrentLayer').addEventListener('click', () => {
+        if(confirm('현재 화면에 보이는 이 레이어의 블록만 삭제하시겠습니까?')) { tracks[currentTrackIndex].notes = []; }
+    });
+    
+    document.getElementById('btnClearAllLayers').addEventListener('click', () => {
+        if(confirm('모든 레이어의 데이터를 완전히 지우시겠습니까?')) { tracks.forEach(t => t.notes = []); returnToStart(); }
     });
 
     document.getElementById('layerSelect').addEventListener('change', e => {
-        currentTrackIndex = parseInt(e.target.value);
-        document.getElementById('instrumentSelect').value = tracks[currentTrackIndex].inst;
-        draggingNote = null; // 레이어 변경 시 드래그 초기화
+        currentTrackIndex = parseInt(e.target.value); document.getElementById('instrumentSelect').value = tracks[currentTrackIndex].inst; draggingNote = null;
     });
 
-    document.getElementById('instrumentSelect').addEventListener('change', e => {
-        tracks[currentTrackIndex].inst = e.target.value;
-    });
+    document.getElementById('instrumentSelect').addEventListener('change', e => { tracks[currentTrackIndex].inst = e.target.value; });
+    document.getElementById('snapSelect').addEventListener('change', e => snapValue = parseFloat(e.target.value));
 
     function drawPianoRoll() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
         ctx.fillStyle = '#111'; ctx.fillRect(HEADER_WIDTH, 0, canvas.width, RULER_HEIGHT);
         ctx.fillStyle = '#888'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
         for (let x = HEADER_WIDTH; x < canvas.width; x += PIXELS_PER_SECOND) {
@@ -395,34 +392,25 @@
 
         ctx.strokeStyle = '#3a3a3a'; ctx.lineWidth = 1;
         for (let i = 0; i < TOTAL_ROWS; i++) {
-            let y = RULER_HEIGHT + (i * ROW_HEIGHT);
-            ctx.beginPath(); ctx.moveTo(HEADER_WIDTH, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+            let y = RULER_HEIGHT + (i * ROW_HEIGHT); ctx.beginPath(); ctx.moveTo(HEADER_WIDTH, y); ctx.lineTo(canvas.width, y); ctx.stroke();
         }
 
         if (snapValue > 0) {
             ctx.strokeStyle = '#444'; const gridSpacing = snapValue * PIXELS_PER_SECOND;
-            for (let x = HEADER_WIDTH; x < canvas.width; x += gridSpacing) {
-                ctx.beginPath(); ctx.moveTo(x, RULER_HEIGHT); ctx.lineTo(x, canvas.height); ctx.stroke();
-            }
+            for (let x = HEADER_WIDTH; x < canvas.width; x += gridSpacing) { ctx.beginPath(); ctx.moveTo(x, RULER_HEIGHT); ctx.lineTo(x, canvas.height); ctx.stroke(); }
         }
 
-        // 현재 활성화된 레이어(Track)의 데이터만 화면에 렌더링
         const currentLayerNotes = tracks[currentTrackIndex].notes;
         currentLayerNotes.forEach(note => {
-            const x = HEADER_WIDTH + (note.start * PIXELS_PER_SECOND);
-            const y = RULER_HEIGHT + (MAX_PITCH - note.pitch) * ROW_HEIGHT;
-            const w = note.duration * PIXELS_PER_SECOND;
-            
-            ctx.fillStyle = (draggingNote === note) ? '#ffffff' : '#44aaff';
-            ctx.fillRect(x, y + 1, w, ROW_HEIGHT - 2);
-            ctx.strokeStyle = '#000'; ctx.strokeRect(x, y + 1, w, ROW_HEIGHT - 2);
+            const x = HEADER_WIDTH + (note.start * PIXELS_PER_SECOND); const y = RULER_HEIGHT + (MAX_PITCH - note.pitch) * ROW_HEIGHT; const w = note.duration * PIXELS_PER_SECOND;
+            ctx.fillStyle = (draggingNote === note) ? '#ffffff' : (layerColors[tracks[currentTrackIndex].inst] || '#44aaff');
+            ctx.fillRect(x, y + 1, w, ROW_HEIGHT - 2); ctx.strokeStyle = '#000'; ctx.strokeRect(x, y + 1, w, ROW_HEIGHT - 2);
         });
 
         ctx.fillStyle = '#222'; ctx.fillRect(0, RULER_HEIGHT, HEADER_WIDTH, canvas.height);
         ctx.fillStyle = '#ccc'; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
         for (let i = 0; i < TOTAL_ROWS; i++) {
-            let pitch = MAX_PITCH - i;
-            let y = RULER_HEIGHT + (i * ROW_HEIGHT) + (ROW_HEIGHT / 2);
+            let pitch = MAX_PITCH - i; let y = RULER_HEIGHT + (i * ROW_HEIGHT) + (ROW_HEIGHT / 2);
             ctx.fillText(pitchToNoteName(pitch), HEADER_WIDTH - 5, y);
             ctx.strokeStyle = '#555'; ctx.beginPath(); ctx.moveTo(0, RULER_HEIGHT + (i * ROW_HEIGHT)); ctx.lineTo(HEADER_WIDTH, RULER_HEIGHT + (i * ROW_HEIGHT)); ctx.stroke();
         }
@@ -439,21 +427,15 @@
     requestAnimationFrame(drawPianoRoll);
 
     // 6. 상호작용
-    document.getElementById('snapSelect').addEventListener('change', e => snapValue = parseFloat(e.target.value));
-    
-    window.addEventListener('keydown', e => {
-        if(e.code === 'Space') { e.preventDefault(); if(document.activeElement) document.activeElement.blur(); toggleSequencer(); }
-    });
+    window.addEventListener('keydown', e => { if(e.code === 'Space') { e.preventDefault(); if(document.activeElement) document.activeElement.blur(); toggleSequencer(); } });
     document.getElementById('btnPlay').addEventListener('click', toggleSequencer);
     document.getElementById('btnStop').addEventListener('click', returnToStart);
 
     function updatePlayheadPosition(mouseX) {
         let newTime = Math.max(0, (mouseX - HEADER_WIDTH) / PIXELS_PER_SECOND);
         if (snapValue > 0) newTime = Math.round(newTime / snapValue) * snapValue;
-        if (isPlaying) { 
-            seqStartTime = audioCtx.currentTime - newTime; 
-            tracks.forEach(track => track.notes.forEach(note => note.scheduled = note.start < newTime - 0.05)); 
-        } else { pauseTime = newTime; }
+        if (isPlaying) { seqStartTime = audioCtx.currentTime - newTime; tracks.forEach(track => track.notes.forEach(note => note.scheduled = note.start < newTime - 0.05)); } 
+        else { pauseTime = newTime; }
     }
 
     canvas.addEventListener('mousedown', (e) => {
@@ -461,9 +443,7 @@
         if (mouseX < HEADER_WIDTH) return;
         if (mouseY <= RULER_HEIGHT) { isDraggingPlayhead = true; updatePlayheadPosition(mouseX); return; }
 
-        const logicY = mouseY - RULER_HEIGHT;
-        const activeNotes = tracks[currentTrackIndex].notes; // 현재 레이어만 조작
-
+        const logicY = mouseY - RULER_HEIGHT; const activeNotes = tracks[currentTrackIndex].notes;
         if (e.button === 2) { 
             for (let i = activeNotes.length - 1; i >= 0; i--) {
                 const note = activeNotes[i]; const x = HEADER_WIDTH + (note.start * PIXELS_PER_SECOND); const y = (MAX_PITCH - note.pitch) * ROW_HEIGHT;
@@ -476,17 +456,12 @@
             let hit = false;
             for (let i = activeNotes.length - 1; i >= 0; i--) {
                 const note = activeNotes[i]; const x = HEADER_WIDTH + (note.start * PIXELS_PER_SECOND); const y = (MAX_PITCH - note.pitch) * ROW_HEIGHT;
-                if (mouseX >= x && mouseX <= x + note.duration * PIXELS_PER_SECOND && logicY >= y && logicY <= y + ROW_HEIGHT) {
-                    draggingNote = note; dragOffsetX = mouseX - x; hit = true; break;
-                }
+                if (mouseX >= x && mouseX <= x + note.duration * PIXELS_PER_SECOND && logicY >= y && logicY <= y + ROW_HEIGHT) { draggingNote = note; dragOffsetX = mouseX - x; hit = true; break; }
             }
             if (!hit) {
-                const pitch = MAX_PITCH - Math.floor(logicY / ROW_HEIGHT);
-                let start = (mouseX - HEADER_WIDTH) / PIXELS_PER_SECOND;
+                const pitch = MAX_PITCH - Math.floor(logicY / ROW_HEIGHT); let start = (mouseX - HEADER_WIDTH) / PIXELS_PER_SECOND;
                 if (snapValue > 0) start = Math.floor(start / snapValue) * snapValue;
-                
                 const isDuplicate = activeNotes.some(n => n.pitch === pitch && Math.abs(n.start - start) < 0.001);
-                
                 if (!isDuplicate) {
                     const duration = snapValue > 0 ? snapValue : 0.5;
                     activeNotes.push({ id: noteIdCounter++, pitch: pitch, start: start, duration: duration });
@@ -508,7 +483,7 @@
     });
     window.addEventListener('mouseup', () => { draggingNote = null; isDraggingPlayhead = false; });
 
-    // 7. 내보내기 & 불러오기 (MIDI Format 1 - 멀티트랙 지원으로 격상)
+    // 7. 내보내기 & 불러오기
     document.getElementById('btnImportMIDI').addEventListener('change', (e) => {
         const file = e.target.files[0]; if (!file) return; const reader = new FileReader();
         reader.onload = function(evt) {
@@ -516,8 +491,7 @@
             if (view.getUint32(offset) !== 0x4D546864) return alert('유효한 MIDI 파일이 아닙니다.');
             offset += 8; const format = view.getUint16(offset); offset += 2; const numTracks = view.getUint16(offset); offset += 2; const ticksPerBeat = view.getUint16(offset); offset += 2;
             const secondsPerTick = (60 / 120) / ticksPerBeat;
-            
-            tracks = []; // 기존 레이어 초기화
+            tracks = []; 
             for (let i = 0; i < numTracks; i++) {
                 if (view.getUint32(offset) !== 0x4D54726B) break;
                 offset += 4; const trackLen = view.getUint32(offset); offset += 4; const trackEnd = offset + trackLen; let absoluteTick = 0;
@@ -535,12 +509,9 @@
                                 trackNotes.push({ id: noteIdCounter++, pitch: pitch, start: start, duration: duration }); delete activeNotes[pitch];
                             }
                         }
-                    } else if (eventType >= 0xA && eventType <= 0xE) { offset += 3; if (eventType === 0xC || eventType === 0xD) offset--; }
-                    else { offset++; }
+                    } else if (eventType >= 0xA && eventType <= 0xE) { offset += 3; if (eventType === 0xC || eventType === 0xD) offset--; } else { offset++; }
                 }
-                if (trackNotes.length > 0 || i === 0) {
-                    tracks.push({ id: i, name: `Layer ${tracks.length + 1}`, inst: 'sine', notes: trackNotes });
-                }
+                if (trackNotes.length > 0 || i === 0) { tracks.push({ id: i, name: `Layer ${tracks.length + 1}`, inst: 'sine', notes: trackNotes }); }
             }
             if (tracks.length === 0) tracks.push({ id: 0, name: 'Layer 1', inst: 'sine', notes: [] });
             currentTrackIndex = 0; updateLayerUI(); returnToStart(); e.target.value = '';
@@ -556,45 +527,30 @@
         mediaRecorder.onstop = () => {
             const blob = new Blob(recordedChunks, { type: 'audio/webm' }); const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href = url; a.download = 'my_multi_track.webm'; a.click(); URL.revokeObjectURL(url);
-            document.getElementById('btnExportAudio').innerText = "Export Audio";
+            document.getElementById('btnExportAudio').innerText = "Export Audio (.webm)";
         };
         document.getElementById('btnExportAudio').innerText = "Recording..."; returnToStart(); toggleSequencer(); mediaRecorder.start();
-        setTimeout(() => { toggleSequencer(); mediaRecorder.stop(); }, (maxTime + 2.5) * 1000); // 리버브 꼬리음을 위해 +2.5초 대기
+        setTimeout(() => { toggleSequencer(); mediaRecorder.stop(); }, (maxTime + 2.5) * 1000); 
     });
 
-    // MIDI Format 1 멀티 트랙 내보내기
     document.getElementById('btnExportMIDI').addEventListener('click', () => {
         const ticksPerBeat = 128, bpm = 120, secondsPerBeat = 60 / bpm;
         function toVLQ(val) { let buf = [val & 0x7F]; while ((val >>= 7)) buf.unshift((val & 0x7F) | 0x80); return buf; }
-        
         let allTracksData = [];
         tracks.forEach(track => {
-            if (track.notes.length === 0) return;
-            let events = [];
+            if (track.notes.length === 0) return; let events = [];
             track.notes.forEach(n => { events.push({ time: n.start, type: 0x90, pitch: n.pitch, vel: 100 }); events.push({ time: n.start + n.duration, type: 0x80, pitch: n.pitch, vel: 0 }); });
-            events.sort((a, b) => a.time - b.time);
-            
-            let trackData = [], prevTick = 0;
+            events.sort((a, b) => a.time - b.time); let trackData = [], prevTick = 0;
             events.forEach(ev => { let tick = Math.round((ev.time / secondsPerBeat) * ticksPerBeat); trackData.push(...toVLQ(tick - prevTick)); trackData.push(ev.type, ev.pitch, ev.vel); prevTick = tick; });
             trackData.push(...[0x00, 0xFF, 0x2F, 0x00]);
-            
-            const midiLength = trackData.length;
-            allTracksData.push(0x4D, 0x54, 0x72, 0x6B, (midiLength >> 24) & 0xFF, (midiLength >> 16) & 0xFF, (midiLength >> 8) & 0xFF, midiLength & 0xFF, ...trackData);
+            const midiLength = trackData.length; allTracksData.push(0x4D, 0x54, 0x72, 0x6B, (midiLength >> 24) & 0xFF, (midiLength >> 16) & 0xFF, (midiLength >> 8) & 0xFF, midiLength & 0xFF, ...trackData);
         });
-        
         if (allTracksData.length === 0) return alert('노트가 없습니다.');
         const numTracks = tracks.filter(t => t.notes.length > 0).length;
-        
-        const midiBytes = new Uint8Array([
-            0x4D, 0x54, 0x68, 0x64, 0x00, 0x00, 0x00, 0x06, 0x00, 0x01, // Format 1 (다중 트랙)
-            (numTracks >> 8) & 0xFF, numTracks & 0xFF, // 트랙 수 기록
-            0x00, 0x80, // Ticks (128)
-            ...allTracksData
-        ]);
+        const midiBytes = new Uint8Array([ 0x4D, 0x54, 0x68, 0x64, 0x00, 0x00, 0x00, 0x06, 0x00, 0x01, (numTracks >> 8) & 0xFF, numTracks & 0xFF, 0x00, 0x80, ...allTracksData ]);
         const blob = new Blob([midiBytes], { type: 'audio/midi' }); const url = URL.createObjectURL(blob);
         const a = document.createElement('a'); a.href = url; a.download = 'multi_layer.mid'; a.click(); URL.revokeObjectURL(url);
     });
-
 </script>
 </body>
 </html>
