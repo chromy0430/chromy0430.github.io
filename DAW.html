@@ -1,637 +1,1591 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Web DAW & Virtual Instrument (Final Master)</title>
-    <style>
-        body { margin: 0; padding: 20px; background: #1e1e1e; color: #ddd; font-family: sans-serif; height: 100vh; overflow: hidden; box-sizing: border-box; }
-        .toolbar { margin-bottom: 10px; display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; background: #2a2a2a; padding: 10px; border: 1px solid #444; }
-        button, select { padding: 6px 10px; background: #333; color: white; border: 1px solid #555; cursor: pointer; font-size: 12px; }
-        button:hover { background: #444; }
-        button.action { background: #2a4d69; } button.action:hover { background: #4b86b4; }
-        button.danger { background: #692a2a; } button.danger:hover { background: #b44b4b; }
-        .control-group { display: flex; flex-direction: column; gap: 5px; padding: 0 10px; border-left: 1px solid #555; }
-        .row { display: flex; align-items: center; gap: 5px; }
-        
-        /* 슬라이더 및 숫자 입력기 CSS 최적화 */
-        .fx-panel { display: flex; gap: 15px; padding: 10px; background: #222; border: 1px solid #444; margin-bottom: 10px; flex-wrap: wrap; align-items: center; font-size: 12px; }
-        .fx-control { display: flex; flex-direction: column; align-items: center; gap: 3px; background: #2a2a2a; padding: 5px; border-radius: 4px; border: 1px solid #333; }
-        .input-pair { display: flex; align-items: center; gap: 4px; }
-        input[type="range"] { margin: 0; cursor: pointer; width: 100px; }
-        input[type="number"] { width: 50px; padding: 2px; background: #111; color: #0f0; border: 1px solid #555; text-align: right; font-family: monospace; }
-        
-        .canvas-container { height: calc(100vh - 180px); overflow-y: auto; overflow-x: auto; border: 1px solid #444; background: #2a2a2a; }
-        #pianoRoll { display: block; cursor: crosshair; }
-        input[type="file"] { display: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Audio DAW Stable</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #171717;
+      color: #e6e6e6;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+    }
+    .app {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      height: 100vh;
+      min-width: 0;
+    }
+    .sidebar {
+      border-right: 1px solid #333;
+      background: #1f1f1f;
+      overflow-y: auto;
+      padding: 12px;
+    }
+    .main {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-width: 0;
+      min-height: 0;
+    }
+    .panel {
+      background: #202020;
+      border: 1px solid #323232;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #ffd27d;
+    }
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    label { font-size: 12px; color: #cfcfcf; }
+    input[type="text"], input[type="number"], select {
+      background: #111;
+      color: #eaeaea;
+      border: 1px solid #444;
+      padding: 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    input[type="number"] { width: 78px; }
+    input[type="range"] { width: 110px; }
+    button {
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 6px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    button:hover { background: #454545; }
+    button.primary { background: #305f8f; }
+    button.primary:hover { background: #3d75ae; }
+    button.danger { background: #6a2d2d; }
+    button.danger:hover { background: #8a3e3e; }
+    button.active { background: #6a8f30; }
+    .toolbar, .transport {
+      border-bottom: 1px solid #2f2f2f;
+      padding: 8px 10px;
+      background: #1c1c1c;
+      flex-shrink: 0;
+    }
+    .transport .time-readout {
+      font-family: monospace;
+      font-size: 13px;
+      color: #ffd27d;
+      margin-left: auto;
+      min-width: 92px;
+      text-align: right;
+    }
+    .canvas-wrap {
+      overflow: auto;
+      background: #101010;
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      scrollbar-gutter: stable both-edges;
+    }
+    canvas { display: block; cursor: crosshair; }
+    .statusbar {
+      border-top: 1px solid #2f2f2f;
+      padding: 6px 10px;
+      background: #1c1c1c;
+      font-size: 12px;
+      color: #bfbfbf;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .tracks-list { display: flex; flex-direction: column; gap: 8px; }
+    .track-card {
+      border: 1px solid #333;
+      background: #181818;
+      border-radius: 8px;
+      padding: 8px;
+    }
+    .track-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .track-header input[type="text"] {
+      flex: 1;
+      min-width: 0;
+    }
+    .mini { font-size: 11px; color: #999; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .track-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      align-items: center;
+    }
+    .track-controls .full { grid-column: 1 / -1; }
+    .small-btns { display: flex; gap: 6px; }
+    .chip {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      font-size: 11px;
+    }
+    .help {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #c8c8c8;
+    }
+    input[type="file"] { display: none; }
+    @media (max-width: 1200px) {
+      .app {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+        min-height: 100vh;
+      }
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #333;
+        max-height: 42vh;
+      }
+      .main {
+        min-height: 58vh;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<div class="toolbar">
-    <div class="control-group" style="border-left: none;">
-        <button id="btnPlay" class="action" style="padding: 10px;">Play/Pause (Space)</button>
-        <button id="btnStop" class="action">Return to Start</button>
-    </div>
-    
-    <div class="control-group">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="panel">
+        <h3>프로젝트</h3>
         <div class="row">
-            <button id="btnAddLayer" class="action">+ 레이어 추가</button>
-            <label>현재 선택:</label>
-            <select id="layerSelect"><option value="0">Layer 1</option></select>
+          <label>이름</label>
+          <input id="projectName" type="text" value="Game Audio Project" style="flex:1;" />
         </div>
-        <div class="row">
-            <button id="btnClearCurrentLayer" class="danger">현재 레이어 블록 지우기</button>
-            <button id="btnClearAllLayers" class="danger">모든 레이어 블록 지우기</button>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <div class="row">
-            <label>악기:</label>
-            <select id="instrumentSelect">
-                <option value="sine">Virtual Piano</option>
-                <option value="square">8-Bit Synth</option>
-                <option value="fm_ep">FM Electric Piano</option>
-                <option value="analog_pad">Analog Pad (몽환적)</option>
-                <option value="organ">Church Organ</option>
-                <option value="pluck">Plucked Guitar</option>
-                <option value="marimba">Marimba (Classic)</option>
-                <option value="dream_marimba">Dream Marimba</option>
-                <option value="808">808 Drum Kit (Kick/Snare)</option>
-				<option value="bass">Deep Bass</option>
-				<option value="lead">Synth Lead</option>
-				<option value="bell">Bell</option>
+        <div class="grid2">
+          <div>
+            <label>BPM</label>
+            <input id="bpmInput" type="number" min="40" max="240" step="1" value="120" />
+          </div>
+          <div>
+            <label>박자</label>
+            <select id="timeSigNumerator">
+              <option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option>
             </select>
+          </div>
         </div>
         <div class="row">
-            <label>스냅:</label>
-            <select id="snapSelect">
-                <option value="0">Off (0.5s)</option>
-                <option value="0.125">1/32 박</option>
-                <option value="0.25" selected>1/16 박</option>
-                <option value="0.5">1/8 박</option>
-                <option value="1.0">1/4 박</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <div class="row">
-            <label class="action" style="padding: 6px 10px; border: 1px solid #555; cursor: pointer;">
-                Import MIDI <input type="file" id="btnImportMIDI" accept=".mid">
-            </label>
+          <label>스냅</label>
+          <select id="snapSelect">
+            <option value="0">Off</option>
+            <option value="0.25">1/16</option>
+            <option value="0.5" selected>1/8</option>
+            <option value="1">1/4</option>
+            <option value="2">1/2</option>
+            <option value="4">1 Bar</option>
+          </select>
         </div>
         <div class="row">
-            <button class="action" id="btnExportAudio">Export Audio (.webm)</button>
-            <button class="action" id="btnExportMIDI">Export MIDI (.mid)</button>
+          <button id="saveProjectBtn">프로젝트 저장</button>
+          <label class="chip">불러오기<input id="loadProjectInput" type="file" accept=".json" /></label>
         </div>
-    </div>
-</div>
+        <div class="row">
+          <button id="exportWavBtn" class="primary">WAV Export</button>
+          <button id="exportStemsBtn">Stem Export</button>
+        </div>
+        <div class="row">
+          <button id="exportMidiBtn">MIDI Export</button>
+          <label class="chip">MIDI 불러오기<input id="importMidiInput" type="file" accept=".mid,.midi" /></label>
+        </div>
+      </div>
 
-<div class="fx-panel">
-    <strong style="color: #ffaa44;">Master FX:</strong>
-    
-    <div class="fx-control">
-        <label>Lowpass (0-100%)</label>
-        <div class="input-pair">
-            <input type="range" id="fxFilter_slider" min="0" max="100" step="1" value="0">
-            <input type="number" id="fxFilter_num" min="0" max="100" step="1" value="0">
+      <div class="panel">
+        <h3>루프 / 편집</h3>
+        <div class="row">
+          <label><input id="loopEnabled" type="checkbox" /> 루프 활성화</label>
         </div>
-    </div>
-    
-    <div class="fx-control">
-        <label>Distortion (0-100%)</label>
-        <div class="input-pair">
-            <input type="range" id="fxDistortion_slider" min="0" max="100" step="1" value="0">
-            <input type="number" id="fxDistortion_num" min="0" max="100" step="1" value="0">
+        <div class="grid2">
+          <div>
+            <label>루프 시작(beat)</label>
+            <input id="loopStartInput" type="number" min="0" step="0.25" value="0" />
+          </div>
+          <div>
+            <label>루프 끝(beat)</label>
+            <input id="loopEndInput" type="number" min="1" step="0.25" value="16" />
+          </div>
         </div>
-    </div>
-    
-    <div class="fx-control">
-        <label>Delay (0-1 sec)</label>
-        <div class="input-pair">
-            <input type="range" id="fxDelayTime_slider" min="0" max="1" step="0.01" value="0">
-            <input type="number" id="fxDelayTime_num" min="0" max="1" step="0.01" value="0">
+        <div class="row">
+          <button id="setLoopToSelectionBtn">선택영역→루프</button>
+          <button id="duplicateSelectionBtn">선택 복제</button>
         </div>
-    </div>
-    
-    <div class="fx-control">
-        <label>Tremolo (0-20 Hz)</label>
-        <div class="input-pair">
-            <input type="range" id="fxTremolo_slider" min="0" max="20" step="0.1" value="0">
-            <input type="number" id="fxTremolo_num" min="0" max="20" step="0.1" value="0">
+        <div class="row">
+          <button id="copySelectionBtn">복사</button>
+          <button id="pasteSelectionBtn">붙여넣기</button>
+          <button id="deleteSelectionBtn" class="danger">삭제</button>
         </div>
-    </div>
-    
-    <div class="fx-control">
-        <label>Stereo Pan (-1 to 1)</label>
-        <div class="input-pair">
-            <input type="range" id="fxPan_slider" min="-1" max="1" step="0.01" value="0">
-            <input type="number" id="fxPan_num" min="-1" max="1" step="0.01" value="0">
+        <div class="row">
+          <button id="selectAllTrackBtn">현재 레이어 전체 선택</button>
         </div>
-    </div>
-    
-    <div class="fx-control">
-        <label>Reverb Mix (0-100%)</label>
-        <div class="input-pair">
-            <input type="range" id="fxReverb_slider" min="0" max="100" step="1" value="0">
-            <input type="number" id="fxReverb_num" min="0" max="100" step="1" value="0">
-        </div>
-    </div>
-    
-    <div class="fx-control" style="margin-left: auto; border-left: 1px solid #555; padding-left: 15px;">
-        <label>Master Volume (0-1)</label>
-        <div class="input-pair">
-            <input type="range" id="masterVolume_slider" min="0" max="1" step="0.01" value="0.6">
-            <input type="number" id="masterVolume_num" min="0" max="1" step="0.01" value="0.6">
-        </div>
-    </div>
-</div>
+      </div>
 
-<div class="canvas-container">
-    <canvas id="pianoRoll" width="2400" height="600"></canvas>
-</div>
+      <div class="panel">
+        <h3>마스터 FX</h3>
+        <div class="row"><label>Lowpass</label><input id="masterFilter" type="range" min="0" max="100" value="0" /></div>
+        <div class="row"><label>Distortion</label><input id="masterDrive" type="range" min="0" max="100" value="0" /></div>
+        <div class="row"><label>Delay</label><input id="masterDelay" type="range" min="0" max="100" value="0" /></div>
+        <div class="row"><label>Reverb</label><input id="masterReverb" type="range" min="0" max="100" value="12" /></div>
+        <div class="row"><label>Master Vol</label><input id="masterVolume" type="range" min="0" max="100" value="70" /></div>
+      </div>
 
-<script>
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    let audioCtx = new AudioContext();
-    
-    // 1. 다중 레이어 데이터베이스
-    let tracks = [{ id: 0, name: 'Layer 1', inst: 'sine', notes: [] }];
-    let currentTrackIndex = 0;
-    let noteIdCounter = 1;
+      <div class="panel">
+        <h3>레이어 믹서</h3>
+        <div class="row">
+          <button id="addTrackBtn" class="primary">+ 레이어 추가</button>
+        </div>
+        <div id="tracksList" class="tracks-list"></div>
+      </div>
 
-    let isPlaying = false; let seqStartTime = 0; let pauseTime = 0;
-    let snapValue = 0.25;
+      <div class="panel help">
+        <h3>조작</h3>
+        좌클릭 빈 공간: 즉시 노트 생성<br/>
+        Shift + 빈 공간 드래그: 박스 선택<br/>
+        좌클릭 노트: 선택<br/>
+        선택된 노트 드래그: 이동<br/>
+        노트 오른쪽 끝 드래그: 길이 조절<br/>
+        우클릭 노트: 삭제<br/>
+        Space: 재생/일시정지<br/>
+        Delete: 선택 삭제<br/>
+        Ctrl/Cmd+C, Ctrl/Cmd+V: 복사/붙여넣기<br/>
+        방향키: 선택 노트 미세 이동
+      </div>
+    </aside>
 
-    const layerColors = {
-    'sine': '#44aaff',
-    'square': '#ffaa44',
-    'fm_ep': '#cc44ff',
-    'analog_pad': '#44ffcc',
-    'organ': '#4444ff',
-    'pluck': '#ff4444',
-    'marimba': '#aa4444',
-    'dream_marimba': '#aa44ff',
-    '808': '#bbbbbb',
-    'bass': '#22cc88',
-    'lead': '#ff66aa',
-    'bell': '#66ccff'
-};
-	
-    const HEADER_WIDTH = 80; const RULER_HEIGHT = 20; const PIXELS_PER_SECOND = 100;
-    const ROW_HEIGHT = 15; const MIN_PITCH = 48; const MAX_PITCH = 84; 
+    <section class="main">
+      <div class="transport">
+        <div class="row" style="margin-bottom:0;">
+          <button id="playBtn" class="primary">Play / Pause</button>
+          <button id="stopBtn">Stop</button>
+          <button id="rewindBtn">처음으로</button>
+          <button id="clearCurrentTrackBtn" class="danger">현재 레이어 비우기</button>
+          <span class="chip">현재 레이어: <span id="currentTrackLabel">Layer 1</span></span>
+          <span class="chip">선택 노트: <span id="selectionCount">0</span></span>
+          <div class="time-readout" id="timeReadout">00:00.000</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="row" style="margin-bottom:0;">
+          <label>생성 악기</label>
+          <select id="instrumentPalette"></select>
+          <label><input id="previewOnClick" type="checkbox" checked /> 클릭 프리뷰</label>
+          <label>현재 트랙만 보기</label>
+          <input id="focusCurrentTrackOnly" type="checkbox" />
+          <label>배경 그리드 강조</label>
+          <input id="highlightBars" type="checkbox" checked />
+        </div>
+      </div>
+
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="pianoRoll" width="5200" height="1200"></canvas>
+      </div>
+
+      <div class="statusbar">
+        <div id="statusText">준비 완료</div>
+        <div id="mouseInfo">-</div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const AudioContextCls = window.AudioContext || window.webkitAudioContext;
+    const liveCtx = new AudioContextCls();
+
+    const GM_PROGRAM_TO_INST = {
+      0:'soft_keys', 8:'music_box', 9:'xylophone', 10:'marimba', 11:'dream_xylo', 12:'mallet',
+      52:'airy_choir', 88:'warm_pad', 89:'dream_pad', 92:'crystal_bell', 93:'dream_xylo',
+      80:'chip_lead', 81:'pulse_lead', 38:'synth_bass', 39:'round_bass', 115:'hat', 116:'snare', 117:'kick'
+    };
+    const INST_TO_GM_PROGRAM = {
+      soft_keys:0, chip_lead:80, pulse_lead:81, warm_pad:89, synth_bass:38,
+      pluck:24, mallet:12, noise_fx:98, riser:102, impact:119, kick:117, snare:116, hat:115,
+      xylophone:9, marimba:10, dream_xylo:93, dream_marimba:11, crystal_bell:92,
+      music_box:8, airy_choir:52, dream_pad:89, round_bass:39
+    };
+
+    const INSTRUMENTS = [
+      ['soft_keys','Soft Keys'], ['chip_lead','Chip Lead'], ['pulse_lead','Pulse Lead'], ['warm_pad','Warm Pad'],
+      ['synth_bass','Synth Bass'], ['pluck','Pluck'], ['mallet','Mallet'], ['noise_fx','Noise FX'],
+      ['riser','Riser'], ['impact','Impact'], ['kick','Kick'], ['snare','Snare'], ['hat','Hi-Hat'],
+      ['xylophone','Xylophone'], ['marimba','Marimba'], ['dream_xylo','Dream Xylophone'],
+      ['dream_marimba','Dream Marimba'], ['crystal_bell','Crystal Bell'], ['music_box','Music Box'],
+      ['airy_choir','Airy Choir'], ['dream_pad','Dream Pad'], ['round_bass','Round Bass']
+    ];
+
+    const COLORS = {
+      soft_keys:'#56b6ff', chip_lead:'#ffaa44', pulse_lead:'#ff66aa', warm_pad:'#54e3c2', synth_bass:'#22cc88',
+      pluck:'#ff7777', mallet:'#b48cff', noise_fx:'#c9c9c9', riser:'#8cf0ff', impact:'#ffae5a',
+      kick:'#8f8f8f', snare:'#dadada', hat:'#f5f5f5', xylophone:'#ffd36e', marimba:'#c18bff',
+      dream_xylo:'#9ad8ff', dream_marimba:'#c7a6ff', crystal_bell:'#9fe7ff', music_box:'#ffe38a',
+      airy_choir:'#d7c6ff', dream_pad:'#7ee6d8', round_bass:'#5acb8a'
+    };
+
+    const HEADER_WIDTH = 90;
+    const RULER_HEIGHT = 28;
+    const ROW_HEIGHT = 18;
+    const MIN_PITCH = 36;
+    const MAX_PITCH = 96;
     const TOTAL_ROWS = MAX_PITCH - MIN_PITCH + 1;
+    const PIXELS_PER_BEAT = 48;
+    const DEFAULT_BARS = 16;
+    const MIN_NOTE_BEATS = 0.125;
+    const RESIZE_HANDLE_PX = 8;
+    const DRAG_THRESHOLD_PX = 6;
 
-    const noiseBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 2, audioCtx.sampleRate);
-    const outputData = noiseBuffer.getChannelData(0);
-    for (let i = 0; i < noiseBuffer.length; i++) { outputData[i] = Math.random() * 2 - 1; }
+    let project = {
+      name: 'Game Audio Project',
+      bpm: 120,
+      timeSigNumerator: 4,
+      snapBeats: 0.5,
+      loopEnabled: false,
+      loopStartBeat: 0,
+      loopEndBeat: 16,
+      masterFx: { filter:0, drive:0, delay:0, reverb:12, volume:70 },
+      tracks: []
+    };
 
-    function createReverbIR(duration, decay) {
-        const length = audioCtx.sampleRate * duration;
-        const impulse = audioCtx.createBuffer(2, length, audioCtx.sampleRate);
-        for (let i = 0; i < 2; i++) {
-            const channel = impulse.getChannelData(i);
-            for (let j = 0; j < length; j++) { channel[j] = (Math.random() * 2 - 1) * Math.pow(1 - j / length, decay); }
+    let noteIdCounter = 1;
+    let trackIdCounter = 1;
+    let currentTrackIndex = 0;
+    let clipboard = [];
+
+    let isPlaying = false;
+    let playbackBeat = 0;
+    let playbackStartCtxTime = 0;
+    let scheduledCache = new Set();
+    let schedulerTimer = null;
+
+    let selectedNoteIds = new Set();
+    let dragState = null;
+    let selectionRect = null;
+    let marqueeStart = null;
+    let liveMasterGraph = null;
+
+    const canvas = document.getElementById('pianoRoll');
+    const ctx2d = canvas.getContext('2d');
+    const instrumentPalette = document.getElementById('instrumentPalette');
+    const tracksList = document.getElementById('tracksList');
+
+    for (const [value, label] of INSTRUMENTS) {
+      const opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = label;
+      instrumentPalette.appendChild(opt);
+    }
+
+    function makeTrack(name = `Layer ${trackIdCounter}`) {
+      return {
+        id: trackIdCounter++,
+        name,
+        instrument: 'soft_keys',
+        volume: 0.9,
+        pan: 0,
+        reverbSend: 0.15,
+        mute: false,
+        solo: false,
+        notes: []
+      };
+    }
+    project.tracks.push(makeTrack('Layer 1'));
+
+    function beatsToSeconds(beats, bpm = project.bpm) { return beats * (60 / bpm); }
+    function secondsToBeats(sec, bpm = project.bpm) { return sec / (60 / bpm); }
+    function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+    function snapBeatFloor(v) {
+      if (!project.snapBeats) return Math.max(0, v);
+      return Math.max(0, Math.floor(v / project.snapBeats) * project.snapBeats);
+    }
+    function snapBeatNearest(v) {
+      if (!project.snapBeats) return Math.max(0, v);
+      return Math.max(0, Math.round(v / project.snapBeats) * project.snapBeats);
+    }
+    function pitchToFreq(p) { return 440 * Math.pow(2, (p - 69) / 12); }
+    function pitchToName(pitch) {
+      const names = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+      return `${names[pitch % 12]}${Math.floor(pitch / 12) - 1}`;
+    }
+    function getSongEndBeat() {
+      let maxBeat = DEFAULT_BARS * project.timeSigNumerator;
+      for (const track of project.tracks) {
+        for (const note of track.notes) {
+          maxBeat = Math.max(maxBeat, note.start + note.duration + project.timeSigNumerator);
         }
-        return impulse;
+      }
+      return maxBeat;
+    }
+    function ensureCanvasSize() {
+      const totalBeats = Math.ceil(getSongEndBeat() + project.timeSigNumerator * 4);
+      canvas.width = Math.max(HEADER_WIDTH + totalBeats * PIXELS_PER_BEAT, Math.max(window.innerWidth * 2, 5000));
+      canvas.height = RULER_HEIGHT + TOTAL_ROWS * ROW_HEIGHT;
+    }
+    function getCurrentTrack() { return project.tracks[currentTrackIndex]; }
+    function anySolo() { return project.tracks.some(t => t.solo); }
+    function trackAudible(track) {
+      if (anySolo()) return track.solo && !track.mute;
+      return !track.mute;
     }
 
-    // 2. 극한의 마스터 FX 라우팅 (버그 수정: 완벽한 초기 Bypass 상태 강제)
-    const masterInput = audioCtx.createGain();
-    const compressor = audioCtx.createDynamicsCompressor(); 
-    const filterNode = audioCtx.createBiquadFilter(); filterNode.type = 'lowpass'; filterNode.frequency.value = 22050; // 초기 바이패스
-    const distortionNode = audioCtx.createWaveShaper(); distortionNode.oversample = '4x';
-    const delayNode = audioCtx.createDelay(5.0); delayNode.delayTime.value = 0; // 초기 바이패스 (0초)
-    const delayFeedback = audioCtx.createGain(); delayFeedback.gain.value = 0;  // 초기 피드백 차단
-    const tremoloGain = audioCtx.createGain(); const tremoloLFO = audioCtx.createOscillator(); tremoloLFO.type = 'sine'; tremoloLFO.start(); // 연결 전
-    const pannerNode = audioCtx.createStereoPanner ? audioCtx.createStereoPanner() : audioCtx.createPanner(); 
-    
-    const reverbConvolver = audioCtx.createConvolver();
-    reverbConvolver.buffer = createReverbIR(2.5, 2.0);
-    const dryGain = audioCtx.createGain(); dryGain.gain.value = 1.0; // 순수 신호 100%
-    const wetGain = audioCtx.createGain(); wetGain.gain.value = 0;   // 리버브 신호 0%
-
-    const masterVolume = audioCtx.createGain(); masterVolume.gain.value = 0.6;
-    const mediaStreamDest = audioCtx.createMediaStreamDestination();
-    let mediaRecorder; let recordedChunks = [];
-
-    masterInput.connect(compressor);
-    compressor.connect(filterNode);
-    filterNode.connect(distortionNode);
-    distortionNode.connect(delayNode);
-    delayNode.connect(delayFeedback); delayFeedback.connect(delayNode);
-    distortionNode.connect(tremoloGain); delayNode.connect(tremoloGain); 
-    tremoloGain.connect(pannerNode);
-    
-    pannerNode.connect(dryGain);
-    pannerNode.connect(reverbConvolver); reverbConvolver.connect(wetGain);
-    
-    dryGain.connect(masterVolume);
-    wetGain.connect(masterVolume);
-    masterVolume.connect(audioCtx.destination);
-    masterVolume.connect(mediaStreamDest);
-
-    function makeDistortionCurve(amount) {
-        if (amount === 0) return null; // 0일 경우 왜곡 없음
-        let k = amount, n_samples = 44100, curve = new Float32Array(n_samples), deg = Math.PI / 180, i = 0, x;
-        for (; i < n_samples; ++i) { x = i * 2 / n_samples - 1; curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x)); }
-        return curve;
+    function updateProjectControls() {
+      document.getElementById('projectName').value = project.name;
+      document.getElementById('bpmInput').value = project.bpm;
+      document.getElementById('timeSigNumerator').value = project.timeSigNumerator;
+      document.getElementById('snapSelect').value = String(project.snapBeats);
+      document.getElementById('loopEnabled').checked = project.loopEnabled;
+      document.getElementById('loopStartInput').value = project.loopStartBeat;
+      document.getElementById('loopEndInput').value = project.loopEndBeat;
+      document.getElementById('masterFilter').value = project.masterFx.filter;
+      document.getElementById('masterDrive').value = project.masterFx.drive;
+      document.getElementById('masterDelay').value = project.masterFx.delay;
+      document.getElementById('masterReverb').value = project.masterFx.reverb;
+      document.getElementById('masterVolume').value = project.masterFx.volume;
+      document.getElementById('currentTrackLabel').textContent = getCurrentTrack().name;
+      instrumentPalette.value = getCurrentTrack().instrument;
     }
 
-    // 양방향 데이터 바인딩 함수 (Range <-> Number 연동)
-    function bindControl(id, callback) {
-        const slider = document.getElementById(id + '_slider');
-        const num = document.getElementById(id + '_num');
-        const update = (val) => {
-            let parsed = parseFloat(val);
-            slider.value = parsed; num.value = parsed;
-            callback(parsed);
-        };
-        slider.addEventListener('input', e => update(e.target.value));
-        num.addEventListener('input', e => update(e.target.value));
-        num.addEventListener('change', e => update(e.target.value)); // 엔터 입력 등 확정 시 보정
+    function escapeHtml(str) {
+      return str.replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     }
 
-    bindControl('fxFilter', val => { filterNode.frequency.value = Math.max(200, 22000 - (val / 100) * 21800); });
-    bindControl('fxDistortion', val => { distortionNode.curve = makeDistortionCurve(val * 4); });
-    bindControl('fxDelayTime', val => { 
-        delayNode.delayTime.value = val; 
-        delayFeedback.gain.value = val > 0 ? 0.4 : 0; 
-    });
-    bindControl('fxTremolo', val => {
-        if (val === 0) { try { tremoloLFO.disconnect(); } catch(e){} tremoloGain.gain.value = 1; } 
-        else { try { tremoloLFO.connect(tremoloGain.gain); } catch(e){} tremoloLFO.frequency.value = val; }
-    });
-    bindControl('fxPan', val => { if (pannerNode.pan) pannerNode.pan.value = val; });
-    bindControl('fxReverb', val => { const mix = val / 100; wetGain.gain.value = mix; dryGain.gain.value = 1 - (mix * 0.5); });
-    bindControl('masterVolume', val => { masterVolume.gain.value = val; });
-
-    // 3. 합성 엔진 (유지)
-    function getFrequencyFromPitch(pitch) { return 440 * Math.pow(2, (pitch - 69) / 12); }
-    function pitchToNoteName(pitch) {
-        const notesEn = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-        const notesKo = ['도', '도#', '레', '레#', '미', '파', '파#', '솔', '솔#', '라', '라#', '시'];
-        return `${notesKo[pitch % 12]}(${notesEn[pitch % 12]}${Math.floor(pitch / 12) - 1})`;
-    }
-
-    function scheduleNote(pitch, time, duration, inst) {
-        const freq = getFrequencyFromPitch(pitch);
-        const gainNode = audioCtx.createGain(); gainNode.connect(masterInput);
-
-        switch (inst) {
-			case 'bass':
-				const bassOsc = audioCtx.createOscillator();
-				const bassFilter = audioCtx.createBiquadFilter();
-				bassOsc.type = 'sawtooth';
-				bassOsc.frequency.value = freq;
-				bassFilter.type = 'lowpass';
-				bassFilter.frequency.value = 400;
-				bassOsc.connect(bassFilter);
-				bassFilter.connect(gainNode);
-
-				gainNode.gain.setValueAtTime(0, time);
-				gainNode.gain.linearRampToValueAtTime(0.7, time + 0.02);
-				gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration);
-
-				bassOsc.start(time);
-				bassOsc.stop(time + duration);
-				break;
-
-			case 'lead':
-				const lead1 = audioCtx.createOscillator();
-				const lead2 = audioCtx.createOscillator();
-				lead1.type = 'sawtooth';
-				lead2.type = 'square';
-				lead1.frequency.value = freq;
-				lead2.frequency.value = freq;
-				lead2.detune.value = 8;
-				lead1.connect(gainNode);
-				lead2.connect(gainNode);
-
-				gainNode.gain.setValueAtTime(0, time);
-				gainNode.gain.linearRampToValueAtTime(0.35, time + 0.01);
-				gainNode.gain.setValueAtTime(0.3, time + Math.max(0.05, duration - 0.05));
-				gainNode.gain.linearRampToValueAtTime(0, time + duration);
-
-				lead1.start(time);
-				lead2.start(time);
-				lead1.stop(time + duration);
-				lead2.stop(time + duration);
-				break;
-
-			case 'bell':
-				const bellCarrier = audioCtx.createOscillator();
-				const bellMod = audioCtx.createOscillator();
-				const bellModGain = audioCtx.createGain();
-
-				bellCarrier.type = 'sine';
-				bellMod.type = 'sine';
-				bellCarrier.frequency.value = freq;
-				bellMod.frequency.value = freq * 2.5;
-				bellModGain.gain.value = freq * 1.2;
-
-				bellMod.connect(bellModGain);
-				bellModGain.connect(bellCarrier.frequency);
-				bellCarrier.connect(gainNode);
-
-				gainNode.gain.setValueAtTime(0, time);
-				gainNode.gain.linearRampToValueAtTime(0.9, time + 0.005);
-				gainNode.gain.exponentialRampToValueAtTime(0.001, time + 1.2);
-
-				bellMod.start(time);
-				bellCarrier.start(time);
-				bellMod.stop(time + 1.2);
-				bellCarrier.stop(time + 1.2);
-				break;
-            case 'marimba':
-                const mOsc = audioCtx.createOscillator(); mOsc.type = 'sine'; mOsc.frequency.value = freq; mOsc.connect(gainNode);
-                gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.5, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
-                mOsc.start(time); mOsc.stop(time + 0.3); break;
-            case 'dream_marimba':
-                const dOsc1 = audioCtx.createOscillator(); const dOsc2 = audioCtx.createOscillator();
-                dOsc1.type = 'sine'; dOsc1.frequency.value = freq; dOsc2.type = 'triangle'; dOsc2.frequency.value = freq; dOsc2.detune.value = 15;
-                dOsc1.connect(gainNode); dOsc2.connect(gainNode);
-                gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.0, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.6);
-                dOsc1.start(time); dOsc2.start(time); dOsc1.stop(time + 0.6); dOsc2.stop(time + 0.6); break;
-            case 'fm_ep':
-                const carrier = audioCtx.createOscillator(); const modulator = audioCtx.createOscillator(); const modGain = audioCtx.createGain();
-                carrier.type = 'sine'; modulator.type = 'sine'; carrier.frequency.value = freq; modulator.frequency.value = freq * 2; modGain.gain.value = freq * 3; 
-                modulator.connect(modGain); modGain.connect(carrier.frequency); carrier.connect(gainNode);
-                gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.8, time + 0.02); gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration);
-                modulator.start(time); carrier.start(time); modulator.stop(time + duration); carrier.stop(time + duration); break;
-            case 'analog_pad':
-                const osc1 = audioCtx.createOscillator(); const osc2 = audioCtx.createOscillator(); const osc3 = audioCtx.createOscillator();
-                osc1.type = 'sawtooth'; osc2.type = 'sawtooth'; osc3.type = 'sawtooth'; osc1.frequency.value = freq; osc2.frequency.value = freq; osc3.frequency.value = freq;
-                osc2.detune.value = -12; osc3.detune.value = 12; osc1.connect(gainNode); osc2.connect(gainNode); osc3.connect(gainNode);
-                gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.3, time + 0.3); gainNode.gain.setValueAtTime(0.3, time + Math.max(0.3, duration - 0.5)); gainNode.gain.linearRampToValueAtTime(0, time + duration);
-                osc1.start(time); osc2.start(time); osc3.start(time); osc1.stop(time + duration); osc2.stop(time + duration); osc3.stop(time + duration); break;
-            case 'organ':
-                const harms = [1, 2, 3, 4, 6]; const oscs = [];
-                harms.forEach((h, i) => { let o = audioCtx.createOscillator(); o.type = (i % 2 === 0) ? 'sine' : 'triangle'; o.frequency.value = freq * h; let g = audioCtx.createGain(); g.gain.value = 1 / (i + 1.5); o.connect(g); g.connect(gainNode); oscs.push(o); });
-                gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.5, time + 0.05); gainNode.gain.setValueAtTime(0.5, time + duration - 0.05); gainNode.gain.linearRampToValueAtTime(0, time + duration);
-                oscs.forEach(o => { o.start(time); o.stop(time + duration); }); break;
-            case 'pluck':
-                const pOsc = audioCtx.createOscillator(); pOsc.type = 'sawtooth'; pOsc.frequency.value = freq; const pFilter = audioCtx.createBiquadFilter(); pFilter.type = 'lowpass'; pOsc.connect(pFilter); pFilter.connect(gainNode);
-                pFilter.frequency.setValueAtTime(8000, time); pFilter.frequency.exponentialRampToValueAtTime(100, time + 0.1);
-                gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.0, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration);
-                pOsc.start(time); pOsc.stop(time + duration); break;
-            case '808':
-                if (pitch <= 64) { 
-                    const kOsc = audioCtx.createOscillator(); kOsc.type = 'sine'; kOsc.connect(gainNode); kOsc.frequency.setValueAtTime(150, time); kOsc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5); 
-                    gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.5, time + 0.02); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
-                    kOsc.start(time); kOsc.stop(time + 0.5);
-                } else {
-                    const sNoise = audioCtx.createBufferSource(); sNoise.buffer = noiseBuffer; const sFilter = audioCtx.createBiquadFilter(); sFilter.type = 'highpass'; sFilter.frequency.value = 1000; sNoise.connect(sFilter); sFilter.connect(gainNode);
-                    gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.0, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.2); 
-                    sNoise.start(time); sNoise.stop(time + 0.2);
-                } break;
-
-            default:
-                const bOsc = audioCtx.createOscillator(); bOsc.type = inst; bOsc.frequency.value = freq; bOsc.connect(gainNode);
-                gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.4, time + 0.05); gainNode.gain.setValueAtTime(0.4, time + duration - 0.05); gainNode.gain.linearRampToValueAtTime(0, time + duration);
-                bOsc.start(time); bOsc.stop(time + duration); break;
-        }
-    }
-
-    // 4. 시퀀서
-    const lookahead = 25.0; const scheduleAheadTime = 0.1; let timerID;
-    function nextNoteLogic() {
-        if (!isPlaying) return;
-        let currentTime = audioCtx.currentTime - seqStartTime;
-        tracks.forEach(track => {
-            track.notes.forEach(note => {
-                if (note.start >= currentTime - 0.05 && note.start < currentTime + scheduleAheadTime && !note.scheduled) {
-                    let playTime = Math.max(audioCtx.currentTime, seqStartTime + note.start);
-                    scheduleNote(note.pitch, playTime, note.duration, track.inst); 
-                    note.scheduled = true;
-                }
-            });
-        });
-    }
-
-    function toggleSequencer() {
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        if (isPlaying) {
-            isPlaying = false; clearInterval(timerID); pauseTime = audioCtx.currentTime - seqStartTime;
-            masterInput.gain.setValueAtTime(0, audioCtx.currentTime); masterInput.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.1);
-        } else {
-            isPlaying = true; seqStartTime = audioCtx.currentTime - pauseTime;
-            tracks.forEach(track => track.notes.forEach(note => note.scheduled = note.start < pauseTime - 0.05));
-            timerID = setInterval(nextNoteLogic, lookahead);
-        }
-    }
-
-    function returnToStart() {
-        isPlaying = false; clearInterval(timerID); pauseTime = 0;
-        masterInput.gain.setValueAtTime(0, audioCtx.currentTime); masterInput.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.1);
-        tracks.forEach(track => track.notes.forEach(note => note.scheduled = false));
-    }
-
-    // 5. 레이어 UI & 렌더링
-    const canvas = document.getElementById('pianoRoll'); const ctx = canvas.getContext('2d');
-    let draggingNote = null; let dragOffsetX = 0; let isDraggingPlayhead = false;
-
-    function updateLayerUI() {
-        const select = document.getElementById('layerSelect'); select.innerHTML = '';
-        tracks.forEach((t, index) => {
-            const opt = document.createElement('option'); opt.value = index; opt.innerText = t.name;
-            if (index === currentTrackIndex) opt.selected = true; select.appendChild(opt);
-        });
-        document.getElementById('instrumentSelect').value = tracks[currentTrackIndex].inst;
-    }
-
-    document.getElementById('btnAddLayer').addEventListener('click', () => {
-        const newId = tracks.length; tracks.push({ id: newId, name: `Layer ${newId + 1}`, inst: 'sine', notes: [] });
-        currentTrackIndex = newId; updateLayerUI();
-    });
-
-    // 버그 픽스: 명확하게 분리된 전체 데이터 삭제 로직
-    document.getElementById('btnClearCurrentLayer').addEventListener('click', () => {
-        if(confirm('현재 화면에 보이는 이 레이어의 블록만 삭제하시겠습니까?')) { tracks[currentTrackIndex].notes = []; }
-    });
-    
-    document.getElementById('btnClearAllLayers').addEventListener('click', () => {
-        if(confirm('모든 레이어의 데이터를 완전히 지우시겠습니까?')) { tracks.forEach(t => t.notes = []); returnToStart(); }
-    });
-
-    document.getElementById('layerSelect').addEventListener('change', e => {
-        currentTrackIndex = parseInt(e.target.value); document.getElementById('instrumentSelect').value = tracks[currentTrackIndex].inst; draggingNote = null;
-    });
-
-    document.getElementById('instrumentSelect').addEventListener('change', e => { tracks[currentTrackIndex].inst = e.target.value; });
-    document.getElementById('snapSelect').addEventListener('change', e => snapValue = parseFloat(e.target.value));
-
-    function drawPianoRoll() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#111'; ctx.fillRect(HEADER_WIDTH, 0, canvas.width, RULER_HEIGHT);
-        ctx.fillStyle = '#888'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
-        for (let x = HEADER_WIDTH; x < canvas.width; x += PIXELS_PER_SECOND) {
-            ctx.beginPath(); ctx.moveTo(x, 15); ctx.lineTo(x, RULER_HEIGHT); ctx.strokeStyle = '#fff'; ctx.stroke();
-            ctx.fillText(((x - HEADER_WIDTH) / PIXELS_PER_SECOND) + 's', x, 12);
-        }
-
-        ctx.strokeStyle = '#3a3a3a'; ctx.lineWidth = 1;
-        for (let i = 0; i < TOTAL_ROWS; i++) {
-            let y = RULER_HEIGHT + (i * ROW_HEIGHT); ctx.beginPath(); ctx.moveTo(HEADER_WIDTH, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-        }
-
-        if (snapValue > 0) {
-            ctx.strokeStyle = '#444'; const gridSpacing = snapValue * PIXELS_PER_SECOND;
-            for (let x = HEADER_WIDTH; x < canvas.width; x += gridSpacing) { ctx.beginPath(); ctx.moveTo(x, RULER_HEIGHT); ctx.lineTo(x, canvas.height); ctx.stroke(); }
-        }
-
-        const currentLayerNotes = tracks[currentTrackIndex].notes;
-        currentLayerNotes.forEach(note => {
-            const x = HEADER_WIDTH + (note.start * PIXELS_PER_SECOND); const y = RULER_HEIGHT + (MAX_PITCH - note.pitch) * ROW_HEIGHT; const w = note.duration * PIXELS_PER_SECOND;
-            ctx.fillStyle = (draggingNote === note) ? '#ffffff' : (layerColors[tracks[currentTrackIndex].inst] || '#44aaff');
-            ctx.fillRect(x, y + 1, w, ROW_HEIGHT - 2); ctx.strokeStyle = '#000'; ctx.strokeRect(x, y + 1, w, ROW_HEIGHT - 2);
-        });
-
-        ctx.fillStyle = '#222'; ctx.fillRect(0, RULER_HEIGHT, HEADER_WIDTH, canvas.height);
-        ctx.fillStyle = '#ccc'; ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
-        for (let i = 0; i < TOTAL_ROWS; i++) {
-            let pitch = MAX_PITCH - i; let y = RULER_HEIGHT + (i * ROW_HEIGHT) + (ROW_HEIGHT / 2);
-            ctx.fillText(pitchToNoteName(pitch), HEADER_WIDTH - 5, y);
-            ctx.strokeStyle = '#555'; ctx.beginPath(); ctx.moveTo(0, RULER_HEIGHT + (i * ROW_HEIGHT)); ctx.lineTo(HEADER_WIDTH, RULER_HEIGHT + (i * ROW_HEIGHT)); ctx.stroke();
-        }
-        ctx.beginPath(); ctx.moveTo(HEADER_WIDTH, 0); ctx.lineTo(HEADER_WIDTH, canvas.height); ctx.stroke();
-
-        const currentPlayTime = isPlaying ? (audioCtx.currentTime - seqStartTime) : pauseTime;
-        const playheadX = HEADER_WIDTH + (currentPlayTime * PIXELS_PER_SECOND);
-        ctx.strokeStyle = '#ffff00'; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.moveTo(playheadX, 0); ctx.lineTo(playheadX, RULER_HEIGHT); ctx.fillStyle = '#ffff00'; ctx.fill();
-        ctx.beginPath(); ctx.moveTo(playheadX, 0); ctx.lineTo(playheadX, canvas.height); ctx.stroke();
-
-        requestAnimationFrame(drawPianoRoll);
-    }
-    requestAnimationFrame(drawPianoRoll);
-
-    // 6. 상호작용
-    window.addEventListener('keydown', e => { if(e.code === 'Space') { e.preventDefault(); if(document.activeElement) document.activeElement.blur(); toggleSequencer(); } });
-    document.getElementById('btnPlay').addEventListener('click', toggleSequencer);
-    document.getElementById('btnStop').addEventListener('click', returnToStart);
-
-    function updatePlayheadPosition(mouseX) {
-        let newTime = Math.max(0, (mouseX - HEADER_WIDTH) / PIXELS_PER_SECOND);
-        if (snapValue > 0) newTime = Math.round(newTime / snapValue) * snapValue;
-        if (isPlaying) { seqStartTime = audioCtx.currentTime - newTime; tracks.forEach(track => track.notes.forEach(note => note.scheduled = note.start < newTime - 0.05)); } 
-        else { pauseTime = newTime; }
-    }
-
-    canvas.addEventListener('mousedown', (e) => {
-        const rect = canvas.getBoundingClientRect(); const mouseX = e.clientX - rect.left; const mouseY = e.clientY - rect.top;
-        if (mouseX < HEADER_WIDTH) return;
-        if (mouseY <= RULER_HEIGHT) { isDraggingPlayhead = true; updatePlayheadPosition(mouseX); return; }
-
-        const logicY = mouseY - RULER_HEIGHT; const activeNotes = tracks[currentTrackIndex].notes;
-        if (e.button === 2) { 
-            for (let i = activeNotes.length - 1; i >= 0; i--) {
-                const note = activeNotes[i]; const x = HEADER_WIDTH + (note.start * PIXELS_PER_SECOND); const y = (MAX_PITCH - note.pitch) * ROW_HEIGHT;
-                if (mouseX >= x && mouseX <= x + note.duration * PIXELS_PER_SECOND && logicY >= y && logicY <= y + ROW_HEIGHT) { activeNotes.splice(i, 1); return; }
+    function refreshTracksUI() {
+      tracksList.innerHTML = '';
+      project.tracks.forEach((track, index) => {
+        const card = document.createElement('div');
+        card.className = 'track-card';
+        card.style.outline = index === currentTrackIndex ? '2px solid #5a9bd8' : 'none';
+        card.innerHTML = `
+          <div class="track-header">
+            <button data-action="select">${index + 1}</button>
+            <input type="text" value="${escapeHtml(track.name)}" data-field="name" />
+            <button data-action="delete" class="danger">X</button>
+          </div>
+          <div class="track-controls">
+            <label>악기</label>
+            <select data-field="instrument">${INSTRUMENTS.map(([v,l]) => `<option value="${v}" ${track.instrument===v?'selected':''}>${l}</option>`).join('')}</select>
+            <label>Volume</label>
+            <input type="range" min="0" max="1.2" step="0.01" value="${track.volume}" data-field="volume" />
+            <label>Pan</label>
+            <input type="range" min="-1" max="1" step="0.01" value="${track.pan}" data-field="pan" />
+            <label>Reverb</label>
+            <input type="range" min="0" max="1" step="0.01" value="${track.reverbSend}" data-field="reverbSend" />
+            <div class="full small-btns">
+              <button data-action="mute" class="${track.mute?'active':''}">M</button>
+              <button data-action="solo" class="${track.solo?'active':''}">S</button>
+              <button data-action="clear">노트 비우기</button>
+            </div>
+            <div class="full mini">노트 ${track.notes.length}개 · ${INSTRUMENTS.find(x=>x[0]===track.instrument)?.[1] || track.instrument}</div>
+          </div>
+        `;
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('button[data-action="select"]')) {
+            currentTrackIndex = index;
+            refreshTracksUI();
+            updateProjectControls();
+            return;
+          }
+          if (e.target.closest('button[data-action="delete"]')) {
+            if (project.tracks.length === 1) return setStatus('최소 1개 레이어는 필요합니다.');
+            project.tracks.splice(index, 1);
+            if (currentTrackIndex >= project.tracks.length) currentTrackIndex = project.tracks.length - 1;
+            selectedNoteIds.clear();
+            refreshTracksUI(); ensureCanvasSize(); updateProjectControls(); updateSelectionCount();
+            return;
+          }
+          if (e.target.closest('button[data-action="mute"]')) {
+            track.mute = !track.mute; refreshTracksUI(); return;
+          }
+          if (e.target.closest('button[data-action="solo"]')) {
+            track.solo = !track.solo; refreshTracksUI(); return;
+          }
+          if (e.target.closest('button[data-action="clear"]')) {
+            if (confirm(`${track.name} 레이어의 노트를 모두 삭제할까요?`)) {
+              track.notes = []; selectedNoteIds.clear(); updateSelectionCount(); ensureCanvasSize(); refreshTracksUI();
             }
             return;
-        }
+          }
+        });
+        card.querySelectorAll('[data-field]').forEach(el => {
+          el.addEventListener('input', () => {
+            const field = el.dataset.field;
+            if (field === 'name') track.name = el.value || `Layer ${index+1}`;
+            if (field === 'instrument') track.instrument = el.value;
+            if (field === 'volume') track.volume = parseFloat(el.value);
+            if (field === 'pan') track.pan = parseFloat(el.value);
+            if (field === 'reverbSend') track.reverbSend = parseFloat(el.value);
+            updateProjectControls();
+          });
+        });
+        tracksList.appendChild(card);
+      });
+      document.getElementById('currentTrackLabel').textContent = getCurrentTrack().name;
+    }
 
-        if (e.button === 0) { 
-            let hit = false;
-            for (let i = activeNotes.length - 1; i >= 0; i--) {
-                const note = activeNotes[i]; const x = HEADER_WIDTH + (note.start * PIXELS_PER_SECOND); const y = (MAX_PITCH - note.pitch) * ROW_HEIGHT;
-                if (mouseX >= x && mouseX <= x + note.duration * PIXELS_PER_SECOND && logicY >= y && logicY <= y + ROW_HEIGHT) { draggingNote = note; dragOffsetX = mouseX - x; hit = true; break; }
-            }
-            if (!hit) {
-                const pitch = MAX_PITCH - Math.floor(logicY / ROW_HEIGHT); let start = (mouseX - HEADER_WIDTH) / PIXELS_PER_SECOND;
-                if (snapValue > 0) start = Math.floor(start / snapValue) * snapValue;
-                const isDuplicate = activeNotes.some(n => n.pitch === pitch && Math.abs(n.start - start) < 0.001);
-                if (!isDuplicate) {
-                    const duration = snapValue > 0 ? snapValue : 0.5;
-                    activeNotes.push({ id: noteIdCounter++, pitch: pitch, start: start, duration: duration });
-                    if (audioCtx.state === 'suspended') audioCtx.resume();
-                    scheduleNote(pitch, audioCtx.currentTime, duration, tracks[currentTrackIndex].inst);
-                }
-            }
+    function setStatus(msg) { document.getElementById('statusText').textContent = msg; }
+    function updateSelectionCount() { document.getElementById('selectionCount').textContent = String(selectedNoteIds.size); }
+
+    function getNoteRect(note) {
+      return {
+        x: HEADER_WIDTH + note.start * PIXELS_PER_BEAT,
+        y: RULER_HEIGHT + (MAX_PITCH - note.pitch) * ROW_HEIGHT,
+        w: Math.max(4, note.duration * PIXELS_PER_BEAT),
+        h: ROW_HEIGHT - 2
+      };
+    }
+
+    function allVisibleTracks() {
+      if (document.getElementById('focusCurrentTrackOnly').checked) return [getCurrentTrack()];
+      return project.tracks;
+    }
+
+    function draw() {
+      ctx2d.clearRect(0, 0, canvas.width, canvas.height);
+      const totalBeats = Math.ceil((canvas.width - HEADER_WIDTH) / PIXELS_PER_BEAT);
+      const barBeats = project.timeSigNumerator;
+      const highlightBars = document.getElementById('highlightBars').checked;
+
+      ctx2d.fillStyle = '#151515';
+      ctx2d.fillRect(HEADER_WIDTH, 0, canvas.width - HEADER_WIDTH, RULER_HEIGHT);
+
+      for (let row = 0; row < TOTAL_ROWS; row++) {
+        const pitch = MAX_PITCH - row;
+        const y = RULER_HEIGHT + row * ROW_HEIGHT;
+        const isBlack = [1,3,6,8,10].includes(pitch % 12);
+        ctx2d.fillStyle = isBlack ? '#151515' : '#1d1d1d';
+        ctx2d.fillRect(0, y, canvas.width, ROW_HEIGHT);
+        ctx2d.strokeStyle = '#2e2e2e';
+        ctx2d.beginPath(); ctx2d.moveTo(HEADER_WIDTH, y); ctx2d.lineTo(canvas.width, y); ctx2d.stroke();
+      }
+
+      ctx2d.font = '11px sans-serif';
+      ctx2d.textAlign = 'left';
+      ctx2d.textBaseline = 'top';
+      for (let beat = 0; beat <= totalBeats; beat++) {
+        const x = HEADER_WIDTH + beat * PIXELS_PER_BEAT;
+        const isBar = beat % barBeats === 0;
+        const isGrid = project.snapBeats ? Math.abs((beat / project.snapBeats) - Math.round(beat / project.snapBeats)) < 0.0001 : false;
+        if (highlightBars && isBar) {
+          ctx2d.fillStyle = beat/barBeats % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.04)';
+          ctx2d.fillRect(x, RULER_HEIGHT, barBeats * PIXELS_PER_BEAT, canvas.height - RULER_HEIGHT);
         }
+        ctx2d.strokeStyle = isBar ? '#666' : isGrid ? '#3e3e3e' : '#272727';
+        ctx2d.beginPath(); ctx2d.moveTo(x, 0); ctx2d.lineTo(x, canvas.height); ctx2d.stroke();
+        if (isBar && beat < totalBeats) {
+          ctx2d.fillStyle = '#ddd';
+          ctx2d.fillText(`${Math.floor(beat / barBeats) + 1}`, x + 4, 10);
+        }
+      }
+
+      ctx2d.fillStyle = '#111';
+      ctx2d.fillRect(0, 0, HEADER_WIDTH, canvas.height);
+      ctx2d.strokeStyle = '#666';
+      ctx2d.beginPath(); ctx2d.moveTo(HEADER_WIDTH, 0); ctx2d.lineTo(HEADER_WIDTH, canvas.height); ctx2d.stroke();
+
+      ctx2d.fillStyle = '#ddd';
+      ctx2d.font = '11px monospace';
+      ctx2d.textAlign = 'right';
+      ctx2d.textBaseline = 'middle';
+      for (let i = 0; i < TOTAL_ROWS; i++) {
+        const pitch = MAX_PITCH - i;
+        const y = RULER_HEIGHT + i * ROW_HEIGHT + ROW_HEIGHT / 2;
+        ctx2d.fillText(pitchToName(pitch), HEADER_WIDTH - 6, y);
+      }
+
+      for (const track of allVisibleTracks()) {
+        const alpha = track === getCurrentTrack() ? 1 : 0.55;
+        for (const note of track.notes) {
+          const r = getNoteRect(note);
+          const isSelected = selectedNoteIds.has(note.id);
+          ctx2d.globalAlpha = alpha;
+          ctx2d.fillStyle = isSelected ? '#ffffff' : (COLORS[track.instrument] || '#66aaff');
+          ctx2d.fillRect(r.x, r.y + 1, r.w, r.h);
+          ctx2d.strokeStyle = isSelected ? '#000' : '#101010';
+          ctx2d.strokeRect(r.x, r.y + 1, r.w, r.h);
+          if (track === getCurrentTrack()) {
+            ctx2d.fillStyle = 'rgba(0,0,0,0.22)';
+            ctx2d.fillRect(r.x + r.w - RESIZE_HANDLE_PX, r.y + 1, RESIZE_HANDLE_PX, r.h);
+          }
+        }
+      }
+      ctx2d.globalAlpha = 1;
+
+      if (selectionRect) {
+        ctx2d.fillStyle = 'rgba(90,155,216,0.15)';
+        ctx2d.fillRect(selectionRect.x, selectionRect.y, selectionRect.w, selectionRect.h);
+        ctx2d.strokeStyle = '#5a9bd8';
+        ctx2d.strokeRect(selectionRect.x, selectionRect.y, selectionRect.w, selectionRect.h);
+      }
+
+      if (project.loopEnabled) {
+        const lx = HEADER_WIDTH + project.loopStartBeat * PIXELS_PER_BEAT;
+        const rx = HEADER_WIDTH + project.loopEndBeat * PIXELS_PER_BEAT;
+        ctx2d.fillStyle = 'rgba(119, 222, 119, 0.07)';
+        ctx2d.fillRect(lx, 0, rx - lx, canvas.height);
+        ctx2d.strokeStyle = '#77de77';
+        ctx2d.beginPath(); ctx2d.moveTo(lx,0); ctx2d.lineTo(lx,canvas.height); ctx2d.stroke();
+        ctx2d.beginPath(); ctx2d.moveTo(rx,0); ctx2d.lineTo(rx,canvas.height); ctx2d.stroke();
+      }
+
+      const playX = HEADER_WIDTH + playbackBeat * PIXELS_PER_BEAT;
+      ctx2d.strokeStyle = '#ffeb3b';
+      ctx2d.lineWidth = 2;
+      ctx2d.beginPath(); ctx2d.moveTo(playX, 0); ctx2d.lineTo(playX, canvas.height); ctx2d.stroke();
+      ctx2d.lineWidth = 1;
+
+      document.getElementById('timeReadout').textContent = formatTime(beatsToSeconds(playbackBeat));
+      requestAnimationFrame(draw);
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      const ms = Math.floor((sec - Math.floor(sec)) * 1000);
+      return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(ms).padStart(3,'0')}`;
+    }
+
+    function pointToBeatPitch(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const beat = (x - HEADER_WIDTH) / PIXELS_PER_BEAT;
+      const pitch = clamp(MAX_PITCH - Math.floor((y - RULER_HEIGHT) / ROW_HEIGHT), MIN_PITCH, MAX_PITCH);
+      return { x, y, beat, pitch };
+    }
+
+    function hitTestNote(x, y) {
+      const track = getCurrentTrack();
+      for (let i = track.notes.length - 1; i >= 0; i--) {
+        const note = track.notes[i];
+        const r = getNoteRect(note);
+        if (x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h) {
+          const onResize = x >= r.x + r.w - RESIZE_HANDLE_PX;
+          return { note, track, onResize };
+        }
+      }
+      return null;
+    }
+
+    function getSelectedNotes() {
+      const result = [];
+      for (const track of project.tracks) {
+        for (const note of track.notes) {
+          if (selectedNoteIds.has(note.id)) result.push({ track, note });
+        }
+      }
+      return result;
+    }
+
+    function selectOnly(note) {
+      selectedNoteIds.clear();
+      selectedNoteIds.add(note.id);
+      updateSelectionCount();
+    }
+    function toggleNoteSelection(note) {
+      selectedNoteIds.has(note.id) ? selectedNoteIds.delete(note.id) : selectedNoteIds.add(note.id);
+      updateSelectionCount();
+    }
+
+    function deleteSelectedNotes() {
+      if (!selectedNoteIds.size) return;
+      for (const track of project.tracks) {
+        track.notes = track.notes.filter(n => !selectedNoteIds.has(n.id));
+      }
+      selectedNoteIds.clear();
+      updateSelectionCount();
+      ensureCanvasSize();
+      refreshTracksUI();
+      setStatus('선택 노트를 삭제했습니다.');
+    }
+
+    function duplicateSelection() {
+      const selected = getSelectedNotes();
+      if (!selected.length) return;
+      const minStart = Math.min(...selected.map(x => x.note.start));
+      const maxEnd = Math.max(...selected.map(x => x.note.start + x.note.duration));
+      const offset = maxEnd - minStart;
+      selectedNoteIds.clear();
+      for (const { track, note } of selected) {
+        const copy = { ...note, id: noteIdCounter++, start: note.start + offset };
+        track.notes.push(copy);
+        selectedNoteIds.add(copy.id);
+      }
+      updateSelectionCount();
+      ensureCanvasSize();
+      refreshTracksUI();
+      setStatus('선택 노트를 복제했습니다.');
+    }
+
+    function copySelection() {
+      const selected = getSelectedNotes();
+      if (!selected.length) return;
+      const minStart = Math.min(...selected.map(x => x.note.start));
+      clipboard = selected.map(({ track, note }) => ({
+        trackId: track.id,
+        pitch: note.pitch,
+        start: note.start - minStart,
+        duration: note.duration
+      }));
+      setStatus(`선택 노트 ${clipboard.length}개를 복사했습니다.`);
+    }
+
+    function pasteSelection() {
+      if (!clipboard.length) return;
+      const track = getCurrentTrack();
+      selectedNoteIds.clear();
+      for (const item of clipboard) {
+        const note = {
+          id: noteIdCounter++,
+          pitch: item.pitch,
+          start: snapBeatFloor(playbackBeat + item.start),
+          duration: item.duration
+        };
+        track.notes.push(note);
+        selectedNoteIds.add(note.id);
+      }
+      updateSelectionCount();
+      ensureCanvasSize();
+      refreshTracksUI();
+      setStatus('클립보드 노트를 붙여넣었습니다.');
+    }
+
+    function updateSelectionFromRect() {
+      if (!selectionRect) return;
+      selectedNoteIds.clear();
+      for (const note of getCurrentTrack().notes) {
+        const r = getNoteRect(note);
+        const intersects = !(r.x > selectionRect.x + selectionRect.w || r.x + r.w < selectionRect.x || r.y > selectionRect.y + selectionRect.h || r.y + r.h < selectionRect.y);
+        if (intersects) selectedNoteIds.add(note.id);
+      }
+      updateSelectionCount();
+    }
+
+    function moveSelectedNotesBy(deltaBeat, deltaPitch = 0) {
+      const selected = getSelectedNotes();
+      for (const { note } of selected) {
+        note.start = Math.max(0, note.start + deltaBeat);
+        note.pitch = clamp(note.pitch + deltaPitch, MIN_PITCH, MAX_PITCH);
+      }
+      ensureCanvasSize();
+    }
+
+    function fastPreview(track, note) {
+      if (!document.getElementById('previewOnClick').checked) return;
+      requestAnimationFrame(() => previewNote(track, note));
+    }
+
+    canvas.addEventListener('mousedown', async (e) => {
+      if (liveCtx.state === 'suspended') {
+        try { await liveCtx.resume(); } catch (err) {}
+      }
+      const { x, y, beat, pitch } = pointToBeatPitch(e.clientX, e.clientY);
+      if (x < HEADER_WIDTH) return;
+
+      if (y <= RULER_HEIGHT) {
+        playbackBeat = snapBeatNearest(Math.max(0, beat));
+        if (isPlaying) playbackStartCtxTime = liveCtx.currentTime - beatsToSeconds(playbackBeat);
+        dragState = { mode: 'playhead', startX: x, startY: y };
+        return;
+      }
+
+      const hit = hitTestNote(x, y);
+
+      if (e.button === 2) {
+        if (hit) {
+          const track = hit.track;
+          track.notes = track.notes.filter(n => n.id !== hit.note.id);
+          selectedNoteIds.delete(hit.note.id);
+          updateSelectionCount();
+          ensureCanvasSize();
+          refreshTracksUI();
+        }
+        return;
+      }
+
+      if (hit) {
+        if (e.shiftKey) toggleNoteSelection(hit.note);
+        else if (!selectedNoteIds.has(hit.note.id)) selectOnly(hit.note);
+        const selected = getSelectedNotes();
+        dragState = {
+          mode: hit.onResize ? 'resize_pending' : 'move_pending',
+          startX: x,
+          startY: y,
+          originBeat: beat,
+          originPitch: pitch,
+          original: selected.map(({ track, note }) => ({ track, note, start: note.start, duration: note.duration, pitch: note.pitch }))
+        };
+        return;
+      }
+
+      if (e.shiftKey) {
+        marqueeStart = { x, y };
+        selectionRect = null;
+        dragState = { mode: 'marquee_pending', startX: x, startY: y };
+        if (!e.ctrlKey && !e.metaKey) {
+          selectedNoteIds.clear();
+          updateSelectionCount();
+        }
+        return;
+      }
+
+      const track = getCurrentTrack();
+      const startBeat = snapBeatFloor(Math.max(0, beat));
+      const notePitch = pitch;
+      const dup = track.notes.some(n => n.pitch === notePitch && Math.abs(n.start - startBeat) < 0.001);
+      if (!dup) {
+        const note = {
+          id: noteIdCounter++,
+          start: startBeat,
+          duration: Math.max(project.snapBeats || 0.5, MIN_NOTE_BEATS),
+          pitch: notePitch
+        };
+        track.notes.push(note);
+        selectOnly(note);
+        ensureCanvasSize();
+        fastPreview(track, note);
+      }
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      const { x, y, beat, pitch } = pointToBeatPitch(e.clientX, e.clientY);
+      document.getElementById('mouseInfo').textContent = `Beat ${beat.toFixed(2)} · ${pitchToName(pitch)}`;
+      if (!dragState) return;
+
+      const moveDist = Math.hypot(x - dragState.startX, y - dragState.startY);
+      if (dragState.mode === 'marquee_pending') {
+        if (moveDist < DRAG_THRESHOLD_PX) return;
+        dragState.mode = 'marquee';
+      }
+      if (dragState.mode === 'move_pending') {
+        if (moveDist < DRAG_THRESHOLD_PX) return;
+        dragState.mode = 'move';
+      }
+      if (dragState.mode === 'resize_pending') {
+        if (moveDist < DRAG_THRESHOLD_PX) return;
+        dragState.mode = 'resize';
+      }
+
+      if (dragState.mode === 'marquee' && marqueeStart) {
+        selectionRect = {
+          x: Math.min(marqueeStart.x, x),
+          y: Math.min(marqueeStart.y, y),
+          w: Math.abs(x - marqueeStart.x),
+          h: Math.abs(y - marqueeStart.y)
+        };
+        updateSelectionFromRect();
+        return;
+      }
+      if (dragState.mode === 'playhead') {
+        playbackBeat = snapBeatNearest(Math.max(0, beat));
+        if (isPlaying) playbackStartCtxTime = liveCtx.currentTime - beatsToSeconds(playbackBeat);
+        return;
+      }
+      if (dragState.mode === 'move') {
+        const deltaBeat = snapBeatNearest(beat) - snapBeatNearest(dragState.originBeat);
+        const deltaPitch = pitch - dragState.originPitch;
+        for (const item of dragState.original) {
+          item.note.start = Math.max(0, item.start + deltaBeat);
+          item.note.pitch = clamp(item.pitch + deltaPitch, MIN_PITCH, MAX_PITCH);
+        }
+        return;
+      }
+      if (dragState.mode === 'resize') {
+        const deltaBeat = snapBeatNearest(beat) - snapBeatNearest(dragState.originBeat);
+        for (const item of dragState.original) {
+          item.note.duration = Math.max(MIN_NOTE_BEATS, item.duration + deltaBeat);
+        }
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (dragState && (dragState.mode === 'move' || dragState.mode === 'resize' || dragState.mode === 'marquee')) {
+        ensureCanvasSize();
+      }
+      dragState = null;
+      marqueeStart = null;
+      selectionRect = null;
     });
 
     canvas.addEventListener('contextmenu', e => e.preventDefault());
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect(); const mouseX = e.clientX - rect.left;
-        if (isDraggingPlayhead) { updatePlayheadPosition(mouseX); return; }
-        if (!draggingNote) return;
-        let newStart = (mouseX - HEADER_WIDTH - dragOffsetX) / PIXELS_PER_SECOND;
-        if (snapValue > 0) newStart = Math.round(newStart / snapValue) * snapValue;
-        draggingNote.start = Math.max(0, newStart);
-    });
-    window.addEventListener('mouseup', () => { draggingNote = null; isDraggingPlayhead = false; });
 
-    // 7. 내보내기 & 불러오기
-    document.getElementById('btnImportMIDI').addEventListener('change', (e) => {
-        const file = e.target.files[0]; if (!file) return; const reader = new FileReader();
-        reader.onload = function(evt) {
-            const buffer = evt.target.result; const view = new DataView(buffer); let offset = 0;
-            if (view.getUint32(offset) !== 0x4D546864) return alert('유효한 MIDI 파일이 아닙니다.');
-            offset += 8; const format = view.getUint16(offset); offset += 2; const numTracks = view.getUint16(offset); offset += 2; const ticksPerBeat = view.getUint16(offset); offset += 2;
-            const secondsPerTick = (60 / 120) / ticksPerBeat;
-            tracks = []; 
-            for (let i = 0; i < numTracks; i++) {
-                if (view.getUint32(offset) !== 0x4D54726B) break;
-                offset += 4; const trackLen = view.getUint32(offset); offset += 4; const trackEnd = offset + trackLen; let absoluteTick = 0;
-                let trackNotes = []; let activeNotes = {};
-                while (offset < trackEnd) {
-                    let delta = 0; while (true) { let byte = view.getUint8(offset++); delta = (delta << 7) | (byte & 0x7F); if ((byte & 0x80) === 0) break; }
-                    absoluteTick += delta; let eventTypeByte = view.getUint8(offset); let eventType = eventTypeByte >> 4;
-                    if (eventTypeByte === 0xFF) { offset++; offset++; let len = view.getUint8(offset++); offset += len; }
-                    else if (eventType === 0x9 || eventType === 0x8) {
-                        offset++; let pitch = view.getUint8(offset++); let vel = view.getUint8(offset++); let timeSec = absoluteTick * secondsPerTick;
-                        if (eventType === 0x9 && vel > 0) { activeNotes[pitch] = timeSec; }
-                        else {
-                            if (activeNotes[pitch] !== undefined) {
-                                let start = activeNotes[pitch]; let duration = Math.max(0.1, timeSec - start);
-                                trackNotes.push({ id: noteIdCounter++, pitch: pitch, start: start, duration: duration }); delete activeNotes[pitch];
-                            }
-                        }
-                    } else if (eventType >= 0xA && eventType <= 0xE) { offset += 3; if (eventType === 0xC || eventType === 0xD) offset--; } else { offset++; }
+    function rebuildLiveMasterGraph() {
+      if (liveMasterGraph) disconnectGraph(liveMasterGraph);
+      liveMasterGraph = createMasterGraph(liveCtx, project.masterFx, liveCtx.destination);
+    }
+
+    async function previewNote(track, note) {
+      if (liveCtx.state === 'suspended') await liveCtx.resume();
+      if (!liveMasterGraph) rebuildLiveMasterGraph();
+      scheduleInstrumentNote(liveCtx, liveMasterGraph.input, note.pitch, liveCtx.currentTime, beatsToSeconds(note.duration), track.instrument, {
+        volume: track.volume,
+        pan: track.pan,
+        reverbSend: track.reverbSend,
+        ctxDestination: liveMasterGraph
+      });
+    }
+
+    function disconnectGraph(graph) {
+      try { graph.input.disconnect(); } catch(e) {}
+      try { graph.output.disconnect(); } catch(e) {}
+      try { graph.delay.disconnect(); } catch(e) {}
+      try { graph.feedback.disconnect(); } catch(e) {}
+      try { graph.dry.disconnect(); } catch(e) {}
+      try { graph.wet.disconnect(); } catch(e) {}
+      try { graph.reverb.disconnect(); } catch(e) {}
+    }
+
+    function schedulerTick() {
+      if (!isPlaying) return;
+      const nowBeat = secondsToBeats(liveCtx.currentTime - playbackStartCtxTime);
+      playbackBeat = nowBeat;
+      const horizonBeat = nowBeat + secondsToBeats(0.15);
+
+      if (project.loopEnabled && nowBeat >= project.loopEndBeat) {
+        playbackBeat = project.loopStartBeat;
+        playbackStartCtxTime = liveCtx.currentTime - beatsToSeconds(playbackBeat);
+        scheduledCache.clear();
+        return;
+      }
+
+      if (!liveMasterGraph) rebuildLiveMasterGraph();
+      const startBeatForLoop = project.loopEnabled ? project.loopStartBeat : 0;
+      const endBeatForLoop = project.loopEnabled ? project.loopEndBeat : Infinity;
+
+      for (const track of project.tracks) {
+        if (!trackAudible(track)) continue;
+        for (const note of track.notes) {
+          if (note.start < startBeatForLoop || note.start >= endBeatForLoop) continue;
+          const key = `${track.id}:${note.id}:${Math.floor(note.start*1000)}`;
+          if (note.start >= nowBeat - 0.01 && note.start < horizonBeat && !scheduledCache.has(key)) {
+            const when = playbackStartCtxTime + beatsToSeconds(note.start);
+            scheduleInstrumentNote(liveCtx, liveMasterGraph.input, note.pitch, when, beatsToSeconds(note.duration), track.instrument, {
+              volume: track.volume,
+              pan: track.pan,
+              reverbSend: track.reverbSend,
+              ctxDestination: liveMasterGraph
+            });
+            scheduledCache.add(key);
+          }
+        }
+      }
+    }
+
+    async function togglePlay() {
+      if (liveCtx.state === 'suspended') await liveCtx.resume();
+      if (isPlaying) {
+        isPlaying = false;
+        clearInterval(schedulerTimer);
+        setStatus('일시정지');
+      } else {
+        isPlaying = true;
+        playbackStartCtxTime = liveCtx.currentTime - beatsToSeconds(playbackBeat);
+        scheduledCache.clear();
+        schedulerTimer = setInterval(schedulerTick, 25);
+        setStatus('재생 중');
+      }
+    }
+
+    function stopPlayback() {
+      isPlaying = false;
+      clearInterval(schedulerTimer);
+      playbackBeat = 0;
+      scheduledCache.clear();
+      setStatus('정지');
+    }
+
+    function rewindToLoopOrStart() {
+      playbackBeat = project.loopEnabled ? project.loopStartBeat : 0;
+      if (isPlaying) playbackStartCtxTime = liveCtx.currentTime - beatsToSeconds(playbackBeat);
+      scheduledCache.clear();
+      setStatus('재생 위치를 이동했습니다.');
+    }
+
+    const sharedNoiseBuffers = new WeakMap();
+    function createNoiseBuffer(ctx, seconds = 3) {
+      if (sharedNoiseBuffers.has(ctx)) return sharedNoiseBuffers.get(ctx);
+      const buf = ctx.createBuffer(1, ctx.sampleRate * seconds, ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+      sharedNoiseBuffers.set(ctx, buf);
+      return buf;
+    }
+
+    function makeImpulseResponse(ctx, duration = 2.6, decay = 2.2) {
+      const length = ctx.sampleRate * duration;
+      const impulse = ctx.createBuffer(2, length, ctx.sampleRate);
+      for (let ch = 0; ch < 2; ch++) {
+        const d = impulse.getChannelData(ch);
+        for (let i = 0; i < length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, decay);
+      }
+      return impulse;
+    }
+
+    function makeDistortionCurve(amount) {
+      if (!amount) return null;
+      const n = 44100;
+      const curve = new Float32Array(n);
+      const deg = Math.PI / 180;
+      for (let i = 0; i < n; i++) {
+        const x = i * 2 / n - 1;
+        curve[i] = (3 + amount) * x * 20 * deg / (Math.PI + amount * Math.abs(x));
+      }
+      return curve;
+    }
+
+    function createMasterGraph(ctx, masterFx, destination) {
+      const input = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 22000 - (masterFx.filter / 100) * 21600;
+      const drive = ctx.createWaveShaper();
+      drive.curve = makeDistortionCurve(masterFx.drive * 4);
+      drive.oversample = '4x';
+      const delay = ctx.createDelay(3.0);
+      delay.delayTime.value = (masterFx.delay / 100) * 0.45;
+      const feedback = ctx.createGain();
+      feedback.gain.value = (masterFx.delay / 100) * 0.45;
+      const reverb = ctx.createConvolver();
+      reverb.buffer = makeImpulseResponse(ctx, 2.2, 2.0);
+      const dry = ctx.createGain();
+      const wet = ctx.createGain();
+      dry.gain.value = 1 - (masterFx.reverb / 100) * 0.6;
+      wet.gain.value = (masterFx.reverb / 100) * 0.6;
+      const output = ctx.createGain();
+      output.gain.value = masterFx.volume / 100;
+
+      input.connect(filter);
+      filter.connect(drive);
+      drive.connect(delay);
+      drive.connect(dry);
+      delay.connect(feedback);
+      feedback.connect(delay);
+      delay.connect(dry);
+      drive.connect(reverb);
+      delay.connect(reverb);
+      reverb.connect(wet);
+      dry.connect(output);
+      wet.connect(output);
+      output.connect(destination);
+      return { input, filter, drive, delay, feedback, reverb, dry, wet, output };
+    }
+
+    function scheduleInstrumentNote(ctx, destination, pitch, time, durationSec, inst, trackMix) {
+      const freq = pitchToFreq(pitch);
+      const noiseBuffer = createNoiseBuffer(ctx, 3);
+      const trackIn = ctx.createGain();
+      trackIn.gain.value = Math.max(0, trackMix.volume ?? 1);
+      const panNode = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+      const drySend = ctx.createGain();
+      const wetSend = ctx.createGain();
+      drySend.gain.value = 1 - (trackMix.reverbSend ?? 0) * 0.5;
+      wetSend.gain.value = trackMix.reverbSend ?? 0;
+      if (panNode) panNode.pan.value = trackMix.pan ?? 0;
+      trackIn.connect(panNode || drySend);
+      if (panNode) { panNode.connect(drySend); panNode.connect(wetSend); } else { trackIn.connect(wetSend); }
+      drySend.connect(destination);
+      wetSend.connect(trackMix.ctxDestination.reverb);
+
+      const out = trackIn;
+      const noteDur = Math.max(0.04, durationSec);
+      const shortFx = Math.min(0.7, Math.max(0.07, durationSec));
+
+      const makeNoise = (type, freqVal, q=0.7) => {
+        const src = ctx.createBufferSource();
+        src.buffer = noiseBuffer;
+        const f = ctx.createBiquadFilter();
+        f.type = type;
+        f.frequency.value = freqVal;
+        f.Q.value = q;
+        src.connect(f);
+        return { src, out: f };
+      };
+
+      switch (inst) {
+        case 'soft_keys': {
+          const o1 = ctx.createOscillator(), o2 = ctx.createOscillator(), tone = ctx.createBiquadFilter(), g2 = ctx.createGain();
+          o1.type='triangle'; o2.type='sine'; o1.frequency.value=freq; o2.frequency.value=freq*2; g2.gain.value=0.22; tone.type='lowpass'; tone.frequency.value=3200;
+          o1.connect(tone); o2.connect(g2); g2.connect(tone); tone.connect(out);
+          env(out.gain,time,0.01,0.12,0.36,Math.min(1.1,noteDur),0.55); startStop([o1,o2],time,time+noteDur+0.9); break;
+        }
+        case 'chip_lead': {
+          const o = ctx.createOscillator(); o.type='square'; o.frequency.value=freq; o.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.32,time+0.004); out.gain.setValueAtTime(0.25,time+Math.max(0.03,noteDur-0.03)); out.gain.linearRampToValueAtTime(0.0001,time+noteDur);
+          startStop([o],time,time+noteDur+0.04); break;
+        }
+        case 'pulse_lead': {
+          const o1=ctx.createOscillator(),o2=ctx.createOscillator(),tone=ctx.createBiquadFilter(),g2=ctx.createGain();
+          o1.type='square'; o2.type='sawtooth'; o1.frequency.value=freq; o2.frequency.value=freq; o2.detune.value=7; g2.gain.value=0.28; tone.type='lowpass'; tone.frequency.value=4500;
+          o1.connect(tone); o2.connect(g2); g2.connect(tone); tone.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.36,time+0.008); out.gain.linearRampToValueAtTime(0.2,time+0.08); out.gain.setValueAtTime(0.18,time+Math.max(0.08,noteDur-0.08)); out.gain.linearRampToValueAtTime(0.0001,time+noteDur);
+          startStop([o1,o2],time,time+noteDur+0.05); break;
+        }
+        case 'warm_pad': {
+          const o1=ctx.createOscillator(),o2=ctx.createOscillator(),o3=ctx.createOscillator(),tone=ctx.createBiquadFilter();
+          const g1=ctx.createGain(),g2=ctx.createGain(),g3=ctx.createGain();
+          [o1,o2,o3].forEach(o=>o.type='sawtooth'); o1.frequency.value=freq; o2.frequency.value=freq; o3.frequency.value=freq*0.5; o2.detune.value=-8; o3.detune.value=8;
+          g1.gain.value=0.24; g2.gain.value=0.24; g3.gain.value=0.18; tone.type='lowpass'; tone.frequency.value=2200;
+          o1.connect(g1);o2.connect(g2);o3.connect(g3); g1.connect(tone);g2.connect(tone);g3.connect(tone); tone.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.28,time+0.35); out.gain.setValueAtTime(0.24,time+Math.max(0.4,noteDur)); out.gain.exponentialRampToValueAtTime(0.0001,time+noteDur+0.8);
+          startStop([o1,o2,o3],time,time+noteDur+1); break;
+        }
+        case 'synth_bass': {
+          const o=ctx.createOscillator(),sub=ctx.createOscillator(),tone=ctx.createBiquadFilter(),sg=ctx.createGain();
+          o.type='sawtooth'; sub.type='sine'; o.frequency.value=freq; sub.frequency.value=freq*0.5; tone.type='lowpass'; tone.frequency.setValueAtTime(900,time); tone.frequency.exponentialRampToValueAtTime(280,time+0.12); sg.gain.value=0.45;
+          o.connect(tone); sub.connect(sg); sg.connect(tone); tone.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.7,time+0.01); out.gain.linearRampToValueAtTime(0.34,time+0.1); out.gain.setValueAtTime(0.3,time+Math.max(0.1,noteDur-0.06)); out.gain.exponentialRampToValueAtTime(0.0001,time+noteDur+0.12);
+          startStop([o,sub],time,time+noteDur+0.2); break;
+        }
+        case 'pluck': {
+          const o=ctx.createOscillator(), tone=ctx.createBiquadFilter(); o.type='sawtooth'; o.frequency.value=freq; tone.type='lowpass'; tone.frequency.setValueAtTime(6500,time); tone.frequency.exponentialRampToValueAtTime(300,time+0.15); o.connect(tone); tone.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.95,time+0.005); out.gain.exponentialRampToValueAtTime(0.0001,time+Math.max(0.12,shortFx)); startStop([o],time,time+Math.max(0.18,shortFx+0.03)); break;
+        }
+        case 'mallet': {
+          const c=ctx.createOscillator(),m=ctx.createOscillator(),mg=ctx.createGain(); c.type='sine';m.type='sine';c.frequency.value=freq;m.frequency.value=freq*3.1;mg.gain.setValueAtTime(freq*2.8,time);mg.gain.exponentialRampToValueAtTime(1,time+0.22);m.connect(mg);mg.connect(c.frequency);c.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(1,time+0.004); out.gain.exponentialRampToValueAtTime(0.0001,time+0.55); startStop([c,m],time,time+0.65); break;
+        }
+        case 'noise_fx': {
+          const {src,out:noiseOut}=makeNoise('bandpass',Math.max(300,Math.min(7000,freq*2)),1.2), sweep=ctx.createBiquadFilter(); sweep.type='highpass'; sweep.frequency.setValueAtTime(Math.max(120,freq*0.7),time); sweep.frequency.exponentialRampToValueAtTime(Math.max(400,freq*2.5),time+Math.max(0.08,shortFx)); noiseOut.connect(sweep); sweep.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.85,time+0.004); out.gain.exponentialRampToValueAtTime(0.0001,time+Math.max(0.1,shortFx)); startStop([src],time,time+Math.max(0.12,shortFx)); break;
+        }
+        case 'riser': {
+          const o=ctx.createOscillator(), {src,out:noiseOut}=makeNoise('highpass',1200,0.7), ng=ctx.createGain(), tone=ctx.createBiquadFilter(), og=ctx.createGain();
+          tone.type='lowpass'; tone.frequency.setValueAtTime(1200,time); tone.frequency.exponentialRampToValueAtTime(9000,time+noteDur); o.type='sawtooth'; o.frequency.setValueAtTime(Math.max(70,freq*0.25),time); o.frequency.exponentialRampToValueAtTime(Math.max(240,freq*2),time+noteDur); ng.gain.setValueAtTime(0.01,time); ng.gain.linearRampToValueAtTime(0.25,time+noteDur); og.gain.setValueAtTime(0.02,time); og.gain.linearRampToValueAtTime(0.28,time+noteDur);
+          o.connect(og); og.connect(tone); noiseOut.connect(ng); ng.connect(tone); tone.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.7,time+noteDur); out.gain.exponentialRampToValueAtTime(0.0001,time+noteDur+0.25); startStop([o,src],time,time+noteDur+0.3); break;
+        }
+        case 'impact': {
+          const o=ctx.createOscillator(), {src,out:noiseOut}=makeNoise('lowpass',1800,0.8), ng=ctx.createGain(), tone=ctx.createBiquadFilter(), og=ctx.createGain();
+          tone.type='lowpass'; tone.frequency.setValueAtTime(2500,time); tone.frequency.exponentialRampToValueAtTime(140,time+0.45); o.type='triangle'; o.frequency.setValueAtTime(Math.max(90,freq*0.9),time); o.frequency.exponentialRampToValueAtTime(40,time+0.32); ng.gain.value=0.6; og.gain.setValueAtTime(0.8,time); og.gain.exponentialRampToValueAtTime(0.0001,time+0.45);
+          o.connect(og); og.connect(tone); noiseOut.connect(ng); ng.connect(tone); tone.connect(out);
+          out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(1,time+0.003); out.gain.exponentialRampToValueAtTime(0.0001,time+0.55); startStop([o,src],time,time+0.6); break;
+        }
+        case 'kick': {
+          const o=ctx.createOscillator(); o.type='sine'; o.connect(out); o.frequency.setValueAtTime(170,time); o.frequency.exponentialRampToValueAtTime(36,time+0.18); out.gain.setValueAtTime(1.1,time); out.gain.exponentialRampToValueAtTime(0.0001,time+0.22); startStop([o],time,time+0.25); break;
+        }
+        case 'snare': {
+          const o=ctx.createOscillator(), og=ctx.createGain(), {src,out:noiseOut}=makeNoise('highpass',1600,0.7); o.type='triangle'; o.frequency.setValueAtTime(220,time); o.frequency.exponentialRampToValueAtTime(120,time+0.12); og.gain.setValueAtTime(0.3,time); og.gain.exponentialRampToValueAtTime(0.0001,time+0.16); o.connect(og); og.connect(out); noiseOut.connect(out); out.gain.setValueAtTime(0.9,time); out.gain.exponentialRampToValueAtTime(0.0001,time+0.18); startStop([o,src],time,time+0.18); break;
+        }
+        case 'hat': {
+          const {src,out:noiseOut}=makeNoise('highpass',6500,0.9); noiseOut.connect(out); out.gain.setValueAtTime(0.55,time); out.gain.exponentialRampToValueAtTime(0.0001,time+0.06); startStop([src],time,time+0.08); break;
+        }
+        case 'xylophone': {
+          const c=ctx.createOscillator(),m=ctx.createOscillator(),mg=ctx.createGain(),click=ctx.createOscillator(),cg=ctx.createGain();
+          c.type='sine';m.type='sine';click.type='triangle'; c.frequency.value=freq; m.frequency.value=freq*4; click.frequency.value=freq*2; mg.gain.setValueAtTime(freq*2.8,time); mg.gain.exponentialRampToValueAtTime(0.001,time+0.12); cg.gain.setValueAtTime(0.18,time); cg.gain.exponentialRampToValueAtTime(0.001,time+0.08);
+          m.connect(mg); mg.connect(c.frequency); c.connect(out); click.connect(cg); cg.connect(out); out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(1,time+0.002); out.gain.exponentialRampToValueAtTime(0.001,time+0.32); startStop([c,m,click],time,time+0.4); break;
+        }
+        case 'marimba': {
+          const c=ctx.createOscillator(),m=ctx.createOscillator(),mg=ctx.createGain(),body=ctx.createOscillator(),bg=ctx.createGain(),tone=ctx.createBiquadFilter();
+          c.type='sine';m.type='sine';body.type='triangle'; c.frequency.value=freq; m.frequency.value=freq*2.2; body.frequency.value=freq*0.5; mg.gain.setValueAtTime(freq*2,time); mg.gain.exponentialRampToValueAtTime(0.001,time+0.18); bg.gain.setValueAtTime(0.25,time); bg.gain.exponentialRampToValueAtTime(0.001,time+0.45); tone.type='lowpass'; tone.frequency.setValueAtTime(3200,time); tone.frequency.exponentialRampToValueAtTime(1200,time+0.25);
+          m.connect(mg); mg.connect(c.frequency); c.connect(tone); body.connect(bg); bg.connect(tone); tone.connect(out); out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(1,time+0.003); out.gain.exponentialRampToValueAtTime(0.001,time+0.55); startStop([c,m,body],time,time+0.65); break;
+        }
+        case 'dream_xylo': {
+          const c=ctx.createOscillator(),m=ctx.createOscillator(),mg=ctx.createGain(),s=ctx.createOscillator(),sg=ctx.createGain();
+          c.type='sine';m.type='sine';s.type='triangle'; c.frequency.value=freq; m.frequency.value=freq*3.2; s.frequency.value=freq*2; mg.gain.setValueAtTime(freq*1.8,time); mg.gain.exponentialRampToValueAtTime(0.001,time+0.25); sg.gain.setValueAtTime(0.18,time); sg.gain.exponentialRampToValueAtTime(0.001,time+0.45);
+          m.connect(mg); mg.connect(c.frequency); c.connect(out); s.connect(sg); sg.connect(out); out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.9,time+0.003); out.gain.exponentialRampToValueAtTime(0.001,time+0.7); startStop([c,m,s],time,time+0.8); break;
+        }
+        case 'dream_marimba': {
+          const c=ctx.createOscillator(),m=ctx.createOscillator(),mg=ctx.createGain(),body=ctx.createOscillator(),bg=ctx.createGain(),tone=ctx.createBiquadFilter();
+          c.type='sine';m.type='sine';body.type='triangle'; c.frequency.value=freq; m.frequency.value=freq*2.4; body.frequency.value=freq*0.5; mg.gain.setValueAtTime(freq*2.2,time); mg.gain.exponentialRampToValueAtTime(0.001,time+0.3); bg.gain.setValueAtTime(0.22,time); bg.gain.exponentialRampToValueAtTime(0.001,time+0.9); tone.type='lowpass'; tone.frequency.setValueAtTime(2800,time); tone.frequency.exponentialRampToValueAtTime(900,time+0.5);
+          m.connect(mg); mg.connect(c.frequency); c.connect(tone); body.connect(bg); bg.connect(tone); tone.connect(out); out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(1,time+0.005); out.gain.exponentialRampToValueAtTime(0.001,time+1.1); startStop([c,m,body],time,time+1.2); break;
+        }
+        case 'crystal_bell': {
+          const c=ctx.createOscillator(),m=ctx.createOscillator(),mg=ctx.createGain(),s=ctx.createOscillator(),sg=ctx.createGain();
+          c.type='sine';m.type='sine';s.type='triangle'; c.frequency.value=freq; m.frequency.value=freq*3.6; s.frequency.value=freq*2; mg.gain.setValueAtTime(freq*2.2,time); mg.gain.exponentialRampToValueAtTime(0.001,time+0.22); sg.gain.setValueAtTime(0.16,time); sg.gain.exponentialRampToValueAtTime(0.001,time+0.55);
+          m.connect(mg); mg.connect(c.frequency); c.connect(out); s.connect(sg); sg.connect(out); out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.9,time+0.003); out.gain.exponentialRampToValueAtTime(0.001,time+1); startStop([c,m,s],time,time+1.1); break;
+        }
+        case 'music_box': {
+          const o1=ctx.createOscillator(),o2=ctx.createOscillator(),o3=ctx.createOscillator(),g2=ctx.createGain(),g3=ctx.createGain(),tone=ctx.createBiquadFilter();
+          o1.type='sine';o2.type='triangle';o3.type='sine';o1.frequency.value=freq;o2.frequency.value=freq*2;o3.frequency.value=freq*4;g2.gain.setValueAtTime(0.14,time);g2.gain.exponentialRampToValueAtTime(0.001,time+0.45);g3.gain.setValueAtTime(0.08,time);g3.gain.exponentialRampToValueAtTime(0.001,time+0.25);tone.type='lowpass';tone.frequency.setValueAtTime(5000,time);tone.frequency.exponentialRampToValueAtTime(2200,time+0.3);
+          o1.connect(tone);o2.connect(g2);g2.connect(tone);o3.connect(g3);g3.connect(tone);tone.connect(out);out.gain.setValueAtTime(0.0001,time);out.gain.linearRampToValueAtTime(0.72,time+0.003);out.gain.exponentialRampToValueAtTime(0.001,time+0.6);startStop([o1,o2,o3],time,time+0.7); break;
+        }
+        case 'airy_choir': {
+          const o1=ctx.createOscillator(),o2=ctx.createOscillator(),o3=ctx.createOscillator(),f1=ctx.createBiquadFilter(),f2=ctx.createBiquadFilter(),g1=ctx.createGain(),g2=ctx.createGain(),g3=ctx.createGain();
+          o1.type='triangle';o2.type='sawtooth';o3.type='triangle';o1.frequency.value=freq;o2.frequency.value=freq;o3.frequency.value=freq*2;o2.detune.value=-7;o3.detune.value=6;g1.gain.value=0.22;g2.gain.value=0.18;g3.gain.value=0.08;f1.type='bandpass';f1.frequency.value=900;f1.Q.value=0.9;f2.type='lowpass';f2.frequency.value=3200;f2.Q.value=0.3;
+          o1.connect(g1);o2.connect(g2);o3.connect(g3);g1.connect(f1);g2.connect(f1);g3.connect(f1);f1.connect(f2);f2.connect(out);
+          out.gain.setValueAtTime(0.0001,time);out.gain.linearRampToValueAtTime(0.34,time+0.25);out.gain.setValueAtTime(0.28,time+Math.max(0.35,noteDur));out.gain.exponentialRampToValueAtTime(0.001,time+noteDur+0.9);startStop([o1,o2,o3],time,time+noteDur+1); break;
+        }
+        case 'dream_pad': {
+          const o1=ctx.createOscillator(),o2=ctx.createOscillator(),o3=ctx.createOscillator(),o4=ctx.createOscillator(),g1=ctx.createGain(),g2=ctx.createGain(),g3=ctx.createGain(),g4=ctx.createGain(),tone=ctx.createBiquadFilter();
+          o1.type='sawtooth';o2.type='sawtooth';o3.type='triangle';o4.type='sine';o1.frequency.value=freq;o2.frequency.value=freq;o3.frequency.value=freq*0.5;o4.frequency.value=freq*2;o2.detune.value=-10;o3.detune.value=5;o4.detune.value=8;g1.gain.value=0.18;g2.gain.value=0.18;g3.gain.value=0.16;g4.gain.value=0.08;tone.type='lowpass';tone.frequency.setValueAtTime(2600,time);tone.frequency.linearRampToValueAtTime(3800,time+0.6);
+          o1.connect(g1);o2.connect(g2);o3.connect(g3);o4.connect(g4);g1.connect(tone);g2.connect(tone);g3.connect(tone);g4.connect(tone);tone.connect(out);
+          out.gain.setValueAtTime(0.0001,time);out.gain.linearRampToValueAtTime(0.3,time+0.4);out.gain.setValueAtTime(0.26,time+Math.max(0.5,noteDur));out.gain.exponentialRampToValueAtTime(0.001,time+noteDur+1.2);startStop([o1,o2,o3,o4],time,time+noteDur+1.3); break;
+        }
+        case 'round_bass': {
+          const o1=ctx.createOscillator(),o2=ctx.createOscillator(),sub=ctx.createOscillator(),g1=ctx.createGain(),g2=ctx.createGain(),gs=ctx.createGain(),tone=ctx.createBiquadFilter();
+          o1.type='sine';o2.type='triangle';sub.type='sine';o1.frequency.value=freq;o2.frequency.value=freq;sub.frequency.value=freq*0.5;o2.detune.value=4;g1.gain.value=0.34;g2.gain.value=0.18;gs.gain.value=0.42;tone.type='lowpass';tone.frequency.setValueAtTime(700,time);tone.frequency.exponentialRampToValueAtTime(260,time+0.14);
+          o1.connect(g1);o2.connect(g2);sub.connect(gs);g1.connect(tone);g2.connect(tone);gs.connect(tone);tone.connect(out);out.gain.setValueAtTime(0.0001,time);out.gain.linearRampToValueAtTime(0.62,time+0.015);out.gain.linearRampToValueAtTime(0.3,time+0.12);out.gain.setValueAtTime(0.26,time+Math.max(0.12,noteDur-0.05));out.gain.exponentialRampToValueAtTime(0.001,time+noteDur+0.14);startStop([o1,o2,sub],time,time+noteDur+0.2); break;
+        }
+        default: {
+          const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=freq; o.connect(out); out.gain.setValueAtTime(0.0001,time); out.gain.linearRampToValueAtTime(0.4,time+0.01); out.gain.linearRampToValueAtTime(0.0001,time+noteDur); startStop([o],time,time+noteDur+0.05); break;
+        }
+      }
+    }
+
+    function env(param, time, a, d, s, hold, r, peak = 1) {
+      const sustainTime = Math.max(time + a + d, time + hold);
+      param.cancelScheduledValues(time);
+      param.setValueAtTime(0.0001, time);
+      param.linearRampToValueAtTime(peak, time + a);
+      param.linearRampToValueAtTime(peak * s, time + a + d);
+      param.setValueAtTime(peak * s, sustainTime);
+      param.exponentialRampToValueAtTime(0.0001, sustainTime + Math.max(0.02, r));
+    }
+    function startStop(nodes, start, stop) { nodes.forEach(n => { n.start(start); n.stop(stop); }); }
+
+    function serializeProject() {
+      return JSON.stringify({ ...project, noteIdCounter, trackIdCounter }, null, 2);
+    }
+
+    function loadProjectData(obj) {
+      project = obj;
+      noteIdCounter = obj.noteIdCounter || Math.max(1, ...project.tracks.flatMap(t => t.notes.map(n => n.id || 0))) + 1;
+      trackIdCounter = obj.trackIdCounter || Math.max(1, ...project.tracks.map(t => t.id || 0)) + 1;
+      project.tracks.forEach(t => {
+        t.volume ??= 0.9; t.pan ??= 0; t.reverbSend ??= 0.15; t.mute ??= false; t.solo ??= false;
+        t.notes.forEach(n => n.id ??= noteIdCounter++);
+      });
+      currentTrackIndex = clamp(currentTrackIndex, 0, project.tracks.length - 1);
+      selectedNoteIds.clear();
+      updateProjectControls();
+      refreshTracksUI();
+      ensureCanvasSize();
+      setStatus('프로젝트를 불러왔습니다.');
+    }
+
+    function downloadBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function encodeWav(audioBuffer) {
+      const numChannels = audioBuffer.numberOfChannels;
+      const sampleRate = audioBuffer.sampleRate;
+      const numSamples = audioBuffer.length;
+      const bytesPerSample = 2;
+      const blockAlign = numChannels * bytesPerSample;
+      const buffer = new ArrayBuffer(44 + numSamples * blockAlign);
+      const view = new DataView(buffer);
+      let offset = 0;
+      const writeString = s => { for (let i = 0; i < s.length; i++) view.setUint8(offset++, s.charCodeAt(i)); };
+      writeString('RIFF'); view.setUint32(offset, 36 + numSamples * blockAlign, true); offset += 4; writeString('WAVE'); writeString('fmt ');
+      view.setUint32(offset, 16, true); offset += 4; view.setUint16(offset, 1, true); offset += 2; view.setUint16(offset, numChannels, true); offset += 2;
+      view.setUint32(offset, sampleRate, true); offset += 4; view.setUint32(offset, sampleRate * blockAlign, true); offset += 4; view.setUint16(offset, blockAlign, true); offset += 2; view.setUint16(offset, 16, true); offset += 2;
+      writeString('data'); view.setUint32(offset, numSamples * blockAlign, true); offset += 4;
+      const channels = Array.from({length:numChannels}, (_,i)=>audioBuffer.getChannelData(i));
+      for (let i = 0; i < numSamples; i++) {
+        for (let ch = 0; ch < numChannels; ch++) {
+          const sample = Math.max(-1, Math.min(1, channels[ch][i]));
+          view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7fff, true);
+          offset += 2;
+        }
+      }
+      return new Blob([buffer], { type: 'audio/wav' });
+    }
+
+    async function renderOffline(trackFilter = null) {
+      const endBeat = getSongEndBeat() + project.timeSigNumerator;
+      const durationSec = beatsToSeconds(endBeat) + 2;
+      const offCtx = new OfflineAudioContext(2, Math.ceil(durationSec * 44100), 44100);
+      const graph = createMasterGraph(offCtx, project.masterFx, offCtx.destination);
+      for (const track of project.tracks) {
+        if (trackFilter && track.id !== trackFilter.id) continue;
+        if (!trackFilter && !trackAudible(track)) continue;
+        for (const note of track.notes) {
+          scheduleInstrumentNote(offCtx, graph.input, note.pitch, beatsToSeconds(note.start), beatsToSeconds(note.duration), track.instrument, {
+            volume: track.volume, pan: track.pan, reverbSend: track.reverbSend, ctxDestination: graph
+          });
+        }
+      }
+      return await offCtx.startRendering();
+    }
+
+    async function exportMixWav() {
+      setStatus('WAV 렌더링 중...');
+      const buffer = await renderOffline();
+      downloadBlob(encodeWav(buffer), `${safeName(project.name)}_mix.wav`);
+      setStatus('WAV Export 완료');
+    }
+
+    async function exportStemZipless() {
+      setStatus('Stem 렌더링 중...');
+      for (const track of project.tracks) {
+        if (!track.notes.length) continue;
+        const buffer = await renderOffline(track);
+        downloadBlob(encodeWav(buffer), `${safeName(project.name)}_${safeName(track.name)}.wav`);
+      }
+      setStatus('Stem Export 완료');
+    }
+
+    function safeName(str) { return (str || 'project').replace(/[^a-z0-9가-힣_\-]+/gi, '_'); }
+
+    function exportMidi() {
+      const ticksPerBeat = 128;
+      function toVLQ(val) { let buf=[val&0x7F]; while ((val >>= 7)) buf.unshift((val&0x7F)|0x80); return buf; }
+      const tempoTrackBytes = [];
+      const mpqn = Math.round(60000000 / project.bpm);
+      tempoTrackBytes.push(0x00, 0xFF, 0x51, 0x03, (mpqn >> 16) & 255, (mpqn >> 8) & 255, mpqn & 255);
+      tempoTrackBytes.push(0x00, 0xFF, 0x58, 0x04, project.timeSigNumerator, 2, 24, 8);
+      tempoTrackBytes.push(0x00, 0xFF, 0x2F, 0x00);
+      const tempoLen = tempoTrackBytes.length;
+      const trackChunks = [[0x4D,0x54,0x72,0x6B,(tempoLen>>24)&255,(tempoLen>>16)&255,(tempoLen>>8)&255,tempoLen&255,...tempoTrackBytes]];
+
+      for (const track of project.tracks) {
+        if (!track.notes.length) continue;
+        const events = [];
+        const gmProgram = INST_TO_GM_PROGRAM[track.instrument] ?? 0;
+        events.push({tick:0, bytes:[0xC0, gmProgram]});
+        for (const n of track.notes) {
+          events.push({tick: Math.round(n.start * ticksPerBeat), bytes:[0x90, n.pitch, 100]});
+          events.push({tick: Math.round((n.start + n.duration) * ticksPerBeat), bytes:[0x80, n.pitch, 0]});
+        }
+        events.sort((a,b)=>a.tick-b.tick || a.bytes[0]-b.bytes[0]);
+        const bytes = [];
+        let prev = 0;
+        for (const ev of events) {
+          bytes.push(...toVLQ(ev.tick - prev), ...ev.bytes);
+          prev = ev.tick;
+        }
+        bytes.push(0x00,0xFF,0x2F,0x00);
+        const len = bytes.length;
+        trackChunks.push([0x4D,0x54,0x72,0x6B,(len>>24)&255,(len>>16)&255,(len>>8)&255,len&255,...bytes]);
+      }
+      if (trackChunks.length <= 1) return setStatus('내보낼 노트가 없습니다.');
+      const numTracks = trackChunks.length;
+      const header = [0x4D,0x54,0x68,0x64,0,0,0,6,0,1,(numTracks>>8)&255,numTracks&255,0,128];
+      const allBytes = new Uint8Array([...header, ...trackChunks.flat()]);
+      downloadBlob(new Blob([allBytes], {type:'audio/midi'}), `${safeName(project.name)}.mid`);
+      setStatus('MIDI Export 완료');
+    }
+
+    function importMidiFile(file) {
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        try {
+          const buffer = evt.target.result;
+          const view = new DataView(buffer);
+          let offset = 0;
+          if (view.getUint32(offset) !== 0x4D546864) throw new Error('유효한 MIDI 파일이 아닙니다.');
+          offset += 8;
+          offset += 2;
+          const numTracks = view.getUint16(offset); offset += 2;
+          const ticksPerBeat = view.getUint16(offset); offset += 2;
+          const importedTracks = [];
+          let detectedBpm = null;
+          for (let i = 0; i < numTracks; i++) {
+            if (view.getUint32(offset) !== 0x4D54726B) break;
+            offset += 4;
+            const trackLen = view.getUint32(offset); offset += 4;
+            const trackEnd = offset + trackLen;
+            let absTick = 0;
+            let runningStatus = null;
+            let currentProgram = 0;
+            const active = {};
+            const notes = [];
+            while (offset < trackEnd) {
+              let delta = 0;
+              while (true) {
+                const b = view.getUint8(offset++);
+                delta = (delta << 7) | (b & 0x7F);
+                if ((b & 0x80) === 0) break;
+              }
+              absTick += delta;
+              let status = view.getUint8(offset);
+              if (status < 0x80 && runningStatus !== null) status = runningStatus;
+              else { offset++; runningStatus = status; }
+
+              if (status === 0xFF) {
+                const metaType = view.getUint8(offset++);
+                let len = 0;
+                while (true) {
+                  const b = view.getUint8(offset++);
+                  len = (len << 7) | (b & 0x7F);
+                  if ((b & 0x80) === 0) break;
                 }
-                if (trackNotes.length > 0 || i === 0) { tracks.push({ id: i, name: `Layer ${tracks.length + 1}`, inst: 'sine', notes: trackNotes }); }
+                if (metaType === 0x51 && len === 3) {
+                  const mpqn = (view.getUint8(offset) << 16) | (view.getUint8(offset + 1) << 8) | view.getUint8(offset + 2);
+                  detectedBpm = Math.round(60000000 / mpqn);
+                }
+                offset += len;
+                continue;
+              }
+              if (status === 0xF0 || status === 0xF7) {
+                let len = 0;
+                while (true) {
+                  const b = view.getUint8(offset++);
+                  len = (len << 7) | (b & 0x7F);
+                  if ((b & 0x80) === 0) break;
+                }
+                offset += len;
+                continue;
+              }
+
+              const eventType = status >> 4;
+              const channel = status & 0x0F;
+              if (eventType === 0xC) { currentProgram = view.getUint8(offset++); continue; }
+              if (eventType === 0xD) { offset += 1; continue; }
+              const data1 = view.getUint8(offset++);
+              const data2 = view.getUint8(offset++);
+              const beat = absTick / ticksPerBeat;
+              if (eventType === 0x9 && data2 > 0) active[`${channel}:${data1}`] = beat;
+              else if (eventType === 0x8 || (eventType === 0x9 && data2 === 0)) {
+                const key = `${channel}:${data1}`;
+                if (active[key] != null) {
+                  notes.push({ id: noteIdCounter++, pitch: clamp(data1, MIN_PITCH, MAX_PITCH), start: active[key], duration: Math.max(MIN_NOTE_BEATS, beat - active[key]) });
+                  delete active[key];
+                }
+              }
             }
-            if (tracks.length === 0) tracks.push({ id: 0, name: 'Layer 1', inst: 'sine', notes: [] });
-            currentTrackIndex = 0; updateLayerUI(); returnToStart(); e.target.value = '';
-        };
-        reader.readAsArrayBuffer(file);
+            if (notes.length) {
+              const t = makeTrack(`Layer ${importedTracks.length + 1}`);
+              t.instrument = GM_PROGRAM_TO_INST[currentProgram] || 'soft_keys';
+              t.notes = notes;
+              importedTracks.push(t);
+            }
+          }
+          project.tracks = importedTracks.length ? importedTracks : [makeTrack('Layer 1')];
+          if (detectedBpm) project.bpm = detectedBpm;
+          currentTrackIndex = 0;
+          refreshTracksUI();
+          ensureCanvasSize();
+          updateProjectControls();
+          setStatus('MIDI 불러오기 완료');
+        } catch (err) {
+          alert(err.message || String(err));
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    document.getElementById('playBtn').addEventListener('click', togglePlay);
+    document.getElementById('stopBtn').addEventListener('click', stopPlayback);
+    document.getElementById('rewindBtn').addEventListener('click', rewindToLoopOrStart);
+    document.getElementById('addTrackBtn').addEventListener('click', () => {
+      project.tracks.push(makeTrack());
+      currentTrackIndex = project.tracks.length - 1;
+      refreshTracksUI();
+      ensureCanvasSize();
+      updateProjectControls();
+    });
+    document.getElementById('clearCurrentTrackBtn').addEventListener('click', () => {
+      const track = getCurrentTrack();
+      if (!track.notes.length) return setStatus('현재 레이어에 삭제할 노트가 없습니다.');
+      if (confirm(`${track.name} 레이어의 노트를 모두 삭제할까요?`)) {
+        track.notes = [];
+        selectedNoteIds.clear();
+        updateSelectionCount();
+        ensureCanvasSize();
+        refreshTracksUI();
+        setStatus('현재 레이어의 노트를 삭제했습니다.');
+      }
+    });
+    document.getElementById('saveProjectBtn').addEventListener('click', () => {
+      project.name = document.getElementById('projectName').value || 'Game Audio Project';
+      downloadBlob(new Blob([serializeProject()], {type:'application/json'}), `${safeName(project.name)}.json`);
+      setStatus('프로젝트를 저장했습니다.');
+    });
+    document.getElementById('loadProjectInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      file.text().then(txt => loadProjectData(JSON.parse(txt)));
+      e.target.value = '';
+    });
+    document.getElementById('exportWavBtn').addEventListener('click', exportMixWav);
+    document.getElementById('exportStemsBtn').addEventListener('click', exportStemZipless);
+    document.getElementById('exportMidiBtn').addEventListener('click', exportMidi);
+    document.getElementById('importMidiInput').addEventListener('change', e => {
+      const f = e.target.files[0];
+      if (f) importMidiFile(f);
+      e.target.value = '';
+    });
+    document.getElementById('copySelectionBtn').addEventListener('click', copySelection);
+    document.getElementById('pasteSelectionBtn').addEventListener('click', pasteSelection);
+    document.getElementById('deleteSelectionBtn').addEventListener('click', deleteSelectedNotes);
+    document.getElementById('duplicateSelectionBtn').addEventListener('click', duplicateSelection);
+    document.getElementById('selectAllTrackBtn').addEventListener('click', () => {
+      selectedNoteIds.clear();
+      getCurrentTrack().notes.forEach(n => selectedNoteIds.add(n.id));
+      updateSelectionCount();
+    });
+    document.getElementById('setLoopToSelectionBtn').addEventListener('click', () => {
+      const selected = getSelectedNotes();
+      if (!selected.length) return setStatus('선택 노트가 없습니다.');
+      project.loopStartBeat = Math.min(...selected.map(x => x.note.start));
+      project.loopEndBeat = Math.max(...selected.map(x => x.note.start + x.note.duration));
+      project.loopEnabled = true;
+      updateProjectControls();
+      setStatus('선택 노트 범위를 루프로 설정했습니다.');
     });
 
-    document.getElementById('btnExportAudio').addEventListener('click', () => {
-        let maxTime = 0; tracks.forEach(t => t.notes.forEach(n => { if(n.start + n.duration > maxTime) maxTime = n.start + n.duration; }));
-        if (maxTime === 0) return alert('노트가 없습니다.');
-        mediaRecorder = new MediaRecorder(mediaStreamDest.stream); recordedChunks = [];
-        mediaRecorder.ondataavailable = e => { if(e.data.size > 0) recordedChunks.push(e.data); };
-        mediaRecorder.onstop = () => {
-            const blob = new Blob(recordedChunks, { type: 'audio/webm' }); const url = URL.createObjectURL(blob);
-            const a = document.createElement('a'); a.href = url; a.download = 'my_multi_track.webm'; a.click(); URL.revokeObjectURL(url);
-            document.getElementById('btnExportAudio').innerText = "Export Audio (.webm)";
-        };
-        document.getElementById('btnExportAudio').innerText = "Recording..."; returnToStart(); toggleSequencer(); mediaRecorder.start();
-        setTimeout(() => { toggleSequencer(); mediaRecorder.stop(); }, (maxTime + 2.5) * 1000); 
+    ['projectName','bpmInput','timeSigNumerator','snapSelect','loopEnabled','loopStartInput','loopEndInput','masterFilter','masterDrive','masterDelay','masterReverb','masterVolume'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        project.name = document.getElementById('projectName').value;
+        project.bpm = parseFloat(document.getElementById('bpmInput').value) || 120;
+        project.timeSigNumerator = parseInt(document.getElementById('timeSigNumerator').value, 10) || 4;
+        project.snapBeats = parseFloat(document.getElementById('snapSelect').value);
+        project.loopEnabled = document.getElementById('loopEnabled').checked;
+        project.loopStartBeat = Math.max(0, parseFloat(document.getElementById('loopStartInput').value) || 0);
+        project.loopEndBeat = Math.max(project.loopStartBeat + 0.25, parseFloat(document.getElementById('loopEndInput').value) || project.timeSigNumerator * 4);
+        project.masterFx.filter = parseFloat(document.getElementById('masterFilter').value);
+        project.masterFx.drive = parseFloat(document.getElementById('masterDrive').value);
+        project.masterFx.delay = parseFloat(document.getElementById('masterDelay').value);
+        project.masterFx.reverb = parseFloat(document.getElementById('masterReverb').value);
+        project.masterFx.volume = parseFloat(document.getElementById('masterVolume').value);
+        rebuildLiveMasterGraph();
+        ensureCanvasSize();
+      });
     });
 
-    document.getElementById('btnExportMIDI').addEventListener('click', () => {
-        const ticksPerBeat = 128, bpm = 120, secondsPerBeat = 60 / bpm;
-        function toVLQ(val) { let buf = [val & 0x7F]; while ((val >>= 7)) buf.unshift((val & 0x7F) | 0x80); return buf; }
-        let allTracksData = [];
-        tracks.forEach(track => {
-            if (track.notes.length === 0) return; let events = [];
-            track.notes.forEach(n => { events.push({ time: n.start, type: 0x90, pitch: n.pitch, vel: 100 }); events.push({ time: n.start + n.duration, type: 0x80, pitch: n.pitch, vel: 0 }); });
-            events.sort((a, b) => a.time - b.time); let trackData = [], prevTick = 0;
-            events.forEach(ev => { let tick = Math.round((ev.time / secondsPerBeat) * ticksPerBeat); trackData.push(...toVLQ(tick - prevTick)); trackData.push(ev.type, ev.pitch, ev.vel); prevTick = tick; });
-            trackData.push(...[0x00, 0xFF, 0x2F, 0x00]);
-            const midiLength = trackData.length; allTracksData.push(0x4D, 0x54, 0x72, 0x6B, (midiLength >> 24) & 0xFF, (midiLength >> 16) & 0xFF, (midiLength >> 8) & 0xFF, midiLength & 0xFF, ...trackData);
-        });
-        if (allTracksData.length === 0) return alert('노트가 없습니다.');
-        const numTracks = tracks.filter(t => t.notes.length > 0).length;
-        const midiBytes = new Uint8Array([ 0x4D, 0x54, 0x68, 0x64, 0x00, 0x00, 0x00, 0x06, 0x00, 0x01, (numTracks >> 8) & 0xFF, numTracks & 0xFF, 0x00, 0x80, ...allTracksData ]);
-        const blob = new Blob([midiBytes], { type: 'audio/midi' }); const url = URL.createObjectURL(blob);
-        const a = document.createElement('a'); a.href = url; a.download = 'multi_layer.mid'; a.click(); URL.revokeObjectURL(url);
+    instrumentPalette.addEventListener('change', () => {
+      getCurrentTrack().instrument = instrumentPalette.value;
+      refreshTracksUI();
     });
-</script>
+
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') { e.preventDefault(); togglePlay(); return; }
+      if (e.key === 'Delete') { deleteSelectedNotes(); return; }
+      const cmd = e.ctrlKey || e.metaKey;
+      if (cmd && e.key.toLowerCase() === 'c') { e.preventDefault(); copySelection(); }
+      if (cmd && e.key.toLowerCase() === 'v') { e.preventDefault(); pasteSelection(); }
+      if (cmd && e.key.toLowerCase() === 'd') { e.preventDefault(); duplicateSelection(); }
+      if (!cmd && selectedNoteIds.size) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); moveSelectedNotesBy(-(project.snapBeats || 0.5), 0); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); moveSelectedNotesBy((project.snapBeats || 0.5), 0); }
+        if (e.key === 'ArrowUp') { e.preventDefault(); moveSelectedNotesBy(0, 1); }
+        if (e.key === 'ArrowDown') { e.preventDefault(); moveSelectedNotesBy(0, -1); }
+      }
+    });
+
+    updateProjectControls();
+    refreshTracksUI();
+    ensureCanvasSize();
+    updateSelectionCount();
+    rebuildLiveMasterGraph();
+    draw();
+  </script>
 </body>
 </html>
