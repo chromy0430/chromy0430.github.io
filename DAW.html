@@ -58,6 +58,9 @@
                 <option value="marimba">Marimba (Classic)</option>
                 <option value="dream_marimba">Dream Marimba</option>
                 <option value="808">808 Drum Kit (Kick/Snare)</option>
+				<option value="bass">Deep Bass</option>
+				<option value="lead">Synth Lead</option>
+				<option value="bell">Bell</option>
             </select>
         </div>
         <div class="row">
@@ -161,8 +164,21 @@
     let isPlaying = false; let seqStartTime = 0; let pauseTime = 0;
     let snapValue = 0.25;
 
-    const layerColors = { 'sine': '#44aaff', 'square': '#ffaa44', 'fm_ep': '#cc44ff', 'analog_pad': '#44ffcc', 'organ': '#4444ff', 'pluck': '#ff4444', 'marimba': '#aa4444', 'dream_marimba': '#aa44ff', '808': '#bbbbbb' };
-
+    const layerColors = {
+    'sine': '#44aaff',
+    'square': '#ffaa44',
+    'fm_ep': '#cc44ff',
+    'analog_pad': '#44ffcc',
+    'organ': '#4444ff',
+    'pluck': '#ff4444',
+    'marimba': '#aa4444',
+    'dream_marimba': '#aa44ff',
+    '808': '#bbbbbb',
+    'bass': '#22cc88',
+    'lead': '#ff66aa',
+    'bell': '#66ccff'
+};
+	
     const HEADER_WIDTH = 80; const RULER_HEIGHT = 20; const PIXELS_PER_SECOND = 100;
     const ROW_HEIGHT = 15; const MIN_PITCH = 48; const MAX_PITCH = 84; 
     const TOTAL_ROWS = MAX_PITCH - MIN_PITCH + 1;
@@ -264,6 +280,70 @@
         const gainNode = audioCtx.createGain(); gainNode.connect(masterInput);
 
         switch (inst) {
+			case 'bass':
+				const bassOsc = audioCtx.createOscillator();
+				const bassFilter = audioCtx.createBiquadFilter();
+				bassOsc.type = 'sawtooth';
+				bassOsc.frequency.value = freq;
+				bassFilter.type = 'lowpass';
+				bassFilter.frequency.value = 400;
+				bassOsc.connect(bassFilter);
+				bassFilter.connect(gainNode);
+
+				gainNode.gain.setValueAtTime(0, time);
+				gainNode.gain.linearRampToValueAtTime(0.7, time + 0.02);
+				gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration);
+
+				bassOsc.start(time);
+				bassOsc.stop(time + duration);
+				break;
+
+			case 'lead':
+				const lead1 = audioCtx.createOscillator();
+				const lead2 = audioCtx.createOscillator();
+				lead1.type = 'sawtooth';
+				lead2.type = 'square';
+				lead1.frequency.value = freq;
+				lead2.frequency.value = freq;
+				lead2.detune.value = 8;
+				lead1.connect(gainNode);
+				lead2.connect(gainNode);
+
+				gainNode.gain.setValueAtTime(0, time);
+				gainNode.gain.linearRampToValueAtTime(0.35, time + 0.01);
+				gainNode.gain.setValueAtTime(0.3, time + Math.max(0.05, duration - 0.05));
+				gainNode.gain.linearRampToValueAtTime(0, time + duration);
+
+				lead1.start(time);
+				lead2.start(time);
+				lead1.stop(time + duration);
+				lead2.stop(time + duration);
+				break;
+
+			case 'bell':
+				const bellCarrier = audioCtx.createOscillator();
+				const bellMod = audioCtx.createOscillator();
+				const bellModGain = audioCtx.createGain();
+
+				bellCarrier.type = 'sine';
+				bellMod.type = 'sine';
+				bellCarrier.frequency.value = freq;
+				bellMod.frequency.value = freq * 2.5;
+				bellModGain.gain.value = freq * 1.2;
+
+				bellMod.connect(bellModGain);
+				bellModGain.connect(bellCarrier.frequency);
+				bellCarrier.connect(gainNode);
+
+				gainNode.gain.setValueAtTime(0, time);
+				gainNode.gain.linearRampToValueAtTime(0.9, time + 0.005);
+				gainNode.gain.exponentialRampToValueAtTime(0.001, time + 1.2);
+
+				bellMod.start(time);
+				bellCarrier.start(time);
+				bellMod.stop(time + 1.2);
+				bellCarrier.stop(time + 1.2);
+				break;
             case 'marimba':
                 const mOsc = audioCtx.createOscillator(); mOsc.type = 'sine'; mOsc.frequency.value = freq; mOsc.connect(gainNode);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.5, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
@@ -306,6 +386,7 @@
                     gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(1.0, time + 0.01); gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.2); 
                     sNoise.start(time); sNoise.stop(time + 0.2);
                 } break;
+
             default:
                 const bOsc = audioCtx.createOscillator(); bOsc.type = inst; bOsc.frequency.value = freq; bOsc.connect(gainNode);
                 gainNode.gain.setValueAtTime(0, time); gainNode.gain.linearRampToValueAtTime(0.4, time + 0.05); gainNode.gain.setValueAtTime(0.4, time + duration - 0.05); gainNode.gain.linearRampToValueAtTime(0, time + duration);
